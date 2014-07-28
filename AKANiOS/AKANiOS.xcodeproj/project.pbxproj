@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
+		8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */; };
+		8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
+		8EAFA8411986C44F00E58AD9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA8401986C44F00E58AD9 /* CoreData.framework */; };
+		8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */; };
+		8EAFA8491986C44F00E58AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA8481986C44F00E58AD9 /* main.m */; };
+		8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */; };
+		8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA84E1986C44F00E58AD9 /* AKANiOS.xcdatamodeld */; };
+		8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFA8511986C44F00E58AD9 /* Images.xcassets */; };
+		8EAFA8591986C44F00E58AD9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA8581986C44F00E58AD9 /* XCTest.framework */; };
+		8EAFA85A1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
+		8EAFA85B1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
+		8EAFA85C1986C44F00E58AD9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA8401986C44F00E58AD9 /* CoreData.framework */; };
+		8EAFA8641986C44F00E58AD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */; };
+		8EAFA8661986C44F00E58AD9 /* AKANiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EAFA85D1986C44F00E58AD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EAFA82F1986C44F00E58AD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EAFA8361986C44F00E58AD9;
+			remoteInfo = AKANiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8EAFA8371986C44F00E58AD9 /* AKANiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKANiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8EAFA83E1986C44F00E58AD9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8EAFA8401986C44F00E58AD9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANiOS-Info.plist"; sourceTree = "<group>"; };
+		8EAFA8461986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8EAFA8481986C44F00E58AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8EAFA84A1986C44F00E58AD9 /* AKANiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AKANiOS-Prefix.pch"; sourceTree = "<group>"; };
+		8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKAppDelegate.h; sourceTree = "<group>"; };
+		8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKAppDelegate.m; sourceTree = "<group>"; };
+		8EAFA84F1986C44F00E58AD9 /* AKANiOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AKANiOS.xcdatamodel; sourceTree = "<group>"; };
+		8EAFA8511986C44F00E58AD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKANiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EAFA8581986C44F00E58AD9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8EAFA8611986C44F00E58AD9 /* AKANiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANiOSTests-Info.plist"; sourceTree = "<group>"; };
+		8EAFA8631986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKANiOSTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8EAFA8341986C44F00E58AD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */,
+				8EAFA8411986C44F00E58AD9 /* CoreData.framework in Frameworks */,
+				8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */,
+				8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EAFA8541986C44F00E58AD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA8591986C44F00E58AD9 /* XCTest.framework in Frameworks */,
+				8EAFA85C1986C44F00E58AD9 /* CoreData.framework in Frameworks */,
+				8EAFA85B1986C44F00E58AD9 /* UIKit.framework in Frameworks */,
+				8EAFA85A1986C44F00E58AD9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8EAFA82E1986C44F00E58AD9 = {
+			isa = PBXGroup;
+			children = (
+				8EAFA8421986C44F00E58AD9 /* AKANiOS */,
+				8EAFA85F1986C44F00E58AD9 /* AKANiOSTests */,
+				8EAFA8391986C44F00E58AD9 /* Frameworks */,
+				8EAFA8381986C44F00E58AD9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8EAFA8381986C44F00E58AD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA8371986C44F00E58AD9 /* AKANiOS.app */,
+				8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8EAFA8391986C44F00E58AD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA83A1986C44F00E58AD9 /* Foundation.framework */,
+				8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */,
+				8EAFA83E1986C44F00E58AD9 /* UIKit.framework */,
+				8EAFA8401986C44F00E58AD9 /* CoreData.framework */,
+				8EAFA8581986C44F00E58AD9 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8EAFA8421986C44F00E58AD9 /* AKANiOS */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
+				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
+				8EAFA8511986C44F00E58AD9 /* Images.xcassets */,
+				8EAFA84E1986C44F00E58AD9 /* AKANiOS.xcdatamodeld */,
+				8EAFA8431986C44F00E58AD9 /* Supporting Files */,
+			);
+			path = AKANiOS;
+			sourceTree = "<group>";
+		};
+		8EAFA8431986C44F00E58AD9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */,
+				8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */,
+				8EAFA8481986C44F00E58AD9 /* main.m */,
+				8EAFA84A1986C44F00E58AD9 /* AKANiOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8EAFA85F1986C44F00E58AD9 /* AKANiOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */,
+				8EAFA8601986C44F00E58AD9 /* Supporting Files */,
+			);
+			path = AKANiOSTests;
+			sourceTree = "<group>";
+		};
+		8EAFA8601986C44F00E58AD9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8EAFA8611986C44F00E58AD9 /* AKANiOSTests-Info.plist */,
+				8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8EAFA8361986C44F00E58AD9 /* AKANiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOS" */;
+			buildPhases = (
+				8EAFA8331986C44F00E58AD9 /* Sources */,
+				8EAFA8341986C44F00E58AD9 /* Frameworks */,
+				8EAFA8351986C44F00E58AD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AKANiOS;
+			productName = AKANiOS;
+			productReference = 8EAFA8371986C44F00E58AD9 /* AKANiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8EAFA8561986C44F00E58AD9 /* AKANiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOSTests" */;
+			buildPhases = (
+				8EAFA8531986C44F00E58AD9 /* Sources */,
+				8EAFA8541986C44F00E58AD9 /* Frameworks */,
+				8EAFA8551986C44F00E58AD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EAFA85E1986C44F00E58AD9 /* PBXTargetDependency */,
+			);
+			name = AKANiOSTests;
+			productName = AKANiOSTests;
+			productReference = 8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8EAFA82F1986C44F00E58AD9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AK;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Arthur Jahn Sturzbecher";
+				TargetAttributes = {
+					8EAFA8561986C44F00E58AD9 = {
+						TestTargetID = 8EAFA8361986C44F00E58AD9;
+					};
+				};
+			};
+			buildConfigurationList = 8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKANiOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8EAFA82E1986C44F00E58AD9;
+			productRefGroup = 8EAFA8381986C44F00E58AD9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8EAFA8361986C44F00E58AD9 /* AKANiOS */,
+				8EAFA8561986C44F00E58AD9 /* AKANiOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8EAFA8351986C44F00E58AD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
+				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EAFA8551986C44F00E58AD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA8641986C44F00E58AD9 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8EAFA8331986C44F00E58AD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
+				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
+				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EAFA8531986C44F00E58AD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EAFA8661986C44F00E58AD9 /* AKANiOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8EAFA85E1986C44F00E58AD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EAFA8361986C44F00E58AD9 /* AKANiOS */;
+			targetProxy = 8EAFA85D1986C44F00E58AD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EAFA8461986C44F00E58AD9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8EAFA8631986C44F00E58AD9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8EAFA8671986C44F00E58AD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8EAFA8681986C44F00E58AD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8EAFA86A1986C44F00E58AD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
+				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8EAFA86B1986C44F00E58AD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
+				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		8EAFA86D1986C44F00E58AD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AKANiOS.app/AKANiOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AKANiOSTests/AKANiOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8EAFA86E1986C44F00E58AD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AKANiOS.app/AKANiOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
+				INFOPLIST_FILE = "AKANiOSTests/AKANiOSTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKANiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EAFA8671986C44F00E58AD9 /* Debug */,
+				8EAFA8681986C44F00E58AD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EAFA86A1986C44F00E58AD9 /* Debug */,
+				8EAFA86B1986C44F00E58AD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EAFA86D1986C44F00E58AD9 /* Debug */,
+				8EAFA86E1986C44F00E58AD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8EAFA84E1986C44F00E58AD9 /* AKANiOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EAFA84F1986C44F00E58AD9 /* AKANiOS.xcdatamodel */,
+			);
+			currentVersion = 8EAFA84F1986C44F00E58AD9 /* AKANiOS.xcdatamodel */;
+			path = AKANiOS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8EAFA82F1986C44F00E58AD9 /* Project object */;
+}
