@@ -8,6 +8,7 @@
 
 #import "AKListViewController.h"
 #import "AKParlamentary.h"
+#import "AKTableViewCell.h"
 @interface AKListViewController ()
 
 //total Parlamentary listed
@@ -21,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.navigationItem.title = @"Pesquisa";
     }
     return self;
 }
@@ -45,7 +46,26 @@
 
 //TableViewDataSource Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.parlamentaryArray count];
+    return 3;
+    //return [self.parlamentaryArray count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableCell";
+    
+    AKTableViewCell *cell = (AKTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AKTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 @end
