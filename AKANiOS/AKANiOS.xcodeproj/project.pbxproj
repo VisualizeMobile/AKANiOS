@@ -26,6 +26,8 @@
 		E9851B99198F29A900A2280B /* AKListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B97198F29A900A2280B /* AKListViewController.xib */; };
 		E9851B9D198F2EF600A2280B /* AKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851B9B198F2EF600A2280B /* AKTableViewCell.m */; };
 		E9851B9E198F2EF600A2280B /* AKTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */; };
+		E9851BA3198F39ED00A2280B /* AKParlamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA2198F39ED00A2280B /* AKParlamentary.m */; };
+		E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA5198F3A3300A2280B /* AKQuota.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,11 @@
 		E9851B9A198F2EF600A2280B /* AKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTableViewCell.h; sourceTree = "<group>"; };
 		E9851B9B198F2EF600A2280B /* AKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKTableViewCell.m; sourceTree = "<group>"; };
 		E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKTableViewCell.xib; sourceTree = "<group>"; };
+		E9851BA1198F39ED00A2280B /* AKParlamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParlamentary.h; sourceTree = "<group>"; };
+		E9851BA2198F39ED00A2280B /* AKParlamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParlamentary.m; sourceTree = "<group>"; };
+		E9851BA4198F3A3300A2280B /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
+		E9851BA5198F3A3300A2280B /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
+		E9851BAB198F439500A2280B /* Casper_B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Casper_B.ttf; path = ../../../../../Desktop/Casper_Typface/Casper_B.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +134,9 @@
 			children = (
 				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
 				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
-				E9851B95198F29A900A2280B /* AKListViewController.h */,
-				E9851B96198F29A900A2280B /* AKListViewController.m */,
-				E9851B97198F29A900A2280B /* AKListViewController.xib */,
-				E9851B9A198F2EF600A2280B /* AKTableViewCell.h */,
-				E9851B9B198F2EF600A2280B /* AKTableViewCell.m */,
-				E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */,
+				E9851BA0198F397300A2280B /* SimpleCell */,
+				E9851B9F198F396000A2280B /* MainList */,
+				E9851BA7198F3A4B00A2280B /* model */,
 				8EAFA8511986C44F00E58AD9 /* Images.xcassets */,
 				8EAFA84E1986C44F00E58AD9 /* AKANiOS.xcdatamodeld */,
 				8EAFA8431986C44F00E58AD9 /* Supporting Files */,
@@ -143,6 +147,7 @@
 		8EAFA8431986C44F00E58AD9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E9851BAA198F437700A2280B /* fonts */,
 				8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */,
 				8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */,
 				8EAFA8481986C44F00E58AD9 /* main.m */,
@@ -167,6 +172,46 @@
 				8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9851B9F198F396000A2280B /* MainList */ = {
+			isa = PBXGroup;
+			children = (
+				E9851B95198F29A900A2280B /* AKListViewController.h */,
+				E9851B96198F29A900A2280B /* AKListViewController.m */,
+				E9851B97198F29A900A2280B /* AKListViewController.xib */,
+			);
+			name = MainList;
+			sourceTree = "<group>";
+		};
+		E9851BA0198F397300A2280B /* SimpleCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9851B9A198F2EF600A2280B /* AKTableViewCell.h */,
+				E9851B9B198F2EF600A2280B /* AKTableViewCell.m */,
+				E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */,
+			);
+			name = SimpleCell;
+			sourceTree = "<group>";
+		};
+		E9851BA7198F3A4B00A2280B /* model */ = {
+			isa = PBXGroup;
+			children = (
+				E9851BA1198F39ED00A2280B /* AKParlamentary.h */,
+				E9851BA2198F39ED00A2280B /* AKParlamentary.m */,
+				E9851BA4198F3A3300A2280B /* AKQuota.h */,
+				E9851BA5198F3A3300A2280B /* AKQuota.m */,
+			);
+			name = model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E9851BAA198F437700A2280B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E9851BAB198F439500A2280B /* Casper_B.ttf */,
+			);
+			name = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +262,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Arthur Jahn Sturzbecher";
 				TargetAttributes = {
+					8EAFA8361986C44F00E58AD9 = {
+						DevelopmentTeam = 7A9D2MJVKJ;
+					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
 					};
@@ -269,9 +317,11 @@
 			files = (
 				E9851B98198F29A900A2280B /* AKListViewController.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
+				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
+				E9851BA3198F39ED00A2280B /* AKParlamentary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
 				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
@@ -401,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
 				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
