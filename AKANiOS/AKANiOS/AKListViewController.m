@@ -7,8 +7,11 @@
 //
 
 #import "AKListViewController.h"
-
+#import "AKParlamentary.h"
 @interface AKListViewController ()
+
+//total Parlamentary listed
+@property (nonatomic)NSArray *parlamentaryArray;
 
 @end
 
@@ -33,6 +36,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//TableViewDelegate Methods
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+//TableViewDataSource Methods
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.parlamentaryArray count];
 }
 
 @end

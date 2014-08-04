@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKListViewController : UIViewController
+@interface AKListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end
