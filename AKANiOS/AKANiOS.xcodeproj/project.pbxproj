@@ -28,6 +28,8 @@
 		E9851B9E198F2EF600A2280B /* AKTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */; };
 		E9851BA3198F39ED00A2280B /* AKParlamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA2198F39ED00A2280B /* AKParlamentary.m */; };
 		E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA5198F3A3300A2280B /* AKQuota.m */; };
+		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
+		E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,9 @@
 		E9851BA4198F3A3300A2280B /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
 		E9851BA5198F3A3300A2280B /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
 		E9851BAB198F439500A2280B /* Casper_B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Casper_B.ttf; path = ../../../../../Desktop/Casper_Typface/Casper_B.ttf; sourceTree = "<group>"; };
+		E99D1E891990120600564688 /* AKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDetailViewController.h; sourceTree = "<group>"; };
+		E99D1E8A1990120600564688 /* AKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDetailViewController.m; sourceTree = "<group>"; };
+		E99D1E8B1990120600564688 /* AKDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +137,7 @@
 		8EAFA8421986C44F00E58AD9 /* AKANiOS */ = {
 			isa = PBXGroup;
 			children = (
+				E99D1E8E1990176400564688 /* Detail */,
 				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
 				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
 				E9851BA0198F397300A2280B /* SimpleCell */,
@@ -212,6 +218,16 @@
 				E9851BAB198F439500A2280B /* Casper_B.ttf */,
 			);
 			name = fonts;
+			sourceTree = "<group>";
+		};
+		E99D1E8E1990176400564688 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E99D1E891990120600564688 /* AKDetailViewController.h */,
+				E99D1E8A1990120600564688 /* AKDetailViewController.m */,
+				E99D1E8B1990120600564688 /* AKDetailViewController.xib */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +312,7 @@
 				E9851B99198F29A900A2280B /* AKListViewController.xib in Resources */,
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
+				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9851B98198F29A900A2280B /* AKListViewController.m in Sources */,
+				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
