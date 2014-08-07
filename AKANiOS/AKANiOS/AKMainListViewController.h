@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKToolBar.h"
 
-@interface AKMainListViewController : UIViewController
+@interface AKMainListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UIView *toolBarContainer;
 @end

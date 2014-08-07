@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE421993EBA0003522E8 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE401993EBA0003522E8 /* AKMainListViewController.xib */; };
+		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
+		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
+		2FCEDE511994016F003522E8 /* AKUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE501994016F003522E8 /* AKUtil.m */; };
 		8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
 		8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */; };
 		8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
@@ -46,6 +49,11 @@
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
 		2FCEDE401993EBA0003522E8 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
+		2FCEDE441993F106003522E8 /* AKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKToolBar.h; sourceTree = "<group>"; };
+		2FCEDE451993F106003522E8 /* AKToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKToolBar.m; sourceTree = "<group>"; };
+		2FCEDE491993F1B7003522E8 /* AKToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKToolBar.xib; sourceTree = "<group>"; };
+		2FCEDE4F1994016F003522E8 /* AKUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKUtil.h; path = ../AKUtil.h; sourceTree = "<group>"; };
+		2FCEDE501994016F003522E8 /* AKUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKUtil.m; path = ../AKUtil.m; sourceTree = "<group>"; };
 		8EAFA8371986C44F00E58AD9 /* AKANiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKANiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +111,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FCEDE431993F0C8003522E8 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				2FCEDE441993F106003522E8 /* AKToolBar.h */,
+				2FCEDE451993F106003522E8 /* AKToolBar.m */,
+				2FCEDE491993F1B7003522E8 /* AKToolBar.xib */,
+			);
+			name = Toolbar;
+			sourceTree = "<group>";
+		};
+		2FCEDE4B1994012C003522E8 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2FCEDE4F1994016F003522E8 /* AKUtil.h */,
+				2FCEDE501994016F003522E8 /* AKUtil.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		8EAFA82E1986C44F00E58AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -137,9 +164,11 @@
 		8EAFA8421986C44F00E58AD9 /* AKANiOS */ = {
 			isa = PBXGroup;
 			children = (
-				E99D1E8E1990176400564688 /* Detail */,
 				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
 				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
+				2FCEDE4B1994012C003522E8 /* Util */,
+				2FCEDE431993F0C8003522E8 /* Toolbar */,
+				E99D1E8E1990176400564688 /* Detail */,
 				E9851BA0198F397300A2280B /* SimpleCell */,
 				E9851B9F198F396000A2280B /* MainList */,
 				E9851BA7198F3A4B00A2280B /* model */,
@@ -310,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
+				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
 				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
@@ -333,9 +363,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
+				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
+				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,

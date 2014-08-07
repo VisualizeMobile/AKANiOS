@@ -8,6 +8,7 @@
 
 #import "AKAppDelegate.h"
 #import "AKMainListViewController.h"
+#import "AKUtil.h"
 
 @implementation AKAppDelegate
 
@@ -21,6 +22,10 @@
 
     AKMainListViewController *root =  [[AKMainListViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
+    
+    nav.navigationBar.barTintColor = [AKUtil color1];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
+    nav.navigationBar.tintColor = [AKUtil color4];
     
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];

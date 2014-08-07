@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKMainListViewController">
             <connections>
                 <outlet property="tableView" destination="p8Z-2d-LWi" id="Hsj-yW-3e4"/>
+                <outlet property="toolBarContainer" destination="fEh-14-AXd" id="LcZ-a2-KeH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="p8Z-2d-LWi">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="434"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -24,13 +25,24 @@
                         <outlet property="delegate" destination="-1" id="O8h-1I-ub5"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEh-14-AXd">
+                    <rect key="frame" x="0.0" y="434" width="320" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="6Dd-fA-jjX"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fEh-14-AXd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7vd-Y8-czD"/>
+                <constraint firstItem="fEh-14-AXd" firstAttribute="top" secondItem="p8Z-2d-LWi" secondAttribute="bottom" id="9Am-4Y-nNt"/>
+                <constraint firstAttribute="bottom" secondItem="fEh-14-AXd" secondAttribute="bottom" id="CcB-Q2-QYw"/>
                 <constraint firstItem="p8Z-2d-LWi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IoX-Tb-hqB"/>
                 <constraint firstAttribute="trailing" secondItem="p8Z-2d-LWi" secondAttribute="trailing" id="OMX-7P-1Hz"/>
                 <constraint firstItem="p8Z-2d-LWi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Stn-Qn-caB"/>
-                <constraint firstAttribute="bottom" secondItem="p8Z-2d-LWi" secondAttribute="bottom" id="WWg-yB-a4X"/>
+                <constraint firstAttribute="trailing" secondItem="fEh-14-AXd" secondAttribute="trailing" id="UHn-v7-C3P"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
