@@ -2,8 +2,8 @@
 //  AKAppDelegate.h
 //  AKANiOS
 //
-//  Created by Arthur Jahn Sturzbecher on 28/07/14.
-//  Copyright (c) 2014 Arthur Jahn Sturzbecher. All rights reserved.
+//  Created by VisualizeMobile on 28/07/14.
+//  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
