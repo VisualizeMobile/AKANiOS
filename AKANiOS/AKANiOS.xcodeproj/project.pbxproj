@@ -24,11 +24,9 @@
 		8EAFA85C1986C44F00E58AD9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA8401986C44F00E58AD9 /* CoreData.framework */; };
 		8EAFA8641986C44F00E58AD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */; };
 		8EAFA8661986C44F00E58AD9 /* AKANiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */; };
-		E9851B98198F29A900A2280B /* AKListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851B96198F29A900A2280B /* AKListViewController.m */; };
-		E9851B99198F29A900A2280B /* AKListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B97198F29A900A2280B /* AKListViewController.xib */; };
-		E9851B9D198F2EF600A2280B /* AKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851B9B198F2EF600A2280B /* AKTableViewCell.m */; };
-		E9851B9E198F2EF600A2280B /* AKTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */; };
-		E9851BA3198F39ED00A2280B /* AKParlamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA2198F39ED00A2280B /* AKParlamentary.m */; };
+		E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */; };
+		E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */; };
+		E9851BA3198F39ED00A2280B /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA2198F39ED00A2280B /* AKParliamentary.m */; };
 		E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA5198F3A3300A2280B /* AKQuota.m */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKDetailViewController.xib */; };
@@ -66,14 +64,11 @@
 		8EAFA8611986C44F00E58AD9 /* AKANiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANiOSTests-Info.plist"; sourceTree = "<group>"; };
 		8EAFA8631986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKANiOSTests.m; sourceTree = "<group>"; };
-		E9851B95198F29A900A2280B /* AKListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKListViewController.h; sourceTree = "<group>"; };
-		E9851B96198F29A900A2280B /* AKListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKListViewController.m; sourceTree = "<group>"; };
-		E9851B97198F29A900A2280B /* AKListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKListViewController.xib; sourceTree = "<group>"; };
-		E9851B9A198F2EF600A2280B /* AKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTableViewCell.h; sourceTree = "<group>"; };
-		E9851B9B198F2EF600A2280B /* AKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKTableViewCell.m; sourceTree = "<group>"; };
-		E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKTableViewCell.xib; sourceTree = "<group>"; };
-		E9851BA1198F39ED00A2280B /* AKParlamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParlamentary.h; sourceTree = "<group>"; };
-		E9851BA2198F39ED00A2280B /* AKParlamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParlamentary.m; sourceTree = "<group>"; };
+		E9851B9A198F2EF600A2280B /* AKMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainTableViewCell.h; sourceTree = "<group>"; };
+		E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainTableViewCell.m; sourceTree = "<group>"; };
+		E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainTableViewCell.xib; sourceTree = "<group>"; };
+		E9851BA1198F39ED00A2280B /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
+		E9851BA2198F39ED00A2280B /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
 		E9851BA4198F3A3300A2280B /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
 		E9851BA5198F3A3300A2280B /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
 		E9851BAB198F439500A2280B /* Casper_B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Casper_B.ttf; path = ../../../../../Desktop/Casper_Typface/Casper_B.ttf; sourceTree = "<group>"; };
@@ -188,9 +183,9 @@
 		E9851B9F198F396000A2280B /* MainList */ = {
 			isa = PBXGroup;
 			children = (
-				E9851B95198F29A900A2280B /* AKListViewController.h */,
-				E9851B96198F29A900A2280B /* AKListViewController.m */,
-				E9851B97198F29A900A2280B /* AKListViewController.xib */,
+				2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */,
+				2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */,
+				2FCEDE401993EBA0003522E8 /* AKMainListViewController.xib */,
 			);
 			name = MainList;
 			sourceTree = "<group>";
@@ -198,9 +193,9 @@
 		E9851BA0198F397300A2280B /* SimpleCell */ = {
 			isa = PBXGroup;
 			children = (
-				E9851B9A198F2EF600A2280B /* AKTableViewCell.h */,
-				E9851B9B198F2EF600A2280B /* AKTableViewCell.m */,
-				E9851B9C198F2EF600A2280B /* AKTableViewCell.xib */,
+				E9851B9A198F2EF600A2280B /* AKMainTableViewCell.h */,
+				E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */,
+				E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */,
 			);
 			name = SimpleCell;
 			sourceTree = "<group>";
@@ -208,8 +203,8 @@
 		E9851BA7198F3A4B00A2280B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				E9851BA1198F39ED00A2280B /* AKParlamentary.h */,
-				E9851BA2198F39ED00A2280B /* AKParlamentary.m */,
+				E9851BA1198F39ED00A2280B /* AKParliamentary.h */,
+				E9851BA2198F39ED00A2280B /* AKParliamentary.m */,
 				E9851BA4198F3A3300A2280B /* AKQuota.h */,
 				E9851BA5198F3A3300A2280B /* AKQuota.m */,
 			);
@@ -284,7 +279,7 @@
 			attributes = {
 				CLASSPREFIX = AK;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "Arthur Jahn Sturzbecher";
+				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
 						DevelopmentTeam = 7A9D2MJVKJ;
@@ -317,7 +312,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9851B99198F29A900A2280B /* AKListViewController.xib in Resources */,
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
 				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
@@ -345,11 +339,12 @@
 				E9851B98198F29A900A2280B /* AKListViewController.m in Sources */,
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
+				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
-				E9851B9D198F2EF600A2280B /* AKTableViewCell.m in Sources */,
+				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
-				E9851BA3198F39ED00A2280B /* AKParlamentary.m in Sources */,
+				E9851BA3198F39ED00A2280B /* AKParliamentary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

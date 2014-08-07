@@ -2,12 +2,12 @@
 //  AKAppDelegate.m
 //  AKANiOS
 //
-//  Created by Arthur Jahn Sturzbecher on 28/07/14.
-//  Copyright (c) 2014 Arthur Jahn Sturzbecher. All rights reserved.
+//  Created by VisualizeMobile on 28/07/14.
+//  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
 #import "AKAppDelegate.h"
-#import "AKListViewController.h"
+#import "AKMainListViewController.h"
 
 @implementation AKAppDelegate
 
@@ -18,7 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    AKListViewController *root =  [[AKListViewController alloc] init];
+
+    AKMainListViewController *root =  [[AKMainListViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
     
     self.window.rootViewController = nav;
