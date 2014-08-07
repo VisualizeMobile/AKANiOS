@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKDetailViewController : UIViewController
+@interface AKDetailViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "AKDetailViewController.h"
+#import "AKQuotaCollectionViewCell.h"
 
 @interface AKDetailViewController ()
+@property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
 
 @end
 
@@ -18,7 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
+        forCellWithReuseIdentifier:@"AKCell"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -35,4 +39,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"AKCell";
+    AKQuotaCollectionViewCell *cell = (AKQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    return cell;
+}
 @end
