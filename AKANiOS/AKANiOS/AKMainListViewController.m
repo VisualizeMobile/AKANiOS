@@ -82,7 +82,6 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AKMainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -93,9 +92,8 @@
 #pragma mark - Table view delegate
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AKMainTableViewCell * cell = (AKMainTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
-    detailController.parliamentary = cell.parliamentary;
+    detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:detailController animated:YES];
     
