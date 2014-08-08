@@ -59,35 +59,37 @@
                             <constraint firstAttribute="width" constant="50" id="rid-bz-RC2"/>
                             <constraint firstAttribute="height" constant="50" id="zvE-km-Ypk"/>
                         </constraints>
-                        <state key="normal" image="seguir2">
+                        <state key="normal" image="seguido">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seguidos" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-s4-Pv8">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ranking4" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-s4-Pv8">
                         <rect key="frame" x="6" y="5" width="60" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Gci-ZW-v9I"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Rk0-D1-nmn"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="n3h-S4-IqW"/>
                             <constraint firstAttribute="width" constant="60" id="wGT-xM-Eor"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hNL-v9-cSu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0J4-Vt-ATL"/>
+                    <constraint firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" constant="4" id="65q-rp-lrh"/>
                     <constraint firstItem="zqK-L7-7Nz" firstAttribute="leading" secondItem="Yux-gl-xk6" secondAttribute="trailing" constant="6" id="79T-bv-f2N"/>
-                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="7UM-4H-gG3"/>
-                    <constraint firstItem="apP-CV-Tes" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="9LQ-g7-Q7X"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="leading" id="AOe-Pd-guk"/>
+                    <constraint firstItem="apP-CV-Tes" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Gy3-Vn-riW"/>
                     <constraint firstAttribute="trailing" secondItem="hNL-v9-cSu" secondAttribute="trailing" id="NxR-Mf-Z8k"/>
                     <constraint firstAttribute="bottom" secondItem="aSB-iQ-P5a" secondAttribute="bottom" constant="4" id="R7e-dR-CKq"/>
                     <constraint firstItem="aSB-iQ-P5a" firstAttribute="leading" secondItem="zqK-L7-7Nz" secondAttribute="trailing" constant="7" id="VDT-AA-pVF"/>
-                    <constraint firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" constant="4" id="ki0-TM-Ldy"/>
-                    <constraint firstItem="apP-CV-Tes" firstAttribute="leading" secondItem="WLJ-s4-Pv8" secondAttribute="trailing" constant="20" id="oNT-wL-S0G"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="WLJ-s4-Pv8" secondAttribute="trailing" constant="20" id="fKq-wo-SUB"/>
                     <constraint firstItem="hNL-v9-cSu" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="trailing" constant="3" id="of6-Bw-LrL"/>
                     <constraint firstAttribute="bottom" secondItem="zqK-L7-7Nz" secondAttribute="bottom" constant="4" id="onE-bM-Aua"/>
+                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="qv5-Y1-tCa"/>
                     <constraint firstAttribute="bottom" secondItem="hNL-v9-cSu" secondAttribute="bottom" constant="9" id="rN1-ux-tIj"/>
                     <constraint firstAttribute="bottom" secondItem="Yux-gl-xk6" secondAttribute="bottom" constant="4" id="s6T-1f-swL"/>
-                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="wcj-ac-AaR"/>
+                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="vI3-sI-NQC"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -100,7 +102,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="seguidos" width="83" height="91"/>
-        <image name="seguir2" width="40" height="40"/>
+        <image name="ranking4" width="150" height="45"/>
+        <image name="seguido" width="40" height="40"/>
     </resources>
 </document>

@@ -12,8 +12,7 @@
 
 - (void)awakeFromNib
 {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self.parliamentaryName sizeToFit];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
