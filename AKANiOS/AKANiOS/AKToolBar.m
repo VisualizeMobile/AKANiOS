@@ -15,9 +15,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self = [[[NSBundle mainBundle] loadNibNamed:@"AKToolBar" owner:self options:nil] firstObject];
-        self.backgroundColor = [AKUtil color3];
+
     }
+    
     return self;
 }
 

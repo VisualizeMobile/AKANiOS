@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ufLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *parliamentaryPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *rankPosition;
+@property (weak, nonatomic) IBOutlet UILabel *quotaSum;
 
 @end

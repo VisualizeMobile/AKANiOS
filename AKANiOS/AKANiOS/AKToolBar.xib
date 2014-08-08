@@ -47,7 +47,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="5" id="4m7-Na-3h0"/>
-                <constraint firstItem="iv3-TN-Gua" firstAttribute="leading" secondItem="BKb-Iq-vDA" secondAttribute="trailing" constant="50" id="9A5-GO-1WS"/>
                 <constraint firstAttribute="trailing" secondItem="iv3-TN-Gua" secondAttribute="trailing" constant="20" id="Aea-oc-DAW"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="BKb-Iq-vDA" secondAttribute="width" id="E15-Aj-rpN"/>
                 <constraint firstAttribute="bottom" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="5" id="Q7c-xS-izf"/>
@@ -57,9 +56,9 @@
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="QxL-ey-36s" secondAttribute="width" id="bEC-OR-Bre"/>
                 <constraint firstItem="BKb-Iq-vDA" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="5" id="cgf-cc-3Uw"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="height" secondItem="BKb-Iq-vDA" secondAttribute="height" id="hnv-ef-hVf"/>
-                <constraint firstItem="BKb-Iq-vDA" firstAttribute="leading" secondItem="QxL-ey-36s" secondAttribute="trailing" constant="50" id="nfE-qY-hLp"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="5" id="paG-ZX-Khd"/>
                 <constraint firstItem="QxL-ey-36s" firstAttribute="leading" secondItem="w0A-Ha-2V9" secondAttribute="leading" constant="20" id="v51-ew-q4I"/>
+                <constraint firstAttribute="centerX" secondItem="BKb-Iq-vDA" secondAttribute="centerX" id="wfH-No-EPD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
