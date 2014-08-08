@@ -91,7 +91,7 @@
 
 #pragma mark - Table view delegate
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
     detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
     

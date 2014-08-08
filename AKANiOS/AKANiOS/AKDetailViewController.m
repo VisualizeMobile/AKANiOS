@@ -32,6 +32,10 @@
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
         forCellWithReuseIdentifier:@"AKCell"];
     
+    UIImage *backButtonImage = [UIImage imageNamed:@"backImage"];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary firstName];
     
 }
@@ -42,14 +46,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - CollectionView DataSource
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return 13;
 }
+
+#pragma mark - CollectionView Delegate
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"AKCell";
     AKQuotaCollectionViewCell *cell = (AKQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     return cell;
+}
+
+#pragma mark - Custom Methods
+
+-(void)popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
