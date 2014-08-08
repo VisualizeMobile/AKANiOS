@@ -11,6 +11,6 @@
 @implementation AKQuota
 
 -(BOOL)isEmpty{
-    return YES;
+    return (self.value == 0.0) ? YES : NO;
 }
 @end

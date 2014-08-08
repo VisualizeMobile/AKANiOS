@@ -164,12 +164,8 @@
 		8E00F2FA1995518C0030A52F /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				8E00F2F5199551850030A52F /* AKQuotaCollectionViewCell.h */,
-				8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */,
-				8E00F309199567830030A52F /* AKEmptyQuotaCollectionViewCell.h */,
-				8E00F30A199567830030A52F /* AKEmptyQuotaCollectionViewCell.m */,
-				8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */,
-				8E00F30C199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib */,
+				8E00F30E19956B910030A52F /* commonCell */,
+				8E00F30F19956BA30030A52F /* emptyCell */,
 			);
 			name = CollectionCell;
 			path = ..;
@@ -183,6 +179,26 @@
 				8E00F303199559F00030A52F /* AKInfoViewController.xib */,
 			);
 			name = InfoController;
+			sourceTree = "<group>";
+		};
+		8E00F30E19956B910030A52F /* commonCell */ = {
+			isa = PBXGroup;
+			children = (
+				8E00F2F5199551850030A52F /* AKQuotaCollectionViewCell.h */,
+				8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */,
+				8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */,
+			);
+			name = commonCell;
+			sourceTree = "<group>";
+		};
+		8E00F30F19956BA30030A52F /* emptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				8E00F309199567830030A52F /* AKEmptyQuotaCollectionViewCell.h */,
+				8E00F30A199567830030A52F /* AKEmptyQuotaCollectionViewCell.m */,
+				8E00F30C199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib */,
+			);
+			name = emptyCell;
 			sourceTree = "<group>";
 		};
 		8EAFA82E1986C44F00E58AD9 = {
