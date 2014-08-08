@@ -10,4 +10,7 @@
 
 @interface AKParliamentary : NSObject
 
+@property(nonatomic) NSString *name;
+
+-(NSString *)firstName;
 @end

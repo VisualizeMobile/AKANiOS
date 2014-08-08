@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKParliamentary.h"
 
 @interface AKMainTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *parliamentaryName;
 @property (weak, nonatomic) IBOutlet UILabel *ufLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyLabel;

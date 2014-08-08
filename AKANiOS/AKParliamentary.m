@@ -10,4 +10,15 @@
 
 @implementation AKParliamentary
 
+-(NSString *)firstName{
+    NSScanner *scanner = [NSScanner scannerWithString:self.name];
+    NSString *substring = nil;
+    while(![scanner isAtEnd]) {
+        if([scanner scanUpToString:@" " intoString:&substring]) {
+            break;
+        }
+    }
+    return substring;
+}
+
 @end
