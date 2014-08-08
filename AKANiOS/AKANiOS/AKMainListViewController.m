@@ -17,6 +17,7 @@
 @property BOOL viewByRankEnabled;
 @property BOOL viewFollowedEnabled;
 @property AKToolBar *toolBar;
+@property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @end
 
 @implementation AKMainListViewController
@@ -30,6 +31,8 @@
     // Configure initial data
     self.viewByRankEnabled = NO;
     self.viewFollowedEnabled = NO;
+    self.parliamentaryDao = [AKParliamentaryDao getInstance];
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     
     // Configure Toolbar
     self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
@@ -83,10 +86,12 @@
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AKMainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-        
     }
     
     cell.quotaSum.hidden = cell.rankPosition.hidden = !self.viewByRankEnabled;
+    
+    AKParliamentary *parliamentary = self.parliamentaryArray[indexPath.row];
+    cell.parliamentaryName.text = parliamentary.name;
     
     return cell;
 }
