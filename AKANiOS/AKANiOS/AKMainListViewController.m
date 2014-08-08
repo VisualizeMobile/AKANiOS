@@ -15,6 +15,9 @@
 #import "AKUtil.h"
 
 @interface AKMainListViewController ()
+@property BOOL viewByRankEnabled;
+@property BOOL viewFollowedEnabled;
+@property AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @end
 
@@ -26,26 +29,28 @@
     
     self.title = @"Parlamentares";
     
+    // Configure initial data
+    self.viewByRankEnabled = NO;
+    self.viewFollowedEnabled = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     
-    // Configure toolbar
-    AKToolBar *toolBar = [[AKToolBar alloc] initWithFrame:CGRectZero];
-    [toolBar.followedButton addTarget:self action:@selector(viewFollowed:) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar.rankButton addTarget:self action:@selector(viewByRank:) forControlEvents:UIControlEventTouchUpInside];
-    [toolBar.searchButton addTarget:self action:@selector(searchByName:) forControlEvents:UIControlEventTouchUpInside];
+    // Configure Toolbar
+    self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
     
-    [self.toolBarContainer addSubview: toolBar];
-    self.toolBarContainer.backgroundColor = [AKUtil color3];
+    [self.toolBar.followedButton addTarget:self action:@selector(viewFollowed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.toolBar.rankButton addTarget:self action:@selector(viewByRank:) forControlEvents:UIControlEventTouchUpInside];
+    [self.toolBar.searchButton addTarget:self action:@selector(searchByName:) forControlEvents:UIControlEventTouchUpInside];
     
-//    NSDictionary *views = @{ @"toolBar" : toolBar,
-//                             @"toolBarContainer" : self.toolBarContainer};
-//    
-//    [self.toolBarContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(==0)-[toolBar]-0-|"
-// options:0 metrics:nil views:views]];
-//    [self.toolBarContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(==0)-[toolBar]-0-|"
-//                                                                      options:0 metrics:nil views:views]];
+    self.toolBarContainer.backgroundColor = self.toolBar.backgroundColor = [AKUtil color3];
 
+    [self.toolBarContainer addSubview:self.toolBar];
+    
+    [self.toolBar.rankButton setImage:[UIImage imageNamed:@"rankingdesativado"] forState:UIControlStateNormal];
+    [self.toolBar.rankButton setImage:[UIImage imageNamed:@"rankingativado"] forState:UIControlStateSelected];
+
+
+    
 
     // Configure navigation bar
     UIButton* configButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 38, 38)];
@@ -83,11 +88,20 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AKMainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
+    cell.quotaSum.hidden = cell.rankPosition.hidden = !self.viewByRankEnabled;
+    
+    AKParliamentary *parliamentary = self.parliamentaryArray[indexPath.row];
+    cell.parliamentaryName.text = parliamentary.name;
+    
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 70;
+    if(self.viewByRankEnabled)
+        return 100;
+    else
+        return 70;
 }
 
 #pragma mark - Table view delegate
@@ -105,20 +119,24 @@
 #pragma mark - Actions
 
 -(void) searchByName:(id) sender {
-    NSLog(@"%s", __FUNCTION__);
+    
 }
 
 
 -(void) viewByRank:(id) sender {
-    NSLog(@"%s", __FUNCTION__);
+    self.viewByRankEnabled = !self.viewByRankEnabled;
+    
+    [self.toolBar.rankButton setSelected:self.viewByRankEnabled];
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void) viewFollowed:(id) sender {
-    NSLog(@"%s", __FUNCTION__);
+
 }
 
 -(void) configuration:(id) sender {
-    NSLog(@"%s", __FUNCTION__);
+
 }
 
 -(void) infoScreen:(id) sender {

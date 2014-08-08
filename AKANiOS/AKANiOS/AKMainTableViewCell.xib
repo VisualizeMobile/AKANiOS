@@ -7,10 +7,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SimpleTableCell" rowHeight="111" id="KGk-i7-Jjw" customClass="AKMainTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do Parlamentar" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="181" translatesAutoresizingMaskIntoConstraints="NO" id="apP-CV-Tes">
@@ -53,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNL-v9-cSu">
-                        <rect key="frame" x="270" y="10" width="50" height="50"/>
+                        <rect key="frame" x="270" y="25" width="50" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="rid-bz-RC2"/>
@@ -68,28 +68,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Gci-ZW-v9I"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Rk0-D1-nmn"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="n3h-S4-IqW"/>
                             <constraint firstAttribute="width" constant="60" id="wGT-xM-Eor"/>
                         </constraints>
                     </imageView>
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="378º" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QL-gq-oDh">
+                        <rect key="frame" x="18" y="73" width="36" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ 100.000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8I-Ji-TA3">
+                        <rect key="frame" x="86" y="73" width="79" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hNL-v9-cSu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0J4-Vt-ATL"/>
-                    <constraint firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" constant="4" id="65q-rp-lrh"/>
                     <constraint firstItem="zqK-L7-7Nz" firstAttribute="leading" secondItem="Yux-gl-xk6" secondAttribute="trailing" constant="6" id="79T-bv-f2N"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="leading" id="AOe-Pd-guk"/>
                     <constraint firstItem="apP-CV-Tes" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Gy3-Vn-riW"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="baseline" secondItem="aSB-iQ-P5a" secondAttribute="baseline" id="LgW-Qm-P6c"/>
                     <constraint firstAttribute="trailing" secondItem="hNL-v9-cSu" secondAttribute="trailing" id="NxR-Mf-Z8k"/>
-                    <constraint firstAttribute="bottom" secondItem="aSB-iQ-P5a" secondAttribute="bottom" constant="4" id="R7e-dR-CKq"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="G8I-Ji-TA3" secondAttribute="leading" id="SZt-Pk-Ro4"/>
                     <constraint firstItem="aSB-iQ-P5a" firstAttribute="leading" secondItem="zqK-L7-7Nz" secondAttribute="trailing" constant="7" id="VDT-AA-pVF"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="WLJ-s4-Pv8" secondAttribute="trailing" constant="20" id="fKq-wo-SUB"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" id="fak-TK-jp7"/>
+                    <constraint firstItem="0QL-gq-oDh" firstAttribute="centerX" secondItem="WLJ-s4-Pv8" secondAttribute="centerX" id="jQH-Pg-v4D"/>
+                    <constraint firstAttribute="bottom" secondItem="G8I-Ji-TA3" secondAttribute="bottom" constant="5" id="kSR-et-wht"/>
+                    <constraint firstItem="0QL-gq-oDh" firstAttribute="centerY" secondItem="G8I-Ji-TA3" secondAttribute="centerY" id="moD-Fu-NBr"/>
                     <constraint firstItem="hNL-v9-cSu" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="trailing" constant="3" id="of6-Bw-LrL"/>
-                    <constraint firstAttribute="bottom" secondItem="zqK-L7-7Nz" secondAttribute="bottom" constant="4" id="onE-bM-Aua"/>
                     <constraint firstItem="WLJ-s4-Pv8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="qv5-Y1-tCa"/>
-                    <constraint firstAttribute="bottom" secondItem="hNL-v9-cSu" secondAttribute="bottom" constant="9" id="rN1-ux-tIj"/>
-                    <constraint firstAttribute="bottom" secondItem="Yux-gl-xk6" secondAttribute="bottom" constant="4" id="s6T-1f-swL"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="baseline" secondItem="zqK-L7-7Nz" secondAttribute="baseline" id="uLo-hW-gBZ"/>
                     <constraint firstItem="WLJ-s4-Pv8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="vI3-sI-NQC"/>
+                    <constraint firstAttribute="centerY" secondItem="hNL-v9-cSu" secondAttribute="centerY" id="vOM-rm-Nn2"/>
+                    <constraint firstAttribute="bottom" secondItem="0QL-gq-oDh" secondAttribute="bottom" constant="5" id="zNE-6e-TUQ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -97,6 +111,8 @@
                 <outlet property="parliamentaryName" destination="apP-CV-Tes" id="im6-DJ-5NN"/>
                 <outlet property="parliamentaryPhoto" destination="WLJ-s4-Pv8" id="Rn6-cB-cXH"/>
                 <outlet property="partyLabel" destination="Yux-gl-xk6" id="Z3p-CC-I4i"/>
+                <outlet property="quotaSum" destination="G8I-Ji-TA3" id="h0z-bB-w30"/>
+                <outlet property="rankPosition" destination="0QL-gq-oDh" id="rYa-WE-iZS"/>
                 <outlet property="ufLabel" destination="aSB-iQ-P5a" id="qNB-WZ-BgQ"/>
             </connections>
         </tableViewCell>

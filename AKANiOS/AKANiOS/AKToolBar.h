@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AKToolBar : UIView
+
 @property (weak, nonatomic) IBOutlet UIButton *followedButton;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *rankButton;
 
-- (id)initWithFrame:(CGRect)frame;
 @end

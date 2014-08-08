@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKMainListViewController">
             <connections>
                 <outlet property="tableView" destination="p8Z-2d-LWi" id="Hsj-yW-3e4"/>
-                <outlet property="toolBarContainer" destination="fEh-14-AXd" id="LcZ-a2-KeH"/>
+                <outlet property="toolBarContainer" destination="fEh-14-AXd" id="1qs-vi-2pe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
