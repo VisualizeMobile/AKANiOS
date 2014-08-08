@@ -9,6 +9,7 @@
 #import "AKMainListViewController.h"
 #import "AKMainTableViewCell.h"
 #import "AKDetailViewController.h"
+#import "AKInfoViewController.h"
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
@@ -121,7 +122,7 @@
 }
 
 -(void) infoScreen:(id) sender {
-    NSLog(@"%s", __FUNCTION__);
+    [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
 }
 
 @end
