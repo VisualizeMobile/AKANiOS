@@ -10,4 +10,7 @@
 
 @implementation AKQuota
 
+-(BOOL)isEmpty{
+    return YES;
+}
 @end

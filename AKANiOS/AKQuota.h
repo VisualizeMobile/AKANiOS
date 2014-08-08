@@ -10,4 +10,5 @@
 
 @interface AKQuota : NSObject
 
+-(BOOL)isEmpty;
 @end
