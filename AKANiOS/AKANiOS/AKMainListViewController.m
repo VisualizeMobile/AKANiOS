@@ -8,11 +8,13 @@
 
 #import "AKMainListViewController.h"
 #import "AKMainTableViewCell.h"
+#import "AKDetailViewController.h"
+#import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
 
 @interface AKMainListViewController ()
-
+@property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @end
 
 @implementation AKMainListViewController
@@ -22,6 +24,9 @@
     [super viewDidLoad];
     
     self.title = @"Parlamentares";
+    
+    self.parliamentaryDao = [AKParliamentaryDao getInstance];
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     
     // Configure toolbar
     AKToolBar *toolBar = [[AKToolBar alloc] initWithFrame:CGRectZero];
@@ -64,8 +69,7 @@
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
-    //return [self.parlamentaryArray count];
+    return [self.parliamentaryArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -78,7 +82,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AKMainTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+    cell.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -87,6 +91,15 @@
 }
 
 #pragma mark - Table view delegate
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AKMainTableViewCell * cell = (AKMainTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
+    detailController.parliamentary = cell.parliamentary;
+    
+    [self.navigationController pushViewController:detailController animated:YES];
+    
+}
 
 #pragma mark - Custom methods
 

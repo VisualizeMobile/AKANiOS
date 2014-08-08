@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKParliamentary.h"
 
 @interface AKDetailViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic) AKParliamentary *parliamentary;
 @end
