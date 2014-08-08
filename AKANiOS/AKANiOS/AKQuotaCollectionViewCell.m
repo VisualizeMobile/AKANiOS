@@ -27,13 +27,21 @@
         
         self = [arrayOfViews objectAtIndex:0];
         
-        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushQuotaDetail:)];
-        
-        [self addGestureRecognizer:tapRecognizer];
-        
     }
     return self;
 
+}
+-(void)awakeFromNib{
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushQuotaDetail:)];
+    
+    [self addGestureRecognizer:tapRecognizer];
+
+}
+
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
 -(void)pushQuotaDetail:(UIGestureRecognizer *)recognizer{
