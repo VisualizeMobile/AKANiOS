@@ -28,9 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
         forCellWithReuseIdentifier:@"AKCell"];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = [self.parliamentary firstName];
+    
 }
 
 - (void)didReceiveMemoryWarning
