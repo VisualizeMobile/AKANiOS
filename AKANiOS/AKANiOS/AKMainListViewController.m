@@ -9,6 +9,7 @@
 #import "AKMainListViewController.h"
 #import "AKMainTableViewCell.h"
 #import "AKDetailViewController.h"
+#import "AKInfoViewController.h"
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
@@ -151,7 +152,7 @@
 
 #pragma mark - Table view delegate
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
     
     if (self.searchController.active)
@@ -225,7 +226,7 @@
 }
 
 -(void) infoScreen:(id) sender {
-   
+    [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
 }
 
 #pragma mark - Custom methods

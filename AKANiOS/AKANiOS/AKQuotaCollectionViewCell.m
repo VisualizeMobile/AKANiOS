@@ -26,10 +26,28 @@
             return nil;
         
         self = [arrayOfViews objectAtIndex:0];
+        
     }
     return self;
 
 }
+-(void)awakeFromNib{
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushQuotaDetail:)];
+    
+    [self addGestureRecognizer:tapRecognizer];
+
+}
+
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(void)pushQuotaDetail:(UIGestureRecognizer *)recognizer{
+    NSLog(@"Toque na celula");
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AKEmptyCell" id="4zT-1C-VxG" customClass="AKEmptyQuotaCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dismiss" translatesAutoresizingMaskIntoConstraints="NO" id="21N-uQ-uUV">
+                        <rect key="frame" x="20" y="19" width="90" height="91"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="0.79658788442611694" alpha="1" colorSpace="calibratedRGB"/>
+            <size key="customSize" width="86" height="89"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="dismiss" width="40" height="38"/>
+    </resources>
+</document>

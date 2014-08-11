@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKQuota.h"
 
 @interface AKQuotaCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic)AKQuota *quota;
 @end

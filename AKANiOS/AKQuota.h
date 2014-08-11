@@ -10,4 +10,8 @@
 
 @interface AKQuota : NSObject
 
+@property (nonatomic) double value;
+@property (nonatomic) NSString *subtype;
+
+-(BOOL)isEmpty;
 @end

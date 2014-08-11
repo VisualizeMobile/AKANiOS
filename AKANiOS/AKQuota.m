@@ -10,4 +10,7 @@
 
 @implementation AKQuota
 
+-(BOOL)isEmpty{
+    return (self.value == 0.0) ? YES : NO;
+}
 @end

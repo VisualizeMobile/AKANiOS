@@ -14,6 +14,11 @@
 		8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F2F219954B430030A52F /* AKParliamentaryDao.m */; };
 		8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */; };
 		8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */; };
+		8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F302199559F00030A52F /* AKInfoViewController.m */; };
+		8E00F305199559F00030A52F /* AKInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E00F303199559F00030A52F /* AKInfoViewController.xib */; };
+		8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F30719955CD20030A52F /* AKQuotaDao.m */; };
+		8E00F30B199567830030A52F /* AKEmptyQuotaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F30A199567830030A52F /* AKEmptyQuotaCollectionViewCell.m */; };
+		8E00F30D199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E00F30C199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib */; };
 		8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
 		8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */; };
 		8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
@@ -61,6 +66,14 @@
 		8E00F2F5199551850030A52F /* AKQuotaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKQuotaCollectionViewCell.h; path = AKANiOS/AKQuotaCollectionViewCell.h; sourceTree = "<group>"; };
 		8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKQuotaCollectionViewCell.m; path = AKANiOS/AKQuotaCollectionViewCell.m; sourceTree = "<group>"; };
 		8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AKQuotaCollectionViewCell.xib; path = AKANiOS/AKQuotaCollectionViewCell.xib; sourceTree = "<group>"; };
+		8E00F301199559F00030A52F /* AKInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKInfoViewController.h; sourceTree = "<group>"; };
+		8E00F302199559F00030A52F /* AKInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKInfoViewController.m; sourceTree = "<group>"; };
+		8E00F303199559F00030A52F /* AKInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKInfoViewController.xib; sourceTree = "<group>"; };
+		8E00F30619955CD20030A52F /* AKQuotaDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuotaDao.h; sourceTree = "<group>"; };
+		8E00F30719955CD20030A52F /* AKQuotaDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuotaDao.m; sourceTree = "<group>"; };
+		8E00F309199567830030A52F /* AKEmptyQuotaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKEmptyQuotaCollectionViewCell.h; sourceTree = "<group>"; };
+		8E00F30A199567830030A52F /* AKEmptyQuotaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKEmptyQuotaCollectionViewCell.m; sourceTree = "<group>"; };
+		8E00F30C199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKEmptyQuotaCollectionViewCell.xib; sourceTree = "<group>"; };
 		8EAFA8371986C44F00E58AD9 /* AKANiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKANiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +155,8 @@
 			children = (
 				8E00F2F119954B430030A52F /* AKParliamentaryDao.h */,
 				8E00F2F219954B430030A52F /* AKParliamentaryDao.m */,
+				8E00F30619955CD20030A52F /* AKQuotaDao.h */,
+				8E00F30719955CD20030A52F /* AKQuotaDao.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -149,12 +164,41 @@
 		8E00F2FA1995518C0030A52F /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
+				8E00F30E19956B910030A52F /* commonCell */,
+				8E00F30F19956BA30030A52F /* emptyCell */,
+			);
+			name = CollectionCell;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8E00F300199558DA0030A52F /* InfoController */ = {
+			isa = PBXGroup;
+			children = (
+				8E00F301199559F00030A52F /* AKInfoViewController.h */,
+				8E00F302199559F00030A52F /* AKInfoViewController.m */,
+				8E00F303199559F00030A52F /* AKInfoViewController.xib */,
+			);
+			name = InfoController;
+			sourceTree = "<group>";
+		};
+		8E00F30E19956B910030A52F /* commonCell */ = {
+			isa = PBXGroup;
+			children = (
 				8E00F2F5199551850030A52F /* AKQuotaCollectionViewCell.h */,
 				8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */,
 				8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */,
 			);
-			name = CollectionCell;
-			path = ..;
+			name = commonCell;
+			sourceTree = "<group>";
+		};
+		8E00F30F19956BA30030A52F /* emptyCell */ = {
+			isa = PBXGroup;
+			children = (
+				8E00F309199567830030A52F /* AKEmptyQuotaCollectionViewCell.h */,
+				8E00F30A199567830030A52F /* AKEmptyQuotaCollectionViewCell.m */,
+				8E00F30C199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib */,
+			);
+			name = emptyCell;
 			sourceTree = "<group>";
 		};
 		8EAFA82E1986C44F00E58AD9 = {
@@ -197,7 +241,8 @@
 				2FCEDE4B1994012C003522E8 /* Util */,
 				2FCEDE431993F0C8003522E8 /* Toolbar */,
 				E99D1E8E1990176400564688 /* Detail */,
-				E9851BA0198F397300A2280B /* SimpleCell */,
+				E9851BA0198F397300A2280B /* TableCell */,
+				8E00F300199558DA0030A52F /* InfoController */,
 				E9851B9F198F396000A2280B /* MainList */,
 				E9851BA7198F3A4B00A2280B /* model */,
 				8E00F2F419954C390030A52F /* DAO */,
@@ -248,14 +293,14 @@
 			name = MainList;
 			sourceTree = "<group>";
 		};
-		E9851BA0198F397300A2280B /* SimpleCell */ = {
+		E9851BA0198F397300A2280B /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
 				E9851B9A198F2EF600A2280B /* AKMainTableViewCell.h */,
 				E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */,
 				E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */,
 			);
-			name = SimpleCell;
+			name = TableCell;
 			sourceTree = "<group>";
 		};
 		E9851BA7198F3A4B00A2280B /* model */ = {
@@ -371,8 +416,10 @@
 				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
 				8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */,
+				8E00F30D199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib in Resources */,
 				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
+				8E00F305199559F00030A52F /* AKInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,9 +447,12 @@
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
+				8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */,
+				8E00F30B199567830030A52F /* AKEmptyQuotaCollectionViewCell.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
 				E9851BA3198F39ED00A2280B /* AKParliamentary.m in Sources */,
+				8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
