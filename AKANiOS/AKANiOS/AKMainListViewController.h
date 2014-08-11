@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AKToolBar.h"
 
-@interface AKMainListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface AKMainListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchDisplayDelegate>
 
-@property (nonatomic) NSArray *parliamentaryArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *toolBarContainer;
 
