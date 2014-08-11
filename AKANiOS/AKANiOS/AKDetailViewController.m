@@ -86,6 +86,10 @@
 
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"selecionou");
+}
+
 #pragma mark - Custom Methods
 
 -(void)popViewController{

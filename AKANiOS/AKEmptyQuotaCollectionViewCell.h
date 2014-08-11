@@ -10,6 +10,7 @@
 #import "AKQuota.h"
 
 @interface AKEmptyQuotaCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (nonatomic)AKQuota *quota;
 @end

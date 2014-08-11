@@ -29,6 +29,9 @@
             </view>
             <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <size key="customSize" width="86" height="89"/>
+            <connections>
+                <outlet property="imageView" destination="4H0-Oe-zNH" id="5Fd-BD-o4a"/>
+            </connections>
         </collectionViewCell>
     </objects>
     <resources>

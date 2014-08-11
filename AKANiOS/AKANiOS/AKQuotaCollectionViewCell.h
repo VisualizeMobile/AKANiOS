@@ -12,4 +12,7 @@
 @interface AKQuotaCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic)AKQuota *quota;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+ 
+
 @end

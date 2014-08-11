@@ -31,23 +31,16 @@
     return self;
 
 }
+
+
 -(void)awakeFromNib{
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushQuotaDetail:)];
-    
-    [self addGestureRecognizer:tapRecognizer];
-
 }
 
-
--(BOOL)canBecomeFirstResponder {
-    return YES;
+#pragma mark - custom methods
+-(void)imageForQuotaValue{
+    self.imageView.image = [UIImage imageNamed:@"aeronaves1"];
 }
-
--(void)pushQuotaDetail:(UIGestureRecognizer *)recognizer{
-    NSLog(@"Toque na celula");
-}
-
 
 /*
 // Only override drawRect: if you perform custom drawing.
