@@ -34,12 +34,12 @@
 
 
 -(void)awakeFromNib{
-    
+
 }
 
 #pragma mark - custom methods
 -(void)imageForQuotaValue{
-    self.imageView.image = [UIImage imageNamed:@"aeronaves1"];
+    self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
 }
 
 /*

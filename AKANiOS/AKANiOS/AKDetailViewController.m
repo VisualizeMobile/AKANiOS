@@ -76,11 +76,13 @@
     if (quota.isEmpty) {
         AKEmptyQuotaCollectionViewCell *cell = (AKEmptyQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:emptyCellIdentifier forIndexPath:indexPath];
         cell.quota = quota;
+        [cell imageForQuotaValue];
         return cell;
     }
     else{
         AKQuotaCollectionViewCell *cell = (AKQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         cell.quota = quota;
+        [cell imageForQuotaValue];
         return cell;
     }
 

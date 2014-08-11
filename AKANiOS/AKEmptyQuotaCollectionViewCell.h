@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (nonatomic)AKQuota *quota;
+
+-(void)imageForQuotaValue;
 @end
