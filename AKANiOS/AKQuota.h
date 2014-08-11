@@ -11,7 +11,10 @@
 @interface AKQuota : NSObject
 
 @property (nonatomic) double value;
-@property (nonatomic) NSString *subtype;
+@property (nonatomic) int subtype;
 
 -(BOOL)isEmpty;
+
+-(NSString *)imageName;
+-(NSString *)imageColor;
 @end

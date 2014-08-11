@@ -7,6 +7,7 @@
 //
 
 #import "AKQuotaCollectionViewCell.h"
+#import "AKUtil.h"
 
 @implementation AKQuotaCollectionViewCell
 
@@ -31,23 +32,42 @@
     return self;
 
 }
+
+
 -(void)awakeFromNib{
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushQuotaDetail:)];
-    
-    [self addGestureRecognizer:tapRecognizer];
 
 }
 
+#pragma mark - custom methods
 
--(BOOL)canBecomeFirstResponder {
-    return YES;
+-(void)imageForQuotaValue{
+    self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
+    self.valueLabel.text = [NSString stringWithFormat:@"r$ %.2f",[self.quota value]];
+    self.valueLabel.textColor = [self colorForQuotaValue];
 }
 
--(void)pushQuotaDetail:(UIGestureRecognizer *)recognizer{
-    NSLog(@"Toque na celula");
+-(UIColor *)colorForQuotaValue{
+    switch ([[self.quota imageColor] intValue]) {
+        case 1:
+            return [AKUtil color4];
+            break;
+        case 2:
+            return [AKUtil color1];
+            break;
+        case 3:
+            return [AKUtil color3];
+            break;
+        case 4:
+            return [AKUtil color2];
+            break;
+        case 5:
+            return [AKUtil color5];
+            break;
+        default:
+            return [AKUtil color1];
+            break;
+    }
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.
