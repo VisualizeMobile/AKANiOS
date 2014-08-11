@@ -88,11 +88,6 @@
     self.searchController.delegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
-
-    
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,7 +101,9 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self.tableView setContentOffset:CGPointMake(0, -20)];
+    [UIView animateWithDuration:0.3f animations:^ {
+        [self.tableView setContentOffset:CGPointMake(0, -20)];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -194,16 +191,7 @@
 -(void) searchByName:(id) sender {
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
-    
-//    [UIView animateWithDuration:0.3f
-//                          delay:0.0f
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         self.tableView.contentOffset = CGPointMake(20, 0);
-//                     }
-//                     completion:nil
-//     ];
-    
+        
     [self.searchController.searchBar becomeFirstResponder];
 }
 

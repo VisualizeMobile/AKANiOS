@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
 		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
@@ -53,9 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
-		2FCEDE401993EBA0003522E8 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
 		2FCEDE441993F106003522E8 /* AKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKToolBar.h; sourceTree = "<group>"; };
 		2FCEDE451993F106003522E8 /* AKToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKToolBar.m; sourceTree = "<group>"; };
 		2FCEDE491993F1B7003522E8 /* AKToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKToolBar.xib; sourceTree = "<group>"; };
@@ -287,8 +288,8 @@
 			isa = PBXGroup;
 			children = (
 				2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */,
+				2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */,
 				2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */,
-				2FCEDE401993EBA0003522E8 /* AKMainListViewController.xib */,
 			);
 			name = MainList;
 			sourceTree = "<group>";
@@ -382,7 +383,7 @@
 				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
-						DevelopmentTeam = 7A9D2MJVKJ;
+						DevelopmentTeam = 8Y387U3F6Y;
 					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
@@ -414,6 +415,7 @@
 			files = (
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
 				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
+				2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
 				8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */,
 				8E00F30D199567B80030A52F /* AKEmptyQuotaCollectionViewCell.xib in Resources */,
@@ -570,10 +572,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
 				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -584,10 +588,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
 				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
