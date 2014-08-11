@@ -16,4 +16,5 @@
 -(BOOL)isEmpty;
 
 -(NSString *)imageName;
+-(NSString *)imageColor;
 @end

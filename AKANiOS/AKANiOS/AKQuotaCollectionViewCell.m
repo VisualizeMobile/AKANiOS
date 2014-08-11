@@ -7,6 +7,7 @@
 //
 
 #import "AKQuotaCollectionViewCell.h"
+#import "AKUtil.h"
 
 @implementation AKQuotaCollectionViewCell
 
@@ -38,8 +39,34 @@
 }
 
 #pragma mark - custom methods
+
 -(void)imageForQuotaValue{
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
+    self.valueLabel.text = [NSString stringWithFormat:@"r$ %.2f",[self.quota value]];
+    self.valueLabel.textColor = [self colorForQuotaValue];
+}
+
+-(UIColor *)colorForQuotaValue{
+    switch ([[self.quota imageColor] intValue]) {
+        case 1:
+            return [AKUtil color4];
+            break;
+        case 2:
+            return [AKUtil color1];
+            break;
+        case 3:
+            return [AKUtil color3];
+            break;
+        case 4:
+            return [AKUtil color2];
+            break;
+        case 5:
+            return [AKUtil color5];
+            break;
+        default:
+            return [AKUtil color1];
+            break;
+    }
 }
 
 /*
