@@ -261,11 +261,20 @@
 }
 
 -(void) configuration:(id) sender {
+    
+        AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    NSLog(@"Resultado %@",[parlamentaryDao selectParlamentaryOfId:@"123"]);
 
 }
 
 -(void) infoScreen:(id) sender {
     [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
+    
+    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    
+    [parlamentaryDao insertParlamentaryWithNickName:@"Ronaldo" andIdParlamentary:@"123"];
+    
+    
 }
 
 #pragma mark - Custom methods

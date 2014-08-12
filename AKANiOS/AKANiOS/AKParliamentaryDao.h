@@ -8,9 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AKParliamentaryDao : NSObject
+@interface AKParliamentaryDao : NSObject <NSFetchedResultsControllerDelegate>
+
+@property(nonatomic,strong) NSFetchedResultsController *parlamentaryFRC;
+
+@property(nonatomic,strong) NSManagedObjectContext *managedObjectContext;//Acessa as tabelas
+@property(nonatomic,strong) NSFetchRequest *fetchRequest; // para fazer selects etc..
+@property(nonatomic,strong) NSEntityDescription *entity ; //Representa a tabelas
+@property(nonatomic,strong) NSSortDescriptor *nickName; //Faz ordenacao (Order by)
+@property(nonatomic,strong) NSArray *parlamentaresList; // Retorna uma lista com os parlamentares
+
 
 + (instancetype)getInstance;
 
 -(NSArray *)getAllParliamentary;
+
+
+-(BOOL) insertParlamentaryWithNickName:(NSString *) NickName andIdParlamentary:(NSString *) idParlamentary;
+-(NSArray *) selectParlamentaryOfId:(NSString *)idParlamentary;
+
 @end

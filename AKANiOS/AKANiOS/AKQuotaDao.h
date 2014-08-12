@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AKQuotaDao : NSObject
+@interface AKQuotaDao : NSObject <NSFetchedResultsControllerDelegate>
 
 + (instancetype)getInstance;
 

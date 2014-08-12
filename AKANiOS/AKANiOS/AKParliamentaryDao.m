@@ -8,8 +8,11 @@
 
 #import "AKParliamentaryDao.h"
 #import "AKParliamentary.h"
+#import "AKAppDelegate.h"
+#import "Parlamentary.h"
 
 @implementation AKParliamentaryDao
+
 
 - (instancetype)init
 {
@@ -30,10 +33,25 @@
 + (instancetype)getInstance
 {
     static AKParliamentaryDao *singleton;
+    AKAppDelegate *appDelegate;
     
     if (singleton == nil) @synchronized (self)
     {
         singleton = [[AKParliamentaryDao alloc] initPrivate];
+        singleton.parlamentaryFRC.delegate=self;
+    
+        appDelegate=[[UIApplication sharedApplication] delegate];
+    
+        singleton.managedObjectContext=appDelegate.managedObjectContext;
+        singleton.fetchRequest =[[NSFetchRequest alloc]init];
+        
+        //Recupera tabla no aplicativo
+        
+        singleton.entity=[NSEntityDescription entityForName:@"Parlamentary" inManagedObjectContext:singleton.managedObjectContext];
+        
+        
+
+        
     }
     
     return singleton;
@@ -52,6 +70,43 @@
     [array addObject:p3];
     
     return array;
+}
+
+-(BOOL)insertParlamentaryWithNickName:(NSString *)NickName andIdParlamentary:(NSString *)idParlamentary
+{
+    Parlamentary *newParlamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parlamentary" inManagedObjectContext:self.managedObjectContext];
+    
+    newParlamentary.nickName=NickName;
+    newParlamentary.idParlamentary=idParlamentary;
+    
+    NSError *Error=nil;
+    
+    
+    //Realiza insert no bando de dados local
+    if ([self.managedObjectContext save:&Error])
+        return YES;
+    else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+    
+    
+    
+    return NO;
+    
+}
+
+-(NSArray *)selectParlamentaryOfId:(NSString *)idParlamentary
+{
+    
+ //   Parlamentary *parlamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parlamentary" inManagedObjectContext:self.managedObjectContext];
+   
+    
+    
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParlamentary==%@",idParlamentary]];
+    [self.fetchRequest setEntity:self.entity];
+    
+    NSError *Error=nil;
+    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    
+    return result;
 }
 
 @end
