@@ -8,6 +8,9 @@
 
 #import "AKQuotaDao.h"
 #import "AKQuota.h"
+#import "AKAppDelegate.h"
+#import "Parlamentary.h"
+
 
 @implementation AKQuotaDao
 
@@ -30,10 +33,21 @@
 + (instancetype)getInstance
 {
     static AKQuotaDao *singleton;
+    AKAppDelegate *appDelegate;
     
     if (singleton == nil) @synchronized (self)
     {
         singleton = [[AKQuotaDao alloc] initPrivate];
+        
+        singleton.quotaFRC.delegate=self;
+        
+        appDelegate=[[UIApplication sharedApplication] delegate];
+        
+        singleton.managedObjectContext=appDelegate.managedObjectContext;
+        singleton.fetchRequest =[[NSFetchRequest alloc]init];
+        
+        //Recupera tabla no aplicativo
+        singleton.entity=[NSEntityDescription entityForName:@"Quota" inManagedObjectContext:singleton.managedObjectContext];
     }
     
     return singleton;
@@ -71,4 +85,16 @@
     return quotas;
 }
 
+-(BOOL)insertQuotaWithId:(NSString *)idQuota andValue:(double)value
+{
+    
+    return NO;
+}
+
+-(NSArray *)selectQuotaById:(NSString *)idQuota
+{
+    NSArray *result;
+    
+    return result;
+}
 @end

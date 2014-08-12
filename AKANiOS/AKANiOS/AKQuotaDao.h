@@ -10,7 +10,16 @@
 
 @interface AKQuotaDao : NSObject <NSFetchedResultsControllerDelegate>
 
-+ (instancetype)getInstance;
+@property(nonatomic,strong) NSFetchedResultsController *quotaFRC;
 
+@property(nonatomic,strong) NSManagedObjectContext *managedObjectContext;//Acessa as tabelas
+@property(nonatomic,strong) NSFetchRequest *fetchRequest; // para fazer selects etc..
+@property(nonatomic,strong) NSEntityDescription *entity ; //Representa a tabelas
+
++ (instancetype)getInstance;
 -(NSArray *)getQuotas;
+
+-(BOOL) insertQuotaWithId: (NSString *)idQuota andValue:(double) value;
+-(NSArray *) selectQuotaById:(NSString *)idQuota ;
+
 @end
