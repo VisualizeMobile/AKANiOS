@@ -14,6 +14,7 @@
 #import "AKToolBar.h"
 #import "AKUtil.h"
 #import "Parliamentary.h"
+#import "AKConfigViewController.h"
 
 
 @interface AKMainListViewController ()
@@ -304,14 +305,22 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    Parliamentary *parliamentary = [[parlamentaryDao selectParliamentaryById:@"123"] firstObject];
+    Parliamentary *parliamentary = (Parliamentary *)[parlamentaryDao selectParliamentaryById:@"123"];
     
     NSLog(@"Resultado %@",parliamentary.nickName);
-
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    
+    nav.navigationBar.barTintColor = [AKUtil color1];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) infoScreen:(id) sender {
-    [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    
+    nav.navigationBar.barTintColor = [AKUtil color1];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
     

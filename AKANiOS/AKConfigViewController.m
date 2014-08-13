@@ -1,19 +1,18 @@
 //
-//  AKInfoViewController.m
+//  AKConfigViewController.m
 //  AKANiOS
 //
-//  Created by Arthur Jahn Sturzbecher on 08/08/14.
+//  Created by Arthur Jahn Sturzbecher on 13/08/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
-#import "AKInfoViewController.h"
+#import "AKConfigViewController.h"
 #import "AKUtil.h"
-
-@interface AKInfoViewController ()
+@interface AKConfigViewController ()
 
 @end
 
-@implementation AKInfoViewController
+@implementation AKConfigViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,7 +22,6 @@
         [button setBackgroundImage:[UIImage imageNamed:@"dismiss"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(dismissViewController:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-        dismissButton.tintColor = [AKUtil color4];
         self.navigationItem.rightBarButtonItem = dismissButton;
     }
     return self;
@@ -32,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -53,6 +51,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)dismissViewController:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
