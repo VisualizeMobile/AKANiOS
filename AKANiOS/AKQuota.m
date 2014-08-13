@@ -101,7 +101,7 @@
             return @"aeronaves";
             break;
         case 8:
-            return @"automoveis";
+            return @"automovel";
             break;
         case 9:
             return @"combustivel";

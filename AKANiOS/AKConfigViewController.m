@@ -33,17 +33,15 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self transformNavigationBarButtons];
+    
+}
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(UIInterfaceOrientationIsLandscape(orientation)) {
-        self.navigationItem.rightBarButtonItem.customView.transform
-        = CGAffineTransformMakeScale(0.75, 0.75);
-    } else {
-        self.navigationItem.rightBarButtonItem.customView.transform
-        = CGAffineTransformMakeScale(1, 1);
-    }
-    
+    [self transformNavigationBarButtons];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,8 +50,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - custom methods
+
 - (IBAction)dismissViewController:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+-(void)transformNavigationBarButtons{
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(0.75, 0.75);
+    } else {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(1, 1);
+    }
+}
+
 
 @end

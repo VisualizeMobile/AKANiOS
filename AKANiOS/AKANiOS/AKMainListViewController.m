@@ -162,20 +162,15 @@
                      completion:nil];
 
 }
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self transformNavigationBarButtons];
+}
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(UIInterfaceOrientationIsLandscape(orientation)) {
-        self.navigationItem.leftBarButtonItem.customView.transform
-                                                    = self.navigationItem.rightBarButtonItem.customView.transform
-                                                    = CGAffineTransformMakeScale(0.75, 0.75);
-    } else {
-        self.navigationItem.leftBarButtonItem.customView.transform
-                                                    = self.navigationItem.rightBarButtonItem.customView.transform
-                                                    = CGAffineTransformMakeScale(1, 1);
-    }
 
+    [self transformNavigationBarButtons];
 }
 #pragma mark - Table view data source
 
@@ -305,11 +300,18 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    Parliamentary *parliamentary = (Parliamentary *)[parlamentaryDao selectParliamentaryById:@"123"];
+    Parliamentary *parliamentary =(Parliamentary *) [parlamentaryDao selectParliamentaryById:@"5829181"] ;
+    
     
     NSLog(@"Resultado %@",parliamentary.nickName);
+    UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"Teste" message:@"Foto" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+   
+    UIImageView *fotoParlamentar=[[UIImageView alloc] initWithImage:[UIImage imageWithData:[parliamentary photoParliamentary]]];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    [alertView addSubview:fotoParlamentar];
+    [alertView show];
+                                  
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
@@ -329,12 +331,6 @@
     
     [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:decimalNumber andIdUpdate:@1 andFollowed:@1];
     
-    
-    
-    
-    
-    
-    
 }
 
 #pragma mark - Custom methods
@@ -342,5 +338,20 @@
 -(BOOL) isSearchBarHidden {
     return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -8);
 }
+
+-(void)transformNavigationBarButtons{
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(0.75, 0.75);
+    } else {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(1, 1);
+    }
+}
+
 
 @end
