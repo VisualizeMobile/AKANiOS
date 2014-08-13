@@ -304,9 +304,21 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    Parliamentary *parliamentary = [[parlamentaryDao selectParliamentaryById:@"123"] firstObject];
+    Parliamentary *parliamentary =(Parliamentary *) [parlamentaryDao selectParliamentaryById:@"5829181"] ;
+    
     
     NSLog(@"Resultado %@",parliamentary.nickName);
+    UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"Teste" message:@"Foto" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+   
+    UIImageView *fotoParlamentar=[[UIImageView alloc] initWithImage:[UIImage imageWithData:[parliamentary photoParliamentary]]];
+    
+    [alertView addSubview:fotoParlamentar];
+    [alertView show];
+                                  
+    
+   
+    
+    
 
 }
 
@@ -314,9 +326,16 @@
     [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    
+    NSDecimalNumber *decimalNumber=[[NSDecimalNumber alloc]initWithFloat:12.4f];
     
     [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
+    
+    [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:decimalNumber andIdUpdate:@1 andFollowed:@1];
+    
+    
+    
+    
+    
     
     
 }

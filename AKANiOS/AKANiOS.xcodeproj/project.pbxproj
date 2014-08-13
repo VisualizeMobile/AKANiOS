@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE99FB8199BEB7100F87493 /* Parliamentary.m */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
@@ -40,7 +41,6 @@
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKDetailViewController.xib */; };
 		F25A5BFC199B961E0066393B /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BFB199B961E0066393B /* Quota.m */; };
-		F25A5BFF199B961F0066393B /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BFE199B961F0066393B /* Parliamentary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FE99FB7199BEB7100F87493 /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
+		0FE99FB8199BEB7100F87493 /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
@@ -103,8 +105,6 @@
 		E99D1E8B1990120600564688 /* AKDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKDetailViewController.xib; sourceTree = "<group>"; };
 		F25A5BFA199B961E0066393B /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quota.h; sourceTree = "<group>"; };
 		F25A5BFB199B961E0066393B /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quota.m; sourceTree = "<group>"; };
-		F25A5BFD199B961F0066393B /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
-		F25A5BFE199B961F0066393B /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,10 +301,10 @@
 				E9851BA2198F39ED00A2280B /* AKParliamentary.m */,
 				E9851BA4198F3A3300A2280B /* AKQuota.h */,
 				E9851BA5198F3A3300A2280B /* AKQuota.m */,
-				F25A5BFD199B961F0066393B /* Parliamentary.h */,
-				F25A5BFE199B961F0066393B /* Parliamentary.m */,
 				F25A5BFA199B961E0066393B /* Quota.h */,
 				F25A5BFB199B961E0066393B /* Quota.m */,
+				0FE99FB7199BEB7100F87493 /* Parliamentary.h */,
+				0FE99FB8199BEB7100F87493 /* Parliamentary.m */,
 			);
 			name = model;
 			path = ..;
@@ -436,7 +436,7 @@
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
-				F25A5BFF199B961F0066393B /* Parliamentary.m in Sources */,
+				0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
