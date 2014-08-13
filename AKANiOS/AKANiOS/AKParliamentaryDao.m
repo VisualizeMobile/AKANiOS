@@ -99,6 +99,13 @@
     [newParliamentary setIdUpdate:idupdate];
     [newParliamentary setFollowed:followed];
     
+    //request remotePhoto
+    NSData *dataImage;
+    dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlPhoto]];
+    
+    [newParliamentary setPhotoParliamentary:dataImage];
+    
+    
     NSError *Error=nil;
     
     //Realiza insert no banco de dados local

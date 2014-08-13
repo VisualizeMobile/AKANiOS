@@ -7,6 +7,7 @@
         <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="party" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoParliamentary" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="posRanking" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uf" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlPhoto" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,7 +24,7 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Parliamentary" positionX="-63" positionY="-18" width="128" height="193"/>
+        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="208"/>
         <element name="Quota" positionX="-54" positionY="-9" width="128" height="165"/>
     </elements>
 </model>

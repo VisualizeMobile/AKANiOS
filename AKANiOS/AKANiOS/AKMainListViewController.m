@@ -323,9 +323,16 @@
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    
+    NSDecimalNumber *decimalNumber=[[NSDecimalNumber alloc]initWithFloat:12.4f];
     
     [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
+    
+    [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:decimalNumber andIdUpdate:@1 andFollowed:@1];
+    
+    
+    
+    
+    
     
     
 }
