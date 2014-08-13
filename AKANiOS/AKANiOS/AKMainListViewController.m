@@ -13,6 +13,8 @@
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
+#import "Parliamentary.h"
+
 
 @interface AKMainListViewController ()
 
@@ -24,6 +26,10 @@
 @property (nonatomic) BOOL searchEnabled;
 @property (nonatomic) AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
+
+@property (nonatomic) BOOL lastOrientationWasLadscape;
+@property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
+@property (nonatomic) BOOL needsToHideSearchBar;
 
 @end
 
@@ -43,6 +49,10 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
+    
+    self.lastOrientationWasLadscape = NO;
+    self.autolayoutCameFromSearchDismiss = NO;
+    self.needsToHideSearchBar = YES;
     
     
     // Configure Toolbar
@@ -100,19 +110,46 @@
     return NO;
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [UIView animateWithDuration:0.3f animations:^ {
-        [self.tableView setContentOffset:CGPointMake(0, -20)];
-    }];
+-(void)viewWillLayoutSubviews {
+    self.needsToHideSearchBar = [self isSearchBarHidden];
 }
 
+-(void)viewDidLayoutSubviews {
+    static BOOL firstTime = YES;
+    
+    if(firstTime == YES || self.needsToHideSearchBar) {
+        if(self.lastOrientationWasLadscape) {
+            [self.tableView setContentOffset: CGPointMake(0, -8)];
+        } else {
+            [self.tableView setContentOffset: CGPointMake(0, -20)];
+        }
+        
+        firstTime = NO;
+    }
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+
+    if(UIInterfaceOrientationIsLandscape(orientation))
+        self.lastOrientationWasLadscape = YES;
+    else
+        self.lastOrientationWasLadscape = NO;
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        // TODO
+    }
+}
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchController.searchResultsTableView)
-        return [self.parliamentaryFilteredArray count];
+        return self.parliamentaryFilteredArray.count;
     else
-        return [self.parliamentaryArray count];
+        return self.parliamentaryArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -181,9 +218,11 @@
     self.searchController.searchResultsTableView.delegate = self;
 }
 
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+-(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
     self.searchEnabled = NO;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
+    
+    self.autolayoutCameFromSearchDismiss = YES;
 }
 
 #pragma mark - Actions
@@ -191,8 +230,22 @@
 -(void) searchByName:(id) sender {
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
-        
-    [self.searchController.searchBar becomeFirstResponder];
+    
+    
+    if([self isSearchBarHidden]) {
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        if(UIInterfaceOrientationIsPortrait(orientation))
+            [self.tableView setContentOffset: CGPointMake(0, -64) animated:YES];
+        else
+            [self.tableView setContentOffset: CGPointMake(0, -52) animated:YES];
+
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.3 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self.searchController.searchBar becomeFirstResponder];
+        });
+    } else {
+         [self.searchController.searchBar becomeFirstResponder];
+    }
 }
 
 
@@ -210,13 +263,29 @@
 }
 
 -(void) configuration:(id) sender {
+    
+        AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    Parliamentary *parliamentary=[parlamentaryDao selectParliamentaryById:@"123"];
+    
+    NSLog(@"Resultado %@",parliamentary.nickName);
 
 }
 
 -(void) infoScreen:(id) sender {
     [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
+    
+    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    
+    
+    [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
+    
+    
 }
 
 #pragma mark - Custom methods
+       
+-(BOOL) isSearchBarHidden {
+    return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -8);
+}
 
 @end
