@@ -13,6 +13,8 @@
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
+#import "Parliamentary.h"
+
 
 @interface AKMainListViewController ()
 
@@ -300,11 +302,23 @@
 }
 
 -(void) configuration:(id) sender {
+    
+        AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    Parliamentary *parliamentary = [[parlamentaryDao selectParliamentaryById:@"123"] firstObject];
+    
+    NSLog(@"Resultado %@",parliamentary.nickName);
 
 }
 
 -(void) infoScreen:(id) sender {
     [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
+    
+    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    
+    
+    [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
+    
+    
 }
 
 #pragma mark - Custom methods
