@@ -38,7 +38,7 @@
     if (singleton == nil) @synchronized (self)
     {
         singleton = [[AKParliamentaryDao alloc] initPrivate];
-        singleton.parlamentaryFRC.delegate=self;
+        singleton.parlamentaryFRC.delegate = singleton;
     
         appDelegate=[[UIApplication sharedApplication] delegate];
     
@@ -48,10 +48,6 @@
         //Recupera tabla no aplicativo
         
         singleton.entity=[NSEntityDescription entityForName:@"Parliamentary" inManagedObjectContext:singleton.managedObjectContext];
-        
-        
-
-        
     }
     
     return singleton;

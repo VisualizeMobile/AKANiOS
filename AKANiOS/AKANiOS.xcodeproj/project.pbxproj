@@ -278,8 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */,
-				2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */,
 				2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */,
+				2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */,
 			);
 			name = MainList;
 			sourceTree = "<group>";

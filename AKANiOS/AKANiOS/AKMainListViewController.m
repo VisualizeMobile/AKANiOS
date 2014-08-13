@@ -265,7 +265,7 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    Parliamentary *parliamentary=[parlamentaryDao selectParliamentaryById:@"123"];
+    Parliamentary *parliamentary = [[parlamentaryDao selectParliamentaryById:@"123"] firstObject];
     
     NSLog(@"Resultado %@",parliamentary.nickName);
 

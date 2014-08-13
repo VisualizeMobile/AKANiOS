@@ -38,7 +38,7 @@
     {
         singleton = [[AKQuotaDao alloc] initPrivate];
         
-        singleton.quotaFRC.delegate=self;
+        singleton.quotaFRC.delegate = singleton;
         
         appDelegate=[[UIApplication sharedApplication] delegate];
         
@@ -100,7 +100,7 @@
     
     return NO;
 }
--(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSString *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSString *)idParliamentary
+-(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSString *)idParliamentary
 {
     
     Quota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
