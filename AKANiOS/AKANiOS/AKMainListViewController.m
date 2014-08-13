@@ -13,6 +13,8 @@
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
+#import "Parliamentary.h"
+
 
 @interface AKMainListViewController ()
 
@@ -263,7 +265,9 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    NSLog(@"Resultado %@",[parlamentaryDao selectParlamentaryOfId:@"123"]);
+    Parliamentary *parliamentary=[parlamentaryDao selectParliamentaryById:@"123"];
+    
+    NSLog(@"Resultado %@",parliamentary.nickName);
 
 }
 
@@ -272,7 +276,8 @@
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
     
-    [parlamentaryDao insertParlamentaryWithNickName:@"Ronaldo" andIdParlamentary:@"123"];
+    
+    [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
     
     
 }

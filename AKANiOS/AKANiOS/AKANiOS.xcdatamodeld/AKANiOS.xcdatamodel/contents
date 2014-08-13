@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Parlamentary" representedClassName="Parlamentary" syncable="YES">
+    <entity name="Parliamentary" representedClassName="Parliamentary" syncable="YES">
+        <attribute name="followed" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idParlamentary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idParliamentary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="party" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posRanking" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -11,8 +13,9 @@
         <attribute name="valueRanking" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Quota" representedClassName="Quota" syncable="YES">
-        <attribute name="idParlamentary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idParliamentary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idQuota" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nameQuota" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numQuota" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -20,7 +23,7 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Parlamentary" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="Quota" positionX="-54" positionY="-9" width="128" height="148"/>
+        <element name="Parliamentary" positionX="-63" positionY="-18" width="128" height="193"/>
+        <element name="Quota" positionX="-54" positionY="-9" width="128" height="165"/>
     </elements>
 </model>
