@@ -41,15 +41,11 @@
 
 -(NSArray *)getAllParliamentary{
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    AKParliamentary *p1 = [[AKParliamentary alloc] init];
-    p1.name = @"Romario de souza";
-    [array addObject:p1];
-    AKParliamentary *p2 = [[AKParliamentary alloc] init];
-    p2.name = @"Roberto Pinto";
-    [array addObject:p2];
-    AKParliamentary *p3 = [[AKParliamentary alloc] init];
-    p3.name = @"Rud Van Els";
-    [array addObject:p3];
+    for(int i = 0; i < 1000; i++) {
+        AKParliamentary *p1 = [[AKParliamentary alloc] init];
+        p1.name = @"Romario de souza";
+        [array addObject:p1];
+    }
     
     return array;
 }
