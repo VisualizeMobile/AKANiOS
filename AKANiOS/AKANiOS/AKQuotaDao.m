@@ -71,8 +71,29 @@
     q5.value = 300.00;
     q5.subtype = 5;
     AKQuota *q6 = [[AKQuota alloc] init];
-    q6.value = 0.0;
+    q6.value = 5000.0;
     q6.subtype = 6;
+    AKQuota *q7 = [[AKQuota alloc] init];
+    q7.value = 12000.0;
+    q7.subtype = 7;
+    AKQuota *q8 = [[AKQuota alloc] init];
+    q8.value = 9000.0;
+    q8.subtype = 8;
+    AKQuota *q9 = [[AKQuota alloc] init];
+    q9.value = 1000.0;
+    q9.subtype = 9;
+    AKQuota *q10 = [[AKQuota alloc] init];
+    q10.value = 10000.0;
+    q10.subtype = 10;
+    AKQuota *q11 = [[AKQuota alloc] init];
+    q11.value = 4000.0;
+    q11.subtype = 11;
+    AKQuota *q12 = [[AKQuota alloc] init];
+    q12.value = 18000.0;
+    q12.subtype = 12;
+    AKQuota *q13 = [[AKQuota alloc] init];
+    q13.value = 500.0;
+    q13.subtype = 13;
     
     [quotas addObject:q1];
     [quotas addObject:q2];
@@ -80,7 +101,13 @@
     [quotas addObject:q4];
     [quotas addObject:q5];
     [quotas addObject:q6];
-    
+    [quotas addObject:q7];
+    [quotas addObject:q8];
+    [quotas addObject:q9];
+    [quotas addObject:q10];
+    [quotas addObject:q11];
+    [quotas addObject:q12];
+    [quotas addObject:q13];
     return quotas;
 }
 
