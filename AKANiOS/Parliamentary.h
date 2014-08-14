@@ -2,7 +2,7 @@
 //  Parliamentary.h
 //  AKANiOS
 //
-//  Created by Ramon Cruz  on 8/13/14.
+//  Created by Ramon Cruz on 8/14/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
@@ -18,10 +18,10 @@
 @property (nonatomic, retain) NSNumber * idUpdate;
 @property (nonatomic, retain) NSString * nickName;
 @property (nonatomic, retain) NSString * party;
+@property (nonatomic, retain) NSData * photoParliamentary;
 @property (nonatomic, retain) NSNumber * posRanking;
 @property (nonatomic, retain) NSString * uf;
 @property (nonatomic, retain) NSString * urlPhoto;
-@property (nonatomic, retain) NSDecimalNumber * valueRanking;
-@property (nonatomic, retain) NSData * photoParliamentary;
+@property (nonatomic, retain) NSNumber * valueRanking;
 
 @end

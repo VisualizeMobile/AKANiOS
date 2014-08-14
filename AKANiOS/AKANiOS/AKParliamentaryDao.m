@@ -38,7 +38,7 @@
     if (singleton == nil) @synchronized (self)
     {
         singleton = [[AKParliamentaryDao alloc] initPrivate];
-        singleton.parlamentaryFRC.delegate = singleton;
+        singleton.parlamentaryFRC.delegate=singleton;
     
         appDelegate=[[UIApplication sharedApplication] delegate];
     
@@ -84,7 +84,7 @@
     return NO;
     
 }
--(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andFullName:(NSString *)fullName andIdParliamentary:(NSString *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andUrlPhoto:(NSString *)urlPhoto andValueRanking:(NSDecimalNumber *)valueRanking andIdUpdate:(NSNumber *) idupdate andFollowed:(NSNumber *) followed
+-(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andFullName:(NSString *)fullName andIdParliamentary:(NSString *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andUrlPhoto:(NSString *)urlPhoto andValueRanking:(NSNumber *)valueRanking andIdUpdate:(NSNumber *) idupdate andFollowed:(NSNumber *) followed
 {
     Parliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
     

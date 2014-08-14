@@ -10,6 +10,7 @@
 #import "AKQuotaCollectionViewCell.h"
 #import "AKQuotaDao.h"
 #import "AKQuota.h"
+#import "AKUtil.h"
 
 @interface AKDetailViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
@@ -77,6 +78,22 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"selecionou");
 }
+
+#pragma mark selectors 
+
+- (IBAction)followParliamentary:(id)sender {
+    if ([self.followLabel.text isEqualToString: @"Seguido"]) {
+        [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+        self.followLabel.text = @"Seguir";
+        self.followLabel.textColor = [AKUtil color1];
+    }
+    else{
+        [self.followButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+        self.followLabel.text = @"Seguido";
+        self.followLabel.textColor = [AKUtil color3];
+    }
+}
+
 
 #pragma mark - Custom Methods
 

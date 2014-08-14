@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE99FB8199BEB7100F87493 /* Parliamentary.m */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
 		2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2C821199C2311008FEF40 /* AKSettingsManager.m */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
@@ -44,7 +43,8 @@
 		E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA5198F3A3300A2280B /* AKQuota.m */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKDetailViewController.xib */; };
-		F25A5BFC199B961E0066393B /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BFB199B961E0066393B /* Quota.m */; };
+		F2073832199D50AF0038C53F /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = F2073831199D50AF0038C53F /* Parliamentary.m */; };
+		F2073835199D50AF0038C53F /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F2073834199D50AF0038C53F /* Quota.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0FE99FB7199BEB7100F87493 /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
-		0FE99FB8199BEB7100F87493 /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
 		2FC2C820199C2311008FEF40 /* AKSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettingsManager.h; sourceTree = "<group>"; };
 		2FC2C821199C2311008FEF40 /* AKSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettingsManager.m; sourceTree = "<group>"; };
@@ -113,8 +111,10 @@
 		E99D1E891990120600564688 /* AKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDetailViewController.h; sourceTree = "<group>"; };
 		E99D1E8A1990120600564688 /* AKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDetailViewController.m; sourceTree = "<group>"; };
 		E99D1E8B1990120600564688 /* AKDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKDetailViewController.xib; sourceTree = "<group>"; };
-		F25A5BFA199B961E0066393B /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quota.h; sourceTree = "<group>"; };
-		F25A5BFB199B961E0066393B /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quota.m; sourceTree = "<group>"; };
+		F2073830199D50AF0038C53F /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
+		F2073831199D50AF0038C53F /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
+		F2073833199D50AF0038C53F /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quota.h; sourceTree = "<group>"; };
+		F2073834199D50AF0038C53F /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quota.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,10 +334,10 @@
 				E9851BA2198F39ED00A2280B /* AKParliamentary.m */,
 				E9851BA4198F3A3300A2280B /* AKQuota.h */,
 				E9851BA5198F3A3300A2280B /* AKQuota.m */,
-				F25A5BFA199B961E0066393B /* Quota.h */,
-				F25A5BFB199B961E0066393B /* Quota.m */,
-				0FE99FB7199BEB7100F87493 /* Parliamentary.h */,
-				0FE99FB8199BEB7100F87493 /* Parliamentary.m */,
+				F2073830199D50AF0038C53F /* Parliamentary.h */,
+				F2073831199D50AF0038C53F /* Parliamentary.m */,
+				F2073833199D50AF0038C53F /* Quota.h */,
+				F2073834199D50AF0038C53F /* Quota.m */,
 			);
 			name = model;
 			path = ..;
@@ -472,15 +472,15 @@
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
-				0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
+				F2073832199D50AF0038C53F /* Parliamentary.m in Sources */,
+				F2073835199D50AF0038C53F /* Quota.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */,
-				F25A5BFC199B961E0066393B /* Quota.m in Sources */,
 				8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,

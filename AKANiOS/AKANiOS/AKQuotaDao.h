@@ -20,7 +20,7 @@
 -(NSArray *)getQuotas;
 
 -(BOOL) insertQuotaWithId: (NSString *)idQuota andValue:(NSDecimalNumber *) value;
--(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSString *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSString *)idParliamentary;
+-(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSString *)idUpdate andValue:(NSNumber *)value andIdParliamentary:(NSString *)idParliamentary;
 
 -(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
 
