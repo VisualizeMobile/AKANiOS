@@ -15,7 +15,7 @@
 #import "AKUtil.h"
 #import "Parliamentary.h"
 #import "AKSettingsManager.h"
-
+#import "AKConfigViewController.h"
 
 @interface AKMainListViewController ()
 
@@ -124,6 +124,9 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     // [self sortParliamentary];
+    [super viewWillAppear:animated];
+    
+    [self transformNavigationBarButtons];
 }
 
 -(void) sortParliamentary {
@@ -212,11 +215,6 @@
                      }
                      completion:nil];
 
-}
--(void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self transformNavigationBarButtons];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
