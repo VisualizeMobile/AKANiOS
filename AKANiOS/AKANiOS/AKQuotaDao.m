@@ -39,7 +39,7 @@
     {
         singleton = [[AKQuotaDao alloc] initPrivate];
         
-        singleton.quotaFRC.delegate=self;
+        singleton.quotaFRC.delegate=singleton;
         
         appDelegate=[[UIApplication sharedApplication] delegate];
         

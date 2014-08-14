@@ -38,7 +38,7 @@
     if (singleton == nil) @synchronized (self)
     {
         singleton = [[AKParliamentaryDao alloc] initPrivate];
-        singleton.parlamentaryFRC.delegate=self;
+        singleton.parlamentaryFRC.delegate=singleton;
     
         appDelegate=[[UIApplication sharedApplication] delegate];
     
