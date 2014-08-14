@@ -14,6 +14,7 @@
 #import "AKToolBar.h"
 #import "AKUtil.h"
 #import "Parliamentary.h"
+#import "AKSettingsManager.h"
 
 
 @interface AKMainListViewController ()
@@ -26,6 +27,7 @@
 @property (nonatomic) BOOL searchEnabled;
 @property (nonatomic) AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
+@property (nonatomic) AKSettingsManager *settingsManager;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -49,6 +51,7 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
+    self.settingsManager = [AKSettingsManager sharedManager];
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -117,6 +120,55 @@
 
 -(void)viewWillLayoutSubviews {
     self.needsToHideSearchBar = [self isSearchBarHidden];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    // [self sortParliamentary];
+}
+
+-(void) sortParliamentary {
+    AKSettingsSortOption sortOption = [self.settingsManager getSortOption];
+
+    NSComparator comparator = nil;
+    
+    switch (sortOption) {
+        case AKSettingsSortOptionName:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.nickName compare:second.nickName];
+            };
+            break;
+        case AKSettingsSortOptionRanking:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.valueRanking compare:second.valueRanking];
+            };
+            
+            break;
+        case AKSettingsSortOptionState:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.uf compare:second.uf];
+            };
+
+            
+            break;
+        case AKSettingsSortOptionParty:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.party compare:second.party];
+            };
+
+            break;
+        default:
+            break;
+    }
+    
+    self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
 -(void)viewDidLayoutSubviews {

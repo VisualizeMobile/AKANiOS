@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE99FB8199BEB7100F87493 /* Parliamentary.m */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
+		2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2C821199C2311008FEF40 /* AKSettingsManager.m */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
 		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
@@ -57,6 +58,8 @@
 		0FE99FB7199BEB7100F87493 /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
 		0FE99FB8199BEB7100F87493 /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
+		2FC2C820199C2311008FEF40 /* AKSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettingsManager.h; sourceTree = "<group>"; };
+		2FC2C821199C2311008FEF40 /* AKSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettingsManager.m; sourceTree = "<group>"; };
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
 		2FCEDE441993F106003522E8 /* AKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKToolBar.h; sourceTree = "<group>"; };
@@ -133,6 +136,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FC2C81F199C22CC008FEF40 /* SettingsManager */ = {
+			isa = PBXGroup;
+			children = (
+				2FC2C820199C2311008FEF40 /* AKSettingsManager.h */,
+				2FC2C821199C2311008FEF40 /* AKSettingsManager.m */,
+			);
+			name = SettingsManager;
+			sourceTree = "<group>";
+		};
 		2FCEDE431993F0C8003522E8 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +240,7 @@
 			children = (
 				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
 				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
+				2FC2C81F199C22CC008FEF40 /* SettingsManager */,
 				8E00F2FA1995518C0030A52F /* CollectionCell */,
 				2FCEDE4B1994012C003522E8 /* Util */,
 				2FCEDE431993F0C8003522E8 /* Toolbar */,
@@ -433,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */,
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
