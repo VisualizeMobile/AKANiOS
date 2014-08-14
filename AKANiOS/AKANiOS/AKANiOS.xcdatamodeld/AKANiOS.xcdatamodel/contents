@@ -11,20 +11,21 @@
         <attribute name="posRanking" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uf" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlPhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="valueRanking" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="valueRanking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Quota" representedClassName="Quota" syncable="YES">
         <attribute name="idParliamentary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idQuota" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nameImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameQuota" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numQuota" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="value" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="208"/>
-        <element name="Quota" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="210"/>
+        <element name="Quota" positionX="-54" positionY="-9" width="128" height="178"/>
     </elements>
 </model>

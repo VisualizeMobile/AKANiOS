@@ -17,6 +17,9 @@
 #import "AKSettingsManager.h"
 #import "AKConfigViewController.h"
 
+#import "AKQuotaDao.h"
+#import "Quota.h"
+
 @interface AKMainListViewController ()
 
 @property (nonatomic) UISearchDisplayController *searchController;
@@ -51,7 +54,7 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
-    self.settingsManager = [AKSettingsManager sharedManager];
+   // self.settingsManager = [AKSettingsManager sharedManager];
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -348,18 +351,32 @@
 
 -(void) configuration:(id) sender {
     
-        AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
     Parliamentary *parliamentary =(Parliamentary *) [parlamentaryDao selectParliamentaryById:@"5829181"] ;
+    Quota *quota=[quotaDao selectQuotaById:@"1212"];
+    Quota *quota2=[quotaDao selectQuotaById:@"1313"];
+
     
+
     
     NSLog(@"Resultado %@",parliamentary.nickName);
     UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"Teste" message:@"Foto" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
    
     UIImageView *fotoParlamentar=[[UIImageView alloc] initWithImage:[UIImage imageWithData:[parliamentary photoParliamentary]]];
+    UIImageView *quotaImage=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[quota nameImage]]];
+    UIImageView *quotaImage2=[[UIImageView alloc]initWithImage:[UIImage imageNamed:[quota2 nameImage]]];
+
+    NSLog(@"quota image 1 [%@]",[quota nameImage]);
+    NSLog(@"quota image 2 [%@]",[quota2 nameImage]);
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
-    [alertView addSubview:fotoParlamentar];
+    [alertView addSubview:quotaImage];
+    [alertView addSubview:quotaImage2];
     [alertView show];
+    
+    
+    
                                   
     
     nav.navigationBar.barTintColor = [AKUtil color1];
@@ -374,11 +391,22 @@
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    NSDecimalNumber *decimalNumber=[[NSDecimalNumber alloc]initWithFloat:12.4f];
+    NSNumber *valueRanking=[[NSNumber alloc]initWithFloat:12.4f];
     
     [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
     
-    [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:decimalNumber andIdUpdate:@1 andFollowed:@1];
+    [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:valueRanking andIdUpdate:@1 andFollowed:@1];
+    
+    
+    AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
+    
+    [quotaDao insertQuotaWithId:@"1313" andNumQuota:@3 andNameQuota:@"QuotaTest" andMonth:@01 andYear:@2014 andIdUpdate:@123 andValue:@6000 andIdParliamentary:@"1234"];
+    
+    [quotaDao insertQuotaWithId:@"1212" andNumQuota:@3 andNameQuota:@"QuotaTest" andMonth:@01 andYear:@2014 andIdUpdate:@123 andValue:@3000 andIdParliamentary:@"1234"];
+    
+    
+    
+    
     
 }
 
