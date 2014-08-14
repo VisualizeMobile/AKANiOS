@@ -16,4 +16,7 @@
 +(UIColor*) color4;
 +(UIColor*) color5;
 
+
++(UIImage *)downloadImagensInUrls:(NSString *)urlPhoto;
+
 @end

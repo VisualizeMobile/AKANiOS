@@ -9,8 +9,7 @@
 #import "AKQuotaDao.h"
 #import "AKQuota.h"
 #import "AKAppDelegate.h"
-#import "Parlamentary.h"
-
+#import "Quota.h"
 
 @implementation AKQuotaDao
 
@@ -72,8 +71,29 @@
     q5.value = 300.00;
     q5.subtype = 5;
     AKQuota *q6 = [[AKQuota alloc] init];
-    q6.value = 0.0;
+    q6.value = 5000.0;
     q6.subtype = 6;
+    AKQuota *q7 = [[AKQuota alloc] init];
+    q7.value = 12000.0;
+    q7.subtype = 7;
+    AKQuota *q8 = [[AKQuota alloc] init];
+    q8.value = 9000.0;
+    q8.subtype = 8;
+    AKQuota *q9 = [[AKQuota alloc] init];
+    q9.value = 1000.0;
+    q9.subtype = 9;
+    AKQuota *q10 = [[AKQuota alloc] init];
+    q10.value = 10000.0;
+    q10.subtype = 10;
+    AKQuota *q11 = [[AKQuota alloc] init];
+    q11.value = 4000.0;
+    q11.subtype = 11;
+    AKQuota *q12 = [[AKQuota alloc] init];
+    q12.value = 18000.0;
+    q12.subtype = 12;
+    AKQuota *q13 = [[AKQuota alloc] init];
+    q13.value = 500.0;
+    q13.subtype = 13;
     
     [quotas addObject:q1];
     [quotas addObject:q2];
@@ -81,20 +101,111 @@
     [quotas addObject:q4];
     [quotas addObject:q5];
     [quotas addObject:q6];
-    
+    [quotas addObject:q7];
+    [quotas addObject:q8];
+    [quotas addObject:q9];
+    [quotas addObject:q10];
+    [quotas addObject:q11];
+    [quotas addObject:q12];
+    [quotas addObject:q13];
     return quotas;
 }
 
--(BOOL)insertQuotaWithId:(NSString *)idQuota andValue:(double)value
+-(BOOL)insertQuotaWithId:(NSString *)idQuota andValue:(NSDecimalNumber * )value
 {
+    Quota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+    
+    [newQuota setIdQuota:idQuota];
+    [newQuota setValue:value];
+    
+    NSError *Error=nil;
+    
+    if ([self.managedObjectContext save:&Error])
+    
+        return YES;
+    else NSLog(@"Failed to save new Quota  Error= %@",Error);
     
     return NO;
 }
+-(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSString *)idParliamentary
+{
+    
+    Quota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+    
+    [newQuota setIdQuota:idQuota];
+    [newQuota setNumQuota:numQuota];
+    [newQuota setNameQuota: nameQuota];
+    [newQuota setMonth:month];
+    [newQuota setYear:year];
+    [newQuota setIdUpdate:idUpdate];
+    [newQuota setValue:value];
+    [newQuota setIdParliamentary:idParliamentary];
+    
+    NSError *Error=nil;
+    
+    if ([self.managedObjectContext save:&Error])
+        return YES;
+    else NSLog(@"Failed to save new Quota  Error= %@",Error);
+
+    return NO;
+}
+
+/*
+ @property (nonatomic, retain) NSString * idParliamentary;
+ @property (nonatomic, retain) NSString * idQuota;
+ @property (nonatomic, retain) NSNumber * month;
+ @property (nonatomic, retain) NSString * nameQuota;
+ @property (nonatomic, retain) NSNumber * numQuota;
+ @property (nonatomic, retain) NSDecimalNumber * value;
+ @property (nonatomic, retain) NSNumber * year;
+ @property (nonatomic, retain) NSNumber * idUpdate;
+
+ 
+ */
 
 -(NSArray *)selectQuotaById:(NSString *)idQuota
 {
     NSArray *result;
+    NSError *Error=nil;
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [self.fetchRequest setEntity:self.entity];
+    
+    
+    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
     
     return result;
 }
+
+-(NSArray *)selectAllQuotas
+{
+    NSArray *result;
+    NSError *Error=nil;
+    
+    [self.fetchRequest setEntity:self.entity];
+    
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    
+    return result;
+}
+
+-(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate
+{
+    NSError *Error=nil;
+    Quota *quota;
+    NSArray *result;
+    
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    
+    quota=[result objectAtIndex:0];
+    quota.value=value;
+    quota.idUpdate=idUpdate;
+    
+    if ([self.managedObjectContext save:&Error])
+        return YES;
+    else NSLog(@"Failed to uptade Quota");
+    return NO;
+}
+
+
 @end

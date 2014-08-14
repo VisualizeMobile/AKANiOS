@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FE99FB8199BEB7100F87493 /* Parliamentary.m */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
+		2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2C821199C2311008FEF40 /* AKSettingsManager.m */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
 		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
@@ -18,6 +20,8 @@
 		8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F302199559F00030A52F /* AKInfoViewController.m */; };
 		8E00F305199559F00030A52F /* AKInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E00F303199559F00030A52F /* AKInfoViewController.xib */; };
 		8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F30719955CD20030A52F /* AKQuotaDao.m */; };
+		8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */; };
+		8E14E1E1199BEFBC00D77CF6 /* AKConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */; };
 		8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
 		8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */; };
 		8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
@@ -39,8 +43,7 @@
 		E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851BA5198F3A3300A2280B /* AKQuota.m */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKDetailViewController.xib */; };
-		F25A5BA6199A4DCD0066393B /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BA5199A4DCD0066393B /* Quota.m */; };
-		F25A5BA9199A4DCE0066393B /* Parlamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BA8199A4DCE0066393B /* Parlamentary.m */; };
+		F25A5BFC199B961E0066393B /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F25A5BFB199B961E0066393B /* Quota.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +57,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FE99FB7199BEB7100F87493 /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
+		0FE99FB8199BEB7100F87493 /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
+		2FC2C820199C2311008FEF40 /* AKSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettingsManager.h; sourceTree = "<group>"; };
+		2FC2C821199C2311008FEF40 /* AKSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettingsManager.m; sourceTree = "<group>"; };
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
 		2FCEDE441993F106003522E8 /* AKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKToolBar.h; sourceTree = "<group>"; };
@@ -72,6 +79,9 @@
 		8E00F303199559F00030A52F /* AKInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKInfoViewController.xib; sourceTree = "<group>"; };
 		8E00F30619955CD20030A52F /* AKQuotaDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuotaDao.h; sourceTree = "<group>"; };
 		8E00F30719955CD20030A52F /* AKQuotaDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuotaDao.m; sourceTree = "<group>"; };
+		8E14E1DD199BEFBC00D77CF6 /* AKConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKConfigViewController.h; sourceTree = "<group>"; };
+		8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKConfigViewController.m; sourceTree = "<group>"; };
+		8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKConfigViewController.xib; sourceTree = "<group>"; };
 		8EAFA8371986C44F00E58AD9 /* AKANiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKANiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,10 +111,8 @@
 		E99D1E891990120600564688 /* AKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDetailViewController.h; sourceTree = "<group>"; };
 		E99D1E8A1990120600564688 /* AKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDetailViewController.m; sourceTree = "<group>"; };
 		E99D1E8B1990120600564688 /* AKDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKDetailViewController.xib; sourceTree = "<group>"; };
-		F25A5BA4199A4DCD0066393B /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quota.h; path = AKANiOS/Quota.h; sourceTree = "<group>"; };
-		F25A5BA5199A4DCD0066393B /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Quota.m; path = AKANiOS/Quota.m; sourceTree = "<group>"; };
-		F25A5BA7199A4DCE0066393B /* Parlamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parlamentary.h; path = AKANiOS/Parlamentary.h; sourceTree = "<group>"; };
-		F25A5BA8199A4DCE0066393B /* Parlamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parlamentary.m; path = AKANiOS/Parlamentary.m; sourceTree = "<group>"; };
+		F25A5BFA199B961E0066393B /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quota.h; sourceTree = "<group>"; };
+		F25A5BFB199B961E0066393B /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quota.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FC2C81F199C22CC008FEF40 /* SettingsManager */ = {
+			isa = PBXGroup;
+			children = (
+				2FC2C820199C2311008FEF40 /* AKSettingsManager.h */,
+				2FC2C821199C2311008FEF40 /* AKSettingsManager.m */,
+			);
+			name = SettingsManager;
+			sourceTree = "<group>";
+		};
 		2FCEDE431993F0C8003522E8 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +209,17 @@
 			name = commonCell;
 			sourceTree = "<group>";
 		};
+		8E14E1E2199BF05700D77CF6 /* configController */ = {
+			isa = PBXGroup;
+			children = (
+				8E14E1DD199BEFBC00D77CF6 /* AKConfigViewController.h */,
+				8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */,
+				8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */,
+			);
+			name = configController;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		8EAFA82E1986C44F00E58AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -228,11 +256,13 @@
 			children = (
 				8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */,
 				8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */,
+				2FC2C81F199C22CC008FEF40 /* SettingsManager */,
 				8E00F2FA1995518C0030A52F /* CollectionCell */,
 				2FCEDE4B1994012C003522E8 /* Util */,
 				2FCEDE431993F0C8003522E8 /* Toolbar */,
 				E99D1E8E1990176400564688 /* Detail */,
 				E9851BA0198F397300A2280B /* TableCell */,
+				8E14E1E2199BF05700D77CF6 /* configController */,
 				8E00F300199558DA0030A52F /* InfoController */,
 				E9851B9F198F396000A2280B /* MainList */,
 				E9851BA7198F3A4B00A2280B /* model */,
@@ -278,8 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */,
-				2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */,
 				2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */,
+				2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */,
 			);
 			name = MainList;
 			sourceTree = "<group>";
@@ -297,14 +327,14 @@
 		E9851BA7198F3A4B00A2280B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				F25A5BA7199A4DCE0066393B /* Parlamentary.h */,
-				F25A5BA8199A4DCE0066393B /* Parlamentary.m */,
-				F25A5BA4199A4DCD0066393B /* Quota.h */,
-				F25A5BA5199A4DCD0066393B /* Quota.m */,
 				E9851BA1198F39ED00A2280B /* AKParliamentary.h */,
 				E9851BA2198F39ED00A2280B /* AKParliamentary.m */,
 				E9851BA4198F3A3300A2280B /* AKQuota.h */,
 				E9851BA5198F3A3300A2280B /* AKQuota.m */,
+				F25A5BFA199B961E0066393B /* Quota.h */,
+				F25A5BFB199B961E0066393B /* Quota.m */,
+				0FE99FB7199BEB7100F87493 /* Parliamentary.h */,
+				0FE99FB8199BEB7100F87493 /* Parliamentary.m */,
 			);
 			name = model;
 			path = ..;
@@ -411,6 +441,7 @@
 				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
 				2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
+				8E14E1E1199BEFBC00D77CF6 /* AKConfigViewController.xib in Resources */,
 				8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */,
 				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
@@ -433,17 +464,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */,
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
+				0FE99FB9199BEB7100F87493 /* Parliamentary.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				E9851BA6198F3A3300A2280B /* AKQuota.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
-				F25A5BA9199A4DCE0066393B /* Parlamentary.m in Sources */,
-				F25A5BA6199A4DCD0066393B /* Quota.m in Sources */,
+				8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */,
+				F25A5BFC199B961E0066393B /* Quota.m in Sources */,
 				8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,

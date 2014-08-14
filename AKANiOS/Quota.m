@@ -2,7 +2,7 @@
 //  Quota.m
 //  AKANiOS
 //
-//  Created by Ramon Cruz on 8/12/14.
+//  Created by Ramon Cruz on 8/13/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
@@ -11,12 +11,13 @@
 
 @implementation Quota
 
+@dynamic idParliamentary;
 @dynamic idQuota;
-@dynamic numQuota;
 @dynamic month;
-@dynamic year;
 @dynamic nameQuota;
-@dynamic idParlamentary;
+@dynamic numQuota;
 @dynamic value;
+@dynamic year;
+@dynamic idUpdate;
 
 @end

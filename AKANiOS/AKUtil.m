@@ -31,4 +31,11 @@
 }
 
 
++(UIImage *)downloadImagensInUrls:(NSString *)urlPhoto
+{
+    NSData *dataImage;
+    dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlPhoto]];
+    return [UIImage imageWithData:dataImage];
+}
+
 @end

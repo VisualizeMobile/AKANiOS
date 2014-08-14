@@ -2,7 +2,7 @@
 //  Quota.h
 //  AKANiOS
 //
-//  Created by Ramon Cruz on 8/12/14.
+//  Created by Ramon Cruz on 8/13/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
@@ -12,12 +12,13 @@
 
 @interface Quota : NSManagedObject
 
+@property (nonatomic, retain) NSString * idParliamentary;
 @property (nonatomic, retain) NSString * idQuota;
-@property (nonatomic, retain) NSNumber * numQuota;
 @property (nonatomic, retain) NSNumber * month;
-@property (nonatomic, retain) NSNumber * year;
 @property (nonatomic, retain) NSString * nameQuota;
-@property (nonatomic, retain) NSString * idParlamentary;
+@property (nonatomic, retain) NSNumber * numQuota;
 @property (nonatomic, retain) NSDecimalNumber * value;
+@property (nonatomic, retain) NSNumber * year;
+@property (nonatomic, retain) NSNumber * idUpdate;
 
 @end

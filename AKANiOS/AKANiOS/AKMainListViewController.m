@@ -13,6 +13,9 @@
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
+#import "Parliamentary.h"
+#import "AKSettingsManager.h"
+#import "AKConfigViewController.h"
 
 @interface AKMainListViewController ()
 
@@ -24,6 +27,7 @@
 @property (nonatomic) BOOL searchEnabled;
 @property (nonatomic) AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
+@property (nonatomic) AKSettingsManager *settingsManager;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -47,6 +51,7 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
+    self.settingsManager = [AKSettingsManager sharedManager];
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -70,6 +75,14 @@
     [self.toolBar.followedButton setImage:[UIImage imageNamed:@"seguidosativado"] forState:UIControlStateSelected];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscadesativada"] forState:UIControlStateNormal];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscaativada"] forState:UIControlStateSelected];
+    
+//    [self.toolBarContainer addConstraint:[NSLayoutConstraint constraintWithItem:self.toolBar
+//                                                          attribute:NSLayoutAttributeCenterX
+//                                                          relatedBy:NSLayoutRelationEqual
+//                                                             toItem:self.toolBarContainer
+//                                                          attribute:NSLayoutAttributeCenterX
+//                                                         multiplier:1
+//                                                           constant:0]];
 
     
 
@@ -104,12 +117,61 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)shouldAutorotateToInterfaceOrientation {
-    return NO;
-}
 
 -(void)viewWillLayoutSubviews {
     self.needsToHideSearchBar = [self isSearchBarHidden];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    // [self sortParliamentary];
+    [super viewWillAppear:animated];
+    
+    [self transformNavigationBarButtons];
+}
+
+-(void) sortParliamentary {
+    AKSettingsSortOption sortOption = [self.settingsManager getSortOption];
+
+    NSComparator comparator = nil;
+    
+    switch (sortOption) {
+        case AKSettingsSortOptionName:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.nickName compare:second.nickName];
+            };
+            break;
+        case AKSettingsSortOptionRanking:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.valueRanking compare:second.valueRanking];
+            };
+            
+            break;
+        case AKSettingsSortOptionState:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.uf compare:second.uf];
+            };
+
+            
+            break;
+        case AKSettingsSortOptionParty:
+            comparator = ^NSComparisonResult(id a, id b) {
+                Parliamentary *first = (Parliamentary*)a;
+                Parliamentary *second = (Parliamentary*)b;
+                return [first.party compare:second.party];
+            };
+
+            break;
+        default:
+            break;
+    }
+    
+    self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -128,18 +190,36 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-
-    if(UIInterfaceOrientationIsLandscape(orientation))
+    
+    CGRect toolbarFrame = self.toolBar.frame;
+    
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
         self.lastOrientationWasLadscape = YES;
-    else
+        toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
+    } else {
         self.lastOrientationWasLadscape = NO;
+        toolbarFrame.origin.x = self.toolBarContainer.center.x - toolbarFrame.size.width/2 ;
+    }
+    
+    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+        toolbarFrame.origin.x = self.view.center.y - toolbarFrame.size.width/2 ;
+    } else {
+        toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
+    }
+    
+    [UIView animateWithDuration:0.4
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.toolBar.frame = toolbarFrame;
+                     }
+                     completion:nil];
+
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(UIInterfaceOrientationIsLandscape(orientation)) {
-        // TODO
-    }
+
+    [self transformNavigationBarButtons];
 }
 #pragma mark - Table view data source
 
@@ -228,22 +308,28 @@
 -(void) searchByName:(id) sender {
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
-    
-    
-    if([self isSearchBarHidden]) {
-        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-        if(UIInterfaceOrientationIsPortrait(orientation))
-            [self.tableView setContentOffset: CGPointMake(0, -64) animated:YES];
-        else
-            [self.tableView setContentOffset: CGPointMake(0, -52) animated:YES];
 
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.3 * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.3 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if([self isSearchBarHidden]) {
+            UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+            if(UIInterfaceOrientationIsPortrait(orientation))
+                [self.tableView setContentOffset: CGPointMake(0, -64) animated:YES];
+            else
+                [self.tableView setContentOffset: CGPointMake(0, -52) animated:YES];
+            
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.3 * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self.searchController.searchBar becomeFirstResponder];
+            });
+        } else {
             [self.searchController.searchBar becomeFirstResponder];
-        });
-    } else {
-         [self.searchController.searchBar becomeFirstResponder];
-    }
+        }
+
+    });
 }
 
 
@@ -263,17 +349,36 @@
 -(void) configuration:(id) sender {
     
         AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    NSLog(@"Resultado %@",[parlamentaryDao selectParlamentaryOfId:@"123"]);
-
+    Parliamentary *parliamentary =(Parliamentary *) [parlamentaryDao selectParliamentaryById:@"5829181"] ;
+    
+    
+    NSLog(@"Resultado %@",parliamentary.nickName);
+    UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"Teste" message:@"Foto" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+   
+    UIImageView *fotoParlamentar=[[UIImageView alloc] initWithImage:[UIImage imageWithData:[parliamentary photoParliamentary]]];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    [alertView addSubview:fotoParlamentar];
+    [alertView show];
+                                  
+    
+    nav.navigationBar.barTintColor = [AKUtil color1];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) infoScreen:(id) sender {
-    [self.navigationController presentViewController:[[AKInfoViewController alloc] init] animated:YES completion:nil];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    
+    nav.navigationBar.barTintColor = [AKUtil color1];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    NSDecimalNumber *decimalNumber=[[NSDecimalNumber alloc]initWithFloat:12.4f];
     
-    [parlamentaryDao insertParlamentaryWithNickName:@"Ronaldo" andIdParlamentary:@"123"];
+    [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
     
+    [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:decimalNumber andIdUpdate:@1 andFollowed:@1];
     
 }
 
@@ -282,5 +387,20 @@
 -(BOOL) isSearchBarHidden {
     return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -8);
 }
+
+-(void)transformNavigationBarButtons{
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(0.75, 0.75);
+    } else {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(1, 1);
+    }
+}
+
 
 @end
