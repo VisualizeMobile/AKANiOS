@@ -14,6 +14,7 @@
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
 		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
 		2FCEDE511994016F003522E8 /* AKUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE501994016F003522E8 /* AKUtil.m */; };
+		2FD83753199D4CCE00517D34 /* akan_settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FD83752199D4CCE00517D34 /* akan_settings.plist */; };
 		8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F2F219954B430030A52F /* AKParliamentaryDao.m */; };
 		8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F2F6199551850030A52F /* AKQuotaCollectionViewCell.m */; };
 		8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E00F2F7199551850030A52F /* AKQuotaCollectionViewCell.xib */; };
@@ -69,6 +70,7 @@
 		2FCEDE491993F1B7003522E8 /* AKToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKToolBar.xib; sourceTree = "<group>"; };
 		2FCEDE4F1994016F003522E8 /* AKUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKUtil.h; path = ../AKUtil.h; sourceTree = "<group>"; };
 		2FCEDE501994016F003522E8 /* AKUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKUtil.m; path = ../AKUtil.m; sourceTree = "<group>"; };
+		2FD83752199D4CCE00517D34 /* akan_settings.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = akan_settings.plist; sourceTree = "<group>"; };
 		8E00F2F119954B430030A52F /* AKParliamentaryDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentaryDao.h; sourceTree = "<group>"; };
 		8E00F2F219954B430030A52F /* AKParliamentaryDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentaryDao.m; sourceTree = "<group>"; };
 		8E00F2F5199551850030A52F /* AKQuotaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKQuotaCollectionViewCell.h; path = AKANiOS/AKQuotaCollectionViewCell.h; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		8EAFA8431986C44F00E58AD9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2FD83752199D4CCE00517D34 /* akan_settings.plist */,
 				E9851BAA198F437700A2280B /* fonts */,
 				8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */,
 				8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */,
@@ -445,6 +448,7 @@
 				8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */,
 				E99D1E8D1990120600564688 /* AKDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
+				2FD83753199D4CCE00517D34 /* akan_settings.plist in Resources */,
 				8E00F305199559F00030A52F /* AKInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(char, AKSettingsSortOption) {
@@ -14,14 +15,16 @@ typedef NS_ENUM(char, AKSettingsSortOption) {
 };
 
 typedef NS_ENUM(char, AKSettingsFilterQuotaOption) {
-    AKSettingsFilterQuotaOption0, AKSettingsFilterQuotaOption10,
+    AKSettingsFilterQuotaOptionNone, AKSettingsFilterQuotaOption10,
     AKSettingsFilterQuotaOption30, AKSettingsFilterQuotaOption50,
     AKSettingsFilterQuotaOption80
 };
 
 @interface AKSettingsManager : NSObject
 
-+ (AKSettingsManager*)sharedManager;
++(AKSettingsManager*)sharedManager;
++(NSString*) settingsFilePath;
+
 
 -(AKSettingsSortOption) getSortOption;
 -(AKSettingsFilterQuotaOption) getQuotaFilter;
@@ -29,10 +32,15 @@ typedef NS_ENUM(char, AKSettingsFilterQuotaOption) {
 -(NSArray*) getPartiesFilter;
 
 -(void) setSortOption:(AKSettingsSortOption) sortOption;
+-(void) setQuotaFilterOption:(AKSettingsFilterQuotaOption) quotaOption;
 -(void) setStatesFilter:(NSArray*) statesFilter;
 -(void) setPartiesFilter:(NSArray*) partiesFilter;
--(void) addPartyFilter:(NSString*) partieFilter;
--(void) addStateFilter:(NSString*) stateFilter;
 
+-(void) addPartyFilter:(NSString*) partyFilter;
+-(void) addStateFilter:(NSString*) stateFilter;
+-(void) removePartyFilter:(NSString*) partyFilter;
+-(void) removeStateFilter:(NSString*) stateFilter;
+
+-(NSString*) actualSettingsInfoLog;
 
 @end

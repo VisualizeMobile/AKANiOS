@@ -9,6 +9,7 @@
 #import "AKAppDelegate.h"
 #import "AKMainListViewController.h"
 #import "AKUtil.h"
+#import "AKSettingsManager.h"
 
 @implementation AKAppDelegate
 
@@ -19,7 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    
+    [self copyAppConfigurationFromBundleToDocuments];
+    
     AKMainListViewController *root =  [[AKMainListViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
     
@@ -31,6 +34,20 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)copyAppConfigurationFromBundleToDocuments {
+    BOOL alreadyExists;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    alreadyExists = [fileManager fileExistsAtPath:[AKSettingsManager settingsFilePath]];
+    
+    if (alreadyExists)
+        return;
+    
+    NSString *filePathMainBundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"akan_settings.plist"];
+    
+    [fileManager copyItemAtPath:filePathMainBundle toPath:[AKSettingsManager settingsFilePath] error:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
