@@ -11,5 +11,13 @@
 
 @interface AKDetailViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
+@property (weak, nonatomic) IBOutlet UILabel *followLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (nonatomic) AKParliamentary *parliamentary;
+@property (weak, nonatomic) IBOutlet UILabel *rankPositionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *parliamentaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *partyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ufLabel;
+
 @end
