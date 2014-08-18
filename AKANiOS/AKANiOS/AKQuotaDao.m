@@ -56,45 +56,67 @@
 
 -(BOOL)insertQuotaWithId:(NSString *)idQuota andValue:(NSDecimalNumber * )value
 {
-    Quota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
     
-    [newQuota setIdQuota:idQuota];
-    [newQuota setValue:value];
-    
+    NSArray *result;
     NSError *Error=nil;
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [self.fetchRequest setEntity:self.entity];
     
-    if ([self.managedObjectContext save:&Error])
     
-        return YES;
-    else NSLog(@"Failed to save new Quota  Error= %@",Error);
+    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    
+    if (result==nil)
+    {
+        AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+        
+        [newQuota setIdQuota:idQuota];
+        [newQuota setValue:value];
+        
+        if ([self.managedObjectContext save:&Error])
+            
+            return YES;
+        else NSLog(@"Failed to save new Quota  Error= %@",Error);
+        
+    }
+   
     
     return NO;
 }
 
 -(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSNumber *)value andIdParliamentary:(NSString *)idParliamentary
 {
-    
-    Quota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
-    NSString *nameImage;
-    
-    [newQuota setIdQuota:idQuota];
-    [newQuota setNumQuota:numQuota];
-    [newQuota setNameQuota: nameQuota];
-    [newQuota setMonth:month];
-    [newQuota setYear:year];
-    [newQuota setIdUpdate:idUpdate];
-    [newQuota setValue:value];
-    [newQuota setIdParliamentary:idParliamentary];
-    
-    nameImage=[self imageNameOfSubtype:[numQuota intValue] forValue:value];
-    [newQuota setNameImage:nameImage];
-    
-    
+    NSArray *result;
     NSError *Error=nil;
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [self.fetchRequest setEntity:self.entity];
     
-    if ([self.managedObjectContext save:&Error])
-        return YES;
-    else NSLog(@"Failed to save new Quota  Error= %@",Error);
+    
+    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    
+    if (result==nil)
+    {
+        AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+        NSString *nameImage;
+        
+        [newQuota setIdQuota:idQuota];
+        [newQuota setNumQuota:numQuota];
+        [newQuota setNameQuota: nameQuota];
+        [newQuota setMonth:month];
+        [newQuota setYear:year];
+        [newQuota setIdUpdate:idUpdate];
+        [newQuota setValue:value];
+        [newQuota setIdParliamentary:idParliamentary];
+        
+        nameImage=[self imageNameOfSubtype:[numQuota intValue] forValue:value];
+        [newQuota setImageName:nameImage];
+        
+        
+        if ([self.managedObjectContext save:&Error])
+            return YES;
+        else NSLog(@"Failed to save new Quota  Error= %@",Error);
+    }
+    
+    
 
     return NO;
 }
@@ -130,6 +152,7 @@
     NSError *Error=nil;
     Quota *quota;
     NSArray *result;
+    NSString *nameImage;
     
     [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
@@ -138,6 +161,9 @@
     quota.value=value;
     quota.idUpdate=idUpdate;
     
+    nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
+    quota.nameImage=nameImage;
+
     if ([self.managedObjectContext save:&Error])
         return YES;
     else NSLog(@"Failed to uptade Quota");

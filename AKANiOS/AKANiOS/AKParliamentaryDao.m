@@ -106,6 +106,18 @@
 }
 -(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andFullName:(NSString *)fullName andIdParliamentary:(NSString *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andUrlPhoto:(NSString *)urlPhoto andValueRanking:(NSNumber *)valueRanking andIdUpdate:(NSNumber *) idupdate andFollowed:(NSNumber *) followed
 {
+    
+    NSError *Error=nil;
+    
+    //Verifico se o parlamentar ja existe no device
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [self.fetchRequest setEntity:self.entity];
+    
+    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    
+    if ([result count]==0)
+    {
+        
     Parliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
     
     [newParliamentary setNickName:nickName];
@@ -126,14 +138,13 @@
     [newParliamentary setPhotoParliamentary:dataImage];
     
     
-    NSError *Error=nil;
-    
     //Realiza insert no banco de dados local
     if ([self.managedObjectContext save:&Error])
     
         return YES;
     else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
 
+    }
     return  NO;
 }
 

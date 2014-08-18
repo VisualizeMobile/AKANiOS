@@ -352,8 +352,8 @@
 -(void) configuration:(id) sender {
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
-    Parliamentary *parliamentary =(Parliamentary *) [parlamentaryDao selectParliamentaryById:@"123"] ;
+   // AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
+    AKParliamentary *parliamentary =(AKParliamentary *) [parlamentaryDao selectParliamentaryById:@"123"] ;
    
     
     NSLog(@"Resultado %@",parliamentary.nickName);
@@ -380,9 +380,9 @@
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
     NSNumber *valueRanking=[[NSNumber alloc]initWithFloat:12.4f];
     
-    [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
+   // [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
     
-  //  [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:valueRanking andIdUpdate:@1 andFollowed:@1];
+     [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:valueRanking andIdUpdate:@1 andFollowed:@1];
     
     
     
