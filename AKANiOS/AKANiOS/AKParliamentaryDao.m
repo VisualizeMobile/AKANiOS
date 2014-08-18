@@ -9,6 +9,7 @@
 #import "AKParliamentaryDao.h"
 #import "AKParliamentary.h"
 #import "AKAppDelegate.h"
+#import "AKParliamentary.h"
 #import "Parliamentary.h"
 
 @implementation AKParliamentaryDao
@@ -54,10 +55,11 @@
 }
 
 -(NSArray *)getAllParliamentary{
+    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for(int i = 0; i < 1000; i++) {
         AKParliamentary *p1 = [[AKParliamentary alloc] init];
-        p1.name = @"Romario de souza";
+        p1.nickName = @"Romario de souza";
         [array addObject:p1];
     }
     
@@ -66,31 +68,37 @@
 
 -(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSString *)idParliamentary
 {
-    Parliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
-    
-    newParliamentary.nickName=NickName;
-    newParliamentary.idParliamentary=idParliamentary;
-    
     NSError *Error=nil;
-    
-    
+
     //Verifico se o parlamentar ja existe no device
     [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
     [self.fetchRequest setEntity:self.entity];
+    
     NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
-    Parliamentary *parliamentary=[result objectAtIndex:0];
-    
-    if (!(parliamentary==nil))
+    if ([result count]==0)
     {
-        NSLog(@"%@ JA existe",parliamentary);
+        NSLog(@" nao existe");
+       
+      
+        Parliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
+        
+        newParliamentary.nickName=NickName;
+        newParliamentary.idParliamentary=idParliamentary;
+        
+        
+        if ([self.managedObjectContext save:&Error])
+        {
+            return YES;
+        }else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
         return NO;
+
     }
     
-    if ([self.managedObjectContext save:&Error])
-    {
-        return YES;
-    }else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+   // Parliamentary *parliamentary=[result objectAtIndex:0];
+    
+    
+    
     
     
     return NO;

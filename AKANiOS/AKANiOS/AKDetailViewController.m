@@ -37,6 +37,8 @@
     self.quotaDao = [AKQuotaDao getInstance];
     self.quotas = [self.quotaDao getQuotas];
     
+    
+    
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
         forCellWithReuseIdentifier:@"AKCell"];
@@ -45,7 +47,7 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     
     self.navigationItem.leftBarButtonItem = backButton;
-    self.navigationItem.title = [self.parliamentary firstName];
+    self.navigationItem.title = [self.parliamentary nickName];
     
 }
 

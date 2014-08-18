@@ -52,7 +52,7 @@
     self.viewFollowedEnabled = NO;
     self.searchEnabled = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+   // self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
    // self.settingsManager = [AKSettingsManager sharedManager];
     
@@ -253,7 +253,7 @@
         parliamentary = self.parliamentaryArray[indexPath.row];
     }
     
-    cell.parliamentaryName.text = parliamentary.name;
+    cell.parliamentaryName.text = parliamentary.nickName;
     
     return cell;
 }
