@@ -74,11 +74,23 @@
     NSError *Error=nil;
     
     
-    //Realiza insert no bando de dados local
-    if ([self.managedObjectContext save:&Error])
-        return YES;
-    else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+    //Verifico se o parlamentar ja existe no device
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [self.fetchRequest setEntity:self.entity];
+    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
+    Parliamentary *parliamentary=[result objectAtIndex:0];
+    
+    if (!(parliamentary==nil))
+    {
+        NSLog(@"%@ JA existe",parliamentary);
+        return NO;
+    }
+    
+    if ([self.managedObjectContext save:&Error])
+    {
+        return YES;
+    }else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
     
     
     return NO;
@@ -157,4 +169,24 @@
     return NO;
 }
 
+-(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue
+{
+    
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [self.fetchRequest setEntity:self.entity];
+    
+    NSError *Error=nil;
+    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    
+    Parliamentary *parliamentary=[result objectAtIndex:0];
+    
+    parliamentary.followed=followedValue;
+    
+    if ([self.managedObjectContext save:&Error])
+        return  YES;
+    else NSLog(@"Failed to update the parlamentary Error= %@",Error);
+
+    
+    return NO;
+}
 @end

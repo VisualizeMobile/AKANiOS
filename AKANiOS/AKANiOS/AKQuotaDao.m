@@ -154,30 +154,7 @@
 
     return NO;
 }
-/*
- @property (nonatomic, retain) NSString * idParliamentary;
- @property (nonatomic, retain) NSString * idQuota;
- @property (nonatomic, retain) NSNumber * idUpdate;
- @property (nonatomic, retain) NSNumber * month;
- @property (nonatomic, retain) NSString * nameQuota;
- @property (nonatomic, retain) NSNumber * numQuota;
- @property (nonatomic, retain) NSNumber * value;
- @property (nonatomic, retain) NSNumber * year;
- @property (nonatomic, retain) NSString * nameImage;
- */
 
-/*
- @property (nonatomic, retain) NSString * idParliamentary;
- @property (nonatomic, retain) NSString * idQuota;
- @property (nonatomic, retain) NSNumber * month;
- @property (nonatomic, retain) NSString * nameQuota;
- @property (nonatomic, retain) NSNumber * numQuota;
- @property (nonatomic, retain) NSDecimalNumber * value;
- @property (nonatomic, retain) NSNumber * year;
- @property (nonatomic, retain) NSNumber * idUpdate;
-
- 
- */
 
 -(NSArray *)selectQuotaById:(NSString *)idQuota
 {
@@ -337,13 +314,13 @@
 -(NSString *)imageColorOfValue:(NSNumber *)value{
     
     
-    if (value < [NSNumber numberWithFloat:1.0f]) {
+    if ([value floatValue] < 1.0f) {
         return @"1";
-    }else if(value < [NSNumber numberWithFloat:1500.0f]){
+    }else if([value floatValue] < 1500.0f){
         return @"2";
-    }else if(value < [NSNumber numberWithFloat:3000.0f]){
+    }else if([value floatValue] < 3000.0f){
         return @"3";
-    }else if(value < [NSNumber numberWithFloat:6000.0f]){
+    }else if([value floatValue] < 6000.0f){
         return @"4";
     }else {
         return @"5";
@@ -352,7 +329,7 @@
 
 -(NSString *)imageNameOfSubtype:(int) subtype forValue:(NSNumber *)value{
     NSString *name = [NSString stringWithFormat:@"%@%@", [self imageTypeOfSubtype:subtype ],[self imageColorOfValue:value]];
-    //NSLog(@"aaa %@",name);
+    NSLog(@"AKQuotaDao: Nome [ %@ ]",name);
     return name;
 }
 

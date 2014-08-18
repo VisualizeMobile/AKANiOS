@@ -32,5 +32,6 @@
 -(NSArray *)selectAllParliamentaries;
 
 -(BOOL)updateIdUpdateOfParliamentary:(NSString *)idParliamentary WithIdUpdate:(NSNumber *)idUpdate;
+-(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue;
 
 @end
