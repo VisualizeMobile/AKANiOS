@@ -141,7 +141,7 @@
     NSComparator comparator = nil;
     
     switch (sortOption) {
-        case AKSettingsSortOptionName:
+        case AKSettingsSortOptionAlphabetic:
             comparator = ^NSComparisonResult(id a, id b) {
                 Parliamentary *first = (Parliamentary*)a;
                 Parliamentary *second = (Parliamentary*)b;

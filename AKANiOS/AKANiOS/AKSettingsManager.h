@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(char, AKSettingsSortOption) {
-    AKSettingsSortOptionRanking, AKSettingsSortOptionName,
+    AKSettingsSortOptionRanking, AKSettingsSortOptionAlphabetic,
     AKSettingsSortOptionParty, AKSettingsSortOptionState
 };
 
