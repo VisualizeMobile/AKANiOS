@@ -23,13 +23,11 @@
 
 -(NSArray *)getAllParliamentary;
 
-
 -(BOOL) insertParliamentaryWithNickName:(NSString *) NickName andIdParliamentary:(NSString *) idParlamentary;
 
 -(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andFullName:(NSString *)fullName andIdParliamentary:(NSString *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andUrlPhoto:(NSString *)urlPhoto andValueRanking:(NSNumber *)valueRanking andIdUpdate:(NSNumber *) iduptade andFollowed:(NSNumber *) followed;
 
 -(NSArray *) selectParliamentaryById:(NSString *)idParliamentary;
--(NSArray *)selectAllParliamentaries;
 
 -(BOOL)updateIdUpdateOfParliamentary:(NSString *)idParliamentary WithIdUpdate:(NSNumber *)idUpdate;
 -(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue;

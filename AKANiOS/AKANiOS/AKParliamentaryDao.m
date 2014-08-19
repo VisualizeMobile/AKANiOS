@@ -54,17 +54,17 @@
     return singleton;
 }
 
--(NSArray *)getAllParliamentary{
-    
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for(int i = 0; i < 1000; i++) {
-        AKParliamentary *p1 = [[AKParliamentary alloc] init];
-        p1.nickName = @"Romario de souza";
-        [array addObject:p1];
-    }
-    
-    return array;
-}
+//-(NSArray *)getAllParliamentary{
+//    
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    for(int i = 0; i < 1000; i++) {
+//        AKParliamentary *p1 = [[AKParliamentary alloc] init];
+//        p1.nickName = @"Romario de souza";
+//        [array addObject:p1];
+//    }
+//    
+//    return array;
+//}
 
 -(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSString *)idParliamentary
 {
@@ -148,7 +148,7 @@
     return  NO;
 }
 
--(NSArray *)selectAllParliamentaries
+-(NSArray *)getAllParliamentary
 {
     [self.fetchRequest setEntity:self.entity];
     NSError *Error=nil;

@@ -42,7 +42,7 @@
 
 -(void)imageForQuotaValue{
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
-    self.valueLabel.text = [NSString stringWithFormat:@"r$ %.2f",[self.quota value]];
+    self.valueLabel.text = [NSString stringWithFormat:@"r$ %@",[self.quota value]];
     self.valueLabel.textColor = [self colorForQuotaValue];
 }
 

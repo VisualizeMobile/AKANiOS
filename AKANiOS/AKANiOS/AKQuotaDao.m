@@ -63,7 +63,7 @@
     [self.fetchRequest setEntity:self.entity];
     
     
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     if (result==nil)
     {
@@ -77,7 +77,7 @@
             return YES;
         else NSLog(@"Failed to save new Quota  Error= %@",Error);
         
-    }
+    } else NSLog(@"Ja tem essa cota");
    
     
     return NO;
@@ -90,8 +90,7 @@
     [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
     [self.fetchRequest setEntity:self.entity];
     
-    
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     if (result==nil)
     {
@@ -114,10 +113,9 @@
         if ([self.managedObjectContext save:&Error])
             return YES;
         else NSLog(@"Failed to save new Quota  Error= %@",Error);
+        
     }
     
-    
-
     return NO;
 }
 
@@ -141,7 +139,6 @@
     NSError *Error=nil;
     
     [self.fetchRequest setEntity:self.entity];
-    
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     return result;

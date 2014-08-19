@@ -19,6 +19,7 @@
 
 #import "AKQuotaDao.h"
 #import "Quota.h"
+#import "AKLoad.h"
 
 @interface AKMainListViewController ()
 
@@ -45,14 +46,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Configure initial data
     self.title = @"Parlamentares";
     self.viewByRankEnabled = NO;
     self.viewFollowedEnabled = NO;
     self.searchEnabled = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-   // self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
    // self.settingsManager = [AKSettingsManager sharedManager];
     
@@ -112,6 +112,9 @@
     self.searchController.delegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -254,6 +257,8 @@
     }
     
     cell.parliamentaryName.text = parliamentary.nickName;
+    cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
+
     
     return cell;
 }
@@ -352,37 +357,27 @@
 -(void) configuration:(id) sender {
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-   // AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
-    AKParliamentary *parliamentary =(AKParliamentary *) [parlamentaryDao selectParliamentaryById:@"123"] ;
    
-    
-    NSLog(@"Resultado %@",parliamentary.nickName);
-    NSLog(@"linhas :%d ",[[parlamentaryDao selectAllParliamentaries] count]);
-    
+    NSLog(@"Parlamentares %d",[[parlamentaryDao getAllParliamentary] count]);
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
-  
-    
-    
-                                  
-    
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) infoScreen:(id) sender {
     
+    //Experimental datas
+    AKLoad *experimental=[[AKLoad alloc]init];
+    [experimental loadParliamentariesTestData];
+
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
-    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    NSNumber *valueRanking=[[NSNumber alloc]initWithFloat:12.4f];
-    
-   // [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
-    
-     [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:valueRanking andIdUpdate:@1 andFollowed:@1];
+   
     
     
     
