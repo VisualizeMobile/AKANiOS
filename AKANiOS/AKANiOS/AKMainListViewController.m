@@ -54,7 +54,10 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
-   // self.settingsManager = [AKSettingsManager sharedManager];
+    self.settingsManager = [AKSettingsManager sharedManager];
+
+    NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
+    
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -199,17 +202,14 @@
     
     CGRect toolbarFrame = self.toolBar.frame;
     
-    if(UIInterfaceOrientationIsLandscape(orientation)) {
+    if(UIInterfaceOrientationIsLandscape(orientation))
         self.lastOrientationWasLadscape = YES;
-        toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
-    } else {
+    else
         self.lastOrientationWasLadscape = NO;
-        toolbarFrame.origin.x = self.toolBarContainer.center.x - toolbarFrame.size.width/2 ;
-    }
     
-    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && UIInterfaceOrientationIsPortrait(orientation)) {
         toolbarFrame.origin.x = self.view.center.y - toolbarFrame.size.width/2 ;
-    } else {
+    } else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
         toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
     }
     
