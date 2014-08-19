@@ -28,8 +28,6 @@
     [parliamentaryDao insertParliamentaryWithNickName:@"ROMÁRIO" andFullName:@"ROMARIO DE SOUZA FARIA" andIdParliamentary:@"160597" andParty:@"PSB" andPosRanking:@6 andUf:@"RJ" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/160597.jpg" andValueRanking:@10 andIdUpdate:@01 andFollowed:@0];
     
     
-  
-    
    }
 
 -(void)loadQuotasTestData
