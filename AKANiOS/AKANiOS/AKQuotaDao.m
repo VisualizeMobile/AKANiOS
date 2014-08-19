@@ -63,9 +63,9 @@
     [self.fetchRequest setEntity:self.entity];
     
     
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
-    if (result==nil)
+    if ([result count]==0)
     {
         AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
         
@@ -77,7 +77,7 @@
             return YES;
         else NSLog(@"Failed to save new Quota  Error= %@",Error);
         
-    }
+    } else NSLog(@"Ja tem essa cota");
    
     
     return NO;
@@ -90,11 +90,12 @@
     [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
     [self.fetchRequest setEntity:self.entity];
     
-    
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
-    
-    if (result==nil)
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSLog(@" Cota DAO");
+    if ([result count]==0)
     {
+        NSLog(@"Nova Cota");
+        
         AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
         NSString *nameImage;
         
@@ -114,23 +115,21 @@
         if ([self.managedObjectContext save:&Error])
             return YES;
         else NSLog(@"Failed to save new Quota  Error= %@",Error);
+        
     }
     
-    
-
     return NO;
 }
 
 
--(NSArray *) getQuotaById:(NSString *)idQuota ;
+-(NSArray *) getQuotaByIdParliamentary:(NSString *)idParliamentary
 {
     NSArray *result;
     NSError *Error=nil;
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
     [self.fetchRequest setEntity:self.entity];
     
-    
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     return result;
 }
@@ -141,7 +140,6 @@
     NSError *Error=nil;
     
     [self.fetchRequest setEntity:self.entity];
-    
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     return result;

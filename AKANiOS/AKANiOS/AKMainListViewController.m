@@ -19,6 +19,7 @@
 
 #import "AKQuotaDao.h"
 #import "Quota.h"
+#import "AKLoad.h"
 
 @interface AKMainListViewController ()
 
@@ -45,14 +46,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     // Configure initial data
     self.title = @"Parlamentares";
     self.viewByRankEnabled = NO;
     self.viewFollowedEnabled = NO;
     self.searchEnabled = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-   // self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
     self.settingsManager = [AKSettingsManager sharedManager];
 
@@ -115,6 +115,9 @@
     self.searchController.delegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -236,6 +239,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
+    NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
+    NSString *formattedNumberString;
     
     AKMainTableViewCell *cell = (AKMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
@@ -247,13 +252,26 @@
     cell.quotaSum.hidden = cell.rankPosition.hidden = !self.viewByRankEnabled;
     
     AKParliamentary *parliamentary = nil;
-    if (tableView == self.searchController.searchResultsTableView) {
+    if (tableView == self.searchController.searchResultsTableView)
+    {
         parliamentary = self.parliamentaryFilteredArray[indexPath.row];
     } else {
         parliamentary = self.parliamentaryArray[indexPath.row];
     }
     
     cell.parliamentaryName.text = parliamentary.nickName;
+    cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
+    cell.partyLabel.text=parliamentary.party;
+    cell.ufLabel.text=parliamentary.uf;
+    cell.rankPosition.text=[NSString stringWithFormat:@"%@º", parliamentary.posRanking];
+    
+    
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    formattedNumberString=[numberFormatter stringFromNumber:parliamentary.valueRanking];
+    cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
+    //    cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",parliamentary.valueRanking];
+    
+
     
     return cell;
 }
@@ -273,8 +291,10 @@
     if (self.searchController.active)
         detailController.parliamentary = [self.parliamentaryFilteredArray objectAtIndex:indexPath.row];
     else
+    {
         detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
-    
+        
+    }
     [self.navigationController pushViewController:detailController animated:YES];
     
 }
@@ -282,7 +302,7 @@
 #pragma mark - Search Bar Delegate
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
     self.parliamentaryFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
 }
 
@@ -352,37 +372,28 @@
 -(void) configuration:(id) sender {
     
     AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-   // AKQuotaDao *quotaDao=[AKQuotaDao getInstance];
-    AKParliamentary *parliamentary =(AKParliamentary *) [parlamentaryDao selectParliamentaryById:@"123"] ;
-   
+    AKQuotaDao *q=[AKQuotaDao getInstance];
     
-    NSLog(@"Resultado %@",parliamentary.nickName);
-    NSLog(@"linhas :%d ",[[parlamentaryDao selectAllParliamentaries] count]);
-    
+    NSLog(@"Parlamentares %d Quotas %d",[[parlamentaryDao getAllParliamentary] count],[[q getQuotas]count]);
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
-  
-    
-    
-                                  
-    
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) infoScreen:(id) sender {
     
+    //Experimental datas
+    AKLoad *experimental=[[AKLoad alloc]init];
+    [experimental loadParliamentariesTestData];
+    [experimental loadQuotasTestData];
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
-    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    NSNumber *valueRanking=[[NSNumber alloc]initWithFloat:12.4f];
-    
-   // [parlamentaryDao insertParliamentaryWithNickName:@"Ronaldo" andIdParliamentary:@"123"];
-    
-     [parlamentaryDao insertParliamentaryWithNickName:@"FRANCISCO TENÓRIO" andFullName:@"JOSÉ FRANCISCO CERQUEIRA TENÓRIO" andIdParliamentary:@"5829181" andParty:@"PMN" andPosRanking:@1 andUf:@"AL" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/141467.jpg" andValueRanking:valueRanking andIdUpdate:@1 andFollowed:@1];
+   
     
     
     

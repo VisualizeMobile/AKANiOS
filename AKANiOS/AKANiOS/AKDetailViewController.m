@@ -35,8 +35,8 @@
     [super viewDidLoad];
     
     self.quotaDao = [AKQuotaDao getInstance];
-    self.quotas = [self.quotaDao getQuotas];
-    
+   // self.quotas = [self.quotaDao getQuotas];
+    self.quotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
     
     //registering cell nib that is required for collectionView te dequeue it.
@@ -48,6 +48,14 @@
     
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary nickName];
+    self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
+    self.rankPositionLabel.text=[NSString stringWithFormat:@"%@º",self.parliamentary.posRanking];
+    self.parliamentaryLabel.text=self.parliamentary.fullName;
+    self.partyLabel.text=self.parliamentary.party;
+    self.ufLabel.text=self.parliamentary.uf;
+    
+    
+   
     
 }
 
