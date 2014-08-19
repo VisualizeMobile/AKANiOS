@@ -89,7 +89,7 @@
     NSLog(@"selecionou");
 }
 
-#pragma mark selectors 
+#pragma mark - Action methods
 
 - (IBAction)followParliamentary:(id)sender {
     if ([self.followLabel.text isEqualToString: @"Seguido"]) {

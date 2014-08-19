@@ -86,20 +86,14 @@
         newParliamentary.nickName=NickName;
         newParliamentary.idParliamentary=idParliamentary;
         
-        
         if ([self.managedObjectContext save:&Error])
-        {
             return YES;
-        }else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+        else
+            NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+        
         return NO;
 
     }
-    
-   // Parliamentary *parliamentary=[result objectAtIndex:0];
-    
-    
-    
-    
     
     return NO;
     
@@ -140,9 +134,9 @@
     
     //Realiza insert no banco de dados local
     if ([self.managedObjectContext save:&Error])
-    
         return YES;
-    else NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+    else
+        NSLog(@"Failed to save the new parlamentary Error= %@",Error);
 
     }
     return  NO;
@@ -182,7 +176,8 @@
     
     if ([self.managedObjectContext save:&Error])
         return  YES;
-    else NSLog(@"Failed to update the parlamentary Error= %@",Error);
+    else
+        NSLog(@"Failed to update the parlamentary Error= %@",Error);
     
     
     return NO;
@@ -203,7 +198,8 @@
     
     if ([self.managedObjectContext save:&Error])
         return  YES;
-    else NSLog(@"Failed to update the parlamentary Error= %@",Error);
+    else
+        NSLog(@"Failed to update the parlamentary Error= %@",Error);
 
     
     return NO;

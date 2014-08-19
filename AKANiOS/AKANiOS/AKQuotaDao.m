@@ -73,9 +73,9 @@
         [newQuota setValue:value];
         
         if ([self.managedObjectContext save:&Error])
-            
             return YES;
-        else NSLog(@"Failed to save new Quota  Error= %@",Error);
+        else
+            NSLog(@"Failed to save new Quota  Error= %@",Error);
         
     } else NSLog(@"Ja tem essa cota");
    
@@ -91,11 +91,9 @@
     [self.fetchRequest setEntity:self.entity];
     
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
-    NSLog(@" Cota DAO");
+
     if ([result count]==0)
     {
-        NSLog(@"Nova Cota");
-        
         AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
         NSString *nameImage;
         
@@ -114,7 +112,8 @@
         
         if ([self.managedObjectContext save:&Error])
             return YES;
-        else NSLog(@"Failed to save new Quota  Error= %@",Error);
+        else
+            NSLog(@"Failed to save new Quota  Error= %@",Error);
         
     }
     
@@ -164,7 +163,9 @@
 
     if ([self.managedObjectContext save:&Error])
         return YES;
-    else NSLog(@"Failed to uptade Quota");
+    else
+        NSLog(@"Failed to uptade Quota");
+    
     return NO;
 }
 

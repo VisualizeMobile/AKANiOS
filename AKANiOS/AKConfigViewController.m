@@ -57,6 +57,24 @@
     
     UIInterfaceOrientation actualOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     [self arrangeSortButtons:actualOrientation];
+    
+    
+    switch([self.settingsManager getSortOption]) {
+        case AKSettingsSortOptionRanking:
+            [self.rankingSortButton setSelected:YES];
+            break;
+        case AKSettingsSortOptionParty:
+            [self.partySortButton setSelected:YES];
+            break;
+
+        case AKSettingsSortOptionAlphabetic:
+            [self.alphabeticSortButton setSelected:YES];
+            break;
+
+        case AKSettingsSortOptionState:
+            [self.stateSortButton setSelected:YES];
+            break;
+    }
 }
 
 

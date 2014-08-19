@@ -54,14 +54,22 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryFilteredArray = [NSArray array];
-    self.settingsManager = [AKSettingsManager sharedManager];
-
-    NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
     
+    self.settingsManager = [AKSettingsManager sharedManager];
+    NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
     self.needsToHideSearchBar = YES;
+    
+    // Experimental datas
+    AKLoad *experimental=[[AKLoad alloc]init];
+    [experimental loadParliamentariesTestData];
+    [experimental loadQuotasTestData];
+
+    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
+    AKQuotaDao *q=[AKQuotaDao getInstance];
+    NSLog(@"Parlamentares %lu Quotas %lu",(unsigned long)[[parlamentaryDao getAllParliamentary] count],(unsigned long)[[q getQuotas]count]);
     
     
     // Configure Toolbar
@@ -81,15 +89,6 @@
     [self.toolBar.followedButton setImage:[UIImage imageNamed:@"seguidosativado"] forState:UIControlStateSelected];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscadesativada"] forState:UIControlStateNormal];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscaativada"] forState:UIControlStateSelected];
-    
-//    [self.toolBarContainer addConstraint:[NSLayoutConstraint constraintWithItem:self.toolBar
-//                                                          attribute:NSLayoutAttributeCenterX
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:self.toolBarContainer
-//                                                          attribute:NSLayoutAttributeCenterX
-//                                                         multiplier:1
-//                                                           constant:0]];
-
     
 
     // Configure navigation bar
@@ -132,10 +131,13 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    // [self sortParliamentary];
     [super viewWillAppear:animated];
     
+    [self sortParliamentary];
+    
     [self transformNavigationBarButtons];
+    
+    [self.tableView reloadData];
 }
 
 -(void) sortParliamentary {
@@ -146,23 +148,23 @@
     switch (sortOption) {
         case AKSettingsSortOptionAlphabetic:
             comparator = ^NSComparisonResult(id a, id b) {
-                Parliamentary *first = (Parliamentary*)a;
-                Parliamentary *second = (Parliamentary*)b;
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
                 return [first.nickName compare:second.nickName];
             };
             break;
         case AKSettingsSortOptionRanking:
             comparator = ^NSComparisonResult(id a, id b) {
-                Parliamentary *first = (Parliamentary*)a;
-                Parliamentary *second = (Parliamentary*)b;
-                return [first.valueRanking compare:second.valueRanking];
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
+                return [second.valueRanking compare:first.valueRanking];
             };
             
             break;
         case AKSettingsSortOptionState:
             comparator = ^NSComparisonResult(id a, id b) {
-                Parliamentary *first = (Parliamentary*)a;
-                Parliamentary *second = (Parliamentary*)b;
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
                 return [first.uf compare:second.uf];
             };
 
@@ -170,8 +172,8 @@
             break;
         case AKSettingsSortOptionParty:
             comparator = ^NSComparisonResult(id a, id b) {
-                Parliamentary *first = (Parliamentary*)a;
-                Parliamentary *second = (Parliamentary*)b;
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
                 return [first.party compare:second.party];
             };
 
@@ -265,14 +267,11 @@
     cell.ufLabel.text=parliamentary.uf;
     cell.rankPosition.text=[NSString stringWithFormat:@"%@º", parliamentary.posRanking];
     
-    
-    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
     formattedNumberString=[numberFormatter stringFromNumber:parliamentary.valueRanking];
     cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
-    //    cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",parliamentary.valueRanking];
-    
 
-    
     return cell;
 }
 
@@ -370,33 +369,16 @@
 }
 
 -(void) configuration:(id) sender {
-    
-    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    AKQuotaDao *q=[AKQuotaDao getInstance];
-    
-    NSLog(@"Parlamentares %d Quotas %d",[[parlamentaryDao getAllParliamentary] count],[[q getQuotas]count]);
-    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(void) infoScreen:(id) sender {
-    
-    //Experimental datas
-    AKLoad *experimental=[[AKLoad alloc]init];
-    [experimental loadParliamentariesTestData];
-    [experimental loadQuotasTestData];
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKInfoViewController alloc] init]];
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
-    
-   
-    
-    
-    
 }
 
 #pragma mark - Custom methods
