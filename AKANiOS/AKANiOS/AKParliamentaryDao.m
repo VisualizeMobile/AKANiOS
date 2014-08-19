@@ -54,18 +54,6 @@
     return singleton;
 }
 
-//-(NSArray *)getAllParliamentary{
-//    
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for(int i = 0; i < 1000; i++) {
-//        AKParliamentary *p1 = [[AKParliamentary alloc] init];
-//        p1.nickName = @"Romario de souza";
-//        [array addObject:p1];
-//    }
-//    
-//    return array;
-//}
-
 -(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSString *)idParliamentary
 {
     NSError *Error=nil;
@@ -78,9 +66,6 @@
     
     if ([result count]==0)
     {
-        NSLog(@" nao existe");
-       
-      
         Parliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
         
         newParliamentary.nickName=NickName;
@@ -94,12 +79,6 @@
         return NO;
 
     }
-    
-   // Parliamentary *parliamentary=[result objectAtIndex:0];
-    
-    
-    
-    
     
     return NO;
     
@@ -132,10 +111,20 @@
     [newParliamentary setFollowed:followed];
     
     //request remotePhoto
-    NSData *dataImage;
-    dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlPhoto]];
-    
-    [newParliamentary setPhotoParliamentary:dataImage];
+        NSData *dataImage;
+
+        @try
+        {
+            dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlPhoto]];
+        
+            [newParliamentary setPhotoParliamentary:dataImage];
+        }
+        @catch (NSException *exception)
+        {
+            NSLog(@"Parliamentary DAO exception :%@",exception);
+            
+        }
+        
     
     
     //Realiza insert no banco de dados local
