@@ -65,7 +65,7 @@
     
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
-    if (result==nil)
+    if ([result count]==0)
     {
         AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
         
@@ -91,9 +91,11 @@
     [self.fetchRequest setEntity:self.entity];
     
     result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
-    
-    if (result==nil)
+    NSLog(@" Cota DAO");
+    if ([result count]==0)
     {
+        NSLog(@"Nova Cota");
+        
         AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
         NSString *nameImage;
         
@@ -120,15 +122,14 @@
 }
 
 
--(NSArray *) getQuotaById:(NSString *)idQuota ;
+-(NSArray *) getQuotaByIdParliamentary:(NSString *)idParliamentary
 {
     NSArray *result;
     NSError *Error=nil;
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
     [self.fetchRequest setEntity:self.entity];
     
-    
-    result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error]objectAtIndex:0];
+    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
     
     return result;
 }
