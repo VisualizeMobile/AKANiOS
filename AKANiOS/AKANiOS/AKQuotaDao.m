@@ -108,6 +108,7 @@
         [newQuota setIdUpdate:idUpdate];
         [newQuota setValue:value];
         [newQuota setIdParliamentary:idParliamentary];
+        [newQuota setImageColor:[self imageColorOfValue:value]];
         
         nameImage=[self imageNameOfSubtype:[numQuota intValue] forValue:value];
         [newQuota setImageName:nameImage];
@@ -353,19 +354,19 @@
     
 }
 
--(NSString *)imageColorOfValue:(NSNumber *)value{
+-(NSNumber *)imageColorOfValue:(NSNumber *)value{
     
     
     if ([value floatValue] < 1.0f) {
-        return @"1";
+        return @1;
     }else if([value floatValue] < 1500.0f){
-        return @"2";
+        return @2;
     }else if([value floatValue] < 3000.0f){
-        return @"3";
+        return @3;
     }else if([value floatValue] < 6000.0f){
-        return @"4";
+        return @4;
     }else {
-        return @"5";
+        return @5;
     }
 }
 
@@ -375,7 +376,10 @@
     return name;
 }
 
-
+-(BOOL)insertQuotasFromArray:(NSArray *)quotas{
+    //TODO implement persistence
+    return YES;
+}
 
 
 

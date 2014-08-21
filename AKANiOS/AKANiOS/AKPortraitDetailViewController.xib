@@ -27,10 +27,22 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uo-DV-lvf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elipsediagonal" translatesAutoresizingMaskIntoConstraints="NO" id="6NA-Od-0fv">
+                            <rect key="frame" x="111" y="65" width="99" height="92"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="92" id="eE8-Ox-d5e"/>
+                                <constraint firstAttribute="width" constant="99" id="gML-ON-7Uu"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3uo-DV-lvf">
                             <rect key="frame" x="118" y="68" width="85" height="85"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="0.95294117649999999" green="0.81960784310000001" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="85" id="Pgs-hg-f1K"/>
+                                <constraint firstAttribute="width" constant="85" id="fvg-n7-A6c"/>
+                            </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000º" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6k-Mi-Nm1">
                             <rect key="frame" x="33" y="96" width="36" height="21"/>
@@ -94,8 +106,12 @@
                     </subviews>
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="6NA-Od-0fv" firstAttribute="centerY" secondItem="3uo-DV-lvf" secondAttribute="centerY" id="4ho-ZC-Fdl"/>
                         <constraint firstAttribute="width" constant="320" id="F8u-oY-weI"/>
                         <constraint firstAttribute="height" constant="215" id="LO3-JP-jFw"/>
+                        <constraint firstItem="3uo-DV-lvf" firstAttribute="top" secondItem="RBf-Ta-dBF" secondAttribute="top" constant="68" id="RTs-rz-MZd"/>
+                        <constraint firstAttribute="centerX" secondItem="3uo-DV-lvf" secondAttribute="centerX" id="Vro-Rr-BdT"/>
+                        <constraint firstItem="6NA-Od-0fv" firstAttribute="centerX" secondItem="3uo-DV-lvf" secondAttribute="centerX" id="uJh-Uv-Za1"/>
                     </constraints>
                 </view>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" keyboardDismissMode="onDrag" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0MX-Ef-g9G">
@@ -155,6 +171,7 @@
         </view>
     </objects>
     <resources>
+        <image name="elipsediagonal" width="240" height="240"/>
         <image name="seguido" width="40" height="40"/>
     </resources>
 </document>

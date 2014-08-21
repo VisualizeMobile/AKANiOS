@@ -13,6 +13,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elipsediagonal" translatesAutoresizingMaskIntoConstraints="NO" id="GlU-XV-b58">
+                        <rect key="frame" x="1" y="3" width="70" height="65"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="btD-Md-Yiw"/>
+                            <constraint firstAttribute="height" constant="65" id="ehI-fW-zdU"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do Parlamentar" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="181" translatesAutoresizingMaskIntoConstraints="NO" id="apP-CV-Tes">
                         <rect key="frame" x="86" y="11" width="181" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,7 +71,7 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ranking4" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-s4-Pv8">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-s4-Pv8">
                         <rect key="frame" x="6" y="5" width="60" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
@@ -87,12 +95,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="zqK-L7-7Nz" firstAttribute="leading" secondItem="Yux-gl-xk6" secondAttribute="trailing" constant="6" id="79T-bv-f2N"/>
+                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="centerY" secondItem="GlU-XV-b58" secondAttribute="centerY" id="7jz-J8-Agz"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="leading" id="AOe-Pd-guk"/>
                     <constraint firstItem="apP-CV-Tes" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Gy3-Vn-riW"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="baseline" secondItem="aSB-iQ-P5a" secondAttribute="baseline" id="LgW-Qm-P6c"/>
                     <constraint firstAttribute="trailing" secondItem="hNL-v9-cSu" secondAttribute="trailing" id="NxR-Mf-Z8k"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="G8I-Ji-TA3" secondAttribute="leading" id="SZt-Pk-Ro4"/>
                     <constraint firstItem="aSB-iQ-P5a" firstAttribute="leading" secondItem="zqK-L7-7Nz" secondAttribute="trailing" constant="7" id="VDT-AA-pVF"/>
+                    <constraint firstItem="WLJ-s4-Pv8" firstAttribute="centerX" secondItem="GlU-XV-b58" secondAttribute="centerX" id="ahI-oC-bTO"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="WLJ-s4-Pv8" secondAttribute="trailing" constant="20" id="fKq-wo-SUB"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" id="fak-TK-jp7"/>
                     <constraint firstItem="0QL-gq-oDh" firstAttribute="centerX" secondItem="WLJ-s4-Pv8" secondAttribute="centerX" id="jQH-Pg-v4D"/>
@@ -119,7 +129,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ranking4" width="150" height="45"/>
+        <image name="elipsediagonal" width="240" height="240"/>
         <image name="seguido" width="40" height="40"/>
     </resources>
 </document>
