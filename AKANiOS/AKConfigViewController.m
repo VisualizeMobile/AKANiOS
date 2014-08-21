@@ -52,7 +52,7 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFilterView:)];
     tap.numberOfTapsRequired = 1;
     tap.delegate = self;
-    //    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:tap];
     
     self.partliamentaryDao = [AKParliamentaryDao getInstance];
     
@@ -128,13 +128,12 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 
 #pragma mark - Gesture recognizer delegate
 
--(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-
-    if(gestureRecognizer.view == self.filterView)
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (touch.view != self.view) // accept only touchs on superview, not accept touchs on subviews
         return NO;
     else
         return YES;
-    
 }
 
 #pragma mark - custom methods
@@ -183,17 +182,23 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     
     self.filterUpperTriangleView = [[AKFilterOptionsUpperTriangleView alloc] initWithFrame: CGRectMake(10, self.partyFilterLabel.frame.origin.y+self.partyFilterLabel.frame.size.height + 3, self.view.frame.size.width-20, 10) andFilterIconXAxysCenter:filterButton.center.x];
     
-    self.filterView.userInteractionEnabled = NO;
     self.filterView = [[AKFilterOptionsView alloc] initWithFrame:
                        CGRectMake(10, self.filterUpperTriangleView.frame.origin.y+self.filterUpperTriangleView.frame.size.height, self.view.frame.size.width-20, 230)];
     
     self.filterCollectionView.frame = CGRectMake(5, 10, self.filterView.frame.size.width-10, self.filterView.frame.size.height-20);
+    
     [self.filterCollectionView reloadData];
-
+    
     [self.filterView addSubview:self.filterCollectionView];
     
     [self.view addSubview:self.filterView];
     [self.view addSubview:self.filterUpperTriangleView];
+    
+    self.filterView.alpha = self.filterUpperTriangleView.alpha = 0;
+    
+    [UIView animateWithDuration:0.1f delay:0.1f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.filterView.alpha = self.filterUpperTriangleView.alpha = 1;
+    } completion:nil];
     
     [self.view addConstraints:[NSLayoutConstraint
                                      constraintsWithVisualFormat:@"H:|-(<=10)-[filterView]-(<=10)-|"
@@ -207,13 +212,22 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
                                      metrics:nil
                                      views:@{@"filterView" : self.filterView}]];
     
-    [self.filterView becomeFirstResponder];
 }
 
 
 -(void) removeFilterView {
-    [self.filterView removeFromSuperview];
-    [self.filterUpperTriangleView removeFromSuperview];
+    // This is to made to don't work directly with the properties, because they will point to another objects in the "completion:" block
+    AKFilterOptionsUpperTriangleView *filterUpperTriangleViewOld = self.filterUpperTriangleView;
+    AKFilterOptionsView *filterViewOld = self.filterView;
+    
+    filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 1;
+    
+    [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 0;
+    } completion:^ (BOOL finished) {
+        [filterViewOld removeFromSuperview];
+        [filterUpperTriangleViewOld removeFromSuperview];
+    }];
 }
 
 #pragma mark - Collection view data source
