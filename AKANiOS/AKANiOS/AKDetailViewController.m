@@ -9,7 +9,7 @@
 #import "AKDetailViewController.h"
 #import "AKQuotaCollectionViewCell.h"
 #import "AKQuotaDao.h"
-#import "AKParliamentaryDao.m"
+#import "AKParliamentaryDao.h"
 #import "AKQuota.h"
 #import "AKUtil.h"
 
