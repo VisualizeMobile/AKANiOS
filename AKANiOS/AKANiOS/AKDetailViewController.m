@@ -9,12 +9,14 @@
 #import "AKDetailViewController.h"
 #import "AKQuotaCollectionViewCell.h"
 #import "AKQuotaDao.h"
+#import "AKParliamentaryDao.m"
 #import "AKQuota.h"
 #import "AKUtil.h"
 
 @interface AKDetailViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
 @property (nonatomic) AKQuotaDao *quotaDao;
+@property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @property (nonatomic) NSArray *quotas;
 @property (nonatomic) UIPickerView *datePickerView;
 @property (nonatomic) NSString *month;
@@ -39,7 +41,7 @@
     [super viewDidLoad];
     
     self.quotaDao = [AKQuotaDao getInstance];
-   // self.quotas = [self.quotaDao getQuotas];
+    self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.quotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
     
@@ -166,12 +168,15 @@
 #pragma mark - Action methods
 
 - (IBAction)followParliamentary:(id)sender {
+
     if ([self.followLabel.text isEqualToString: @"Seguido"]) {
+        [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@0];
         [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
         self.followLabel.text = @"Seguir";
         self.followLabel.textColor = [AKUtil color1];
     }
     else{
+        [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@1];
         [self.followButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
         self.followLabel.text = @"Seguido";
         self.followLabel.textColor = [AKUtil color3];
@@ -187,6 +192,18 @@
 
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)updateFollowParliamentaryWithId:(NSString *)parliamentaryId andValue:(NSNumber *)followed{
+    [self.parliamentary setFollowed:followed];
+    [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
+    if ([followed isEqual: @0]) {
+        //[self.quotaDao deleteQuotaByIdParliamentary:parliamentaryId];
+    }
+    else{
+        [self.quotaDao insertQuotasFromArray: self.quotas];
+    }
+    
 }
 
 -(void)loanNibforOrientation:(UIInterfaceOrientation)orientation {

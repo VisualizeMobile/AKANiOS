@@ -376,7 +376,10 @@
     return name;
 }
 
-
+-(BOOL)insertQuotasFromArray:(NSArray *)quotas{
+    //TODO implement persistence
+    return YES;
+}
 
 
 
