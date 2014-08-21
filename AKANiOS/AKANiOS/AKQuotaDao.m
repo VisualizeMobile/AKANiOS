@@ -153,25 +153,91 @@
 -(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate
 {
     NSError *Error=nil;
-    Quota *quota;
+    AKQuota *quota;
     NSArray *result;
     NSString *nameImage;
     
     NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
     [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
-    quota=[result objectAtIndex:0];
-    quota.value=value;
-    quota.idUpdate=idUpdate;
-    
-    nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
-    quota.nameImage=nameImage;
-
+    [fetchRequest setEntity:self.entity];
+    @try {
+            result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+            quota=[result objectAtIndex:0];
+            quota.value=value;
+            quota.idUpdate=idUpdate;
+        
+            nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
+            quota.imageName=nameImage;
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"Error update quota; Error=%@",exception);
+    }
     if ([self.managedObjectContext save:&Error])
         return YES;
     else
         NSLog(@"Failed to uptade Quota");
+    
+    return NO;
+}
+
+-(BOOL) deleteAllQuotas
+{
+    NSError *Error=nil;
+    NSArray *result;
+    NSFetchRequest *request=[[NSFetchRequest alloc]init];
+    
+    [request setEntity:self.entity];
+    
+    @try {
+        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+        
+        for(AKQuota *quota in result)
+        {
+            [self.managedObjectContext deleteObject:quota];
+        }
+        
+        if ([self.managedObjectContext save:&Error]) {
+            
+            return YES;
+        }
+
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to delete Quota Error:%@",exception);
+    }
+    
+    return NO;
+}
+-(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary
+{
+    NSError *Error=nil;
+    NSArray *result;
+    
+    NSFetchRequest *request=[[NSFetchRequest alloc]init];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [request setEntity:self.entity];
+    
+    @try {
+        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+        
+        for(AKQuota *quota in result)
+        {
+            [self.managedObjectContext deleteObject:quota];
+        }        
+        
+        if ([self.managedObjectContext save:&Error]) {
+            
+            return YES;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        
+                NSLog(@"Failed to delete Quota Error:%@",exception);
+    }
+    
     
     return NO;
 }

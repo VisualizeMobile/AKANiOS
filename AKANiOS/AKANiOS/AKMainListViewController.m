@@ -349,6 +349,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+    //Teste do Ramon
+    AKLoad *load=[[AKLoad alloc]init];
+    [load loadQuotasTestData];
 }
 
 -(void) infoScreen:(id) sender {
@@ -356,6 +360,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+    //Testes Ramon
+    AKQuotaDao *quotaDAo=[AKQuotaDao getInstance];
+    [quotaDAo deleteQuotaByIdParliamentary:@"141467"];
 }
 
 #pragma mark - Custom methods
