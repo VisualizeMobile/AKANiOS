@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */; };
+		2F7343C719A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
 		2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2C821199C2311008FEF40 /* AKSettingsManager.m */; };
+		2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5105819A4E35B0036269F /* AKFilterOptionsView.m */; };
+		2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5105B19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m */; };
 		2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */; };
 		2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCEDE451993F106003522E8 /* AKToolBar.m */; };
 		2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCEDE491993F1B7003522E8 /* AKToolBar.xib */; };
@@ -60,9 +64,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F7343C119A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionCollectionViewCell.h; sourceTree = "<group>"; };
+		2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionCollectionViewCell.m; sourceTree = "<group>"; };
+		2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKFilterOptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
 		2FC2C820199C2311008FEF40 /* AKSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettingsManager.h; sourceTree = "<group>"; };
 		2FC2C821199C2311008FEF40 /* AKSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettingsManager.m; sourceTree = "<group>"; };
+		2FC5105719A4E35B0036269F /* AKFilterOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionsView.h; sourceTree = "<group>"; };
+		2FC5105819A4E35B0036269F /* AKFilterOptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionsView.m; sourceTree = "<group>"; };
+		2FC5105A19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionsUpperTriangleView.h; sourceTree = "<group>"; };
+		2FC5105B19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionsUpperTriangleView.m; sourceTree = "<group>"; };
 		2FCEDE3E1993EBA0003522E8 /* AKMainListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainListViewController.h; sourceTree = "<group>"; };
 		2FCEDE3F1993EBA0003522E8 /* AKMainListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainListViewController.m; sourceTree = "<group>"; };
 		2FCEDE441993F106003522E8 /* AKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKToolBar.h; sourceTree = "<group>"; };
@@ -224,6 +235,13 @@
 				8E14E1DD199BEFBC00D77CF6 /* AKConfigViewController.h */,
 				8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */,
 				8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */,
+				2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */,
+				2F7343C119A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.h */,
+				2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */,
+				2FC5105719A4E35B0036269F /* AKFilterOptionsView.h */,
+				2FC5105819A4E35B0036269F /* AKFilterOptionsView.m */,
+				2FC5105A19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.h */,
+				2FC5105B19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m */,
 			);
 			name = configController;
 			path = ..;
@@ -458,6 +476,7 @@
 				E99D1E8D1990120600564688 /* AKPortraitDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
 				2FD83753199D4CCE00517D34 /* akan_settings.plist in Resources */,
+				2F7343C719A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib in Resources */,
 				8E00F305199559F00030A52F /* AKInfoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +501,8 @@
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
+				2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */,
+				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
 				F2073832199D50AF0038C53F /* Parliamentary.m in Sources */,
 				F207384719A229F10038C53F /* Quota.m in Sources */,
 				F207385619A2D2BE0038C53F /* AKLoad.m in Sources */,
@@ -496,6 +517,7 @@
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
 				F207385319A28B550038C53F /* AKQuota.m in Sources */,
 				8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */,
+				2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

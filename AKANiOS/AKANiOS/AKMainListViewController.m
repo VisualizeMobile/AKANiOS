@@ -21,11 +21,13 @@
 #import "Quota.h"
 #import "AKLoad.h"
 
+const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
+
 @interface AKMainListViewController ()
 
 @property (nonatomic) UISearchDisplayController *searchController;
 @property (nonatomic) NSArray *parliamentaryArray;
-@property (nonatomic) NSArray *parliamentaryFilteredArray;
+@property (nonatomic) NSArray *parliamentaryNicknameFilteredArray;
 @property (nonatomic) BOOL viewByRankEnabled;
 @property (nonatomic) BOOL viewFollowedEnabled;
 @property (nonatomic) BOOL searchEnabled;
@@ -36,6 +38,7 @@
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
+@property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
 
 @end
 
@@ -51,10 +54,9 @@
     self.viewByRankEnabled = NO;
     self.viewFollowedEnabled = NO;
     self.searchEnabled = NO;
+    self.lastTableViewForRemoveGapWasOfSearchDisplay = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
-    self.parliamentaryFilteredArray = [NSArray array];
-    
+
     self.settingsManager = [AKSettingsManager sharedManager];
     NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
     
@@ -66,11 +68,6 @@
     AKLoad *experimental=[[AKLoad alloc]init];
     [experimental loadParliamentariesTestData];
     [experimental loadQuotasTestData];
-
-    AKParliamentaryDao * parlamentaryDao=[AKParliamentaryDao getInstance];
-    AKQuotaDao *q=[AKQuotaDao getInstance];
-    NSLog(@"Parlamentares %lu Quotas %lu",(unsigned long)[[parlamentaryDao getAllParliamentary] count],(unsigned long)[[q getQuotas]count]);
-    
     
     // Configure Toolbar
     self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
@@ -106,17 +103,16 @@
     
     // Configure search bar
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    searchBar.clipsToBounds = NO;
     searchBar.delegate = self;
     searchBar.placeholder = @"Filtre por nome";
+
     self.tableView.tableHeaderView = searchBar;
     
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     self.searchController.delegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,58 +127,16 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    self.parliamentaryNicknameFilteredArray = [NSArray array];
+    
+    [self filterParliamentary];
     
     [self sortParliamentary];
     
     [self transformNavigationBarButtons];
     
     [self.tableView reloadData];
-}
-
--(void) sortParliamentary {
-    AKSettingsSortOption sortOption = [self.settingsManager getSortOption];
-
-    NSComparator comparator = nil;
-    
-    switch (sortOption) {
-        case AKSettingsSortOptionAlphabetic:
-            comparator = ^NSComparisonResult(id a, id b) {
-                AKParliamentary *first = (AKParliamentary*)a;
-                AKParliamentary *second = (AKParliamentary*)b;
-                return [first.nickName compare:second.nickName];
-            };
-            break;
-        case AKSettingsSortOptionRanking:
-            comparator = ^NSComparisonResult(id a, id b) {
-                AKParliamentary *first = (AKParliamentary*)a;
-                AKParliamentary *second = (AKParliamentary*)b;
-                return [second.valueRanking compare:first.valueRanking];
-            };
-            
-            break;
-        case AKSettingsSortOptionState:
-            comparator = ^NSComparisonResult(id a, id b) {
-                AKParliamentary *first = (AKParliamentary*)a;
-                AKParliamentary *second = (AKParliamentary*)b;
-                return [first.uf compare:second.uf];
-            };
-
-            
-            break;
-        case AKSettingsSortOptionParty:
-            comparator = ^NSComparisonResult(id a, id b) {
-                AKParliamentary *first = (AKParliamentary*)a;
-                AKParliamentary *second = (AKParliamentary*)b;
-                return [first.party compare:second.party];
-            };
-
-            break;
-        default:
-            break;
-    }
-    
-    self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -233,7 +187,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.searchController.searchResultsTableView)
-        return self.parliamentaryFilteredArray.count;
+        return self.parliamentaryNicknameFilteredArray.count;
     else
         return self.parliamentaryArray.count;
 }
@@ -256,7 +210,7 @@
     AKParliamentary *parliamentary = nil;
     if (tableView == self.searchController.searchResultsTableView)
     {
-        parliamentary = self.parliamentaryFilteredArray[indexPath.row];
+        parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
     } else {
         parliamentary = self.parliamentaryArray[indexPath.row];
     }
@@ -288,7 +242,7 @@
     AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
     
     if (self.searchController.active)
-        detailController.parliamentary = [self.parliamentaryFilteredArray objectAtIndex:indexPath.row];
+        detailController.parliamentary = [self.parliamentaryNicknameFilteredArray objectAtIndex:indexPath.row];
     else
     {
         detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
@@ -302,7 +256,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
-    self.parliamentaryFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
@@ -323,6 +277,27 @@
     [self.toolBar.searchButton setSelected:self.searchEnabled];
     
     self.autolayoutCameFromSearchDismiss = YES;
+    
+    // TO REMOVE WHITE GAP AFTER SEARCH DISPLAY DISMISS
+    if(self.lastTableViewForRemoveGapWasOfSearchDisplay)
+        [[self.searchController.searchResultsTableView viewWithTag:TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP] removeFromSuperview];
+    else
+      [[self.tableView viewWithTag:TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP] removeFromSuperview];
+}
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    // TO REMOVE WHITE GAP AFTER SEARCH DISPLAY DISMISS
+    UIView *topTableViewBG = [[UIView alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 64)];
+    topTableViewBG.backgroundColor = [AKUtil color1];
+    topTableViewBG.tag = TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP;
+    
+    if(controller.searchBar.text.length > 0) {
+        self.lastTableViewForRemoveGapWasOfSearchDisplay = YES;
+        [self.searchController.searchResultsTableView insertSubview:topTableViewBG belowSubview:self.searchController.searchBar];
+    } else {
+        self.lastTableViewForRemoveGapWasOfSearchDisplay = NO;
+        [self.tableView insertSubview:topTableViewBG belowSubview:self.tableView.tableHeaderView];
+    }
 }
 
 #pragma mark - Actions
@@ -331,8 +306,10 @@
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
 
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if([self isSearchBarHidden] == NO) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.3 * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -372,6 +349,10 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+    //Teste do Ramon
+    AKLoad *load=[[AKLoad alloc]init];
+    [load loadQuotasTestData];
 }
 
 -(void) infoScreen:(id) sender {
@@ -379,6 +360,10 @@
     
     nav.navigationBar.barTintColor = [AKUtil color1];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
+    //Testes Ramon
+    AKQuotaDao *quotaDAo=[AKQuotaDao getInstance];
+    [quotaDAo deleteQuotaByIdParliamentary:@"141467"];
 }
 
 #pragma mark - Custom methods
@@ -399,6 +384,88 @@
         = self.navigationItem.rightBarButtonItem.customView.transform
         = CGAffineTransformMakeScale(1, 1);
     }
+}
+
+-(void) filterParliamentary {
+    NSArray *userDefinedStatesFilter = [self.settingsManager getStatesFilter];
+    if(userDefinedStatesFilter.count > 0) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.uf IN %@", userDefinedStatesFilter];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    }
+    
+    NSArray *userDefinedPartiesFilter = [self.settingsManager getPartiesFilter];
+    if(userDefinedPartiesFilter.count > 0) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.party IN %@", userDefinedPartiesFilter];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    }
+    
+    AKSettingsFilterQuotaOption quotaFilter = [self.settingsManager getQuotaFilter];
+    if(quotaFilter != AKSettingsFilterQuotaOptionNone) {
+        int quotaFilterValue = 0;
+        switch(quotaFilter) {
+            case AKSettingsFilterQuotaOption10:
+                quotaFilterValue = 10000;
+                break;
+            case AKSettingsFilterQuotaOption30:
+                quotaFilterValue = 30000;
+                break;
+            case AKSettingsFilterQuotaOption50:
+                quotaFilterValue = 50000;
+                break;
+            case AKSettingsFilterQuotaOption80:
+                quotaFilterValue = 80000;
+                break;
+            default:
+                break;
+        }
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.valueRanking >= %lu", quotaFilterValue];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    }
+}
+
+-(void) sortParliamentary {
+    AKSettingsSortOption sortOption = [self.settingsManager getSortOption];
+    
+    NSComparator comparator = nil;
+    
+    switch (sortOption) {
+        case AKSettingsSortOptionAlphabetic:
+            comparator = ^NSComparisonResult(id a, id b) {
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
+                return [first.nickName compare:second.nickName];
+            };
+            break;
+        case AKSettingsSortOptionRanking:
+            comparator = ^NSComparisonResult(id a, id b) {
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
+                return [second.valueRanking compare:first.valueRanking];
+            };
+            
+            break;
+        case AKSettingsSortOptionState:
+            comparator = ^NSComparisonResult(id a, id b) {
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
+                return [first.uf compare:second.uf];
+            };
+            
+            
+            break;
+        case AKSettingsSortOptionParty:
+            comparator = ^NSComparisonResult(id a, id b) {
+                AKParliamentary *first = (AKParliamentary*)a;
+                AKParliamentary *second = (AKParliamentary*)b;
+                return [first.party compare:second.party];
+            };
+            
+            break;
+        default:
+            break;
+    }
+    
+    self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
 

@@ -44,7 +44,6 @@
         appDelegate=[[UIApplication sharedApplication] delegate];
         
         singleton.managedObjectContext=appDelegate.managedObjectContext;
-        singleton.fetchRequest =[[NSFetchRequest alloc]init];
         
         //Recupera tabla no aplicativo
         singleton.entity=[NSEntityDescription entityForName:@"Quota" inManagedObjectContext:singleton.managedObjectContext];
@@ -59,11 +58,13 @@
     
     NSArray *result;
     NSError *Error=nil;
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    [self.fetchRequest setEntity:self.entity];
+    
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [fetchRequest setEntity:self.entity];
     
     
-    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     if ([result count]==0)
     {
@@ -87,10 +88,12 @@
 {
     NSArray *result;
     NSError *Error=nil;
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    [self.fetchRequest setEntity:self.entity];
     
-    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [fetchRequest setEntity:self.entity];
+    
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
 
     if ([result count]==0)
     {
@@ -125,10 +128,12 @@
 {
     NSArray *result;
     NSError *Error=nil;
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
     
-    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
+    
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     return result;
 }
@@ -138,8 +143,9 @@
     NSArray *result;
     NSError *Error=nil;
     
-    [self.fetchRequest setEntity:self.entity];
-    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setEntity:self.entity];
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     return result;
 }
@@ -147,24 +153,91 @@
 -(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate
 {
     NSError *Error=nil;
-    Quota *quota;
+    AKQuota *quota;
     NSArray *result;
     NSString *nameImage;
     
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
-    
-    quota=[result objectAtIndex:0];
-    quota.value=value;
-    quota.idUpdate=idUpdate;
-    
-    nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
-    quota.nameImage=nameImage;
-
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+    [fetchRequest setEntity:self.entity];
+    @try {
+            result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+            quota=[result objectAtIndex:0];
+            quota.value=value;
+            quota.idUpdate=idUpdate;
+        
+            nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
+            quota.imageName=nameImage;
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"Error update quota; Error=%@",exception);
+    }
     if ([self.managedObjectContext save:&Error])
         return YES;
     else
         NSLog(@"Failed to uptade Quota");
+    
+    return NO;
+}
+
+-(BOOL) deleteAllQuotas
+{
+    NSError *Error=nil;
+    NSArray *result;
+    NSFetchRequest *request=[[NSFetchRequest alloc]init];
+    
+    [request setEntity:self.entity];
+    
+    @try {
+        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+        
+        for(AKQuota *quota in result)
+        {
+            [self.managedObjectContext deleteObject:quota];
+        }
+        
+        if ([self.managedObjectContext save:&Error]) {
+            
+            return YES;
+        }
+
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to delete Quota Error:%@",exception);
+    }
+    
+    return NO;
+}
+-(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary
+{
+    NSError *Error=nil;
+    NSArray *result;
+    
+    NSFetchRequest *request=[[NSFetchRequest alloc]init];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [request setEntity:self.entity];
+    
+    @try {
+        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+        
+        for(AKQuota *quota in result)
+        {
+            [self.managedObjectContext deleteObject:quota];
+        }        
+        
+        if ([self.managedObjectContext save:&Error]) {
+            
+            return YES;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        
+                NSLog(@"Failed to delete Quota Error:%@",exception);
+    }
+    
     
     return NO;
 }
