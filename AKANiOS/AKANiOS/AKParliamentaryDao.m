@@ -44,7 +44,6 @@
         appDelegate=[[UIApplication sharedApplication] delegate];
     
         singleton.managedObjectContext=appDelegate.managedObjectContext;
-        singleton.fetchRequest =[[NSFetchRequest alloc]init];
         
         //Recupera tabla no aplicativo
         
@@ -57,12 +56,14 @@
 -(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSString *)idParliamentary
 {
     NSError *Error=nil;
-
-    //Verifico se o parlamentar ja existe no device
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
     
-    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    //Verifico se o parlamentar ja existe no device
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
+    
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     if ([result count]==0)
     {
@@ -88,11 +89,12 @@
     
     NSError *Error=nil;
     
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
     //Verifico se o parlamentar ja existe no device
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
     
-    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     if ([result count]==0)
     {
@@ -139,31 +141,36 @@
 
 -(NSArray *)getAllParliamentary
 {
-    [self.fetchRequest setEntity:self.entity];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setEntity:self.entity];
     NSError *Error=nil;
-    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     return result;
 }
 
 -(NSArray *)selectParliamentaryById:(NSString *)idParliamentary
 {
+     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
     
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
     
     NSError *Error=nil;
-    NSArray *result=[[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error] objectAtIndex:0];
+    NSArray *result=[[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error] objectAtIndex:0];
     
     return result;
 }
 
 -(BOOL)updateIdUpdateOfParliamentary:(NSString *)idParliamentary WithIdUpdate:(NSNumber *)idUpdate
 {
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
     
     NSError *Error=nil;
-    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     Parliamentary *parliamentary=[result objectAtIndex:0];
     
@@ -180,12 +187,13 @@
 
 -(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue
 {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
     
-    [self.fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [self.fetchRequest setEntity:self.entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
     
     NSError *Error=nil;
-    NSArray *result=[self.managedObjectContext executeFetchRequest:self.fetchRequest error:&Error];
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
     Parliamentary *parliamentary=[result objectAtIndex:0];
     
@@ -199,4 +207,53 @@
     
     return NO;
 }
+
+-(NSArray*) getAllParliamentaryParties {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setEntity:self.entity];
+    NSError *Error=nil;
+    NSArray *allParliamentary=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    for(AKParliamentary *parliamentary in allParliamentary) {
+        if(![result containsObject:parliamentary.party])
+            [result addObject: parliamentary.party];
+    }
+    
+    [result sortUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *first = (NSString*)a;
+        NSString *second = (NSString*)b;
+        return [first compare:second];
+    }];
+    
+    return result;
+}
+
+-(NSArray*) getAllParliamentaryStates {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setEntity:self.entity];
+    NSError *Error=nil;
+    NSArray *allParliamentary=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    for(AKParliamentary *parliamentary in allParliamentary) {
+        if(![result containsObject:parliamentary.uf])
+            [result addObject: parliamentary.uf];
+    }
+    
+    [result sortUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *first = (NSString*)a;
+        NSString *second = (NSString*)b;
+        return [first compare:second];
+    }];
+    
+    return result;
+}
+
+
+
 @end

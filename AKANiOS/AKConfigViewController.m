@@ -9,10 +9,24 @@
 #import "AKConfigViewController.h"
 #import "AKUtil.h"
 #import "AKSettingsManager.h"
+#import "AKFilterOptionsView.h"
+#import "AKFilterOptionsUpperTriangleView.h"
+#import "AKParliamentaryDao.h"
+#import "AKFilterOptionCollectionViewCell.h"
+
+typedef NS_ENUM(short, AKConfigFilterCategory) {
+    AKConfigFilterCategoryParty, AKConfigFilterCategoryQuota, AKConfigFilterCategoryState
+};
 
 @interface AKConfigViewController ()
 
+@property(nonatomic) AKParliamentaryDao *partliamentaryDao;
 @property(nonatomic) AKSettingsManager *settingsManager;
+@property(nonatomic) AKFilterOptionsUpperTriangleView *filterUpperTriangleView;
+@property(nonatomic) AKFilterOptionsView *filterView;
+@property(nonatomic) UICollectionView *filterCollectionView;
+@property(nonatomic) NSArray *filterViewOptionsArray;
+@property(nonatomic) AKConfigFilterCategory filterCategory;
 
 @end
 
@@ -35,6 +49,12 @@
     
     // Configure initial data
     self.settingsManager = [AKSettingsManager sharedManager];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissFilterView:)];
+    tap.numberOfTapsRequired = 1;
+    tap.delegate = self;
+    //    [self.view addGestureRecognizer:tap];
+    
+    self.partliamentaryDao = [AKParliamentaryDao getInstance];
     
     // Configure sort buttons
     [self.partySortButton setImage:[UIImage imageNamed:@"partidoativado"] forState:UIControlStateSelected];
@@ -49,6 +69,15 @@
     UIBarButtonItem *dismissButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = dismissButton;
     
+    // Configure filter collection view
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    self.filterCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    self.filterCollectionView.delegate = self;
+    self.filterCollectionView.dataSource = self;
+
+    [self.filterCollectionView registerNib:[UINib nibWithNibName:@"AKFilterOptionCollectionViewCell" bundle:[NSBundle mainBundle]]  forCellWithReuseIdentifier:@"AKCell2"];
+
+    self.filterCollectionView.backgroundColor = [AKUtil color4];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -97,6 +126,17 @@
     [self arrangeSortButtons:toInterfaceOrientation];
 }
 
+#pragma mark - Gesture recognizer delegate
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+
+    if(gestureRecognizer.view == self.filterView)
+        return NO;
+    else
+        return YES;
+    
+}
+
 #pragma mark - custom methods
 
 - (IBAction)dismissViewController:(id)sender {
@@ -137,6 +177,118 @@
     self.partySortButton.selected = self.rankingSortButton.selected = self.alphabeticSortButton.selected = self.stateSortButton.selected = NO;
 }
 
+- (void)addFilterView:(UIButton*) filterButton {
+    if(self.filterView != nil)
+        [self removeFilterView];
+    
+    self.filterUpperTriangleView = [[AKFilterOptionsUpperTriangleView alloc] initWithFrame: CGRectMake(10, self.partyFilterLabel.frame.origin.y+self.partyFilterLabel.frame.size.height + 3, self.view.frame.size.width-20, 10) andFilterIconXAxysCenter:filterButton.center.x];
+    
+    self.filterView.userInteractionEnabled = NO;
+    self.filterView = [[AKFilterOptionsView alloc] initWithFrame:
+                       CGRectMake(10, self.filterUpperTriangleView.frame.origin.y+self.filterUpperTriangleView.frame.size.height, self.view.frame.size.width-20, 230)];
+    
+    self.filterCollectionView.frame = CGRectMake(5, 10, self.filterView.frame.size.width-10, self.filterView.frame.size.height-20);
+    [self.filterCollectionView reloadData];
+
+    [self.filterView addSubview:self.filterCollectionView];
+    
+    [self.view addSubview:self.filterView];
+    [self.view addSubview:self.filterUpperTriangleView];
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                                     constraintsWithVisualFormat:@"H:|-(<=10)-[filterView]-(<=10)-|"
+                                     options:0
+                                     metrics:nil
+                                     views:@{@"filterView" : self.filterView}]];
+    
+    [self.view addConstraints:[NSLayoutConstraint
+                                     constraintsWithVisualFormat:@"V:|[filterView]-(==20)-|"
+                                     options:0
+                                     metrics:nil
+                                     views:@{@"filterView" : self.filterView}]];
+    
+    [self.filterView becomeFirstResponder];
+}
+
+
+-(void) removeFilterView {
+    [self.filterView removeFromSuperview];
+    [self.filterUpperTriangleView removeFromSuperview];
+}
+
+#pragma mark - Collection view data source
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.filterViewOptionsArray.count;
+}
+
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"AKCell2";
+    AKFilterOptionCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if(self.filterCategory == AKConfigFilterCategoryParty) {
+        NSArray *userDefinedParties = [self.settingsManager getPartiesFilter];
+        if([userDefinedParties containsObject:self.filterViewOptionsArray[indexPath.row]]) {
+            cell.backgroundColor = [AKUtil color5];
+        }
+    } else if(self.filterCategory == AKConfigFilterCategoryState) {
+        NSArray *userDefinedStates = [self.settingsManager getStatesFilter];
+        if([userDefinedStates containsObject:self.filterViewOptionsArray[indexPath.row]]) {
+            cell.backgroundColor = [AKUtil color5];
+        }
+    } else if (self.filterCategory == AKConfigFilterCategoryQuota) {
+        if (indexPath.row == (int)[self.settingsManager getQuotaFilter]) {
+            cell.backgroundColor = [AKUtil color5];
+        }
+    }
+    
+    cell.textLabel.text = self.filterViewOptionsArray[indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark - Collection view delegate
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(60, 25);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.filterCategory == AKConfigFilterCategoryQuota) {
+        NSIndexPath *toBeDeselectedIndex = [NSIndexPath indexPathForItem:(int)[self.settingsManager getQuotaFilter] inSection:0];
+        
+        [self.filterCollectionView cellForItemAtIndexPath:toBeDeselectedIndex].backgroundColor = [AKUtil color1];
+        
+        [self.filterCollectionView cellForItemAtIndexPath:indexPath].backgroundColor = [AKUtil color5];
+        [self.settingsManager setQuotaFilterOption:(AKSettingsFilterQuotaOption)indexPath.row];
+
+    } else if(self.filterCategory == AKConfigFilterCategoryParty) {
+        if([[self.settingsManager getPartiesFilter] containsObject: self.filterViewOptionsArray[indexPath.row]]) {
+            [self.filterCollectionView cellForItemAtIndexPath:indexPath].backgroundColor = [AKUtil color1];
+            
+            [self.settingsManager removePartyFilter:self.filterViewOptionsArray[indexPath.row]];
+        } else { // New filter
+            [self.filterCollectionView cellForItemAtIndexPath:indexPath].backgroundColor = [AKUtil color5];
+            
+            [self.settingsManager addPartyFilter:self.filterViewOptionsArray[indexPath.row]];
+        }
+        
+    } else if(self.filterCategory == AKConfigFilterCategoryState) {
+        if([[self.settingsManager getStatesFilter] containsObject: self.filterViewOptionsArray[indexPath.row]]) {
+            [self.filterCollectionView cellForItemAtIndexPath:indexPath].backgroundColor = [AKUtil color1];
+            
+            [self.settingsManager removeStateFilter:self.filterViewOptionsArray[indexPath.row]];
+        } else { // New filter
+            [self.filterCollectionView cellForItemAtIndexPath:indexPath].backgroundColor = [AKUtil color5];
+            
+            [self.settingsManager addStateFilter:self.filterViewOptionsArray[indexPath.row]];
+        }
+    }
+
+}
+
 #pragma mark - Action methods
 
 - (IBAction)sortByPaty:(id)sender {
@@ -162,6 +314,29 @@
     [self.stateSortButton setSelected:!self.stateSortButton.selected];
     
     [self.settingsManager setSortOption:AKSettingsSortOptionState];
+}
+
+- (IBAction)filterParty:(id)sender {
+    self.filterCategory = AKConfigFilterCategoryParty;
+    self.filterViewOptionsArray = [self.partliamentaryDao getAllParliamentaryParties];
+    
+    [self addFilterView:self.partyFilterButton];
+}
+- (IBAction)filterQuota:(id)sender {
+    self.filterCategory = AKConfigFilterCategoryQuota;
+    self.filterViewOptionsArray = @[@"+ 0",  @"+ 10.000", @"+ 30.000", @"+ 50.000", @"+ 80.000"];
+    
+    [self addFilterView:self.quotaFilterButton];
+}
+- (IBAction)filterState:(id)sender {
+    self.filterCategory = AKConfigFilterCategoryState;
+    self.filterViewOptionsArray = [self.partliamentaryDao getAllParliamentaryStates];
+    
+    [self addFilterView:self.stateFilterButton];
+}
+
+-(void)dismissFilterView:(id) sender {
+    [self removeFilterView];
 }
 
 @end

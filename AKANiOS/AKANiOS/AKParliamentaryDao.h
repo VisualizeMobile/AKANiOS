@@ -13,7 +13,6 @@
 @property(nonatomic,strong) NSFetchedResultsController *parlamentaryFRC;
 
 @property(nonatomic,strong) NSManagedObjectContext *managedObjectContext;//Acessa as tabelas
-@property(nonatomic,strong) NSFetchRequest *fetchRequest; // para fazer selects etc..
 @property(nonatomic,strong) NSEntityDescription *entity ; //Representa a tabelas
 @property(nonatomic,strong) NSSortDescriptor *nickName; //Faz ordenacao (Order by)
 @property(nonatomic,strong) NSArray *parlamentaresList; // Retorna uma lista com os parlamentares
@@ -30,6 +29,10 @@
 -(NSArray *) selectParliamentaryById:(NSString *)idParliamentary;
 
 -(BOOL)updateIdUpdateOfParliamentary:(NSString *)idParliamentary WithIdUpdate:(NSNumber *)idUpdate;
+
 -(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue;
+
+-(NSArray*) getAllParliamentaryParties;
+-(NSArray*) getAllParliamentaryStates;
 
 @end
