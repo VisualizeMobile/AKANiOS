@@ -23,7 +23,7 @@
     
     [parliamentaryDao insertParliamentaryWithNickName:@"TIRIRICA" andFullName:@"FRANCISCO EVERARDO OLIVEIRA SILVA" andIdParliamentary:@"160976" andParty:@"PR" andPosRanking:@3 andUf:@"SP" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/160976.jpg" andValueRanking:@12000 andIdUpdate:@0 andFollowed:@0];
     
-    [parliamentaryDao insertParliamentaryWithNickName:@"JAIR BOLSONARO" andFullName:@"AIR MESSIAS BOLSONARO" andIdParliamentary:@"74847" andParty:@"PP" andPosRanking:@4 andUf:@"RJ" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/74847.jpg" andValueRanking:@20000 andIdUpdate:@1 andFollowed:@0];
+    [parliamentaryDao insertParliamentaryWithNickName:@"JAIR BOLSONARO" andFullName:@"JAIR MESSIAS BOLSONARO" andIdParliamentary:@"74847" andParty:@"PP" andPosRanking:@4 andUf:@"RJ" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/74847.jpg" andValueRanking:@20000 andIdUpdate:@1 andFollowed:@0];
     
     [parliamentaryDao insertParliamentaryWithNickName:@"ROMÁRIO" andFullName:@"ROMARIO DE SOUZA FARIA" andIdParliamentary:@"160597" andParty:@"PSB" andPosRanking:@5 andUf:@"RJ" andUrlPhoto:@"http://www.camara.gov.br/internet/deputado/bandep/160597.jpg" andValueRanking:@10 andIdUpdate:@01 andFollowed:@0];
     
