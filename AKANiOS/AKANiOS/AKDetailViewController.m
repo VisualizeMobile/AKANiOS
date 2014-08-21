@@ -16,6 +16,10 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) NSArray *quotas;
+@property (nonatomic) UIPickerView *datePickerView;
+@property (nonatomic) NSString *month;
+@property (nonatomic) NSString *year;
+@property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 
 @end
 
@@ -54,9 +58,32 @@
     self.partyLabel.text=self.parliamentary.party;
     self.ufLabel.text=self.parliamentary.uf;
     
+    self.datePickerView = [[UIPickerView  alloc] init];
+    self.datePickerView.delegate = self;
+    self.datePickerView.dataSource =self;
+    self.datePickerView.backgroundColor = [AKUtil color4];
+    self.datePickerField.inputView = self.datePickerView;
     
-   
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                            action:@selector(didTapAnywhere:)];
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation  duration:(NSTimeInterval)duration
+{
+    [self loanNibforOrientation:toInterfaceOrientation];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self loanNibforOrientation:self.interfaceOrientation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +92,47 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - CollectionView DataSource
+#pragma mark - PickerView Delegate
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if (component == 0) {
+        return  [self monthForPickerRow:row];
+    }else{
+        return [self yearForPickerRow:row];
+    }
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    switch (component) {
+        case 0:
+            self.month = [self monthForPickerRow:row];
+            break;
+        case 1:
+            self.year = [self yearForPickerRow:row];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - PickerView Data Source
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if (component == 0) {
+        return 12;
+    }
+    if(component == 1){
+        //TODO: dao number of years
+        return 2;
+    }
+    return 1;
+}
+
+#pragma mark - CollectionView Data Source
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.quotas count];
@@ -104,12 +171,99 @@
     }
 }
 
+-(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.month, self.year ];
+    [self.datePickerField resignFirstResponder];
+}
 
 #pragma mark - Custom Methods
 
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)loanNibforOrientation:(UIInterfaceOrientation)orientation {
+    if( UIInterfaceOrientationIsLandscape(orientation) )
+    {
+        self.view = [[[NSBundle mainBundle] loadNibNamed:@"AKLandscapeDetailViewController"
+                                                   owner: self
+                                                 options: nil] objectAtIndex:0];
+        [self viewDidLoad];
+    }
+    else
+    {
+        self.view = [[[NSBundle mainBundle] loadNibNamed: @"AKPortraitDetailViewController"
+                                                   owner: self
+                                                 options: nil] objectAtIndex:0];
+        [self viewDidLoad];
+    }
+}
+
+- (NSString *)monthForPickerRow:(NSInteger)row {
+    switch (row) {
+        case 0:
+            return @"Janeiro";
+            break;
+        case 1:
+            return @"Fevereiro";
+            break;
+        case 2:
+            return @"Março";
+            break;
+        case 3:
+            return @"Abril";
+            break;
+        case 4:
+            return @"Maio";
+            break;
+        case 5:
+            return @"Junho";
+            break;
+        case 6:
+            return @"Julho";
+            break;
+        case 7:
+            return @"Agosto";
+            break;
+        case 8:
+            return @"Setembro";
+            break;
+        case 9:
+            return @"Otubro";
+            break;
+        case 10:
+            return @"Novembro";
+            break;
+        default:
+            return @"Dezembro";
+            break;
+    }
+}
+
+- (NSString *)yearForPickerRow:(NSInteger)row {
+    //TODO year
+    switch (row) {
+        case 0:
+            return @"2013";
+            break;
+        case 1:
+            return @"2014";
+            break;
+        default:
+            return @"2015";
+            break;
+    }
+}
+
+-(void) keyboardWillShow:(NSNotification *) note {
+    [self.view addGestureRecognizer:self.tapRecognizer];
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+}
+
 
 
 @end

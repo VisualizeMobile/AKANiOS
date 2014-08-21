@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AKParliamentary.h"
 
-@interface AKDetailViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface AKDetailViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (weak, nonatomic) IBOutlet UILabel *followLabel;
@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *parliamentaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ufLabel;
+@property (weak, nonatomic) IBOutlet UITextField *datePickerField;
 
 @end
