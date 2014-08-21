@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *parliamentaryPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *rankPosition;
 @property (weak, nonatomic) IBOutlet UILabel *quotaSum;
+@property (weak, nonatomic) IBOutlet UIButton *followedButton;
 
 @end

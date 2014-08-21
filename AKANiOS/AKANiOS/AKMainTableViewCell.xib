@@ -108,6 +108,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
+                <outlet property="followedButton" destination="hNL-v9-cSu" id="pY9-aG-5s4"/>
                 <outlet property="parliamentaryName" destination="apP-CV-Tes" id="im6-DJ-5NN"/>
                 <outlet property="parliamentaryPhoto" destination="WLJ-s4-Pv8" id="Rn6-cB-cXH"/>
                 <outlet property="partyLabel" destination="Yux-gl-xk6" id="Z3p-CC-I4i"/>
