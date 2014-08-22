@@ -238,6 +238,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     if ([parliamentary.followed isEqual:@1]) {
         [cell.followedButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
     }
+    else{
+        [cell.followedButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+    }
     
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];

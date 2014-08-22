@@ -59,6 +59,12 @@
     self.parliamentaryLabel.text=self.parliamentary.fullName;
     self.partyLabel.text=self.parliamentary.party;
     self.ufLabel.text=self.parliamentary.uf;
+    if ([self.parliamentary.followed isEqual:@1]) {
+        [self setButtonFollowedState];
+    }
+    else{
+        [self setButtonUnfollowedState];
+    }
     
     self.datePickerView = [[UIPickerView  alloc] init];
     self.datePickerView.delegate = self;
@@ -171,15 +177,11 @@
 
     if ([self.followLabel.text isEqualToString: @"Seguido"]) {
         [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@0];
-        [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
-        self.followLabel.text = @"Seguir";
-        self.followLabel.textColor = [AKUtil color1];
+        [self setButtonUnfollowedState];
     }
     else{
         [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@1];
-        [self.followButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
-        self.followLabel.text = @"Seguido";
-        self.followLabel.textColor = [AKUtil color3];
+        [self setButtonFollowedState];
     }
 }
 
@@ -189,6 +191,20 @@
 }
 
 #pragma mark - Custom Methods
+
+- (void)setButtonUnfollowedState {
+    [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+    self.followLabel.text = @"Seguir";
+    self.followLabel.textColor = [AKUtil color1];
+}
+
+- (void)setButtonFollowedState {
+    [self.followButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+    self.followLabel.text = @"Seguido";
+    self.followLabel.textColor = [AKUtil color3];
+}
+
+
 
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
