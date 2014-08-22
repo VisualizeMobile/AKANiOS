@@ -23,6 +23,7 @@
 
 -(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
 -(NSArray *) getQuotaByIdParliamentary:(NSString *)idParliamentary;
+-(NSArray *) getQuotasByIdParliamentary:(NSString *)idParliamentary withName:(NSString*)nameQuota;
 
 -(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary;
 

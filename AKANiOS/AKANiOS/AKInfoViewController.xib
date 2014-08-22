@@ -11,17 +11,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
-                    <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Qwt-yw-gxv" secondAttribute="bottom" id="3Gk-bk-VZS"/>
+                <constraint firstItem="Qwt-yw-gxv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Plf-rA-QkN"/>
+                <constraint firstAttribute="trailing" secondItem="Qwt-yw-gxv" secondAttribute="trailing" id="Vz8-gR-7lV"/>
+                <constraint firstItem="Qwt-yw-gxv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="w7Q-6G-KhA"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

@@ -12,6 +12,7 @@
 #import "AKParliamentaryDao.h"
 #import "AKQuota.h"
 #import "AKUtil.h"
+#import "AKQuotaDetailViewController.h"
 
 @interface AKDetailViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
@@ -163,6 +164,14 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"selecionou");
+    AKQuota *quota = self.quotas[indexPath.row];
+    
+    AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
+   
+    quotaDetailController.quota = quota;
+   
+    [self.navigationController pushViewController:quotaDetailController animated:YES];
+    
 }
 
 #pragma mark - Action methods
