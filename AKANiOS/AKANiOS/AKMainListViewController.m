@@ -129,7 +129,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    
+    [self filterFollowedParliamentary];
     self.parliamentaryNicknameFilteredArray = [NSArray array];
     
     [self filterParliamentary];
@@ -395,7 +396,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) viewFollowed:(id) sender {
      self.viewFollowedEnabled = !self.viewFollowedEnabled;
     [self.toolBar.followedButton setSelected:self.viewFollowedEnabled];
-
+    
+    [self filterFollowedParliamentary];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void) configuration:(id) sender {
@@ -510,7 +513,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 return [first.uf compare:second.uf];
             };
             
-            
             break;
         case AKSettingsSortOptionParty:
             comparator = ^NSComparisonResult(id a, id b) {
@@ -527,5 +529,14 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
+-(void)filterFollowedParliamentary{
+    if (self.viewFollowedEnabled) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    }
+    else{
+        self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    }
+}
 
 @end
