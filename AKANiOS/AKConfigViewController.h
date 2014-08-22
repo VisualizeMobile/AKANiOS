@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *alphabeticSortLabelLeftMarginConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollBottomMarginConstraint;
 
+@property (weak, nonatomic) IBOutlet UIView *dividerView;
 @property (weak, nonatomic) IBOutlet UIButton *partySortButton;
 @property (weak, nonatomic) IBOutlet UIButton *rankingSortButton;
 @property (weak, nonatomic) IBOutlet UIButton *alphabeticSortButton;

@@ -28,6 +28,8 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 @property(nonatomic) NSArray *filterViewOptionsArray;
 @property(nonatomic) AKConfigFilterCategory filterCategory;
 
+@property(nonatomic) BOOL makeFilterViewHideShowAnimation;
+
 @end
 
 @implementation AKConfigViewController
@@ -53,6 +55,8 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     tap.numberOfTapsRequired = 1;
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];
+    self.title = @"Configurações";
+    self.makeFilterViewHideShowAnimation = YES;
     
     self.partliamentaryDao = [AKParliamentaryDao getInstance];
     
@@ -113,6 +117,23 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self transformNavigationBarButtons];
+    
+    self.makeFilterViewHideShowAnimation = NO;
+    UIInterfaceOrientation actualOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(self.filterView.superview != nil && actualOrientation != fromInterfaceOrientation) {
+        switch (self.filterCategory) {
+            case AKConfigFilterCategoryParty:
+                [self addFilterView:self.partyFilterButton];
+                break;
+            case AKConfigFilterCategoryQuota:
+                [self addFilterView:self.quotaFilterButton];
+                break;
+            case AKConfigFilterCategoryState:
+                [self addFilterView:self.stateFilterButton];
+                break;
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -182,10 +203,35 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     
     self.filterUpperTriangleView = [[AKFilterOptionsUpperTriangleView alloc] initWithFrame: CGRectMake(10, self.partyFilterLabel.frame.origin.y+self.partyFilterLabel.frame.size.height + 3, self.view.frame.size.width-20, 10) andFilterIconXAxysCenter:filterButton.center.x];
     
-    self.filterView = [[AKFilterOptionsView alloc] initWithFrame:
-                       CGRectMake(10, self.filterUpperTriangleView.frame.origin.y+self.filterUpperTriangleView.frame.size.height, self.view.frame.size.width-20, 230)];
     
-    self.filterCollectionView.frame = CGRectMake(5, 10, self.filterView.frame.size.width-10, self.filterView.frame.size.height-20);
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    float filterViewHeight = 0;
+    int collectionViewNumberOfLines = 0;
+    
+    if(UIInterfaceOrientationIsPortrait(orientation)) {
+        collectionViewNumberOfLines = ceilf((float) self.filterViewOptionsArray.count / 4);
+
+        // Min number of lines
+        if(collectionViewNumberOfLines < 3)
+            collectionViewNumberOfLines = 3;
+        
+    } else if(UIInterfaceOrientationIsLandscape(orientation)) {
+        collectionViewNumberOfLines = ceilf((float) self.filterViewOptionsArray.count / 7);
+
+        // Min number of lines
+        if(collectionViewNumberOfLines < 2)
+            collectionViewNumberOfLines = 2;
+    }
+
+    // top padding filter view to collection = 10
+    // cell height + margin bottom to cell = 25 + 10
+    // the last margin bottom to cell acts like a padding filter view to collection (10)
+    filterViewHeight = 10 + (collectionViewNumberOfLines * (25+10));
+    
+    self.filterView = [[AKFilterOptionsView alloc] initWithFrame:
+                       CGRectMake(10, self.filterUpperTriangleView.frame.origin.y+self.filterUpperTriangleView.frame.size.height, self.view.frame.size.width-20, filterViewHeight)];
+    
+    self.filterCollectionView.frame = CGRectMake(5, 10, self.filterView.frame.size.width-10, self.filterView.frame.size.height-10);
     
     [self.filterCollectionView reloadData];
     
@@ -194,40 +240,48 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     [self.view addSubview:self.filterView];
     [self.view addSubview:self.filterUpperTriangleView];
     
-    self.filterView.alpha = self.filterUpperTriangleView.alpha = 0;
     
-    [UIView animateWithDuration:0.1f delay:0.1f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.filterView.alpha = self.filterUpperTriangleView.alpha = 1;
-    } completion:nil];
-    
-    [self.view addConstraints:[NSLayoutConstraint
-                                     constraintsWithVisualFormat:@"H:|-(<=10)-[filterView]-(<=10)-|"
-                                     options:0
-                                     metrics:nil
-                                     views:@{@"filterView" : self.filterView}]];
+    if(self.makeFilterViewHideShowAnimation) {
+        self.filterView.alpha = self.filterUpperTriangleView.alpha = 0;
+        
+        [UIView animateWithDuration:0.1f delay:0.1f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.filterView.alpha = self.filterUpperTriangleView.alpha = 1;
+        } completion:nil];
+    }
     
     [self.view addConstraints:[NSLayoutConstraint
-                                     constraintsWithVisualFormat:@"V:|[filterView]-(==20)-|"
+                                     constraintsWithVisualFormat:@"V:[filterUpperTriangleView]-0-[filterView(height)]-(20)-|"
                                      options:0
-                                     metrics:nil
-                                     views:@{@"filterView" : self.filterView}]];
+                                     metrics:@{@"height" : [NSNumber numberWithFloat:self.filterView.frame.size.height]}
+                                     views:@{@"filterView" : self.filterView,
+                                             @"filterUpperTriangleView" : self.filterUpperTriangleView}]];
+    [self.view addConstraints:[NSLayoutConstraint
+                               constraintsWithVisualFormat:@"H:|-10-[filterView(width)]"
+                               options:0
+                               metrics:@{@"width" : [NSNumber numberWithFloat:self.dividerView.frame.size.width]}
+                               views:@{@"filterView" : self.filterView}]];
     
+    self.makeFilterViewHideShowAnimation = YES;
 }
-
 
 -(void) removeFilterView {
     // This is to made to don't work directly with the properties, because they will point to another objects in the "completion:" block
     AKFilterOptionsUpperTriangleView *filterUpperTriangleViewOld = self.filterUpperTriangleView;
     AKFilterOptionsView *filterViewOld = self.filterView;
     
-    filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 1;
-    
-    [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
-        filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 0;
-    } completion:^ (BOOL finished) {
+    if(self.makeFilterViewHideShowAnimation) {
+        filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 1;
+        
+        [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+            filterViewOld.alpha = filterUpperTriangleViewOld.alpha = 0;
+        } completion:^ (BOOL finished) {
+            [filterViewOld removeFromSuperview];
+            [filterUpperTriangleViewOld removeFromSuperview];
+        }];
+    } else {
         [filterViewOld removeFromSuperview];
         [filterUpperTriangleViewOld removeFromSuperview];
-    }];
+    }
 }
 
 #pragma mark - Collection view data source

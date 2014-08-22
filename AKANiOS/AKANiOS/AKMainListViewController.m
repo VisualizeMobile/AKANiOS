@@ -137,6 +137,18 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     [self transformNavigationBarButtons];
     
     [self.tableView reloadData];
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    CGRect toolbarFrame = self.toolBar.frame;    
+    
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        toolbarFrame.origin.x = self.view.center.x - toolbarFrame.size.width/2 ;
+    }  if(UIInterfaceOrientationIsPortrait(orientation)) {
+        toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
+    }
+    
+    self.toolBar.frame = toolbarFrame;
 }
 
 -(void)viewDidLayoutSubviews {
@@ -348,6 +360,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) configuration:(id) sender {
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKConfigViewController alloc] init]];
     nav.navigationBar.barTintColor = [AKUtil color1];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
+    nav.navigationBar.tintColor = [AKUtil color4];
+
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     //Teste do Ramon
@@ -359,6 +374,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[AKInfoViewController alloc] init]];
     
     nav.navigationBar.barTintColor = [AKUtil color1];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
+    nav.navigationBar.tintColor = [AKUtil color4];
+
     [self.navigationController presentViewController:nav animated:YES completion:nil];
     
     //Testes Ramon
