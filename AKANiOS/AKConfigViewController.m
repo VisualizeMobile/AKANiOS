@@ -179,18 +179,32 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 
 - (void)arrangeSortButtons:(UIInterfaceOrientation)toOrientation {
     if(UIInterfaceOrientationIsLandscape(toOrientation)) {
-        self.alphabeticSortIconLeftMarginConstraint.constant = 31+96;
-        self.alphabeticSortLabelLeftMarginConstraint.constant = 24+96;
-        self.rankingSortIconLeftMarginConstraint.constant = 24+83;
-        self.rankingSortLabelLeftMarginConstraint.constant = 23+83;
+        int alphabeticGap = 0;
+        int rankingGap = 0;
+
+        if(self.view.bounds.size.height == 568) {
+            alphabeticGap = 94;
+            rankingGap = 83;
+        } else {
+            alphabeticGap = 64;
+            rankingGap = 50;
+        }
+        
+        self.alphabeticSortIconLeftMarginConstraint.constant = 31+alphabeticGap;
+        self.alphabeticSortLabelLeftMarginConstraint.constant = 24+alphabeticGap;
+        self.rankingSortIconLeftMarginConstraint.constant = 24+rankingGap;
+        self.rankingSortLabelLeftMarginConstraint.constant = 23+rankingGap;
     } else if(UIInterfaceOrientationIsPortrait(toOrientation)) {
         self.alphabeticSortIconLeftMarginConstraint.constant = 31;
         self.alphabeticSortLabelLeftMarginConstraint.constant = 24;
         self.rankingSortIconLeftMarginConstraint.constant = 24;
         self.rankingSortLabelLeftMarginConstraint.constant = 23;
     }
+    [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [self.view layoutSubviews];
+    } completion:nil];
+
     
-    [self.view layoutSubviews];
 }
 
 -(void) clearSortButtons {
@@ -261,11 +275,13 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
                                metrics:@{@"width" : [NSNumber numberWithFloat:self.dividerView.frame.size.width]}
                                views:@{@"filterView" : self.filterView}]];
     
-    if(self.makeFilterViewHideShowAnimation == YES && self.scrollView.contentSize.height > self.scrollView.bounds.size.height) {
+    if(self.makeFilterViewHideShowAnimation) {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.2 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
-            [self.scrollView setContentOffset:bottomOffset animated:YES];
+            if((self.scrollView.contentSize.height+self.navigationController.navigationBar.frame.size.height) >= self.scrollView.bounds.size.height) {
+                CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+                [self.scrollView setContentOffset:bottomOffset animated:YES];
+            }
         });
     }
     
