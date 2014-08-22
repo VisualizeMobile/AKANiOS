@@ -26,4 +26,5 @@
 
 -(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary;
 
+-(BOOL)insertQuotasFromArray:(NSArray *)quotas;
 @end

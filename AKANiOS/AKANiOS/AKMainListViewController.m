@@ -40,9 +40,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) BOOL needsToHideSearchBar;
 @property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
 
+
 @end
 
 @implementation AKMainListViewController
+
 
 #pragma mark - View controller methods
 
@@ -220,6 +222,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     cell.quotaSum.hidden = cell.rankPosition.hidden = !self.viewByRankEnabled;
     
     AKParliamentary *parliamentary = nil;
+    
     if (tableView == self.searchController.searchResultsTableView)
     {
         parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
@@ -237,8 +240,30 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
     formattedNumberString=[numberFormatter stringFromNumber:parliamentary.valueRanking];
     cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
+    
+    [cell.followedButton addTarget:self action:@selector(followParliementary:) forControlEvents:UIControlEventTouchUpInside];
+    
 
     return cell;
+}
+
+-(void)followParliementary:(UIButton*) sender
+{
+    if([sender.superview.superview.superview isKindOfClass:[AKMainTableViewCell class]]) {
+        AKMainTableViewCell *cell = ((AKMainTableViewCell*)sender.superview.superview.superview);
+        AKParliamentary *parliamentary = nil;
+        
+        if (self.searchController.active)
+        {
+            NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
+            parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
+            NSLog(@"Parlamentar %@",parliamentary.nickName);
+        } else {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            parliamentary = self.parliamentaryArray[indexPath.row];
+            NSLog(@"Parlamentar %@",parliamentary.nickName);
+        }
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
