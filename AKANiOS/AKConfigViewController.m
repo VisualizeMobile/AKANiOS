@@ -261,6 +261,14 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
                                metrics:@{@"width" : [NSNumber numberWithFloat:self.dividerView.frame.size.width]}
                                views:@{@"filterView" : self.filterView}]];
     
+    if(self.makeFilterViewHideShowAnimation == YES && self.scrollView.contentSize.height > self.scrollView.bounds.size.height) {
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.2 * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+            [self.scrollView setContentOffset:bottomOffset animated:YES];
+        });
+    }
+    
     self.makeFilterViewHideShowAnimation = YES;
 }
 
