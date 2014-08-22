@@ -129,7 +129,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    
+    [self filterFollowedParliamentary];
     self.parliamentaryNicknameFilteredArray = [NSArray array];
     
     [self filterParliamentary];
@@ -235,6 +236,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     cell.partyLabel.text=parliamentary.party;
     cell.ufLabel.text=parliamentary.uf;
     cell.rankPosition.text=[NSString stringWithFormat:@"%@º", parliamentary.posRanking];
+    if ([parliamentary.followed isEqual:@1]) {
+        [cell.followedButton setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.followedButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+    }
     
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
@@ -245,25 +252,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
 
     return cell;
-}
-
--(void)followParliementary:(UIButton*) sender
-{
-    if([sender.superview.superview.superview isKindOfClass:[AKMainTableViewCell class]]) {
-        AKMainTableViewCell *cell = ((AKMainTableViewCell*)sender.superview.superview.superview);
-        AKParliamentary *parliamentary = nil;
-        
-        if (self.searchController.active)
-        {
-            NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
-            parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
-            NSLog(@"Parlamentar %@",parliamentary.nickName);
-        } else {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            parliamentary = self.parliamentaryArray[indexPath.row];
-            NSLog(@"Parlamentar %@",parliamentary.nickName);
-        }
-    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -368,6 +356,35 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     });
 }
 
+-(void)followParliementary:(UIButton*) sender
+{
+    if([sender.superview.superview.superview isKindOfClass:[AKMainTableViewCell class]]) {
+        AKMainTableViewCell *cell = ((AKMainTableViewCell*)sender.superview.superview.superview);
+        AKParliamentary *parliamentary = nil;
+
+        
+        if (self.searchController.active)
+        {
+            NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
+            parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
+            NSLog(@"Parlamentar %@",parliamentary.nickName);
+        } else {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            parliamentary = self.parliamentaryArray[indexPath.row];
+            NSLog(@"Parlamentar %@",parliamentary.nickName);
+        }
+        if ([parliamentary.followed isEqual:@1]) {
+            [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+            [parliamentary setFollowed:@0];
+            [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
+        }
+        else{
+            [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+            [parliamentary setFollowed:@1];
+            [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
+        }
+    }
+}
 
 -(void) viewByRank:(id) sender {
     self.viewByRankEnabled = !self.viewByRankEnabled;
@@ -379,7 +396,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) viewFollowed:(id) sender {
      self.viewFollowedEnabled = !self.viewFollowedEnabled;
     [self.toolBar.followedButton setSelected:self.viewFollowedEnabled];
-
+    
+    [self filterFollowedParliamentary];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void) configuration:(id) sender {
@@ -494,7 +513,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 return [first.uf compare:second.uf];
             };
             
-            
             break;
         case AKSettingsSortOptionParty:
             comparator = ^NSComparisonResult(id a, id b) {
@@ -511,5 +529,14 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
+-(void)filterFollowedParliamentary{
+    if (self.viewFollowedEnabled) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    }
+    else{
+        self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    }
+}
 
 @end
