@@ -87,7 +87,7 @@
     // Customize photoView
     self.photoView.layer.cornerRadius = self.photoView.frame.size.height /2;
     self.photoView.layer.masksToBounds = YES;
-    self.photoView.layer.borderWidth = 1;
+    self.photoView.layer.borderWidth = 0;
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
 
 }
