@@ -169,12 +169,12 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"selecionou");
     AKQuota *quota = self.quotas[indexPath.row];
     
     AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
    
-    quotaDetailController.quota = quota;
+    quotaDetailController.quotaName = quota.nameQuota;
+    quotaDetailController.parliamentary = self.parliamentary;
    
     [self.navigationController pushViewController:quotaDetailController animated:YES];
     

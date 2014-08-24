@@ -208,6 +208,7 @@ CPTPlotCachePrecision;
     NSMutableArray *labelAnnotations;
     CPTShadow *labelShadow;
     BOOL alignsPointsToPixels;
+    BOOL drawLegendSwatchDecoration;
 }
 
 /// @name Data Source
@@ -261,6 +262,11 @@ CPTPlotCachePrecision;
 /// @name Drawing
 /// @{
 @property (nonatomic, readwrite, assign) BOOL alignsPointsToPixels;
+/// @}
+
+/// @name Legends
+/// @{
+@property (nonatomic, readwrite, assign) BOOL drawLegendSwatchDecoration;
 /// @}
 
 /// @name Data Labels
