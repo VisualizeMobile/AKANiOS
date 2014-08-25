@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AKQuota.h"
+#import "AKParliamentary.h"
 
-@interface AKQuotaDetailViewController : UIViewController
+@interface AKQuotaDetailViewController : UIViewController <CPTPlotDataSource, UIActionSheetDelegate>
 
-@property(nonatomic) AKQuota *quota;
+
+@property(nonatomic) AKParliamentary *parliamentary;
+@property(nonatomic) NSString *quotaName;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
