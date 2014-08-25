@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKInfoViewController : UIViewController
+@interface AKInfoViewController : UIViewController <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewInfo;
 
 @end

@@ -14,6 +14,7 @@
 @end
 
 @implementation AKInfoViewController
+@synthesize scrollViewInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,8 @@
 {
     [super viewDidLoad];
         self.title = @"AKAN";
+    scrollViewInfo.delegate=self;
+    
     
 }
 
