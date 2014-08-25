@@ -35,7 +35,7 @@
 
 
 -(void)awakeFromNib{
-
+    
 }
 
 #pragma mark - custom methods
@@ -43,8 +43,19 @@
 -(void)imageForQuotaValue{
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
     self.imageView.backgroundColor = [self colorForQuotaValue];
-    self.valueLabel.text = [NSString stringWithFormat:@"r$ %@",[self.quota value]];
+    self.valueLabel.text = [NSString stringWithFormat:@"R$ %@",[self.quota value]];
     self.valueLabel.textColor = [self colorForQuotaValue];
+    self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.levelImageView.tintColor = [self colorForQuotaValue];
+    [self setLevelHeight];
+}
+
+-(void)setLevelHeight{
+    float maxValue = 10000.00;
+    float multiplier = [self.quota.value floatValue] * 100 / maxValue;
+    CGFloat height = (multiplier <= 100)? multiplier : 100;
+    NSLog(@"valor: %@ e percetual: %.2f",self.quota.value, height);
+    self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
 }
 
 -(UIColor *)colorForQuotaValue{
@@ -69,6 +80,8 @@
             break;
     }
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
