@@ -139,6 +139,20 @@
     return result;
 }
 
+-(NSArray *) getQuotasByIdParliamentary:(NSString *)idParliamentary withName:(NSString*)nameQuota
+{
+    NSArray *result;
+    NSError *Error=nil;
+    
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (nameQuota==%@)",idParliamentary, nameQuota]];
+    [fetchRequest setEntity:self.entity];
+    
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    
+    return result;
+}
+
 -(NSArray *)getQuotas
 {
     NSArray *result;
