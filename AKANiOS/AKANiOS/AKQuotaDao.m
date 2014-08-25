@@ -110,7 +110,7 @@
         [newQuota setIdParliamentary:idParliamentary];
         [newQuota setImageColor:[self imageColorOfValue:value]];
         
-        nameImage=[self imageNameOfSubtype:[numQuota intValue] forValue:value];
+        nameImage=[self imageNameOfSubtype:[[newQuota numQuota] intValue]];
         [newQuota setImageName:nameImage];
         
         
@@ -181,7 +181,7 @@
             quota.value=value;
             quota.idUpdate=idUpdate;
         
-            nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
+            nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]];
             quota.imageName=nameImage;
     }
     @catch (NSException *exception)
@@ -320,7 +320,7 @@
 }
 
 
--(NSString *)imageTypeOfSubtype:(int)subtype{
+-(NSString *)imageNameOfSubtype:(int)subtype{
     switch (subtype) {
         case 1:
             return @"passagem";
@@ -382,12 +382,6 @@
     }else {
         return @5;
     }
-}
-
--(NSString *)imageNameOfSubtype:(int) subtype forValue:(NSNumber *)value{
-    NSString *name = [NSString stringWithFormat:@"%@%@", [self imageTypeOfSubtype:subtype ],[self imageColorOfValue:value]];
-    NSLog(@"AKQuotaDao: Nome [ %@ ]",name);
-    return name;
 }
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas{
