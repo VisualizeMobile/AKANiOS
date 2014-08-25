@@ -55,7 +55,10 @@
     float multiplier = [self.quota.value floatValue] * 100 / maxValue;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     NSLog(@"valor: %@ e percetual: %.2f",self.quota.value, height);
-    self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
+    self.levelImageView.frame = CGRectMake(0,103, 130, 0);
+    [UIView animateWithDuration:1 animations:^(void){
+        self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
+        }];
 }
 
 -(UIColor *)colorForQuotaValue{

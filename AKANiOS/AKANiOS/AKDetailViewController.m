@@ -23,6 +23,8 @@
 @property (nonatomic) NSString *month;
 @property (nonatomic) NSString *year;
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic) int monthNumber;
+@property (nonatomic) int yearNumber;
 
 @end
 
@@ -45,6 +47,7 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.quotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
+    [self filterQuotas];
     
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
@@ -313,6 +316,17 @@
     [self.view removeGestureRecognizer:self.tapRecognizer];
 }
 
-
+-(void)filterQuotas{
+    if (!self.monthNumber) {
+        NSDate *currentDate = [NSDate date];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
+        
+        self.monthNumber = [components month];
+        self.yearNumber = [components year];
+    }
+    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month IN %d", self.monthNumber];
+    
+}
 
 @end
