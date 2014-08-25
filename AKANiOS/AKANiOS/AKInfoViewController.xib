@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Qwt-yw-gxv">
-                    <rect key="frame" x="0.0" y="-1150" width="320" height="2172"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="2172"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NPW-53-pIX">
@@ -321,7 +321,7 @@
     <resources>
         <image name="aeronaves" width="300" height="230"/>
         <image name="alimentacao" width="300" height="230"/>
-        <image name="combustivel" width="150" height="115"/>
+        <image name="combustivel" width="300" height="230"/>
         <image name="consultoria" width="300" height="230"/>
         <image name="divulgacao" width="300" height="230"/>
         <image name="escritorio" width="300" height="230"/>
