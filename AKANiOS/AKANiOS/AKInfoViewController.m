@@ -42,6 +42,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self transformNavigationBarButtons];
+    self.scrollViewInfo.contentSize = CGSizeMake(320,4250);
+    
     
 }
 
@@ -75,6 +77,5 @@
         = CGAffineTransformMakeScale(1, 1);
     }
 }
-
 
 @end
