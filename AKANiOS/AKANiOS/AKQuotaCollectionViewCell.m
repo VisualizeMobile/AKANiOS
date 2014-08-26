@@ -54,12 +54,16 @@
     float maxValue = 10000.00;
     float multiplier = [self.quota.value floatValue] * 100 / maxValue;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
-    NSLog(@"valor: %@ e percetual: %.2f",self.quota.value, height);
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
-    [UIView animateWithDuration:1 animations:^(void){
-        self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
-        }];
+    [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
+     ^(void){
+         NSLog(@"valor: %@ e percetual: %.2f",self.quota.value, height);
+         self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
+     }
+    completion:nil];
 }
+
+
 
 -(UIColor *)colorForQuotaValue{
     switch ([[self.quota imageColor] intValue]) {
@@ -84,15 +88,9 @@
     }
 }
 
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    [self setLevelHeight];
 }
-*/
 
 @end

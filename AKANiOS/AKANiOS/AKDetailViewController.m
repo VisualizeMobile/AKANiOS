@@ -168,7 +168,6 @@
         cell.quota = quota;
         [cell imageForQuotaValue];
         return cell;
-
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
