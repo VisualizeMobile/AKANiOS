@@ -39,14 +39,11 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self transformNavigationBarButtons];
-    self.scrollViewInfo.contentSize = CGSizeMake(320,3750);
-    
-    
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.scrollViewInfo.contentSize = CGSizeMake(320,2200);
 }
-
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
     [self transformNavigationBarButtons];
