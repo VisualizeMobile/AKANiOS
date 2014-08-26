@@ -37,16 +37,22 @@
     
     //Cotas ficticias do Francisco Tenorio
     [quotaDao insertQuotaWithId:@"01" andNumQuota:@1 andNameQuota:@"Passagens aéreas" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@1000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"02" andNumQuota:@2 andNameQuota:@"Telefonia" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@1000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"03" andNumQuota:@3 andNameQuota:@"Serviços postais" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@65000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"04" andNumQuota:@4 andNameQuota:@"Escritório" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@100 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"05" andNumQuota:@5 andNameQuota:@"Alimentação" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@10000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"06" andNumQuota:@6 andNameQuota:@"Hospedagem" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@2000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"07" andNumQuota:@7 andNameQuota:@"Fretamento" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@100 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"08" andNumQuota:@8 andNameQuota:@"Combustíveis" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@500 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"09" andNumQuota:@9 andNameQuota:@"Segurança" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@3000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"10" andNumQuota:@10 andNameQuota:@"Contratações" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
-    [quotaDao insertQuotaWithId:@"11" andNumQuota:@11 andNameQuota:@"Publicidade" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"02" andNumQuota:@3 andNameQuota:@"Telefonia" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@1000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"03" andNumQuota:@4 andNameQuota:@"Serviços postais" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@65000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"04" andNumQuota:@5 andNameQuota:@"Escritório" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@100 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"05" andNumQuota:@8 andNameQuota:@"Alimentação" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@10000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"06" andNumQuota:@9 andNameQuota:@"Hospedagem" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@2000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"07" andNumQuota:@10 andNameQuota:@"Fretamento" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@100 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"08" andNumQuota:@11 andNameQuota:@"Combustíveis" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@500 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"09" andNumQuota:@12 andNameQuota:@"Segurança" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@3000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"10" andNumQuota:@13 andNameQuota:@"Contratações" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"11" andNumQuota:@14 andNameQuota:@"Publicidade" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"111" andNumQuota:@15 andNameQuota:@"Publicidade" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"112" andNumQuota:@999 andNameQuota:@"Publicidade" andMonth:@1 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    
+    [quotaDao insertQuotaWithId:@"113" andNumQuota:@14 andNameQuota:@"Publicidade" andMonth:@2 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"115" andNumQuota:@15 andNameQuota:@"Publicidade" andMonth:@2 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
+    [quotaDao insertQuotaWithId:@"116" andNumQuota:@999 andNameQuota:@"Publicidade" andMonth:@2 andYear:@2014 andIdUpdate:@01 andValue:@50000 andIdParliamentary:@"141467"];
     
     
     //Cotas Ficticias do Paulão
