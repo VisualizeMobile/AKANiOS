@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKQuotaDetailViewController">
             <connections>
-                <outlet property="scrollView" destination="9QD-3f-e2a" id="63O-2n-SLh"/>
+                <outlet property="hostingView" destination="plK-Rw-rpz" id="Mhu-yt-VqY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,18 +15,13 @@
             <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QD-3f-e2a">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="plK-Rw-rpz">
+                    <rect key="frame" x="0.0" y="55" width="320" height="449"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </scrollView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="9QD-3f-e2a" secondAttribute="trailing" id="8ty-MX-KBK"/>
-                <constraint firstAttribute="bottom" secondItem="9QD-3f-e2a" secondAttribute="bottom" id="HbO-Cx-GSx"/>
-                <constraint firstItem="9QD-3f-e2a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UVa-RS-VCE"/>
-                <constraint firstItem="9QD-3f-e2a" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pWn-fr-nJ0"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

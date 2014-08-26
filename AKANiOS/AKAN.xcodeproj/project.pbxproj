@@ -46,6 +46,7 @@
 		8EAFA85C1986C44F00E58AD9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA8401986C44F00E58AD9 /* CoreData.framework */; };
 		8EAFA8641986C44F00E58AD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */; };
 		8EAFA8661986C44F00E58AD9 /* AKANiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */; };
+		8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF43B8E19AD16CF00089B04 /* AKCurvedScatterPlot.m */; };
 		E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */; };
 		E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
@@ -200,6 +201,8 @@
 		8EAFA8611986C44F00E58AD9 /* AKANTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANTests-Info.plist"; sourceTree = "<group>"; };
 		8EAFA8631986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKANiOSTests.m; sourceTree = "<group>"; };
+		8EF43B8D19AD16CF00089B04 /* AKCurvedScatterPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCurvedScatterPlot.h; sourceTree = "<group>"; };
+		8EF43B8E19AD16CF00089B04 /* AKCurvedScatterPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCurvedScatterPlot.m; sourceTree = "<group>"; };
 		E9851B9A198F2EF600A2280B /* AKMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainTableViewCell.h; sourceTree = "<group>"; };
 		E9851B9B198F2EF600A2280B /* AKMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKMainTableViewCell.m; sourceTree = "<group>"; };
 		E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainTableViewCell.xib; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 		2F8EDB0819A7BB5B006D159F /* QuotaDetail */ = {
 			isa = PBXGroup;
 			children = (
+				8E3788A819ACFE160007C30E /* corePlot */,
 				2F8EDB0919A7BB87006D159F /* AKQuotaDetailViewController.h */,
 				2F8EDB0A19A7BB87006D159F /* AKQuotaDetailViewController.m */,
 				2F8EDB0B19A7BB87006D159F /* AKQuotaDetailViewController.xib */,
@@ -433,6 +437,15 @@
 			);
 			name = configController;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		8E3788A819ACFE160007C30E /* corePlot */ = {
+			isa = PBXGroup;
+			children = (
+				8EF43B8D19AD16CF00089B04 /* AKCurvedScatterPlot.h */,
+				8EF43B8E19AD16CF00089B04 /* AKCurvedScatterPlot.m */,
+			);
+			name = corePlot;
 			sourceTree = "<group>";
 		};
 		8EAFA82E1986C44F00E58AD9 = {
@@ -695,6 +708,7 @@
 				F207385619A2D2BE0038C53F /* AKLoad.m in Sources */,
 				F207385019A28B550038C53F /* AKParliamentary.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
+				8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
@@ -837,6 +851,7 @@
 				);
 				PRODUCT_NAME = AKAN;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -861,6 +876,7 @@
 				);
 				PRODUCT_NAME = AKAN;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

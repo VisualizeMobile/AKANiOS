@@ -185,9 +185,9 @@
     
     AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
    
-    quotaDetailController.quotaName = quota.nameQuota;
+    quotaDetailController.quota = quota;
     quotaDetailController.parliamentary = self.parliamentary;
-   
+    
     [self.navigationController pushViewController:quotaDetailController animated:YES];
     
 }
@@ -241,6 +241,7 @@
         //[self.quotaDao deleteQuotaByIdParliamentary:parliamentaryId];
     }
     else{
+        self.toBeUnfollowed = NO;
         [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
         [self.quotaDao insertQuotasFromArray: self.allQuotas];
     }
