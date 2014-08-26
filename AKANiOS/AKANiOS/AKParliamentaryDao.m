@@ -10,7 +10,6 @@
 #import "AKParliamentary.h"
 #import "AKAppDelegate.h"
 #import "AKParliamentary.h"
-#import "Parliamentary.h"
 
 @implementation AKParliamentaryDao
 
@@ -67,7 +66,7 @@
     
     if ([result count]==0)
     {
-        Parliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
+        AKParliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
         
         newParliamentary.nickName=NickName;
         newParliamentary.idParliamentary=idParliamentary;
@@ -99,7 +98,7 @@
     if ([result count]==0)
     {
         
-    Parliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
+    AKParliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
     
     [newParliamentary setNickName:nickName];
     [newParliamentary setFullName:fullName];
@@ -172,7 +171,7 @@
     NSError *Error=nil;
     NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
-    Parliamentary *parliamentary=[result objectAtIndex:0];
+    AKParliamentary *parliamentary=[result objectAtIndex:0];
     
     parliamentary.idUpdate=idUpdate;
     
@@ -195,7 +194,7 @@
     NSError *Error=nil;
     NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
-    Parliamentary *parliamentary=[result objectAtIndex:0];
+    AKParliamentary *parliamentary=[result objectAtIndex:0];
     
     parliamentary.followed=followedValue;
     

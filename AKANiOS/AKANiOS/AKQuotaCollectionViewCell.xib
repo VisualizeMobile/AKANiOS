@@ -13,9 +13,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-Oe-zNH">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="telefonia" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-Oe-zNH">
                         <rect key="frame" x="10" y="13" width="110" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.23839530109489052" blue="0.1385720802919708" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nivel" translatesAutoresizingMaskIntoConstraints="NO" id="akc-gJ-ekr">
                         <rect key="frame" x="0.0" y="3" width="130" height="100"/>
@@ -49,7 +50,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="logo" width="41" height="53"/>
         <image name="nivel" width="130" height="100"/>
+        <image name="telefonia" width="300" height="230"/>
     </resources>
 </document>
