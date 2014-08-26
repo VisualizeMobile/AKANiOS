@@ -50,8 +50,6 @@
 		E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKPortraitDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKPortraitDetailViewController.xib */; };
-		F2073832199D50AF0038C53F /* Parliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = F2073831199D50AF0038C53F /* Parliamentary.m */; };
-		F207384719A229F10038C53F /* Quota.m in Sources */ = {isa = PBXBuildFile; fileRef = F207384619A229F10038C53F /* Quota.m */; };
 		F207385019A28B550038C53F /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = F207384F19A28B550038C53F /* AKParliamentary.m */; };
 		F207385319A28B550038C53F /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = F207385219A28B550038C53F /* AKQuota.m */; };
 		F207385619A2D2BE0038C53F /* AKLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = F207385519A2D2BE0038C53F /* AKLoad.m */; };
@@ -209,10 +207,6 @@
 		E99D1E891990120600564688 /* AKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDetailViewController.h; sourceTree = "<group>"; };
 		E99D1E8A1990120600564688 /* AKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDetailViewController.m; sourceTree = "<group>"; };
 		E99D1E8B1990120600564688 /* AKPortraitDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKPortraitDetailViewController.xib; sourceTree = "<group>"; };
-		F2073830199D50AF0038C53F /* Parliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliamentary.h; sourceTree = "<group>"; };
-		F2073831199D50AF0038C53F /* Parliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliamentary.m; sourceTree = "<group>"; };
-		F207384519A229F10038C53F /* Quota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quota.h; sourceTree = "<group>"; };
-		F207384619A229F10038C53F /* Quota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quota.m; sourceTree = "<group>"; };
 		F207384E19A28B550038C53F /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
 		F207384F19A28B550038C53F /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
 		F207385119A28B550038C53F /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
@@ -553,10 +547,6 @@
 		E9851BA7198F3A4B00A2280B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				F2073830199D50AF0038C53F /* Parliamentary.h */,
-				F2073831199D50AF0038C53F /* Parliamentary.m */,
-				F207384519A229F10038C53F /* Quota.h */,
-				F207384619A229F10038C53F /* Quota.m */,
 				F207384E19A28B550038C53F /* AKParliamentary.h */,
 				F207384F19A28B550038C53F /* AKParliamentary.m */,
 				F207385119A28B550038C53F /* AKQuota.h */,
@@ -702,8 +692,6 @@
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
 				2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */,
 				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
-				F2073832199D50AF0038C53F /* Parliamentary.m in Sources */,
-				F207384719A229F10038C53F /* Quota.m in Sources */,
 				F207385619A2D2BE0038C53F /* AKLoad.m in Sources */,
 				F207385019A28B550038C53F /* AKParliamentary.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,

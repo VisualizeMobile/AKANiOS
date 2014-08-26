@@ -10,7 +10,6 @@
 #import "AKQuota.h"
 #import "AKAppDelegate.h"
 #import "AKQuota.h"
-#import "Quota.h"
 
 @implementation AKQuotaDao
 
