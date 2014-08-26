@@ -19,6 +19,7 @@
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @property (nonatomic) NSArray *quotas;
+@property (nonatomic) NSArray *allQuotas;
 @property (nonatomic) UIPickerView *datePickerView;
 @property (nonatomic) NSString *month;
 @property (nonatomic) NSString *year;
@@ -45,10 +46,10 @@
     
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-    self.quotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    self.allQuotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
     [self filterQuotas];
-    
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.month, self.year ];
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
         forCellWithReuseIdentifier:@"AKCell"];
@@ -125,9 +126,11 @@
     switch (component) {
         case 0:
             self.month = [self monthForPickerRow:row];
+            self.monthNumber = row+1;
             break;
         case 1:
             self.year = [self yearForPickerRow:row];
+            self.yearNumber = row+2013;
             break;
         default:
             break;
@@ -196,12 +199,13 @@
     }
 }
 
+#pragma mark - Custom Methods
+
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.month, self.year ];
+    [self filterQuotas];
     [self.datePickerField resignFirstResponder];
 }
-
-#pragma mark - Custom Methods
 
 - (void)setButtonUnfollowedState {
     [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
@@ -322,10 +326,19 @@
         NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
         
         self.monthNumber = [components month];
+        self.month = [self monthForPickerRow:self.monthNumber-1];
         self.yearNumber = [components year];
+        self.year = [self yearForPickerRow:self.yearNumber-2013];
     }
-    //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month IN %d", self.monthNumber];
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month == %d && SELF.year == %d", self.monthNumber, self.yearNumber];
+    self.quotas = [self.allQuotas filteredArrayUsingPredicate:predicate];
+    [self.quotaCollectionView reloadData];
+    if([self.quotas count] == 0){
+        self.quotaCollectionView.hidden = YES;
+    }
+    else{
+        self.quotaCollectionView.hidden = NO;
+    }
 }
 
 @end

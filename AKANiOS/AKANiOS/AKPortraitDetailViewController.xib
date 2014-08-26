@@ -23,6 +23,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Não existem cotas referentes ao mês e ano selecionados, selecione outro período para ver os gastos! " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Cba-t9-y6t">
+                    <rect key="frame" x="20" y="232" width="280" height="88"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.95294117649999999" green="0.81960784310000001" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="seta" translatesAutoresizingMaskIntoConstraints="NO" id="TTt-mT-LlP">
+                    <rect key="frame" x="96" y="341" width="128" height="153"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-Ta-dBF">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,13 +190,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="lVf-uB-AwI" firstAttribute="top" secondItem="TTt-mT-LlP" secondAttribute="bottom" constant="20" id="3gS-pw-Klm"/>
                 <constraint firstAttribute="bottom" secondItem="0MX-Ef-g9G" secondAttribute="bottom" constant="42" id="FQW-Og-MYe"/>
                 <constraint firstItem="RBf-Ta-dBF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KtV-ce-ue8"/>
                 <constraint firstItem="RBf-Ta-dBF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OCn-ik-dye"/>
                 <constraint firstItem="0MX-Ef-g9G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XFa-RQ-o5i"/>
                 <constraint firstAttribute="trailing" secondItem="0MX-Ef-g9G" secondAttribute="trailing" id="ZbY-VU-aF9"/>
                 <constraint firstAttribute="trailing" secondItem="RBf-Ta-dBF" secondAttribute="trailing" id="aNq-QH-mnE"/>
+                <constraint firstItem="TTt-mT-LlP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="341" id="mgM-DR-D3l"/>
                 <constraint firstItem="lVf-uB-AwI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sgO-nw-hOS"/>
+                <constraint firstAttribute="centerX" secondItem="TTt-mT-LlP" secondAttribute="centerX" id="uZL-Gh-8fg"/>
                 <constraint firstItem="0MX-Ef-g9G" firstAttribute="top" secondItem="RBf-Ta-dBF" secondAttribute="bottom" id="uyc-UH-qkc"/>
                 <constraint firstAttribute="bottom" secondItem="lVf-uB-AwI" secondAttribute="bottom" id="zYQ-pl-zVW"/>
             </constraints>
@@ -197,5 +211,6 @@
     <resources>
         <image name="elipsediagonal" width="134" height="128"/>
         <image name="seguido" width="40" height="40"/>
+        <image name="seta" width="283" height="337"/>
     </resources>
 </document>

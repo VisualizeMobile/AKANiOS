@@ -33,9 +33,9 @@
 
 }
 
-
--(void)awakeFromNib{
-    
+- (void)drawRect:(CGRect)rect
+{
+    [self setLevelHeight];
 }
 
 #pragma mark - custom methods
@@ -57,13 +57,10 @@
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
      ^(void){
-         NSLog(@"valor: %@ e percetual: %.2f",self.quota.value, height);
          self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
      }
     completion:nil];
 }
-
-
 
 -(UIColor *)colorForQuotaValue{
     switch ([[self.quota imageColor] intValue]) {
@@ -87,10 +84,4 @@
             break;
     }
 }
-
-- (void)drawRect:(CGRect)rect
-{
-    [self setLevelHeight];
-}
-
 @end
