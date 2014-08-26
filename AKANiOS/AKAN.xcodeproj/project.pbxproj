@@ -182,22 +182,22 @@
 		8E14E1DD199BEFBC00D77CF6 /* AKConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKConfigViewController.h; sourceTree = "<group>"; };
 		8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKConfigViewController.m; sourceTree = "<group>"; };
 		8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKConfigViewController.xib; sourceTree = "<group>"; };
-		8EAFA8371986C44F00E58AD9 /* AKANiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKANiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EAFA8371986C44F00E58AD9 /* AKAN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKAN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8EAFA83E1986C44F00E58AD9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8EAFA8401986C44F00E58AD9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANiOS-Info.plist"; sourceTree = "<group>"; };
+		8EAFA8441986C44F00E58AD9 /* AKAN-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKAN-Info.plist"; sourceTree = "<group>"; };
 		8EAFA8461986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EAFA8481986C44F00E58AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8EAFA84A1986C44F00E58AD9 /* AKANiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AKANiOS-Prefix.pch"; sourceTree = "<group>"; };
+		8EAFA84A1986C44F00E58AD9 /* AKAN-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AKAN-Prefix.pch"; sourceTree = "<group>"; };
 		8EAFA84B1986C44F00E58AD9 /* AKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKAppDelegate.h; sourceTree = "<group>"; };
 		8EAFA84C1986C44F00E58AD9 /* AKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKAppDelegate.m; sourceTree = "<group>"; };
 		8EAFA84F1986C44F00E58AD9 /* AKANiOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AKANiOS.xcdatamodel; sourceTree = "<group>"; };
 		8EAFA8511986C44F00E58AD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKANiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EAFA8571986C44F00E58AD9 /* AKANTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKANTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA8581986C44F00E58AD9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8EAFA8611986C44F00E58AD9 /* AKANiOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANiOSTests-Info.plist"; sourceTree = "<group>"; };
+		8EAFA8611986C44F00E58AD9 /* AKANTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKANTests-Info.plist"; sourceTree = "<group>"; };
 		8EAFA8631986C44F00E58AD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EAFA8651986C44F00E58AD9 /* AKANiOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKANiOSTests.m; sourceTree = "<group>"; };
 		E9851B9A198F2EF600A2280B /* AKMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKMainTableViewCell.h; sourceTree = "<group>"; };
@@ -448,8 +448,8 @@
 		8EAFA8381986C44F00E58AD9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8EAFA8371986C44F00E58AD9 /* AKANiOS.app */,
-				8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */,
+				8EAFA8371986C44F00E58AD9 /* AKAN.app */,
+				8EAFA8571986C44F00E58AD9 /* AKANTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,10 +498,10 @@
 			children = (
 				2FD83752199D4CCE00517D34 /* akan_settings.plist */,
 				E9851BAA198F437700A2280B /* fonts */,
-				8EAFA8441986C44F00E58AD9 /* AKANiOS-Info.plist */,
+				8EAFA8441986C44F00E58AD9 /* AKAN-Info.plist */,
 				8EAFA8451986C44F00E58AD9 /* InfoPlist.strings */,
 				8EAFA8481986C44F00E58AD9 /* main.m */,
-				8EAFA84A1986C44F00E58AD9 /* AKANiOS-Prefix.pch */,
+				8EAFA84A1986C44F00E58AD9 /* AKAN-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -518,7 +518,7 @@
 		8EAFA8601986C44F00E58AD9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8EAFA8611986C44F00E58AD9 /* AKANiOSTests-Info.plist */,
+				8EAFA8611986C44F00E58AD9 /* AKANTests-Info.plist */,
 				8EAFA8621986C44F00E58AD9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -578,9 +578,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8EAFA8361986C44F00E58AD9 /* AKANiOS */ = {
+		8EAFA8361986C44F00E58AD9 /* AKAN */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOS" */;
+			buildConfigurationList = 8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKAN" */;
 			buildPhases = (
 				8EAFA8331986C44F00E58AD9 /* Sources */,
 				8EAFA8341986C44F00E58AD9 /* Frameworks */,
@@ -590,14 +590,14 @@
 			);
 			dependencies = (
 			);
-			name = AKANiOS;
+			name = AKAN;
 			productName = AKANiOS;
-			productReference = 8EAFA8371986C44F00E58AD9 /* AKANiOS.app */;
+			productReference = 8EAFA8371986C44F00E58AD9 /* AKAN.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8EAFA8561986C44F00E58AD9 /* AKANiOSTests */ = {
+		8EAFA8561986C44F00E58AD9 /* AKANTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOSTests" */;
+			buildConfigurationList = 8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANTests" */;
 			buildPhases = (
 				8EAFA8531986C44F00E58AD9 /* Sources */,
 				8EAFA8541986C44F00E58AD9 /* Frameworks */,
@@ -608,9 +608,9 @@
 			dependencies = (
 				8EAFA85E1986C44F00E58AD9 /* PBXTargetDependency */,
 			);
-			name = AKANiOSTests;
+			name = AKANTests;
 			productName = AKANiOSTests;
-			productReference = 8EAFA8571986C44F00E58AD9 /* AKANiOSTests.xctest */;
+			productReference = 8EAFA8571986C44F00E58AD9 /* AKANTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -631,7 +631,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKANiOS" */;
+			buildConfigurationList = 8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKAN" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -643,8 +643,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8EAFA8361986C44F00E58AD9 /* AKANiOS */,
-				8EAFA8561986C44F00E58AD9 /* AKANiOSTests */,
+				8EAFA8361986C44F00E58AD9 /* AKAN */,
+				8EAFA8561986C44F00E58AD9 /* AKANTests */,
 			);
 		};
 /* End PBXProject section */
@@ -722,7 +722,7 @@
 /* Begin PBXTargetDependency section */
 		8EAFA85E1986C44F00E58AD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8EAFA8361986C44F00E58AD9 /* AKANiOS */;
+			target = 8EAFA8361986C44F00E58AD9 /* AKAN */;
 			targetProxy = 8EAFA85D1986C44F00E58AD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -825,8 +825,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
-				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
+				GCC_PREFIX_HEADER = "AKANiOS/AKAN-Prefix.pch";
+				INFOPLIST_FILE = "AKANiOS/AKAN-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AKANiOS",
@@ -835,7 +835,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AKAN;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -849,8 +849,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
-				INFOPLIST_FILE = "AKANiOS/AKANiOS-Info.plist";
+				GCC_PREFIX_HEADER = "AKANiOS/AKAN-Prefix.pch";
+				INFOPLIST_FILE = "AKANiOS/AKAN-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AKANiOS",
@@ -859,7 +859,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AKAN;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -880,8 +880,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "AKANiOSTests/AKANiOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "AKANiOSTests/AKANTests-Info.plist";
+				PRODUCT_NAME = AKANTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -898,8 +898,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AKANiOS/AKANiOS-Prefix.pch";
-				INFOPLIST_FILE = "AKANiOSTests/AKANiOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "AKANiOSTests/AKANTests-Info.plist";
+				PRODUCT_NAME = AKANTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -908,7 +908,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKANiOS" */ = {
+		8EAFA8321986C44F00E58AD9 /* Build configuration list for PBXProject "AKAN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EAFA8671986C44F00E58AD9 /* Debug */,
@@ -917,7 +917,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOS" */ = {
+		8EAFA8691986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKAN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EAFA86A1986C44F00E58AD9 /* Debug */,
@@ -926,7 +926,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANiOSTests" */ = {
+		8EAFA86C1986C44F00E58AD9 /* Build configuration list for PBXNativeTarget "AKANTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8EAFA86D1986C44F00E58AD9 /* Debug */,

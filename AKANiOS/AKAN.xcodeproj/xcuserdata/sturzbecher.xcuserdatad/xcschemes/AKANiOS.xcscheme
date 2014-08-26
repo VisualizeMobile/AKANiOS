@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
                BuildableName = "AKANiOS.app"
-               BlueprintName = "AKANiOS"
-               ReferencedContainer = "container:AKANiOS.xcodeproj">
+               BlueprintName = "AKAN"
+               ReferencedContainer = "container:AKAN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8EAFA8561986C44F00E58AD9"
                BuildableName = "AKANiOSTests.xctest"
-               BlueprintName = "AKANiOSTests"
-               ReferencedContainer = "container:AKANiOS.xcodeproj">
+               BlueprintName = "AKANTests"
+               ReferencedContainer = "container:AKAN.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
             BuildableName = "AKANiOS.app"
-            BlueprintName = "AKANiOS"
-            ReferencedContainer = "container:AKANiOS.xcodeproj">
+            BlueprintName = "AKAN"
+            ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
             BuildableName = "AKANiOS.app"
-            BlueprintName = "AKANiOS"
-            ReferencedContainer = "container:AKANiOS.xcodeproj">
+            BlueprintName = "AKAN"
+            ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
             BuildableName = "AKANiOS.app"
-            BlueprintName = "AKANiOS"
-            ReferencedContainer = "container:AKANiOS.xcodeproj">
+            BlueprintName = "AKAN"
+            ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
