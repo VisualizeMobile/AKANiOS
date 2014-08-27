@@ -256,7 +256,7 @@
 #pragma mark - Custom Methods
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel];
     [self filterQuotas];
     [self.datePickerField resignFirstResponder];
 }

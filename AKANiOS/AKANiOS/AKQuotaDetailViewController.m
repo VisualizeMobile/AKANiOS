@@ -39,10 +39,8 @@
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = self.quota.nameQuota;
     
-    AKQuotaDao *dao = [AKQuotaDao getInstance];
-    self.quotasArray = [dao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
-    NSLog(@"%@",self.quotasArray);
-    
+    self.quotaDao = [AKQuotaDao getInstance];
+    self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
     [self setDetailItem];
 }
 
