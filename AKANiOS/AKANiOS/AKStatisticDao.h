@@ -22,5 +22,6 @@
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average;
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average andStdDeviation:(double )stdDeviation;
 -(BOOL) deleteAll;
+-(NSArray *) getStatisticByYear:(NSNumber *)year;
 
 @end

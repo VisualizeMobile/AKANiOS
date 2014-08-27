@@ -135,7 +135,7 @@
 
 }
 
--(NSArray *) getQuotaByIdParliamentary:(NSNumber *)year
+-(NSArray *) getStatisticByYear:(NSNumber *)year
 {
     NSArray *result;
     NSError *Error=nil;
