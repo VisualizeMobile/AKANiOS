@@ -9,6 +9,7 @@
 #import "AKQuotaDao.h"
 #import "AKQuota.h"
 #import "AKAppDelegate.h"
+#import "AKQuota.h"
 
 @implementation AKQuotaDao
 
@@ -52,7 +53,6 @@
 
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andValue:(NSDecimalNumber * )value
 {
-    
     NSArray *result;
     NSError *Error=nil;
     
@@ -71,9 +71,9 @@
         [newQuota setValue:value];
         
         if ([self.managedObjectContext save:&Error])
-        return YES;
+            return YES;
         else
-        NSLog(@"Failed to save new Quota  Error= %@",Error);
+            NSLog(@"Failed to save new Quota  Error= %@",Error);
         
     } else {
          NSLog(@"Ja tem essa cota");
@@ -114,9 +114,9 @@
         
         
         if ([self.managedObjectContext save:&Error])
-        return YES;
+            return YES;
         else
-        NSLog(@"Failed to save new Quota  Error= %@",Error);
+            NSLog(@"Failed to save new Quota  Error= %@",Error);
         
     }
     
@@ -139,7 +139,7 @@
         quota.value=value;
         quota.idUpdate=idUpdate;
         
-        nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]forValue:value];
+        nameImage=[self imageNameOfSubtype:[quota.numQuota intValue]];
         quota.imageName=nameImage;
     }
     @catch (NSException *exception)
@@ -169,7 +169,8 @@
     return result;
 }
 
--(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota;
+
+-(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*) numQuota
 {
     NSArray *result;
     NSError *Error=nil;
@@ -182,21 +183,6 @@
     
     return result;
 }
-
--(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withName:(NSString*)nameQuota;
-{
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (nameQuota==%@)",idParliamentary, nameQuota]];
-    [fetchRequest setEntity:self.entity];
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
-    return result;
-}
-
 
 -(NSArray *)getQuotas
 {
@@ -397,11 +383,6 @@
     }
 }
 
--(NSString *)imageNameOfSubtype:(int) subtype forValue:(NSNumber *)value{
-    NSString *name = [NSString stringWithFormat:@"%@%@", [self imageTypeOfSubtype:subtype ],[self imageColorOfValue:value]];
-
-    return name;
-}
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas{
     for (AKQuota *quota in quotas) {

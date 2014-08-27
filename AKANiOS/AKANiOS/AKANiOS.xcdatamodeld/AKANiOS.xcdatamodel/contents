@@ -24,7 +24,7 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="178"/>
-        <element name="Quota" positionX="-54" positionY="-9" width="128" height="193"/>
+        <element name="Parliamentary" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Quota" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -25,10 +25,13 @@
 @property (nonatomic) NSArray *quotas;
 @property (nonatomic) NSArray *allQuotas;
 @property (nonatomic) UIPickerView *datePickerView;
-@property (nonatomic) NSString *month;
-@property (nonatomic) NSString *year;
+@property (nonatomic) NSString *monthLabel;
+@property (nonatomic) NSString *yearLabel;
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic) AKWebServiceConsumer *webService;
+@property (nonatomic) NSInteger monthNumber;
+@property (nonatomic) NSInteger yearNumber;
+@property (nonatomic) BOOL toBeUnfollowed;
 
 @end
 
@@ -45,40 +48,41 @@
 
 - (void)viewDidLoad
 {
-    [self configureViewVisualComponentes];
     
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [self configureViewVisualComponentes];
     
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
      UIKeyboardWillShowNotification object:nil];
-    
     [nc addObserver:self selector:@selector(keyboardWillHide:) name:
      UIKeyboardWillHideNotification object:nil];
-    
-    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                            action:@selector(didTapAnywhere:)];
     
     
     self.webService = [[AKWebServiceConsumer alloc] init];
     
     if([self.parliamentary.followed isEqual:@0]) {
         [self downloadQuotasForParliamentary];
+        
     } else {
-        self.quotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
-        if(self.quotas == nil || self.quotas.count == 0)
+        self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+        
+        if(self.allQuotas == nil || self.allQuotas.count == 0)
             [self downloadQuotasForParliamentary];
+        else
+            [self filterQuotas];
     }
-    
 }
 
 -(void) configureViewVisualComponentes {
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
-               forCellWithReuseIdentifier:@"AKCell"];
+        forCellWithReuseIdentifier:@"AKCell"];
     
+    //loading data from parliamentary inside view components
     UIImage *backButtonImage = [UIImage imageNamed:@"backImage"];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     self.navigationItem.leftBarButtonItem = backButton;
@@ -94,12 +98,43 @@
     else{
         [self setButtonUnfollowedState];
     }
+    
+    NSDate *currentDate = [NSDate date];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
+    
+    self.monthNumber = [components month];
+    self.monthLabel = [self monthForPickerRow:self.monthNumber-1];
+    self.yearNumber = [components year];
+    self.yearLabel = [self yearForPickerRow:self.yearNumber-2013];
+    
     self.datePickerView = [[UIPickerView  alloc] init];
     self.datePickerView.delegate = self;
     self.datePickerView.dataSource =self;
+    [self.datePickerView selectRow:self.monthNumber-1 inComponent:0 animated:NO];
+    [self.datePickerView selectRow:self.yearNumber-2013 inComponent:1 animated:NO];
+    
     self.datePickerView.backgroundColor = [AKUtil color4];
     self.datePickerField.inputView = self.datePickerView;
+    //set textField with the current month and year relative to quotas
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel ];
     
+    
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                 action:@selector(didTapAnywhere:)];
+    
+    //recieve notifications of when the keyborad is going to appear or hide
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    
+    //create tap recognizer for dismissing the picker when any touches outside it happends
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                            action:@selector(didTapAnywhere:)];
     // Customize photoView
     self.photoView.layer.cornerRadius = self.photoView.frame.size.height /2;
     self.photoView.layer.masksToBounds = YES;
@@ -135,18 +170,14 @@
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    switch (component) {
-        case 0:
-            self.month = [self monthForPickerRow:row];
-            self.monthNumber = row+1;
-            break;
-        case 1:
-            self.year = [self yearForPickerRow:row];
-            self.yearNumber = row+2013;
-            break;
-        default:
-            break;
-    }
+    NSInteger monthRow =  [pickerView selectedRowInComponent:0];
+    self.monthLabel = [self monthForPickerRow:monthRow];
+    self.monthNumber = monthRow+1;
+
+    NSInteger yearRow =  [pickerView selectedRowInComponent:1];
+    self.yearLabel = [self yearForPickerRow:yearRow];
+    //TODO: dao number of years
+    self.yearNumber = yearRow+2013;
 }
 
 #pragma mark - PickerView Data Source
@@ -202,14 +233,18 @@
 - (IBAction)followParliamentary:(id)sender {
 
     if ([self.parliamentary.followed isEqual:@1]) {
-        [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@0];
+        [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@0];
+        [self.parliamentary setFollowed:@0];
+
         [self setButtonUnfollowedState];
 
     } else {
-        [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@1];
+        [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@1];
+        [self.parliamentary setFollowed:@1];
+        
         [self setButtonFollowedState];
         
-        if(self.quotas == nil || self.quotas.count == 0)
+        if(self.allQuotas == nil || self.allQuotas.count == 0)
             [self downloadQuotasForParliamentary];
     }
 }
@@ -217,7 +252,7 @@
 #pragma mark - Custom Methods
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.month, self.year ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel ];
     [self filterQuotas];
     [self.datePickerField resignFirstResponder];
 }
@@ -235,25 +270,13 @@
 }
 
 -(void)popViewController{
-    if (self.toBeUnfollowed) {
-        [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@0];
-        [self.quotaDao deleteQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    if([self.parliamentary.followed isEqual:@0]) {
+        [self.quotaDao deleteQuotasByIdParliamentary:self.parliamentary.idParliamentary];
     }
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)updateFollowParliamentaryWithId:(NSNumber *)parliamentaryId andValue:(NSNumber *)followed{
-    [self.parliamentary setFollowed:followed];
-    if ([followed isEqual: @0]) {
-        self.toBeUnfollowed = YES;
-        //[self.quotaDao deleteQuotaByIdParliamentary:parliamentaryId];
-    }
-    else{
-        self.toBeUnfollowed = NO;
-        [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
-        [self.quotaDao insertQuotasFromArray: self.allQuotas];
-    }
-}
 
 -(void)loanNibforOrientation:(UIInterfaceOrientation)orientation {
     if( UIInterfaceOrientationIsLandscape(orientation) )
@@ -269,15 +292,6 @@
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
         [self configureViewVisualComponentes];
-    }
-}
-
--(void)getParliamentaryQuotas{
-    if (self.parliamentary.followed) {
-        self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
-    }
-    else{
-        //request from server
     }
 }
 
@@ -388,7 +402,8 @@
                     [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
                 }
                 
-                self.quotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+                self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+                [self filterQuotas];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
@@ -425,5 +440,26 @@
     }
 }
 
+-(void)filterQuotas{
+    if (!self.monthNumber) {
+        NSDate *currentDate = [NSDate date];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
+        
+        self.monthNumber = [components month];
+        self.monthLabel = [self monthForPickerRow:self.monthNumber-1];
+        self.yearNumber = [components year];
+        self.yearLabel = [self yearForPickerRow:self.yearNumber-2013];
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month == %d && SELF.year == %d", self.monthNumber, self.yearNumber];
+    self.quotas = [self.allQuotas filteredArrayUsingPredicate:predicate];
+    [self.quotaCollectionView reloadData];
+    if([self.quotas count] == 0){
+        self.quotaCollectionView.hidden = YES;
+    }
+    else{
+        self.quotaCollectionView.hidden = NO;
+    }
+}
 
 @end

@@ -14,7 +14,6 @@
 @end
 
 @implementation AKInfoViewController
-@synthesize scrollViewInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,26 +32,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        self.title = @"AKAN";
-    scrollViewInfo.delegate=self;
     
-    
+    self.title = @"AKAN";
+    self.scrollViewInfo.delegate=self;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self transformNavigationBarButtons];
 }
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.scrollViewInfo.contentSize = CGSizeMake(320,2200);
-}
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
-    [self transformNavigationBarButtons];
+    for(UIView *view in self.scrollViewInfo.subviews) {
+        if([view isKindOfClass:[UITextView class]]) {
+            UITextView *textView = (UITextView*) view;
+            
+            [textView sizeToFit];
+            [textView.textContainer setSize:textView.frame.size];
+        }
+    }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self transformNavigationBarButtons];
 }
 
 #pragma mark - custom methods

@@ -25,8 +25,6 @@
 
 -(NSArray *) getQuotaByIdParliamentary:(NSNumber *)idParliamentary;
 -(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota;
--(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withName:(NSString*)nameQuota;
-
 -(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas;

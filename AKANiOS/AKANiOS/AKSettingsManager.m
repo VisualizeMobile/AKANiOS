@@ -163,7 +163,7 @@
 
 -(NSString*) actualSettingsInfoLog {
     
-    return [NSString stringWithFormat: @"{\n\tData version = %ld \n\tSort option = %d \n\tQuota filter = %d \n\tStates filter = %@ \n\tParties filter = %@\n}", _dataUpdateVersion, _sortOption, _filterQuotaOption, (NSArray*)_filterStates, (NSArray*)_filterParties];
+    return [NSString stringWithFormat: @"{\n\tData version = %ld \n\tSort option = %d \n\tQuota filter = %d \n\tStates filter = %@ \n\tParties filter = %@\n}", (long)_dataUpdateVersion, _sortOption, _filterQuotaOption, (NSArray*)_filterStates, (NSArray*)_filterParties];
     
 }
 

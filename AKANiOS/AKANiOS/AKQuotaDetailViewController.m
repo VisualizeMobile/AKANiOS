@@ -38,7 +38,7 @@
     self.navigationItem.title = self.quota.nameQuota;
     
     AKQuotaDao *dao = [AKQuotaDao getInstance];
-    self.quotasArray = [dao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumber:self.quota.numQuota];
+    self.quotasArray = [dao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
     NSLog(@"%@",self.quotasArray);
     
     [self setDetailItem];

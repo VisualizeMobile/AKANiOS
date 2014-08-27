@@ -19,19 +19,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naD-Lx-Dsq">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naD-Lx-Dsq">
                             <rect key="frame" x="20" y="119" width="292" height="155"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="155" id="Zla-5S-xal"/>
                             </constraints>
-                            <string key="text">A proposta do AKAN App é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas  para Exercício da Atividade Parlamentar (CEAP)  de cada Deputado Federal em mandato corrente.</string>
+                            <string key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.</string>
                             <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="deviceRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJM-j7-EHg">
-                            <rect key="frame" x="20" y="269" width="301" height="224"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJM-j7-EHg">
+                            <rect key="frame" x="20" y="261" width="301" height="224"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="224" id="EGH-Ql-Xwf"/>
@@ -51,7 +51,7 @@
                                 <constraint firstAttribute="height" constant="104" id="Qfy-A6-Ypr"/>
                             </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn1-be-8HX">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn1-be-8HX">
                             <rect key="frame" x="119" y="668" width="201" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,13 +85,13 @@
                             <color key="textColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jT-Lx-Gpk">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jT-Lx-Gpk">
                             <rect key="frame" x="20" y="478" width="300" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="128" id="qVh-57-YDA"/>
                             </constraints>
-                            <string key="text">No AKAN App,  a cor da Cota muda de acordo com o valor gasto pelo parlamentar. Toque em um parlamentar e veja quanto ele gasta e com o quê ele gasta. </string>
+                            <string key="text">No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlamentar. Toque em um parlamentar e veja quanto ele gasta e com o quê ele gasta. </string>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -117,7 +117,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avg-yn-fyt">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avg-yn-fyt">
                             <rect key="frame" x="122" y="809" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,7 +161,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27o-Rw-oLQ">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27o-Rw-oLQ">
                             <rect key="frame" x="122" y="1091" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -194,7 +194,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos fornecimento de alimentação do parlamentar" translatesAutoresizingMaskIntoConstraints="NO" id="TXN-v4-TXH">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos fornecimento de alimentação do parlamentar" translatesAutoresizingMaskIntoConstraints="NO" id="TXN-v4-TXH">
                             <rect key="frame" x="123" y="1232" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,7 +226,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com diárias em hotéis, exceto a parlamentares do Distrito Federal." translatesAutoresizingMaskIntoConstraints="NO" id="kOq-VD-YiE">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com diárias em hotéis, exceto a parlamentares do Distrito Federal." translatesAutoresizingMaskIntoConstraints="NO" id="kOq-VD-YiE">
                             <rect key="frame" x="123" y="1373" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,7 +258,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos locação ou fretamento de aeronaves, embarcações e veículos automotores." translatesAutoresizingMaskIntoConstraints="NO" id="H3k-uD-H0L">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos locação ou fretamento de aeronaves, embarcações e veículos automotores." translatesAutoresizingMaskIntoConstraints="NO" id="H3k-uD-H0L">
                             <rect key="frame" x="124" y="1514" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,7 +290,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com combustíveis e lubrificantes, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-MS-gPR">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com combustíveis e lubrificantes, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-MS-gPR">
                             <rect key="frame" x="123" y="1655" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -322,7 +322,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com serviços prestados por empresas de segurança, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="1rK-gh-xGZ">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços prestados por empresas de segurança, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="1rK-gh-xGZ">
                             <rect key="frame" x="124" y="1796" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -354,7 +354,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com serviços de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas" translatesAutoresizingMaskIntoConstraints="NO" id="44N-Hz-Nxn">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas" translatesAutoresizingMaskIntoConstraints="NO" id="44N-Hz-Nxn">
                             <rect key="frame" x="122" y="1937" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -386,7 +386,7 @@
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com divulgação de atividade parlamentar, exceto nos 120 dias anteriores à data das eleições " translatesAutoresizingMaskIntoConstraints="NO" id="RH1-tS-XRg">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com divulgação de atividade parlamentar, exceto nos 120 dias anteriores à data das eleições " translatesAutoresizingMaskIntoConstraints="NO" id="RH1-tS-XRg">
                             <rect key="frame" x="122" y="2078" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -398,11 +398,11 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-1M-liu">
-                            <rect key="frame" x="101" y="-5" width="112" height="128"/>
+                            <rect key="frame" x="116" y="17" width="89" height="98"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="128" id="ONe-80-OQk"/>
-                                <constraint firstAttribute="width" constant="112" id="y6M-Jj-AR6"/>
+                                <constraint firstAttribute="height" constant="98" id="ONe-80-OQk"/>
+                                <constraint firstAttribute="width" constant="89" id="y6M-Jj-AR6"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postais" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-ag-VtQ">
@@ -415,7 +415,7 @@
                                 <constraint firstAttribute="height" constant="104" id="ZHB-qg-YP0"/>
                             </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Valores gastos com serviços postais exceto compra de selos" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-yX-o8Y">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços postais exceto compra de selos" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-yX-o8Y">
                             <rect key="frame" x="123" y="950" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -449,16 +449,16 @@
                         <constraint firstItem="Ck8-Fi-HWG" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="8f6-ly-5ul"/>
                         <constraint firstAttribute="trailing" secondItem="H3k-uD-H0L" secondAttribute="trailing" constant="-2" id="9us-vN-lG8"/>
                         <constraint firstAttribute="trailing" secondItem="3jT-Lx-Gpk" secondAttribute="trailing" id="ATJ-Ci-gJc"/>
-                        <constraint firstAttribute="centerX" secondItem="pR2-1M-liu" secondAttribute="centerX" constant="3" id="Aku-Wy-Uxo"/>
+                        <constraint firstAttribute="centerX" secondItem="pR2-1M-liu" secondAttribute="centerX" constant="-0.5" id="Aku-Wy-Uxo"/>
                         <constraint firstItem="P17-4f-mPc" firstAttribute="top" secondItem="huQ-n6-iyD" secondAttribute="bottom" constant="8" id="Aqn-kz-fdH"/>
                         <constraint firstAttribute="trailing" secondItem="avg-yn-fyt" secondAttribute="trailing" id="BD3-QR-I8f"/>
                         <constraint firstAttribute="trailing" secondItem="7d6-7z-w3R" secondAttribute="trailing" constant="-1" id="Bba-Rl-QTx"/>
                         <constraint firstAttribute="width" constant="320" id="BiQ-SB-jkw"/>
                         <constraint firstItem="ZSQ-qH-i3Q" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="Bj5-1E-oaX"/>
-                        <constraint firstItem="3jT-Lx-Gpk" firstAttribute="top" secondItem="bJM-j7-EHg" secondAttribute="bottom" constant="-15" id="DYp-GI-Ydp"/>
+                        <constraint firstItem="3jT-Lx-Gpk" firstAttribute="top" secondItem="bJM-j7-EHg" secondAttribute="bottom" constant="-7" id="DYp-GI-Ydp"/>
                         <constraint firstItem="Bn1-be-8HX" firstAttribute="top" secondItem="dAt-PP-xgp" secondAttribute="bottom" constant="8" id="Dbk-iA-t49"/>
                         <constraint firstItem="44N-Hz-Nxn" firstAttribute="leading" secondItem="I7h-bF-Jcj" secondAttribute="trailing" constant="3" id="EIn-V4-HjH"/>
-                        <constraint firstItem="bJM-j7-EHg" firstAttribute="top" secondItem="naD-Lx-Dsq" secondAttribute="bottom" constant="-5" id="FWH-u4-hPM"/>
+                        <constraint firstItem="bJM-j7-EHg" firstAttribute="top" secondItem="naD-Lx-Dsq" secondAttribute="bottom" constant="-13" id="FWH-u4-hPM"/>
                         <constraint firstItem="7d6-7z-w3R" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="ISs-gd-nuz"/>
                         <constraint firstItem="dAt-PP-xgp" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="-3" id="IY4-tg-jdk"/>
                         <constraint firstAttribute="trailing" secondItem="kOq-VD-YiE" secondAttribute="trailing" constant="-1" id="Iae-qm-wou"/>
@@ -549,7 +549,7 @@
                         <constraint firstItem="avg-yn-fyt" firstAttribute="leading" secondItem="nz0-HR-Mxd" secondAttribute="trailing" constant="4" id="ylk-x5-y7z"/>
                         <constraint firstItem="i5C-Or-8KY" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="z0h-du-4Zw"/>
                         <constraint firstAttribute="trailing" secondItem="1rK-gh-xGZ" secondAttribute="trailing" constant="-2" id="zoo-44-J2G"/>
-                        <constraint firstItem="pR2-1M-liu" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="-5" id="zwG-sQ-XeM"/>
+                        <constraint firstItem="pR2-1M-liu" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="17" id="zwG-sQ-XeM"/>
                     </constraints>
                 </scrollView>
             </subviews>

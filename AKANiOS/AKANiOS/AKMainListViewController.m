@@ -35,6 +35,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
+@property (nonatomic) NSRange imageDownloadRange;
+@property (nonatomic) NSTimer *imageDownloadTimer;
+
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -60,7 +63,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.lastTableViewForRemoveGapWasOfSearchDisplay = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.quotaDao = [AKQuotaDao getInstance];
-    NSLog(@"1  Quantidade de cotas = %ld", [self.quotaDao getQuotas].count);
+    self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    self.parliamentaryNicknameFilteredArray = [NSArray array];
 
     self.settingsManager = [AKSettingsManager sharedManager];
     NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
@@ -116,12 +120,18 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
-//    [self.settingsManager setDataUpdateVersion:0];
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
-            if([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion]) {
+            if(([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion])
+               || [self.parliamentaryDao getAllParliamentary].count == 0) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
+//                    self.imageDownloadTimer = [NSTimer scheduledTimerWithTimeInterval:3.0
+//                                                                               target:self
+//                                                                             selector:@selector(imageDownloadTimerLoop:)
+//                                                                             userInfo:nil 
+//                                                                              repeats:YES];
+//                    
                     [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
                 });
             }
@@ -144,11 +154,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
 -(void) viewWillAppear:(BOOL)animated {
     
-    [self filterFollowedParliamentary];
-    
-    [self transformNavigationBarButtons];
-    
+    //
+    [self applyAllDefinedFiltersAndSort];
     [self.tableView reloadData];
+    
+    //
+    [self transformNavigationBarButtons];
     
     if (self.searchController.active)
     {
@@ -199,7 +210,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         toolbarFrame.origin.x = self.toolBarContainer.frame.origin.x;
     }
     
-    [UIView animateWithDuration:0.4
+    [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -210,9 +221,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-
     [self transformNavigationBarButtons];
 }
+
 #pragma mark - Table view data source
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -382,19 +393,41 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             parliamentary = self.parliamentaryArray[indexPath.row];
         }
-        
-        if ([parliamentary.followed isEqual:@1]) {
-            [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
-            [parliamentary setFollowed:@0];
-            [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
 
-            [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
-        } else{
-            [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
-            [parliamentary setFollowed:@1];
-            [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
+        if (self.viewFollowedEnabled) {
+            [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
+            [parliamentary setFollowed:@0];
             
-            [self updateQuotasForParliamentary:parliamentary.idParliamentary];
+            [self applyAllDefinedFiltersAndSort];
+            
+            [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+            
+            [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
+            
+            if (self.searchController.active) {
+                [self filterArrayByText:self.searchController.searchBar.text];
+                NSLog(@"%@",self.searchController.searchBar.text);
+                NSIndexPath *cellIndex = [self.searchController.searchResultsTableView indexPathForCell:cell];
+                [self.searchController.searchResultsTableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            else {NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
+                [self.tableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }else{
+            if ([parliamentary.followed isEqual:@1]) {
+                [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+                [parliamentary setFollowed:@0];
+                [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
+                
+                [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
+            }
+            else{
+                [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+                [parliamentary setFollowed:@1];
+                [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
+                
+                [self updateQuotasForParliamentary:parliamentary.idParliamentary];
+            }
         }
     }
 }
@@ -410,7 +443,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
      self.viewFollowedEnabled = !self.viewFollowedEnabled;
     [self.toolBar.followedButton setSelected:self.viewFollowedEnabled];
     
-    [self filterFollowedParliamentary];
+    [self applyAllDefinedFiltersAndSort];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -482,9 +515,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
-                [self filterFollowedParliamentary];
-                [self filterParliamentary];
-                [self sortParliamentary];
+                [self applyAllDefinedFiltersAndSort];
                 
                 NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
                 for(NSNumber *idParliamentary in followedParliamentaryIds) {
@@ -648,31 +679,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryArray = [self.parliamentaryArray sortedArrayUsingComparator:comparator];
 }
 
--(void)filterFollowedParliamentary{
-    if (self.viewFollowedEnabled) {
-        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
-        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
-    } else {
-        self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
-        [self loadConfigurations];
-    }
-    
-}
-
-- (void)loadConfigurations {
-    
-    self.parliamentaryNicknameFilteredArray = [NSArray array];
-    
-    [self filterParliamentary];
-    
-    [self sortParliamentary];
-}
-
-- (void)filterArrayByText:(NSString *)searchText {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
-    self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
-}
-
 -(void) showError:(BOOL) isConnectionError {
     dispatch_sync(dispatch_get_main_queue(), ^{
         UIAlertView *alert = nil;
@@ -684,6 +690,34 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         
         [alert show];
     });
+}
+
+- (void)applyAllDefinedFiltersAndSort {
+    
+    if (self.viewFollowedEnabled) {
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
+        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    } else {
+        self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+    }
+    
+    [self filterParliamentary];
+    
+    [self sortParliamentary];
+    
+    if(self.parliamentaryArray.count == 0)
+        self.noResultsLabel.hidden = NO;
+    else
+        self.noResultsLabel.hidden = YES;
+}
+
+- (void)filterArrayByText:(NSString *)searchText {
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
+    self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(void) imageDownloadTimerLoop: (id) sender {
+    
 }
 
 @end
