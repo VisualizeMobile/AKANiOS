@@ -24,7 +24,7 @@
 -(BOOL)updateQuotaById:(NSNumber *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
 
 -(NSArray *) getQuotaByIdParliamentary:(NSNumber *)idParliamentary;
--(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota;
+-(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota andYear:(NSNumber *)year;
 -(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas;

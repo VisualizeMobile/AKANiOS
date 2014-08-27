@@ -583,9 +583,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 year = jsonDict[@"ano"];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    BOOL ok = [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
+                    [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
                     
-                    NSLog(@"%d",ok);
                 });
             }
             
@@ -593,6 +592,34 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             [self showError:isConnectionError];
         }
     }];
+    [self.webService downloadDataWithPath:@"/cota/media-maximo-desvio" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+        if(success) {
+            NSNumber * numQuota;
+            NSDecimalNumber * maxValue;
+            NSDecimalNumber * average;
+            double stdDeviation;
+            
+            for(NSDictionary *jsonDict in jsonArray) {
+                
+                NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
+                maxValue = [NSDecimalNumber decimalNumberWithString: maxString];
+                // NSLog(@"valor maximo %@", maxValue);
+                NSString *averageString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_medio"] doubleValue]];
+                average = [NSDecimalNumber decimalNumberWithString: averageString];
+                // NSLog(@"valor medio %@", average);
+                numQuota = jsonDict[@"numsubcota"];
+                stdDeviation = [jsonDict[@"desvio_padrao"] doubleValue];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.statisticDao insertStatisticWithNumQuota:numQuota andMaxValue:maxValue andAverage:average andStdDeviation:stdDeviation ];
+                });
+            }
+            
+        } else {
+            [self showError:isConnectionError];
+        }
+    }];
+    
 }
 
 

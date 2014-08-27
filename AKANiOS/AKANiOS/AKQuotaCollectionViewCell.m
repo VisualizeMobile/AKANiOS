@@ -45,7 +45,7 @@
 #pragma mark - custom methods
 
 -(void)imageForQuotaValue{
-    self.maxValue = self.average + 1.2*self.stdDeviation;
+    self.maxValue = self.average + 1.5*self.stdDeviation;
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
     self.imageView.backgroundColor = [self colorForQuotaValue];
     self.valueLabel.text = [NSString stringWithFormat:@"R$ %@",[self.quota value]];
@@ -56,7 +56,7 @@
 }
 
 -(void)setLevelHeight{
-    float multiplier = [self.quota.value floatValue] * 100 / self.maxValue;
+    float multiplier = [self exponentialProbabilityForLimit:self.maxValue]*100;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
@@ -67,20 +67,30 @@
 }
 
 -(UIColor *)colorForQuotaValue{
+    double probability = [self exponentialProbabilityForLimit:self.maxValue];
+    NSLog(@"%.2lf",probability);
     if (self.quota.value == 0) {
         return [AKUtil color4];
     }
-    else if(self.quota.value > 0 && [self.quota.value floatValue] < (self.average - self.stdDeviation/2)){
-        return [AKUtil color1];
-    }
-    else if([self.quota.value floatValue] >= (self.average - self.stdDeviation/2) && [self.quota.value floatValue] <= (self.average)){
+    else if(probability < 0.25){
         return [AKUtil color3];
     }
-    else if([self.quota.value floatValue] > (self.average) && [self.quota.value floatValue] <= (self.average + self.stdDeviation/2)){
+    else if(probability < 0.5){
+        return [AKUtil color1];
+    }
+    else if(probability< 0.75){
         return [AKUtil color2];
     }
     else{
         return [AKUtil color5];
     }
 }
+
+-(double) exponentialProbabilityForLimit:(double)upperLimit{
+    double lambda = 1/self.average;
+    double result =1 - lambda*exp(-lambda*[self.quota.value doubleValue])*upperLimit;
+    NSLog(@"%f",result);
+    return result;
+}
+
 @end
