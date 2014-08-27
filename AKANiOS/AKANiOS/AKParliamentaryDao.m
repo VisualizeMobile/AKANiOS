@@ -10,7 +10,6 @@
 #import "AKParliamentary.h"
 #import "AKAppDelegate.h"
 #import "AKParliamentary.h"
-#import "Parliamentary.h"
 
 @implementation AKParliamentaryDao
 
@@ -53,7 +52,7 @@
     return singleton;
 }
 
--(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSString *)idParliamentary
+-(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSNumber *)idParliamentary
 {
     NSError *Error=nil;
     
@@ -67,7 +66,7 @@
     
     if ([result count]==0)
     {
-        Parliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
+        AKParliamentary *newParliamentary =[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary"inManagedObjectContext:self.managedObjectContext];
         
         newParliamentary.nickName=NickName;
         newParliamentary.idParliamentary=idParliamentary;
@@ -84,7 +83,7 @@
     return NO;
     
 }
--(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andFullName:(NSString *)fullName andIdParliamentary:(NSString *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andUrlPhoto:(NSString *)urlPhoto andValueRanking:(NSNumber *)valueRanking andIdUpdate:(NSNumber *) idupdate andFollowed:(NSNumber *) followed
+-(BOOL)insertParliamentaryWithNickName:(NSString *)nickName andIdParliamentary:(NSNumber *) idParliamentary andParty:(NSString *)party andPosRanking:(NSNumber *)posRanking andUf:(NSString *)uf andValueRanking:(NSDecimalNumber *)valueRanking andFollowed:(NSNumber *) followed
 {
     
     NSError *Error=nil;
@@ -96,28 +95,22 @@
     
     NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
-    if ([result count]==0)
-    {
+    if ([result count]==0) {
+        AKParliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
         
-    Parliamentary *newParliamentary=[NSEntityDescription insertNewObjectForEntityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext];
-    
-    [newParliamentary setNickName:nickName];
-    [newParliamentary setFullName:fullName];
-    [newParliamentary setIdParliamentary:idParliamentary];
-    [newParliamentary setParty:party];
-    [newParliamentary setPosRanking:posRanking];
-    [newParliamentary setUf:uf];
-    [newParliamentary setUrlPhoto:urlPhoto];
-    [newParliamentary setValueRanking:valueRanking];
-    [newParliamentary setIdUpdate:idupdate];
-    [newParliamentary setFollowed:followed];
-    
-    //request remotePhoto
+        [newParliamentary setNickName:nickName];
+        [newParliamentary setFullName:nickName];
+        [newParliamentary setIdParliamentary:idParliamentary];
+        [newParliamentary setParty:party];
+        [newParliamentary setPosRanking:posRanking];
+        [newParliamentary setUf:uf];
+        [newParliamentary setValueRanking:valueRanking];
+        [newParliamentary setFollowed:followed];
+        
         NSData *dataImage;
-
         @try
         {
-            dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlPhoto]];
+            dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", idParliamentary]]];
         
             [newParliamentary setPhotoParliamentary:dataImage];
         }
@@ -127,15 +120,14 @@
             
         }
         
-    
-    
-    //Realiza insert no banco de dados local
-    if ([self.managedObjectContext save:&Error])
-        return YES;
-    else
-        NSLog(@"Failed to save the new parlamentary Error= %@",Error);
+        //Realiza insert no banco de dados local
+        if ([self.managedObjectContext save:&Error])
+            return YES;
+        else
+            NSLog(@"Failed to save the new parlamentary Error= %@",Error);
 
     }
+    
     return  NO;
 }
 
@@ -149,7 +141,19 @@
     return result;
 }
 
--(NSArray *)selectParliamentaryById:(NSString *)idParliamentary
+-(NSArray *)getAllFollowedPartliamentary {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setEntity:self.entity];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"followed==1"]];
+
+    NSError *Error=nil;
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    return result;
+}
+
+
+-(NSArray *)selectParliamentaryById:(NSNumber *)idParliamentary
 {
      NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
     
@@ -162,30 +166,8 @@
     return result;
 }
 
--(BOOL)updateIdUpdateOfParliamentary:(NSString *)idParliamentary WithIdUpdate:(NSNumber *)idUpdate
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
-    
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [fetchRequest setEntity:self.entity];
-    
-    NSError *Error=nil;
-    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
-    Parliamentary *parliamentary=[result objectAtIndex:0];
-    
-    parliamentary.idUpdate=idUpdate;
-    
-    if ([self.managedObjectContext save:&Error])
-        return  YES;
-    else
-        NSLog(@"Failed to update the parlamentary Error= %@",Error);
-    
-    
-    return NO;
-}
 
--(BOOL)updateFollowedByIdParliamentary:(NSString *)idParliamentary andFollowedValue:(NSNumber *)followedValue
+-(BOOL)updateFollowedByIdParliamentary:(NSNumber *)idParliamentary andFollowedValue:(NSNumber *)followedValue
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
     
@@ -195,7 +177,7 @@
     NSError *Error=nil;
     NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     
-    Parliamentary *parliamentary=[result objectAtIndex:0];
+    AKParliamentary *parliamentary=[result objectAtIndex:0];
     
     parliamentary.followed=followedValue;
     
@@ -255,5 +237,21 @@
 }
 
 
+-(void) deleteAllPariamentary {
+    NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
+    [fetch setEntity:[NSEntityDescription entityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext]];
+    [fetch setIncludesPropertyValues:NO]; // only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * parliamentaryArray = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+
+    //error handling goes here
+    for (NSManagedObject *parliamentary in parliamentaryArray) {
+        [self.managedObjectContext deleteObject:parliamentary];
+    }
+    
+    NSError *saveError = nil;
+    [self.managedObjectContext save:&saveError];
+}
 
 @end

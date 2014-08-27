@@ -9,11 +9,11 @@
 #import "AKSettingsManager.h"
 
 @interface AKSettingsManager () {
-    
     AKSettingsSortOption _sortOption;
     AKSettingsFilterQuotaOption _filterQuotaOption;
     NSMutableArray *_filterStates;
     NSMutableArray *_filterParties;
+    NSInteger _dataUpdateVersion;
 }
 
 @end
@@ -23,7 +23,8 @@
 -(void)saveSettings {
     NSMutableData *settingsData = [NSMutableData data];
     NSKeyedArchiver *aCoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:settingsData];
-                              
+
+    [aCoder encodeInteger:_dataUpdateVersion forKey:@"dataUpdateVersion"];
     [aCoder encodeInteger:_sortOption forKey:@"sortOption"];
     [aCoder encodeInteger:_filterQuotaOption forKey:@"filterQuotaOption"];
     [aCoder encodeObject:_filterStates forKey:@"filterStates"];
@@ -46,7 +47,8 @@
     if(self) {
         NSData *settingsData = [[NSData alloc] initWithContentsOfFile:[AKSettingsManager settingsFilePath]];
         NSKeyedUnarchiver *aDecoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:settingsData];
-                                    
+        
+        _dataUpdateVersion = [aDecoder decodeIntegerForKey:@"dataUpdateVersion"];
         _sortOption = [aDecoder decodeIntegerForKey:@"sortOption"];
         _filterQuotaOption = [aDecoder decodeIntegerForKey:@"filterQuotaOption"];
         _filterStates = [aDecoder decodeObjectForKey:@"filterStates"];
@@ -82,6 +84,10 @@
     return [NSString stringWithFormat:@"%@/akan_settings.plist", documentsPath];
 }
 
+-(NSInteger) getDataUpdateVersion {
+    return _dataUpdateVersion;
+}
+
 -(AKSettingsSortOption) getSortOption {
     return _sortOption;
 }
@@ -98,6 +104,11 @@
     return _filterParties;
 }
 
+
+-(void) setDataUpdateVersion:(NSInteger)dataUpdateVersion {
+    _dataUpdateVersion = dataUpdateVersion;
+    [self saveSettings];
+}
 
 -(void) setSortOption:(AKSettingsSortOption) sortOption {
     _sortOption = sortOption;
@@ -152,7 +163,7 @@
 
 -(NSString*) actualSettingsInfoLog {
     
-    return [NSString stringWithFormat: @"{\n\tSort option = %d \n\tQuota filter = %d \n\tStates filter = %@ \n\tParties filter = %@\n}", _sortOption, _filterQuotaOption, (NSArray*)_filterStates, (NSArray*)_filterParties];
+    return [NSString stringWithFormat: @"{\n\tData version = %ld \n\tSort option = %d \n\tQuota filter = %d \n\tStates filter = %@ \n\tParties filter = %@\n}", _dataUpdateVersion, _sortOption, _filterQuotaOption, (NSArray*)_filterStates, (NSArray*)_filterParties];
     
 }
 

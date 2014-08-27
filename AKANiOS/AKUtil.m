@@ -10,6 +10,10 @@
 
 @implementation AKUtil
 
++(UIColor*) color1clear {
+    return [UIColor colorWithRed:83/255.0f green:101/255.0f blue:113/255.0f alpha:0.9];
+}
+
 +(UIColor*) color1 {
     return [UIColor colorWithRed:83/255.0f green:101/255.0f blue:113/255.0f alpha:1];
 }

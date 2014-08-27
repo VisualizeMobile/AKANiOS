@@ -10,12 +10,12 @@
 
 @interface AKUtil : NSObject
 
++(UIColor*) color1clear;
 +(UIColor*) color1;
 +(UIColor*) color2;
 +(UIColor*) color3;
 +(UIColor*) color4;
 +(UIColor*) color5;
-
 
 +(UIImage *)downloadImagensInUrls:(NSString *)urlPhoto;
 

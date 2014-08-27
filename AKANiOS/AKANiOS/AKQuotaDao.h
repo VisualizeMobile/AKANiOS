@@ -18,14 +18,17 @@
 + (instancetype)getInstance;
 -(NSArray *)getQuotas;
 
--(BOOL)insertQuotaWithId: (NSString *)idQuota andValue:(NSDecimalNumber *) value;
--(BOOL)insertQuotaWithId:(NSString *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSNumber *)value andIdParliamentary:(NSString *)idParliamentary;
+-(BOOL)insertQuotaWithId: (NSNumber *)idQuota andValue:(NSDecimalNumber *) value;
+-(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary;
 
--(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
--(NSArray *) getQuotaByIdParliamentary:(NSString *)idParliamentary;
--(NSArray *) getQuotasByIdParliamentary:(NSString *)idParliamentary withName:(NSString*)nameQuota;
+-(BOOL)updateQuotaById:(NSNumber *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
 
--(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary;
+-(NSArray *) getQuotaByIdParliamentary:(NSNumber *)idParliamentary;
+-(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota;
+-(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withName:(NSString*)nameQuota;
+
+-(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas;
+
 @end

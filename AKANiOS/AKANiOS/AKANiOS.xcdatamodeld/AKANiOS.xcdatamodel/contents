@@ -3,30 +3,28 @@
     <entity name="Parliamentary" representedClassName="AKParliamentary" syncable="YES">
         <attribute name="followed" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idParliamentary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="idParliamentary" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="party" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoParliamentary" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="posRanking" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uf" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="urlPhoto" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="valueRanking" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="valueRanking" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Quota" representedClassName="AKQuota" syncable="YES">
-        <attribute name="idParliamentary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idQuota" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idParliamentary" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="idQuota" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="idUpdate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="imageColor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="nameQuota" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numQuota" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="210"/>
-        <element name="Quota" positionX="-54" positionY="-9" width="128" height="195"/>
+        <element name="Parliamentary" positionX="-360" positionY="-13" width="128" height="178"/>
+        <element name="Quota" positionX="-54" positionY="-9" width="128" height="193"/>
     </elements>
 </model>

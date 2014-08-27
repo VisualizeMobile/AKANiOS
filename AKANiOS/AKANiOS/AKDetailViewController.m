@@ -13,8 +13,12 @@
 #import "AKQuota.h"
 #import "AKUtil.h"
 #import "AKQuotaDetailViewController.h"
+#import "AKWebServiceConsumer.h"
+#import "MBProgressHUD.h"
+#import "AKAppDelegate.h"
 
 @interface AKDetailViewController ()
+
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
@@ -23,6 +27,7 @@
 @property (nonatomic) NSString *month;
 @property (nonatomic) NSString *year;
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic) AKWebServiceConsumer *webService;
 
 @end
 
@@ -39,17 +44,40 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [self configureViewVisualComponentes];
     
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
-    self.quotas=[self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
+     UIKeyboardWillShowNotification object:nil];
+    
+    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
+     UIKeyboardWillHideNotification object:nil];
+    
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                            action:@selector(didTapAnywhere:)];
     
     
+    self.webService = [[AKWebServiceConsumer alloc] init];
+    
+    if([self.parliamentary.followed isEqual:@0]) {
+        [self downloadQuotasForParliamentary];
+    } else {
+        self.quotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+        if(self.quotas == nil || self.quotas.count == 0)
+            [self downloadQuotasForParliamentary];
+    }
+    
+}
+
+-(void) configureViewVisualComponentes {
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
-        forCellWithReuseIdentifier:@"AKCell"];
-
+               forCellWithReuseIdentifier:@"AKCell"];
+    
     UIImage *backButtonImage = [UIImage imageNamed:@"backImage"];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     
@@ -73,23 +101,12 @@
     self.datePickerView.backgroundColor = [AKUtil color4];
     self.datePickerField.inputView = self.datePickerView;
     
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
-    [nc addObserver:self selector:@selector(keyboardWillShow:) name:
-     UIKeyboardWillShowNotification object:nil];
-    
-    [nc addObserver:self selector:@selector(keyboardWillHide:) name:
-     UIKeyboardWillHideNotification object:nil];
-    
-    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                            action:@selector(didTapAnywhere:)];
-    
     // Customize photoView
     self.photoView.layer.cornerRadius = self.photoView.frame.size.height /2;
     self.photoView.layer.masksToBounds = YES;
     self.photoView.layer.borderWidth = 0;
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
-
+    
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation  duration:(NSTimeInterval)duration
@@ -184,13 +201,16 @@
 
 - (IBAction)followParliamentary:(id)sender {
 
-    if ([self.followLabel.text isEqualToString: @"Seguido"]) {
+    if ([self.parliamentary.followed isEqual:@1]) {
         [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@0];
         [self setButtonUnfollowedState];
-    }
-    else{
+
+    } else {
         [self updateFollowParliamentaryWithId:self.parliamentary.idParliamentary andValue:@1];
         [self setButtonFollowedState];
+        
+        if(self.quotas == nil || self.quotas.count == 0)
+            [self downloadQuotasForParliamentary];
     }
 }
 
@@ -219,7 +239,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)updateFollowParliamentaryWithId:(NSString *)parliamentaryId andValue:(NSNumber *)followed{
+-(void)updateFollowParliamentaryWithId:(NSNumber *)parliamentaryId andValue:(NSNumber *)followed{
     [self.parliamentary setFollowed:followed];
     [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
     if ([followed isEqual: @0]) {
@@ -237,14 +257,14 @@
         self.view = [[[NSBundle mainBundle] loadNibNamed:@"AKLandscapeDetailViewController"
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
-        [self viewDidLoad];
+        [self configureViewVisualComponentes];
     }
     else
     {
         self.view = [[[NSBundle mainBundle] loadNibNamed: @"AKPortraitDetailViewController"
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
-        [self viewDidLoad];
+        [self configureViewVisualComponentes];
     }
 }
 
@@ -313,6 +333,84 @@
     [self.view removeGestureRecognizer:self.tapRecognizer];
 }
 
+-(void) downloadQuotasForParliamentary {
+    __block MBProgressHUD *hud = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [AKUtil color1clear];
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+        hud.detailsLabelColor = [AKUtil color4];
+        hud.detailsLabelText = @"Carregando cotas do parlamentar";
+    });
+    
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", self.parliamentary.idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+            
+            if(success) {
+                NSNumber * idParliamentary;
+                NSNumber * idQuota;
+                NSNumber * numQuota;
+                NSString *nameQuota;
+                NSDecimalNumber * value;
+                NSNumber * updateVersion;
+                NSNumber * year;
+                NSNumber * month;
+                
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                [formatter setNumberStyle:NSNumberFormatterDecimalStyle];                
+                
+                for(NSDictionary *jsonDict in jsonArray) {
+                    idQuota = jsonDict[@"pk"];
+                    value = [NSDecimalNumber decimalNumberWithDecimal:[[formatter numberFromString:jsonDict[@"fields"][@"valor"]] decimalValue]];
+                    idParliamentary = jsonDict[@"fields"][@"idparlamentar"];
+                    numQuota = jsonDict[@"fields"][@"numsubcota"];
+                    nameQuota = jsonDict[@"fields"][@"descricao"];
+                    month = jsonDict[@"fields"][@"mes"];
+                    year = jsonDict[@"fields"][@"ano"];
+                    updateVersion = jsonDict[@"fields"][@"versaoupdate"];
+                   
+
+                    [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
+                }
+                
+                self.quotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.quotaCollectionView reloadData];
+                    [hud hide:YES afterDelay:0.5f];
+                });
+                
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [hud hide:YES];
+                });
+                
+                [self showError:isConnectionError];
+            }
+        }];
+    });
+}
+
+-(void) showError:(BOOL) isConnectionError {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = nil;
+        
+        if(isConnectionError)
+            alert = [[UIAlertView alloc] initWithTitle:@"Erro!" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        else
+            alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Ocorreu algum erro com o nosso servidor, por conta disso o AKAN não conseguiu carregar novos dados. Abra o app mais tarde para tentar novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    });
+}
+
+- (void) dealloc {
+    if([self.parliamentary.followed isEqual:@0]) {
+        [self.quotaDao deleteQuotasByIdParliamentary:self.parliamentary.idParliamentary];
+    }
+}
 
 
 @end

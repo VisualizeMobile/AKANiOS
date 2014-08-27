@@ -25,12 +25,13 @@ typedef NS_ENUM(char, AKSettingsFilterQuotaOption) {
 +(AKSettingsManager*)sharedManager;
 +(NSString*) settingsFilePath;
 
-
+-(NSInteger) getDataUpdateVersion;
 -(AKSettingsSortOption) getSortOption;
 -(AKSettingsFilterQuotaOption) getQuotaFilter;
 -(NSArray*) getStatesFilter;
 -(NSArray*) getPartiesFilter;
 
+-(void) setDataUpdateVersion:(NSInteger)dataUpdateVersion;
 -(void) setSortOption:(AKSettingsSortOption) sortOption;
 -(void) setQuotaFilterOption:(AKSettingsFilterQuotaOption) quotaOption;
 -(void) setStatesFilter:(NSArray*) statesFilter;

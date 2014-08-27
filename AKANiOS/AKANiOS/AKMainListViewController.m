@@ -13,13 +13,12 @@
 #import "AKParliamentaryDao.h"
 #import "AKToolBar.h"
 #import "AKUtil.h"
-#import "Parliamentary.h"
 #import "AKSettingsManager.h"
 #import "AKConfigViewController.h"
-
+#import "AKWebServiceConsumer.h"
 #import "AKQuotaDao.h"
-#import "Quota.h"
 #import "AKLoad.h"
+#import "MBProgressHUD.h"
 
 const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
@@ -33,7 +32,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) BOOL searchEnabled;
 @property (nonatomic) AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
+@property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
+@property (nonatomic) AKWebServiceConsumer *webService;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -58,6 +59,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.searchEnabled = NO;
     self.lastTableViewForRemoveGapWasOfSearchDisplay = NO;
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
+    self.quotaDao = [AKQuotaDao getInstance];
+    NSLog(@"1  Quantidade de cotas = %ld", [self.quotaDao getQuotas].count);
 
     self.settingsManager = [AKSettingsManager sharedManager];
     NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
@@ -65,11 +68,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
     self.needsToHideSearchBar = YES;
-    
-    // Experimental datas
-    AKLoad *experimental=[[AKLoad alloc]init];
-    [experimental loadParliamentariesTestData];
-    [experimental loadQuotasTestData];
     
     // Configure Toolbar
     self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
@@ -115,6 +113,22 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.searchController.delegate = self;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
+    
+    // Web service
+    self.webService = [[AKWebServiceConsumer alloc] init];
+//    [self.settingsManager setDataUpdateVersion:0];
+    [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+        if(success) {
+            NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
+            if([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion]) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
+                });
+            }
+        } else {
+            [self showError:isConnectionError];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -269,12 +283,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     if (self.searchController.active)
         detailController.parliamentary = [self.parliamentaryNicknameFilteredArray objectAtIndex:indexPath.row];
     else
-    {
-        detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
-        
-    }
-    [self.navigationController pushViewController:detailController animated:YES];
     
+        detailController.parliamentary = [self.parliamentaryArray objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 #pragma mark - Search Bar Delegate
@@ -367,21 +379,23 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         {
             NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
             parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
-            NSLog(@"Parlamentar %@",parliamentary.nickName);
         } else {
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             parliamentary = self.parliamentaryArray[indexPath.row];
-            NSLog(@"Parlamentar %@",parliamentary.nickName);
         }
+        
         if ([parliamentary.followed isEqual:@1]) {
             [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
             [parliamentary setFollowed:@0];
             [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
-        }
-        else{
+
+            [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
+        } else{
             [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
             [parliamentary setFollowed:@1];
             [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
+            
+            [self updateQuotasForParliamentary:parliamentary.idParliamentary];
         }
     }
 }
@@ -408,10 +422,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     nav.navigationBar.tintColor = [AKUtil color4];
 
     [self.navigationController presentViewController:nav animated:YES completion:nil];
-    
-    //Teste do Ramon
-    AKLoad *load=[[AKLoad alloc]init];
-    [load loadQuotasTestData];
 }
 
 -(void) infoScreen:(id) sender {
@@ -422,14 +432,124 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     nav.navigationBar.tintColor = [AKUtil color4];
 
     [self.navigationController presentViewController:nav animated:YES completion:nil];
-    
-    //Testes Ramon
-    AKQuotaDao *quotaDAo=[AKQuotaDao getInstance];
-    [quotaDAo deleteQuotaByIdParliamentary:@"141467"];
 }
 
 #pragma mark - Custom methods
-       
+
+-(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
+    // Save followed ids
+    NSMutableArray *followedParliamentaryIds = [NSMutableArray array];
+    for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary])
+        [followedParliamentaryIds addObject:p.idParliamentary];
+    
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    [followedParliamentaryIds writeToFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath] atomically:YES];
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.color = [AKUtil color1clear];
+    hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+    hud.detailsLabelColor = [AKUtil color4];
+    hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+            
+            if(success) {
+                [self.parliamentaryDao deleteAllPariamentary];
+                NSNumber * idParliamentary;
+                NSString * nickName;
+                NSString * party;
+                NSNumber * posRanking;
+                NSString * uf;
+                NSNumber * valueRanking;
+                
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                
+                for(NSDictionary *jsonDict in jsonArray) {
+                    idParliamentary = jsonDict[@"pk"];
+                    valueRanking = [formatter numberFromString:jsonDict[@"fields"][@"valor"]];
+                    posRanking = jsonDict[@"fields"][@"ranking"];
+                    uf = jsonDict[@"fields"][@"ufparlamentar"];
+                    party = jsonDict[@"fields"][@"partidoparlamentar"];
+                    nickName = jsonDict[@"fields"][@"nomeparlamentar"];
+                    
+                    [self.parliamentaryDao insertParliamentaryWithNickName:nickName andIdParliamentary:idParliamentary andParty:party andPosRanking:posRanking andUf:uf andValueRanking:[NSDecimalNumber decimalNumberWithDecimal:[valueRanking decimalValue]] andFollowed:@0];
+                    
+                    NSLog(@"%@", nickName);
+                }
+                
+                self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+                self.parliamentaryNicknameFilteredArray = [NSArray array];
+                [self filterFollowedParliamentary];
+                [self filterParliamentary];
+                [self sortParliamentary];
+                
+                NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+                for(NSNumber *idParliamentary in followedParliamentaryIds) {
+                    [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:[NSNumber numberWithInteger:1]];
+                    [self updateQuotasForParliamentary:idParliamentary];
+                }
+                
+                [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
+                
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(1 * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self.tableView reloadData];
+                    [hud hide:YES afterDelay:0.5f];
+                });
+                
+            } else {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [hud hide:YES];
+                });
+                
+                [self showError:isConnectionError];
+            }
+        }];
+    });
+    
+    
+}
+
+-(void) updateQuotasForParliamentary:(NSNumber*) idParliamentary {
+    [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+        
+        if(success) {
+            NSNumber * idParliamentary;
+            NSNumber * idQuota;
+            NSNumber * numQuota;
+            NSString *nameQuota;
+            NSDecimalNumber * value;
+            NSNumber * updateVersion;
+            NSNumber * year;
+            NSNumber * month;
+            
+            
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+            
+            for(NSDictionary *jsonDict in jsonArray) {
+                idQuota = jsonDict[@"pk"];
+                value = [NSDecimalNumber decimalNumberWithDecimal:[[formatter numberFromString:jsonDict[@"fields"][@"valor"]] decimalValue]];
+                idParliamentary = jsonDict[@"fields"][@"idparlamentar"];
+                numQuota = jsonDict[@"fields"][@"numsubcota"];
+                nameQuota = jsonDict[@"fields"][@"descricao"];
+                month = jsonDict[@"fields"][@"mes"];
+                year = jsonDict[@"fields"][@"ano"];
+                updateVersion = jsonDict[@"fields"][@"versaoupdate"];
+                
+                [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
+            }
+           
+        } else {
+            [self showError:isConnectionError];
+        }
+    }];
+}
+
 -(BOOL) isSearchBarHidden {
     return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -8);
 }
@@ -533,10 +653,22 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     if (self.viewFollowedEnabled) {
         NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
         self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
-    }
-    else{
+    } else {
         self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     }
+}
+
+-(void) showError:(BOOL) isConnectionError {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = nil;
+        
+        if(isConnectionError)
+            alert = [[UIAlertView alloc] initWithTitle:@"Erro!" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        else
+            alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Ocorreu algum erro com o nosso servidor, por conta disso o AKAN não conseguiu carregar novos dados. Abra o app mais tarde para tentar novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    });
 }
 
 @end

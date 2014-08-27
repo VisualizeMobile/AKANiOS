@@ -2,7 +2,7 @@
 //  AKQuota.m
 //  AKANiOS
 //
-//  Created by Ramon Cruz on 8/18/14.
+//  Created by Matheus Fonseca on 26/08/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
@@ -14,12 +14,12 @@
 @dynamic idParliamentary;
 @dynamic idQuota;
 @dynamic idUpdate;
-@dynamic month;
+@dynamic imageColor;
 @dynamic imageName;
+@dynamic month;
 @dynamic nameQuota;
 @dynamic numQuota;
 @dynamic value;
 @dynamic year;
-@dynamic imageColor;
 
 @end

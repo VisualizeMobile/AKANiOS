@@ -2,7 +2,7 @@
 //  AKQuota.h
 //  AKANiOS
 //
-//  Created by Ramon Cruz on 8/18/14.
+//  Created by Matheus Fonseca on 26/08/14.
 //  Copyright (c) 2014 VisualizeMobile. All rights reserved.
 //
 
@@ -12,15 +12,15 @@
 
 @interface AKQuota : NSManagedObject
 
-@property (nonatomic, retain) NSString * idParliamentary;
-@property (nonatomic, retain) NSString * idQuota;
+@property (nonatomic, retain) NSNumber * idParliamentary;
+@property (nonatomic, retain) NSNumber * idQuota;
 @property (nonatomic, retain) NSNumber * idUpdate;
-@property (nonatomic, retain) NSNumber * month;
+@property (nonatomic, retain) NSNumber * imageColor;
 @property (nonatomic, retain) NSString * imageName;
+@property (nonatomic, retain) NSNumber * month;
 @property (nonatomic, retain) NSString * nameQuota;
 @property (nonatomic, retain) NSNumber * numQuota;
-@property (nonatomic, retain) NSNumber * value;
+@property (nonatomic, retain) NSDecimalNumber * value;
 @property (nonatomic, retain) NSNumber * year;
-@property (nonatomic, retain) NSNumber * imageColor;
 
 @end
