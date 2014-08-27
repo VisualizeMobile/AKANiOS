@@ -38,7 +38,6 @@ NSString *const middle  = @"Gasto médio mensal";
             
             for (AKQuota *quota in self.quotas) {
                 if ([quota.month isEqual:@(i)]) {
-                    NSLog(@"cota %@ %@", quota.month, quota.value);
                     y = quota.value;
                     break;
                 }else{
@@ -60,9 +59,9 @@ NSString *const middle  = @"Gasto médio mensal";
         
         for ( int i = 1; i <= 12; i++ ) {
             
+            y = [NSNumber numberWithDouble:( 500 + 175*pow(i, 1.12)*((i%2)-0.5))+1000];
             for (AKQuota *quota in self.middlQquotas) {
                 if ([quota.month isEqual:@(i)]) {
-                    NSLog(@"cota %@ %@", quota.month, quota.value);
                     y = quota.value;
                     break;
                 }else{
@@ -150,30 +149,34 @@ NSString *const middle  = @"Gasto médio mensal";
         // Set axes
         graph.axisSet.axes = [NSArray arrayWithObjects:x, y, nil];
         
+        
+        CPTScatterPlot *averagePlot = [[CPTScatterPlot alloc] init];
+        averagePlot.identifier    = middle;
+        // Make the data source line use curved interpolation
+//      averagePlot.interpolation = CPTScatterPlotInterpolationLinear;
+        averagePlot.interpolation = CPTScatterPlotInterpolationCurved;
+
+        CPTMutableLineStyle *lineStyle = [averagePlot.dataLineStyle mutableCopy];
+        lineStyle.lineWidth     = 4.0;
+        lineStyle.lineColor     = [[[CPTColor alloc]initWithCGColor:[[AKUtil color2] CGColor]] colorWithAlphaComponent:1];
+        averagePlot.dataLineStyle = lineStyle;
+        averagePlot.dataSource    = self;
+        
+        [graph addPlot:averagePlot];
+        
         // Create a plot that uses the data source method
         CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
         dataSourceLinePlot.identifier = kData;
         
         // Make the data source line use curved interpolation
-        dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationLinear;
-        
-        CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
+//      dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationLinear;
+        dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
         lineStyle.lineWidth              = 5.0;
         lineStyle.lineColor              = [[[CPTColor alloc]initWithCGColor:[[AKUtil color5] CGColor]] colorWithAlphaComponent:1];
         dataSourceLinePlot.dataLineStyle = lineStyle;
         
         dataSourceLinePlot.dataSource = self;
         [graph addPlot:dataSourceLinePlot];
-        
-        // First derivative
-        CPTScatterPlot *firstPlot = [[CPTScatterPlot alloc] init];
-        firstPlot.identifier    = middle;
-        lineStyle.lineWidth     = 2.0;
-        lineStyle.lineColor     = [CPTColor redColor];
-        firstPlot.dataLineStyle = lineStyle;
-        firstPlot.dataSource    = self;
-        
-        [graph addPlot:firstPlot];
         
         // Auto scale the plot space to fit the plot data
         [plotSpace scaleToFitPlots:[graph allPlots]];

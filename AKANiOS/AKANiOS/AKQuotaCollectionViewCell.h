@@ -11,7 +11,9 @@
 
 @interface AKQuotaCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic)AKQuota *quota;
+@property (nonatomic) float average;
+@property (nonatomic) float stdDeviation;
+@property (nonatomic) AKQuota *quota;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *levelImageView;
