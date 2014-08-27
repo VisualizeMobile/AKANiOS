@@ -67,7 +67,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryNicknameFilteredArray = [NSArray array];
 
     self.settingsManager = [AKSettingsManager sharedManager];
-    NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
+    //NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -406,7 +406,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             
             if (self.searchController.active) {
                 [self filterArrayByText:self.searchController.searchBar.text];
-                NSLog(@"%@",self.searchController.searchBar.text);
+                //NSLog(@"%@",self.searchController.searchBar.text);
                 NSIndexPath *cellIndex = [self.searchController.searchResultsTableView indexPathForCell:cell];
                 [self.searchController.searchResultsTableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
             }
@@ -489,6 +489,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
             
             if(success) {
+
                 [self.parliamentaryDao deleteAllPariamentary];
                 NSNumber * idParliamentary;
                 NSString * nickName;
@@ -502,7 +503,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 
                 for(NSDictionary *jsonDict in jsonArray) {
                     idParliamentary = jsonDict[@"pk"];
-                    valueRanking = [formatter numberFromString:jsonDict[@"fields"][@"valor"]];
+                    valueRanking = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
                     posRanking = jsonDict[@"fields"][@"ranking"];
                     uf = jsonDict[@"fields"][@"ufparlamentar"];
                     party = jsonDict[@"fields"][@"partidoparlamentar"];
@@ -512,7 +513,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     
                     //NSLog(@"%@", nickName);
                 }
-                
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
                 [self applyAllDefinedFiltersAndSort];
@@ -524,11 +524,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 }
                 
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
-                
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(1 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
-                    self.noResultsLabel.hidden = YES;
                     [hud hide:YES afterDelay:0.5f];
                 });
                 
@@ -542,8 +540,45 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         }];
     });
     
-    
 }
+//
+//-(void) updateStatistics{
+//    [self.webService downloadDataWithPath:@"/cota/media-maximo-por-periodo" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+//        if(success) {
+//            NSNumber * idParliamentary;
+//            NSNumber * idQuota;
+//            NSNumber * numQuota;
+//            NSString *nameQuota;
+//            NSDecimalNumber * value;
+//            NSNumber * updateVersion;
+//            NSNumber * year;
+//            NSNumber * month;
+//            
+//            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+//            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//            
+//            int index = 0;
+//            for(NSDictionary *jsonDict in jsonArray) {
+//                index--;
+//                idQuota = [NSNumber numberWithInt:index];
+//                value = [NSDecimalNumber decimalNumberWithString: [[formatter numberFromString:[jsonDict[@"valor_medio"] stringValue]] stringValue]];
+//                idParliamentary = [NSNumber numberWithInt:-1];
+//                numQuota = jsonDict[@"numsubcota"];
+//                nameQuota = jsonDict[@"descricao"];
+//                month = jsonDict[@"mes"];
+//                year = jsonDict[@"ano"];
+//                
+//                NSLog(@"%@",[jsonDict[@"valor_medio"] stringValue]);
+//                
+//                [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
+//            }
+//            
+//        } else {
+//            [self showError:isConnectionError];
+//        }
+//    }];
+//}
+
 
 -(void) updateQuotasForParliamentary:(NSNumber*) idParliamentary {
     [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
@@ -564,7 +599,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             
             for(NSDictionary *jsonDict in jsonArray) {
                 idQuota = jsonDict[@"pk"];
-                value = [NSDecimalNumber decimalNumberWithDecimal:[[formatter numberFromString:jsonDict[@"fields"][@"valor"]] decimalValue]];
+                value = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
                 idParliamentary = jsonDict[@"fields"][@"idparlamentar"];
                 numQuota = jsonDict[@"fields"][@"numsubcota"];
                 nameQuota = jsonDict[@"fields"][@"descricao"];

@@ -393,8 +393,9 @@
                 
                 for(NSDictionary *jsonDict in jsonArray) {
                     idQuota = jsonDict[@"pk"];
-                    value = [NSDecimalNumber decimalNumberWithDecimal:[[formatter numberFromString:jsonDict[@"fields"][@"valor"]] decimalValue]];
+                    value = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
                     idParliamentary = jsonDict[@"fields"][@"idparlamentar"];
+                    //NSLog(@"%@",value);
                     numQuota = jsonDict[@"fields"][@"numsubcota"];
                     nameQuota = jsonDict[@"fields"][@"descricao"];
                     month = jsonDict[@"fields"][@"mes"];

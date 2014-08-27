@@ -59,7 +59,6 @@ NSString *const middle  = @"Gasto médio mensal";
         
         for ( int i = 1; i <= 12; i++ ) {
             
-            y = [NSNumber numberWithDouble:( 500 + 175*pow(i, 1.12)*((i%2)-0.5))+1000];
             for (AKQuota *quota in self.middlQquotas) {
                 if ([quota.month isEqual:@(i)]) {
                     y = quota.value;

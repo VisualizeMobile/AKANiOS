@@ -41,6 +41,7 @@
     
     self.quotaDao = [AKQuotaDao getInstance];
     self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
+    self.middleQuotasArray = [self.quotaDao getQuotasByIdParliamentary: [NSNumber numberWithInt:-1] withNumQuota:self.quota.numQuota];
     [self setDetailItem];
 }
 
