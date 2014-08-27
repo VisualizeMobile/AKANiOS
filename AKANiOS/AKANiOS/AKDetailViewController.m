@@ -32,6 +32,8 @@
 @property (nonatomic) NSInteger monthNumber;
 @property (nonatomic) NSInteger yearNumber;
 @property (nonatomic) BOOL toBeUnfollowed;
+@property (nonatomic) NSMutableArray *yearsArray;
+@property (nonatomic) NSInteger olderYear;
 
 @end
 
@@ -75,6 +77,8 @@
         else
             [self filterQuotas];
     }
+
+    [self setYearsArray];
 }
 
 -(void) configureViewVisualComponentes {
@@ -177,7 +181,7 @@
     NSInteger yearRow =  [pickerView selectedRowInComponent:1];
     self.yearLabel = [self yearForPickerRow:yearRow];
     //TODO: dao number of years
-    self.yearNumber = yearRow+2013;
+    self.yearNumber = yearRow+self.olderYear;
 }
 
 #pragma mark - PickerView Data Source
@@ -191,8 +195,8 @@
         return 12;
     }
     if(component == 1){
-        //TODO: dao number of years
-        return 2;
+        
+        return [self.yearsArray count];
     }
     return 1;
 }
@@ -340,18 +344,7 @@
 }
 
 - (NSString *)yearForPickerRow:(NSInteger)row {
-    //TODO year
-    switch (row) {
-        case 0:
-            return @"2013";
-            break;
-        case 1:
-            return @"2014";
-            break;
-        default:
-            return @"2015";
-            break;
-    }
+    return[ NSString stringWithFormat:@"%d", self.olderYear + row ];
 }
 
 -(void) keyboardWillShow:(NSNotification *) note {
@@ -463,6 +456,15 @@
     }
     else{
         self.quotaCollectionView.hidden = NO;
+    }
+}
+
+-(void)setYearsArray{
+    
+    self.yearsArray = [[NSMutableArray alloc] init];
+    self.olderYear = [[self.quotaDao getOlderYear] integerValue];
+    for (int i=self.olderYear; i<=self.yearNumber; i++) {
+        [self.yearsArray addObject:@(i)];
     }
 }
 

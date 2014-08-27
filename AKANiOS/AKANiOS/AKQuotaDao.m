@@ -379,6 +379,20 @@
     }
 }
 
+-(NSNumber *)getOlderYear{
+    NSArray *quotas = [self getQuotas];
+    
+    NSArray *sortDescriptors = @[
+                                 [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:YES]
+                                 ];
+    
+    quotas = [quotas sortedArrayUsingDescriptors:sortDescriptors];
+    NSLog(@"%@", quotas);
+    
+    AKQuota *quota = [quotas objectAtIndex:0];
+    
+    return quota.year;
+}
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas{
     for (AKQuota *quota in quotas) {
