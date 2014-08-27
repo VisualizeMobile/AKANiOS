@@ -14,30 +14,24 @@ NSString const* urlBase = @"http://107.170.177.5:8000/akan";
 @implementation AKWebServiceConsumer
 
 -(void) downloadDataWithPath:(NSString*) dataPath andFinishBlock:(AKWebServiceFinishedDownload)finishedBlock {
-    NSString *dataUrl = [NSString stringWithFormat:@"%@%@", urlBase, dataPath];
     
+    NSString *dataUrl = [NSString stringWithFormat:@"%@%@", urlBase, dataPath];
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error != nil) {
             NSLog(@"%s Connection error: %@", __FUNCTION__, [error localizedDescription]);
             
-            Reachability *_reachability = [Reachability reachabilityForInternetConnection];
-            NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];
-
-            if (remoteHostStatus == NotReachable) {
+            Reachability *reachability = [Reachability reachabilityForInternetConnection];
+            if ( (reachability.currentReachabilityStatus == NotReachable) ||
+                ((reachability.currentReachabilityStatus == ReachableViaWWAN) && reachability.connectionRequired == YES) ) {
+                NSLog(@"%s Reachability error: No internet connection", __FUNCTION__);
                 finishedBlock(nil, NO, YES);
-            } else {
-                finishedBlock(nil, NO, NO);
+                
+                return;
             }
-            
-            return;
-        }
-        
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
-        if([httpResponse statusCode] >= 400) {
-            NSLog(@"%s HTTP status code error: %ld", __FUNCTION__, (long) [httpResponse statusCode]);
-            
+
             finishedBlock(nil, NO, NO);
+            
             return;
         }
         
@@ -57,6 +51,26 @@ NSString const* urlBase = @"http://107.170.177.5:8000/akan";
     }];
 
     [downloadTask resume];
+}
+
+- (NSString *)stringFromStatus:(NetworkStatus) status {
+    
+    NSString *string;
+    switch(status) {
+        case NotReachable:
+            string = @"Not Reachable";
+            break;
+        case ReachableViaWiFi:
+            string = @"Reachable via WiFi";
+            break;
+        case ReachableViaWWAN:
+            string = @"Reachable via WWAN";
+            break;
+        default:
+            string = @"Unknown";
+            break;
+    }
+    return string;
 }
 
 @end

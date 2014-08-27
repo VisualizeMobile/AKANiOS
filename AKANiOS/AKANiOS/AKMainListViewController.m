@@ -371,7 +371,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) searchByName:(id) sender {
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
-
+    
     if([self isSearchBarHidden] == NO) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -393,7 +393,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         } else {
             [self.searchController.searchBar becomeFirstResponder];
         }
-
+        
     });
 }
 
@@ -767,9 +767,13 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         if(self.parliamentaryArray.count == 0) {
             self.noResultsLabel.hidden = NO;
             self.tableView.hidden = YES;
+            self.toolBar.rankButton.enabled = NO;
+            self.toolBar.searchButton.enabled = NO;
         } else {
             self.noResultsLabel.hidden = YES;
             self.tableView.hidden = NO;
+            self.toolBar.rankButton.enabled = YES;
+            self.toolBar.searchButton.enabled = YES;
         }
     });
     
