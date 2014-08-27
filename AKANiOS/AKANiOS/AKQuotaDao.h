@@ -28,4 +28,6 @@
 -(BOOL) deleteQuotaByIdParliamentary:(NSString *)idParliamentary;
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas;
+
+-(NSArray *)getMiddleQuotasWithQuotaNumber:(NSNumber *)numQuota andYear:(NSNumber *)year;
 @end

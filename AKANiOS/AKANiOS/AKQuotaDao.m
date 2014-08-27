@@ -389,6 +389,9 @@
     return YES;
 }
 
-
+-(NSArray *)getMiddleQuotasWithQuotaNumber:(NSNumber *)numQuota andYear:(NSNumber *)year{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    return result;
+}
 
 @end

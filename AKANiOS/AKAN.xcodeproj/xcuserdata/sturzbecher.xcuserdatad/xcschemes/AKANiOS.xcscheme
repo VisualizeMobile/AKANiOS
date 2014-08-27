@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
-               BuildableName = "AKANiOS.app"
+               BuildableName = "AKAN.app"
                BlueprintName = "AKAN"
                ReferencedContainer = "container:AKAN.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8EAFA8561986C44F00E58AD9"
-               BuildableName = "AKANiOSTests.xctest"
+               BuildableName = "AKANTests.xctest"
                BlueprintName = "AKANTests"
                ReferencedContainer = "container:AKAN.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
-            BuildableName = "AKANiOS.app"
+            BuildableName = "AKAN.app"
             BlueprintName = "AKAN"
             ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
-            BuildableName = "AKANiOS.app"
+            BuildableName = "AKAN.app"
             BlueprintName = "AKAN"
             ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8EAFA8361986C44F00E58AD9"
-            BuildableName = "AKANiOS.app"
+            BuildableName = "AKAN.app"
             BlueprintName = "AKAN"
             ReferencedContainer = "container:AKAN.xcodeproj">
          </BuildableReference>

@@ -18,6 +18,8 @@ CPTScatterPlotDelegate>
 @property (nonatomic, strong) NSMutableArray *graphs;
 @property (nonatomic, weak) NSString *section;
 @property (nonatomic, weak) NSString *title;
+@property (nonatomic, strong) NSArray *quotas;
+@property (nonatomic, strong) NSArray *middlQquotas;
 @property (nonatomic, strong) NSArray *plotData;
 @property (nonatomic, strong) NSArray *plotData1;
 
