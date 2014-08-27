@@ -33,17 +33,33 @@
 
 }
 
-
--(void)awakeFromNib{
-
+- (void)drawRect:(CGRect)rect
+{
+    [self setLevelHeight];
 }
 
 #pragma mark - custom methods
 
 -(void)imageForQuotaValue{
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
-    self.valueLabel.text = [NSString stringWithFormat:@"r$ %@",[self.quota value]];
+    self.imageView.backgroundColor = [self colorForQuotaValue];
+    self.valueLabel.text = [NSString stringWithFormat:@"R$ %@",[self.quota value]];
     self.valueLabel.textColor = [self colorForQuotaValue];
+    self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.levelImageView.tintColor = [self colorForQuotaValue];
+    [self setLevelHeight];
+}
+
+-(void)setLevelHeight{
+    float maxValue = 10000.00;
+    float multiplier = [self.quota.value floatValue] * 100 / maxValue;
+    CGFloat height = (multiplier <= 100)? multiplier : 100;
+    self.levelImageView.frame = CGRectMake(0,103, 130, 0);
+    [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
+     ^(void){
+         self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
+     }
+    completion:nil];
 }
 
 -(UIColor *)colorForQuotaValue{
@@ -68,14 +84,4 @@
             break;
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
 @end

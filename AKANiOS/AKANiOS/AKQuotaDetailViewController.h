@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "AKQuota.h"
 #import "AKParliamentary.h"
+#import "CorePlot-CocoaTouch.h"
+#import "AKCurvedScatterPlot.h"
 
-@interface AKQuotaDetailViewController : UIViewController <CPTPlotDataSource, UIActionSheetDelegate>
-
+@interface AKQuotaDetailViewController : UIViewController
+   
+@property (nonatomic, strong) AKCurvedScatterPlot *detailItem;
+@property (nonatomic, strong) IBOutlet UIView *hostingView;
 
 @property(nonatomic) AKParliamentary *parliamentary;
-@property(nonatomic) NSString *quotaName;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property(nonatomic) AKQuota *quota;
 
 @end

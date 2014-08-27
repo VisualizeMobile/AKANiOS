@@ -23,6 +23,7 @@
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @property (nonatomic) NSArray *quotas;
+@property (nonatomic) NSArray *allQuotas;
 @property (nonatomic) UIPickerView *datePickerView;
 @property (nonatomic) NSString *month;
 @property (nonatomic) NSString *year;
@@ -80,7 +81,6 @@
     
     UIImage *backButtonImage = [UIImage imageNamed:@"backImage"];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
-    
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary nickName];
     self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
@@ -94,7 +94,6 @@
     else{
         [self setButtonUnfollowedState];
     }
-    
     self.datePickerView = [[UIPickerView  alloc] init];
     self.datePickerView.delegate = self;
     self.datePickerView.dataSource =self;
@@ -139,9 +138,11 @@
     switch (component) {
         case 0:
             self.month = [self monthForPickerRow:row];
+            self.monthNumber = row+1;
             break;
         case 1:
             self.year = [self yearForPickerRow:row];
+            self.yearNumber = row+2013;
             break;
         default:
             break;
@@ -182,7 +183,6 @@
         cell.quota = quota;
         [cell imageForQuotaValue];
         return cell;
-
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -190,9 +190,9 @@
     
     AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
    
-    quotaDetailController.quotaName = quota.nameQuota;
+    quotaDetailController.quota = quota;
     quotaDetailController.parliamentary = self.parliamentary;
-   
+    
     [self.navigationController pushViewController:quotaDetailController animated:YES];
     
 }
@@ -214,12 +214,13 @@
     }
 }
 
+#pragma mark - Custom Methods
+
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.month, self.year ];
+    [self filterQuotas];
     [self.datePickerField resignFirstResponder];
 }
-
-#pragma mark - Custom Methods
 
 - (void)setButtonUnfollowedState {
     [self.followButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
@@ -233,22 +234,25 @@
     self.followLabel.textColor = [AKUtil color3];
 }
 
-
-
 -(void)popViewController{
+    if (self.toBeUnfollowed) {
+        [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@0];
+        [self.quotaDao deleteQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)updateFollowParliamentaryWithId:(NSNumber *)parliamentaryId andValue:(NSNumber *)followed{
     [self.parliamentary setFollowed:followed];
-    [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
     if ([followed isEqual: @0]) {
+        self.toBeUnfollowed = YES;
         //[self.quotaDao deleteQuotaByIdParliamentary:parliamentaryId];
     }
     else{
-        [self.quotaDao insertQuotasFromArray: self.quotas];
+        self.toBeUnfollowed = NO;
+        [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentaryId andFollowedValue:followed];
+        [self.quotaDao insertQuotasFromArray: self.allQuotas];
     }
-    
 }
 
 -(void)loanNibforOrientation:(UIInterfaceOrientation)orientation {
@@ -265,6 +269,15 @@
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
         [self configureViewVisualComponentes];
+    }
+}
+
+-(void)getParliamentaryQuotas{
+    if (self.parliamentary.followed) {
+        self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    }
+    else{
+        //request from server
     }
 }
 

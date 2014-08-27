@@ -18,7 +18,6 @@
                                       reason:@"Use getInstance instead of init method"
                                     userInfo:nil];
 }
-
 - (instancetype)initPrivate
 {
     self = [super init];
@@ -110,7 +109,7 @@
         [newQuota setIdParliamentary:idParliamentary];
         [newQuota setImageColor:[self imageColorOfValue:value]];
         
-        nameImage=[self imageNameOfSubtype:[numQuota intValue] forValue:value];
+        nameImage=[self imageNameOfSubtype:[[newQuota numQuota] intValue]];
         [newQuota setImageName:nameImage];
         
         
@@ -273,112 +272,112 @@
     return NO;
 }
 
-
 /*
- 1 - passagens aéreas;
- 2 - telefonia;
- 3 - serviços postais, vedada a aquisição de selos;
- 4 - manutenção de escritórios de apoio à atividade parlamentar, compreendendo locação de imóveis, pagamento de taxa de condomínio, IPTU, energia elétrica, água e esgoto, locação de móveis e equipamentos, material de expediente e suprimentos de informática, acesso à internet, assinatura de TV a cabo ou similar, locação ou aquisição de licença de uso de software, assinatura de publicações;
- 5 - fornecimento de alimentação do parlamentar;
- 6 - hospedagem, exceto do parlamentar no Distrito Federal;
- 7 - locação ou fretamento de aeronaves, embarcações e veículos automotores (neste último caso, o ressarcimento é limitado ao percentual de 10% do valor do veículo conforme a tabela Fipe do mês utilizado pelo parlamentar);
- 8 - combustíveis e lubrificantes, até o limite de R$ 4.500,00 mensais;
- 9 - serviços de segurança, prestados por empresa especializada, até o limite inacumulável de R$ 4.500,00 mensais;
- 10 - contratação, para fins de apoio ao exercício do mandato parlamentar, de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas;
- 11 - divulgação da atividade parlamentar, exceto nos 120 dias anteriores à data das eleições de âmbito federal, estadual ou municipal.
- */
+ ESCRITORIO = 1;
+ COMBUSTIVEL = 3;
+ TRABALHO_TECNICO_E_CONSULTORIA = 4;
+ DIVULGACAO_ATIVIDADE_PARLAMENTAR = 5;
+ SEGURANCA = 8;
+ FRETE_AVIAO = 9;
+ TELEFONIA = 10;
+ SERVICOS_POSTAIS = 11;
+ ASSINATURA_DE_PUBLICACOES = 12;
+ ALIMENTACAO = 13;
+ HOSPEDAGEM = 14;
+ LOCACAO_DE_VEICULOS = 15;
+ EMISSAO_BILHETES_AEREOS = 999;*/
 
 -(NSString *)subtypeNameOfSubtype:(int)subtype{
     switch (subtype) {
         case 1:
-            return @"Passagens Aereas";
-            break;
-        case 2:
-            return @"Telefonia";
-            break;
-        case 3:
-            return @"Serviços Postais";
-            break;
-        case 4:
             return @"Escritório";
             break;
+        case 3:
+            return @"Combustível";
+            break;
+        case 4:
+            return @"Pesquisas e Consultorias";
+            break;
         case 5:
-            return @"Alimentação";
-            break;
-        case 6:
-            return @"Hospedagem";
-            break;
-        case 7:
-            return @"Locação de Aeronaves";
+            return @"Divulgação de Atividade Parlamentar";
             break;
         case 8:
-            return @"Locação de Automóveis";
-            break;
-        case 9:
-            return @"Combustiveis";
-            break;
-        case 10:
             return @"Segurança";
             break;
+        case 9:
+            return @"Fretamento de Aeronaves";
+            break;
+        case 10:
+            return @"Telefonia";
+            break;
         case 11:
-            return @"Pesquisas";
+            return @"Serviços Postais";
             break;
         case 12:
-            return @"Divulgação";
+            return @"Assinatura de Publicações";
             break;
         case 13:
-            return @"Assinaturas";
+            return @"Alimentação";
+            break;
+        case 14:
+            return @"Hospedagem";
+            break;
+        case 15:
+            return @"Locação de Veículos";
+            break;
+        case 999:
+            return @"Bilhetes Aéreos";
             break;
         default:
-            return @"";
+            return @"Nenhum";
             break;
     }
 }
 
 
--(NSString *)imageTypeOfSubtype:(int)subtype{
+-(NSString *)imageNameOfSubtype:(int)subtype{
     switch (subtype) {
         case 1:
-            return @"passagem";
-            break;
-        case 2:
-            return @"telefonia";
-            break;
-        case 3:
-            return @"postais";
-            break;
-        case 4:
             return @"escritorio";
             break;
-        case 5:
-            return @"alimentacao";
-            break;
-        case 6:
-            return @"hospedagem";
-            break;
-        case 7:
-            return @"aeronaves";
-            break;
-        case 8:
-            return @"automovel";
-            break;
-        case 9:
+        case 3:
             return @"combustivel";
             break;
-        case 10:
-            return @"seguranca";
-            break;
-        case 11:
+        case 4:
             return @"consultoria";
             break;
-        case 12:
+        case 5:
             return @"divulgacao";
             break;
-        case 13:
+        case 8:
+            return @"seguranca";
+            break;
+        case 9:
+            return @"aeronaves";
+            break;
+        case 10:
+            return @"telefonia";
+            break;
+        case 11:
+            return @"postais";
+            break;
+        case 12:
             return @"assinaturas";
             break;
+        case 13:
+            return @"alimentacao";
+            break;
+        case 14:
+            return @"hospedagem";
+            break;
+        case 15:
+            return @"automovel";
+            break;
+        case 999:
+            return @"passagem";
+            break;
         default:
-            return @"";
+            return [NSString stringWithFormat: @"nenhum: %d", subtype ];
             break;
     }
     
@@ -405,7 +404,9 @@
 }
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas{
-    //TODO implement persistence
+    for (AKQuota *quota in quotas) {
+        [self insertQuotaWithId:quota.idQuota andNumQuota:quota.numQuota andNameQuota:quota.nameQuota andMonth:quota.month andYear:quota.year andIdUpdate:quota.idUpdate andValue:quota.value andIdParliamentary:quota.idParliamentary];
+    }
     return YES;
 }
 

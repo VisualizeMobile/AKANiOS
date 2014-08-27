@@ -145,15 +145,16 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) viewWillAppear:(BOOL)animated {
     
     [self filterFollowedParliamentary];
-    self.parliamentaryNicknameFilteredArray = [NSArray array];
-    
-    [self filterParliamentary];
-    
-    [self sortParliamentary];
     
     [self transformNavigationBarButtons];
     
     [self.tableView reloadData];
+    
+    if (self.searchController.active)
+    {
+        [self filterArrayByText:self.searchController.searchBar.text];
+        [self.searchController.searchResultsTableView reloadData];
+    }
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
@@ -292,8 +293,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 #pragma mark - Search Bar Delegate
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
-    self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+    [self filterArrayByText:searchText];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
@@ -310,6 +310,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    [self.tableView reloadData];
     self.searchEnabled = NO;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
     
@@ -373,8 +374,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     if([sender.superview.superview.superview isKindOfClass:[AKMainTableViewCell class]]) {
         AKMainTableViewCell *cell = ((AKMainTableViewCell*)sender.superview.superview.superview);
         AKParliamentary *parliamentary = nil;
-
-        
         if (self.searchController.active)
         {
             NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
@@ -655,7 +654,23 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
     } else {
         self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
+        [self loadConfigurations];
     }
+    
+}
+
+- (void)loadConfigurations {
+    
+    self.parliamentaryNicknameFilteredArray = [NSArray array];
+    
+    [self filterParliamentary];
+    
+    [self sortParliamentary];
+}
+
+- (void)filterArrayByText:(NSString *)searchText {
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
+    self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
 }
 
 -(void) showError:(BOOL) isConnectionError {

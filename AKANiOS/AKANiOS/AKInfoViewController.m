@@ -14,6 +14,7 @@
 @end
 
 @implementation AKInfoViewController
+@synthesize scrollViewInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,15 +34,16 @@
 {
     [super viewDidLoad];
         self.title = @"AKAN";
+    scrollViewInfo.delegate=self;
+    
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self transformNavigationBarButtons];
-    
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    self.scrollViewInfo.contentSize = CGSizeMake(320,2200);
 }
-
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
     [self transformNavigationBarButtons];
@@ -72,6 +74,5 @@
         = CGAffineTransformMakeScale(1, 1);
     }
 }
-
 
 @end
