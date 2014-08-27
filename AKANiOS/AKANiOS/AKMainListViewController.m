@@ -582,9 +582,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 month = jsonDict[@"mes"];
                 year = jsonDict[@"ano"];
                 
-                BOOL ok = [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
-                
-                NSLog(@"%d",ok);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    BOOL ok = [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
+                    
+                    NSLog(@"%d",ok);
+                });
             }
             
         } else {
