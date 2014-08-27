@@ -22,6 +22,8 @@ CPTScatterPlotDelegate>
 @property (nonatomic, strong) NSArray *middlQquotas;
 @property (nonatomic, strong) NSArray *plotData;
 @property (nonatomic, strong) NSArray *plotData1;
+@property (nonatomic)NSString *kData;
+@property (nonatomic)NSString *year;
 
 -(void)renderInView:(UIView *)hostingView withTheme:(CPTTheme *)theme animated:(BOOL)animated;
 -(void)killGraphic;

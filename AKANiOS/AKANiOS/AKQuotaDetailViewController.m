@@ -77,6 +77,17 @@
 {
     AKCurvedScatterPlot *newDetailItem = [[AKCurvedScatterPlot alloc] init];
     self.detailItem = newDetailItem;
+    self.detailItem.year = [self.quota.year stringValue];
+    NSString *name = self.parliamentary.nickName;
+    NSString *kName;
+    
+    if ([name length] >=23) {
+        kName = [name substringToIndex:20];
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@...", kName];
+    }
+    else{
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@", name];
+    }
     self.detailItem.quotas = self.quotasArray;
     self.detailItem.middlQquotas = [self.quotaDao getMiddleQuotasWithQuotaNumber:self.quota.numQuota andYear:self.quota.year];
     self.currentTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
