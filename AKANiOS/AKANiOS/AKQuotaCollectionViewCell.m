@@ -8,7 +8,11 @@
 
 #import "AKQuotaCollectionViewCell.h"
 #import "AKUtil.h"
+@interface AKQuotaCollectionViewCell()
 
+@property float maxValue;
+
+@end
 @implementation AKQuotaCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -41,6 +45,7 @@
 #pragma mark - custom methods
 
 -(void)imageForQuotaValue{
+    self.maxValue = self.average + 1.2*self.stdDeviation;
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
     self.imageView.backgroundColor = [self colorForQuotaValue];
     self.valueLabel.text = [NSString stringWithFormat:@"R$ %@",[self.quota value]];
@@ -51,8 +56,7 @@
 }
 
 -(void)setLevelHeight{
-    float maxValue = 10000.00;
-    float multiplier = [self.quota.value floatValue] * 100 / maxValue;
+    float multiplier = [self.quota.value floatValue] * 100 / self.maxValue;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
@@ -63,25 +67,20 @@
 }
 
 -(UIColor *)colorForQuotaValue{
-    switch ([[self.quota imageColor] intValue]) {
-        case 1:
-            return [AKUtil color4];
-            break;
-        case 2:
-            return [AKUtil color1];
-            break;
-        case 3:
-            return [AKUtil color3];
-            break;
-        case 4:
-            return [AKUtil color2];
-            break;
-        case 5:
-            return [AKUtil color5];
-            break;
-        default:
-            return [AKUtil color1];
-            break;
+    if (self.quota.value == 0) {
+        return [AKUtil color4];
+    }
+    else if(self.quota.value > 0 && [self.quota.value floatValue] < (self.average - self.stdDeviation/2)){
+        return [AKUtil color1];
+    }
+    else if([self.quota.value floatValue] >= (self.average - self.stdDeviation/2) && [self.quota.value floatValue] <= (self.average)){
+        return [AKUtil color3];
+    }
+    else if([self.quota.value floatValue] > (self.average) && [self.quota.value floatValue] <= (self.average + self.stdDeviation/2)){
+        return [AKUtil color2];
+    }
+    else{
+        return [AKUtil color5];
     }
 }
 @end

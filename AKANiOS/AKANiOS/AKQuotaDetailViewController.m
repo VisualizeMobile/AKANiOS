@@ -14,7 +14,9 @@
 @interface AKQuotaDetailViewController ()
 
 @property(nonatomic) NSArray *quotasArray;
-
+@property(nonatomic) NSArray *middleQuotasArray;
+@property(nonatomic) CPTTheme *currentTheme;
+@property(nonatomic) AKQuotaDao *quotaDao;
 @end
 
 @implementation AKQuotaDetailViewController
@@ -57,8 +59,11 @@
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    self.hostingView.frame = self.view.bounds;
-    [self.detailItem renderInView:self.hostingView withTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme] animated:YES];
+    CGRect frame = self.view.bounds;
+    frame.size.height -= 60;
+    frame.origin.y += 62;
+    self.hostingView.frame = frame;
+    [self.detailItem renderInView:self.hostingView withTheme:self.currentTheme animated:YES];
 }
 
 
@@ -73,7 +78,10 @@
 {
     AKCurvedScatterPlot *newDetailItem = [[AKCurvedScatterPlot alloc] init];
     self.detailItem = newDetailItem;
-    [self.detailItem renderInView:self.hostingView withTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme] animated:YES];
+    self.detailItem.quotas = self.quotasArray;
+    self.detailItem.middlQquotas = [self.quotaDao getMiddleQuotasWithQuotaNumber:self.quota.numQuota andYear:self.quota.year];
+    self.currentTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    [self.detailItem renderInView:self.hostingView withTheme:self.currentTheme animated:YES];
 }
 
 -(void) dealloc{

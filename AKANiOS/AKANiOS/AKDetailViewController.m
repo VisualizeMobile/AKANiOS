@@ -210,10 +210,14 @@
     static NSString *cellIdentifier = @"AKCell";
     
     AKQuota *quota = self.quotas[indexPath.row];
-        AKQuotaCollectionViewCell *cell = (AKQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-        cell.quota = quota;
-        [cell imageForQuotaValue];
-        return cell;
+    AKQuotaCollectionViewCell *cell = (AKQuotaCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.quota = quota;
+    
+    //get from dao
+    cell.average = 60000;
+    cell.stdDeviation = 40000;
+    [cell imageForQuotaValue];
+    return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
