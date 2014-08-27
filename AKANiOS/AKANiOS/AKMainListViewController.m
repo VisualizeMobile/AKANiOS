@@ -510,7 +510,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     
                     [self.parliamentaryDao insertParliamentaryWithNickName:nickName andIdParliamentary:idParliamentary andParty:party andPosRanking:posRanking andUf:uf andValueRanking:[NSDecimalNumber decimalNumberWithDecimal:[valueRanking decimalValue]] andFollowed:@0];
                     
-                    NSLog(@"%@", nickName);
+                    //NSLog(@"%@", nickName);
                 }
                 
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
@@ -528,6 +528,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(1 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
+                    self.noResultsLabel.hidden = YES;
                     [hud hide:YES afterDelay:0.5f];
                 });
                 

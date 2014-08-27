@@ -224,7 +224,6 @@
     AKQuota *quota = self.quotas[indexPath.row];
     
     AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
-   
     quotaDetailController.quota = quota;
     quotaDetailController.parliamentary = self.parliamentary;
     

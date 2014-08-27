@@ -85,6 +85,9 @@
 
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary
 {
+    numQuota = [self verifyNumQuota:numQuota];
+    nameQuota = [self subtypeNameOfSubtype:[numQuota intValue]];
+    
     NSArray *result;
     NSError *Error=nil;
     
@@ -121,6 +124,15 @@
     }
     
     return NO;
+}
+
+-(NSNumber *)verifyNumQuota:(NSNumber *)numQuota{
+    if ([numQuota isEqual: @120] || [numQuota isEqual: @121] || [numQuota isEqual: @122] || [numQuota isEqual: @123]) {
+        return @15;
+    }else if ([numQuota isEqual: @999]){
+        return @9;
+    }
+    return numQuota;
 }
 
 -(BOOL)updateQuotaById:(NSString *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate
@@ -258,21 +270,6 @@
     return NO;
 }
 
-/*
- ESCRITORIO = 1;
- COMBUSTIVEL = 3;
- TRABALHO_TECNICO_E_CONSULTORIA = 4;
- DIVULGACAO_ATIVIDADE_PARLAMENTAR = 5;
- SEGURANCA = 8;
- FRETE_AVIAO = 9;
- TELEFONIA = 10;
- SERVICOS_POSTAIS = 11;
- ASSINATURA_DE_PUBLICACOES = 12;
- ALIMENTACAO = 13;
- HOSPEDAGEM = 14;
- LOCACAO_DE_VEICULOS = 15;
- EMISSAO_BILHETES_AEREOS = 999;*/
-
 -(NSString *)subtypeNameOfSubtype:(int)subtype{
     switch (subtype) {
         case 1:
@@ -285,13 +282,13 @@
             return @"Pesquisas e Consultorias";
             break;
         case 5:
-            return @"Divulgação de Atividade Parlamentar";
+            return @"Divulgação";
             break;
         case 8:
             return @"Segurança";
             break;
         case 9:
-            return @"Fretamento de Aeronaves";
+            return @"Passagens Aéreas";
             break;
         case 10:
             return @"Telefonia";
@@ -311,8 +308,8 @@
         case 15:
             return @"Locação de Veículos";
             break;
-        case 999:
-            return @"Bilhetes Aéreos";
+        case 119:
+            return @"Fretamento de Aeronaves";
             break;
         default:
             return @"Nenhum";
@@ -339,7 +336,7 @@
             return @"seguranca";
             break;
         case 9:
-            return @"aeronaves";
+            return @"passagem";
             break;
         case 10:
             return @"telefonia";
@@ -359,8 +356,8 @@
         case 15:
             return @"automovel";
             break;
-        case 999:
-            return @"passagem";
+        case 119:
+            return @"aeronaves";
             break;
         default:
             return [NSString stringWithFormat: @"nenhum: %d", subtype ];
