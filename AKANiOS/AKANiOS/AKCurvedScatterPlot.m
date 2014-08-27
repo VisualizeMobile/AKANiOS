@@ -10,8 +10,8 @@
 #import "AKUtil.h"
 #import "AKQuota.h"
 
-NSString *const kData   = @"Gasto do Deputado";
 NSString *const middle  = @"Gasto médio mensal";
+
 @interface AKCurvedScatterPlot ()
 
 @property (nonatomic, weak)CPTTheme *currentTheme;
@@ -125,7 +125,7 @@ NSString *const middle  = @"Gasto médio mensal";
         lineCap.fill      = [CPTFill fillWithColor:lineCap.lineStyle.lineColor];
         x.axisLineCapMax  = lineCap;
         
-        x.title       = @"Mês";
+        x.title       = [NSString stringWithFormat:@"Meses de %@",self.year];
         x.titleOffset = 20.0;
         
         // Label y with an automatic label policy.
@@ -152,8 +152,7 @@ NSString *const middle  = @"Gasto médio mensal";
         CPTScatterPlot *averagePlot = [[CPTScatterPlot alloc] init];
         averagePlot.identifier    = middle;
         // Make the data source line use curved interpolation
-//      averagePlot.interpolation = CPTScatterPlotInterpolationLinear;
-        averagePlot.interpolation = CPTScatterPlotInterpolationCurved;
+        averagePlot.interpolation = CPTScatterPlotInterpolationLinear;
 
         CPTMutableLineStyle *lineStyle = [averagePlot.dataLineStyle mutableCopy];
         lineStyle.lineWidth     = 4.0;
@@ -165,11 +164,10 @@ NSString *const middle  = @"Gasto médio mensal";
         
         // Create a plot that uses the data source method
         CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
-        dataSourceLinePlot.identifier = kData;
+        dataSourceLinePlot.identifier = self.kData;
         
         // Make the data source line use curved interpolation
-//      dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationLinear;
-        dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
+        dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationLinear;
         lineStyle.lineWidth              = 5.0;
         lineStyle.lineColor              = [[[CPTColor alloc]initWithCGColor:[[AKUtil color5] CGColor]] colorWithAlphaComponent:1];
         dataSourceLinePlot.dataLineStyle = lineStyle;
@@ -240,7 +238,7 @@ NSString *const middle  = @"Gasto médio mensal";
     NSUInteger numRecords = 0;
     NSString *identifier  = (NSString *)plot.identifier;
     
-    if ( [identifier isEqualToString:kData] ) {
+    if ( [identifier isEqualToString:self.kData] ) {
         numRecords = self.plotData.count;
     }
     else if ( [identifier isEqualToString:middle] ) {
@@ -255,7 +253,7 @@ NSString *const middle  = @"Gasto médio mensal";
     NSNumber *num        = nil;
     NSString *identifier = (NSString *)plot.identifier;
     
-    if ( [identifier isEqualToString:kData] ) {
+    if ( [identifier isEqualToString:self.kData] ) {
         num = [[self.plotData objectAtIndex:index] valueForKey:(fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y")];
     }
     else if ( [identifier isEqualToString:middle] ) {

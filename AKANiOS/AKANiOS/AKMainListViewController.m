@@ -17,8 +17,8 @@
 #import "AKConfigViewController.h"
 #import "AKWebServiceConsumer.h"
 #import "AKQuotaDao.h"
-#import "AKLoad.h"
 #import "MBProgressHUD.h"
+#import "AKStatisticDao.h"
 
 const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
@@ -33,6 +33,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKToolBar *toolBar;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
 @property (nonatomic) AKQuotaDao *quotaDao;
+@property (nonatomic) AKStatisticDao *statisticDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
 
@@ -63,7 +64,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryNicknameFilteredArray = [NSArray array];
-
+    self.statisticDao = [AKStatisticDao getInstance];
+    
     self.settingsManager = [AKSettingsManager sharedManager];
     
     self.lastOrientationWasLadscape = NO;
@@ -538,6 +540,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
                 
+                [self updateStatistics];
+                
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(1 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -556,43 +560,36 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     });
     
 }
-//
-//-(void) updateStatistics{
-//    [self.webService downloadDataWithPath:@"/cota/media-maximo-por-periodo" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
-//        if(success) {
-//            NSNumber * idParliamentary;
-//            NSNumber * idQuota;
-//            NSNumber * numQuota;
-//            NSString *nameQuota;
-//            NSDecimalNumber * value;
-//            NSNumber * updateVersion;
-//            NSNumber * year;
-//            NSNumber * month;
-//            
-//            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-//            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-//            
-//            int index = 0;
-//            for(NSDictionary *jsonDict in jsonArray) {
-//                index--;
-//                idQuota = [NSNumber numberWithInt:index];
-//                value = [NSDecimalNumber decimalNumberWithString: [[formatter numberFromString:[jsonDict[@"valor_medio"] stringValue]] stringValue]];
-//                idParliamentary = [NSNumber numberWithInt:-1];
-//                numQuota = jsonDict[@"numsubcota"];
-//                nameQuota = jsonDict[@"descricao"];
-//                month = jsonDict[@"mes"];
-//                year = jsonDict[@"ano"];
-//                
-//                NSLog(@"%@",[jsonDict[@"valor_medio"] stringValue]);
-//                
-//                [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
-//            }
-//            
-//        } else {
-//            [self showError:isConnectionError];
-//        }
-//    }];
-//}
+
+-(void) updateStatistics{
+    [self.webService downloadDataWithPath:@"/cota/media-maximo-por-periodo" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+        if(success) {
+            NSNumber * numQuota;
+            NSDecimalNumber * maxValue;
+            NSDecimalNumber * average;
+            NSNumber * year;
+            NSNumber * month;
+            
+            for(NSDictionary *jsonDict in jsonArray) {
+                
+                NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
+                maxValue = [NSDecimalNumber decimalNumberWithString: maxString];
+               // NSLog(@"valor maximo %@", maxValue);
+                NSString *averageString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_medio"] doubleValue]];
+                average = [NSDecimalNumber decimalNumberWithString: averageString];
+               // NSLog(@"valor medio %@", average);
+                numQuota = jsonDict[@"numsubcota"];
+                month = jsonDict[@"mes"];
+                year = jsonDict[@"ano"];
+                
+                [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
+            }
+            
+        } else {
+            [self showError:isConnectionError];
+        }
+    }];
+}
 
 
 -(void) updateQuotasForParliamentary:(NSNumber*) idParliamentary {

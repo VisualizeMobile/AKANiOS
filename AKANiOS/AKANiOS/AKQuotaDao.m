@@ -9,7 +9,6 @@
 #import "AKQuotaDao.h"
 #import "AKQuota.h"
 #import "AKAppDelegate.h"
-#import "AKQuota.h"
 
 @implementation AKQuotaDao
 
@@ -85,7 +84,7 @@
 
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary
 {
-    numQuota = [self verifyNumQuota:numQuota];
+    //numQuota = [self verifyNumQuota:numQuota];
     nameQuota = [self subtypeNameOfSubtype:[numQuota intValue]];
     
     NSArray *result;
@@ -386,12 +385,6 @@
         [self insertQuotaWithId:quota.idQuota andNumQuota:quota.numQuota andNameQuota:quota.nameQuota andMonth:quota.month andYear:quota.year andIdUpdate:quota.idUpdate andValue:quota.value andIdParliamentary:quota.idParliamentary];
     }
     return YES;
-}
-
--(NSArray *)getMiddleQuotasWithQuotaNumber:(NSNumber *)numQuota andYear:(NSNumber *)year{
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    
-    return result;
 }
 
 @end

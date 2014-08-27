@@ -39,6 +39,8 @@
 		8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E00F30719955CD20030A52F /* AKQuotaDao.m */; };
 		8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */; };
 		8E14E1E1199BEFBC00D77CF6 /* AKConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */; };
+		8E4A197319AE5BEE00CCDF82 /* AKStatisticDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A197219AE5BEE00CCDF82 /* AKStatisticDao.m */; };
+		8E4A197619AE5CF500CCDF82 /* AKStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A197519AE5CF500CCDF82 /* AKStatistic.m */; };
 		8EAFA83B1986C44F00E58AD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83A1986C44F00E58AD9 /* Foundation.framework */; };
 		8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */; };
 		8EAFA83F1986C44F00E58AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EAFA83E1986C44F00E58AD9 /* UIKit.framework */; };
@@ -203,6 +205,10 @@
 		8E14E1DD199BEFBC00D77CF6 /* AKConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKConfigViewController.h; sourceTree = "<group>"; };
 		8E14E1DE199BEFBC00D77CF6 /* AKConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKConfigViewController.m; sourceTree = "<group>"; };
 		8E14E1DF199BEFBC00D77CF6 /* AKConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKConfigViewController.xib; sourceTree = "<group>"; };
+		8E4A197119AE5BEE00CCDF82 /* AKStatisticDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKStatisticDao.h; sourceTree = "<group>"; };
+		8E4A197219AE5BEE00CCDF82 /* AKStatisticDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKStatisticDao.m; sourceTree = "<group>"; };
+		8E4A197419AE5CF500CCDF82 /* AKStatistic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKStatistic.h; sourceTree = "<group>"; };
+		8E4A197519AE5CF500CCDF82 /* AKStatistic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKStatistic.m; sourceTree = "<group>"; };
 		8EAFA8371986C44F00E58AD9 /* AKAN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKAN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EAFA83A1986C44F00E58AD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EAFA83C1986C44F00E58AD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -433,6 +439,8 @@
 				8E00F2F219954B430030A52F /* AKParliamentaryDao.m */,
 				8E00F30619955CD20030A52F /* AKQuotaDao.h */,
 				8E00F30719955CD20030A52F /* AKQuotaDao.m */,
+				8E4A197119AE5BEE00CCDF82 /* AKStatisticDao.h */,
+				8E4A197219AE5BEE00CCDF82 /* AKStatisticDao.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -613,6 +621,8 @@
 				2FB6FA4819AD22D800D3736E /* AKParliamentary.m */,
 				2FB6FA4A19AD2A3000D3736E /* AKQuota.h */,
 				2FB6FA4B19AD2A3000D3736E /* AKQuota.m */,
+				8E4A197419AE5CF500CCDF82 /* AKStatistic.h */,
+				8E4A197519AE5CF500CCDF82 /* AKStatistic.m */,
 			);
 			name = model;
 			path = ..;
@@ -756,6 +766,7 @@
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
 				2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */,
 				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
+				8E4A197619AE5CF500CCDF82 /* AKStatistic.m in Sources */,
 				2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */,
 				2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */,
 				F207385619A2D2BE0038C53F /* AKLoad.m in Sources */,
@@ -770,6 +781,7 @@
 				2FB6FA4319AD019800D3736E /* MBProgressHUD.m in Sources */,
 				2FB6FA2D19AB9B8900D3736E /* AKWebServiceConsumer.m in Sources */,
 				E9851B9D198F2EF600A2280B /* AKMainTableViewCell.m in Sources */,
+				8E4A197319AE5BEE00CCDF82 /* AKStatisticDao.m in Sources */,
 				8EAFA8501986C44F00E58AD9 /* AKANiOS.xcdatamodeld in Sources */,
 				2F8EDB0C19A7BB87006D159F /* AKQuotaDetailViewController.m in Sources */,
 				8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */,

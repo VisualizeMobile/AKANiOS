@@ -7,6 +7,7 @@
 //
 
 #import "AKQuotaDetailViewController.h"
+#import "AKStatisticDao.h"
 #import "AKQuotaDao.h"
 #import "AKUtil.h"
 #import "CorePlotHeaders/CorePlot-CocoaTouch.h"
@@ -16,6 +17,7 @@
 @property(nonatomic) NSArray *quotasArray;
 @property(nonatomic) NSArray *middleQuotasArray;
 @property(nonatomic) CPTTheme *currentTheme;
+@property(nonatomic) AKStatisticDao *statisticDao;
 @property(nonatomic) AKQuotaDao *quotaDao;
 @end
 
@@ -39,9 +41,10 @@
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = self.quota.nameQuota;
     
+    self.statisticDao = [AKStatisticDao getInstance];
     self.quotaDao = [AKQuotaDao getInstance];
     self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
-    self.middleQuotasArray = [self.quotaDao getQuotasByIdParliamentary: [NSNumber numberWithInt:-1] withNumQuota:self.quota.numQuota];
+    self.middleQuotasArray = [self.statisticDao getStatisticByYear:self.quota.year];
     [self setDetailItem];
 }
 
@@ -77,8 +80,19 @@
 {
     AKCurvedScatterPlot *newDetailItem = [[AKCurvedScatterPlot alloc] init];
     self.detailItem = newDetailItem;
+    self.detailItem.year = [self.quota.year stringValue];
+    NSString *name = self.parliamentary.nickName;
+    NSString *kName;
+    
+    if ([name length] >=23) {
+        kName = [name substringToIndex:20];
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@...", kName];
+    }
+    else{
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@", name];
+    }
     self.detailItem.quotas = self.quotasArray;
-    self.detailItem.middlQquotas = [self.quotaDao getMiddleQuotasWithQuotaNumber:self.quota.numQuota andYear:self.quota.year];
+    self.detailItem.middlQquotas = self.middleQuotasArray;
     self.currentTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     [self.detailItem renderInView:self.hostingView withTheme:self.currentTheme animated:YES];
 }
