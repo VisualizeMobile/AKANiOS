@@ -9,6 +9,7 @@
 #import "AKCurvedScatterPlot.h"
 #import "AKUtil.h"
 #import "AKQuota.h"
+#import "AKStatistic.h"
 
 NSString *const middle  = @"Gasto médio mensal";
 
@@ -59,9 +60,9 @@ NSString *const middle  = @"Gasto médio mensal";
         
         for ( int i = 1; i <= 12; i++ ) {
             
-            for (AKQuota *quota in self.middlQquotas) {
-                if ([quota.month isEqual:@(i)]) {
-                    y = quota.value;
+            for (AKStatistic *statistic in self.middleQuotas) {
+                if ([statistic.month isEqual:@(i)]) {
+                    y = statistic.average;
                     break;
                 }else{
                     y = @0;

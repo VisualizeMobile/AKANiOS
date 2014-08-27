@@ -92,7 +92,8 @@
         self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@", name];
     }
     self.detailItem.quotas = self.quotasArray;
-    self.detailItem.middlQquotas = self.middleQuotasArray;
+    self.detailItem.middleQuotas = self.middleQuotasArray;
+    NSLog(@"%@",self.middleQuotasArray);
     self.currentTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     [self.detailItem renderInView:self.hostingView withTheme:self.currentTheme animated:YES];
 }

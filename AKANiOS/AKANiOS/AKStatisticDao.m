@@ -84,7 +84,7 @@
     NSError *error = nil;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"numQuota == %@", numQuota]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"numQuota == %@ and year == %@ and month == %@", numQuota,year,month]];
     [fetchRequest setEntity:self.entity];
     
     result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
