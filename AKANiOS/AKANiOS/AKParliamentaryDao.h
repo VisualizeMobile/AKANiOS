@@ -29,6 +29,7 @@
 -(NSArray *) selectParliamentaryById:(NSNumber *)idParliamentary;
 
 -(BOOL)updateFollowedByIdParliamentary:(NSNumber *)idParliamentary andFollowedValue:(NSNumber *)followedValue;
+-(BOOL)updateParliamentary:(NSNumber *)idParliamentary withPhoto:(NSData *)photoData;
 
 -(NSArray*) getAllParliamentaryParties;
 -(NSArray*) getAllParliamentaryStates;

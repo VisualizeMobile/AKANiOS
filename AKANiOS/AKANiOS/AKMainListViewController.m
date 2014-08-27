@@ -35,8 +35,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
-@property (nonatomic) NSRange imageDownloadRange;
-@property (nonatomic) NSTimer *imageDownloadTimer;
 
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
@@ -67,7 +65,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryNicknameFilteredArray = [NSArray array];
 
     self.settingsManager = [AKSettingsManager sharedManager];
-    //NSLog(@"Configuração atual do App = \n%@", [self.settingsManager actualSettingsInfoLog]);
     
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
@@ -120,18 +117,15 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
+    
+//    [self.settingsManager setDataUpdateVersion:0];
+    
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
             if(([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion])
                || [self.parliamentaryDao getAllParliamentary].count == 0) {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-//                    self.imageDownloadTimer = [NSTimer scheduledTimerWithTimeInterval:3.0
-//                                                                               target:self
-//                                                                             selector:@selector(imageDownloadTimerLoop:)
-//                                                                             userInfo:nil 
-//                                                                              repeats:YES];
-//                    
                     [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
                 });
             }
@@ -248,6 +242,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     cell.quotaSum.hidden = cell.rankPosition.hidden = !self.viewByRankEnabled;
     
+    cell.parliamentaryPhoto.image = [UIImage imageNamed:@"placeholder_foto"];
+    
     AKParliamentary *parliamentary = nil;
     
     if (tableView == self.searchController.searchResultsTableView)
@@ -257,8 +253,28 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         parliamentary = self.parliamentaryArray[indexPath.row];
     }
     
+    if(parliamentary.photoParliamentary == nil) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", parliamentary.idParliamentary]]];
+            
+            if (imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.parliamentaryDao updateParliamentary:parliamentary.idParliamentary withPhoto:imgData];
+                        AKMainTableViewCell *updateCell = (AKMainTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+                        if (updateCell)
+                            updateCell.parliamentaryPhoto.image = image;
+                    });
+                }
+            }
+        });
+    } else {
+        cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
+    }
+    
     cell.parliamentaryName.text = parliamentary.nickName;
-    cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
     cell.partyLabel.text=parliamentary.party;
     cell.ufLabel.text=parliamentary.uf;
     cell.rankPosition.text=[NSString stringWithFormat:@"%@º", parliamentary.posRanking];
@@ -275,7 +291,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
     
     [cell.followedButton addTarget:self action:@selector(followParliementary:) forControlEvents:UIControlEventTouchUpInside];
-    
 
     return cell;
 }
@@ -510,11 +525,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     nickName = jsonDict[@"fields"][@"nomeparlamentar"];
                     
                     [self.parliamentaryDao insertParliamentaryWithNickName:nickName andIdParliamentary:idParliamentary andParty:party andPosRanking:posRanking andUf:uf andValueRanking:[NSDecimalNumber decimalNumberWithDecimal:[valueRanking decimalValue]] andFollowed:@0];
-                    
-                    //NSLog(@"%@", nickName);
                 }
+                
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
+                
                 [self applyAllDefinedFiltersAndSort];
                 
                 NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
@@ -741,19 +756,31 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     [self sortParliamentary];
     
-    if(self.parliamentaryArray.count == 0)
-        self.noResultsLabel.hidden = NO;
-    else
-        self.noResultsLabel.hidden = YES;
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        if([self.parliamentaryDao getAllParliamentary].count == 0) {
+            self.toolBar.followedButton.enabled = NO;
+            self.toolBar.searchButton.enabled = NO;
+            self.toolBar.rankButton.enabled = NO;
+        } else {
+            self.toolBar.followedButton.enabled = YES;
+            self.toolBar.searchButton.enabled = YES;
+            self.toolBar.rankButton.enabled = YES;
+        }
+        
+        if(self.parliamentaryArray.count == 0) {
+            self.noResultsLabel.hidden = NO;
+            self.tableView.hidden = YES;
+        } else {
+            self.noResultsLabel.hidden = YES;
+            self.tableView.hidden = NO;
+        }
+    });
+    
 }
 
 - (void)filterArrayByText:(NSString *)searchText {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
     self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
-}
-
--(void) imageDownloadTimerLoop: (id) sender {
-    
 }
 
 @end

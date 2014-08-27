@@ -107,19 +107,6 @@
         [newParliamentary setValueRanking:valueRanking];
         [newParliamentary setFollowed:followed];
         
-        NSData *dataImage;
-        @try
-        {
-            dataImage=[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", idParliamentary]]];
-        
-            [newParliamentary setPhotoParliamentary:dataImage];
-        }
-        @catch (NSException *exception)
-        {
-            NSLog(@"Parliamentary DAO exception :%@",exception);
-            
-        }
-        
         //Realiza insert no banco de dados local
         if ([self.managedObjectContext save:&Error])
             return YES;
@@ -129,6 +116,30 @@
     }
     
     return  NO;
+}
+
+-(BOOL)updateParliamentary:(NSNumber *)idParliamentary withPhoto:(NSData *)photoData {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
+    
+    NSError *Error=nil;
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    
+    AKParliamentary *parliamentary=[result objectAtIndex:0];
+    
+    parliamentary.photoParliamentary=photoData;
+    
+    if ([self.managedObjectContext save:&Error])
+        return  YES;
+    else
+        NSLog(@"Failed to update the parlamentary Error= %@",Error);
+    
+    
+    return NO;
+
+    
 }
 
 -(NSArray *)getAllParliamentary
