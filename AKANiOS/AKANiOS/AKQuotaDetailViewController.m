@@ -87,7 +87,8 @@
         NSString *formattedNumberString = [numberFormatter stringFromNumber:self.parliamentary.valueRanking];
 
         CGRect viewToScreenshotFrame = self.hostingView.frame;
-        viewToScreenshotFrame.size.width += 70;
+        viewToScreenshotFrame.size.width = 390;
+        viewToScreenshotFrame.size.height = 502;
         self.hostingView.frame = viewToScreenshotFrame;
         
         UIImageView *parliamentaryPhotoView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.parliamentary.photoParliamentary]];
@@ -96,7 +97,7 @@
         photoViewFrame.size.width = 80;
         photoViewFrame.size.height = 80;
         photoViewFrame.origin.x = self.hostingView.frame.size.width - photoViewFrame.size.width;
-        photoViewFrame.origin.y = 20;
+        photoViewFrame.origin.y = 15;
         parliamentaryPhotoView.frame = photoViewFrame;
         
         parliamentaryPhotoView.layer.cornerRadius = parliamentaryPhotoView.frame.size.height /2;
@@ -106,14 +107,18 @@
         
         [self.hostingView addSubview:parliamentaryPhotoView];
         
-        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@. Apenas este ano já foram gastos um total R$ %@ por ele. Fonte = http://www2.camara.leg.br/transparencia/dados-abertos.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
+        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@. Apenas este ano já foram gastos um total de R$ %@ por ele. Fonte = http://www2.camara.leg.br/transparencia/dados-abertos.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
         
         [composeController setInitialText:text];
         [composeController addImage:[UIView imageWithView:self.hostingView]];
         [composeController addURL: [NSURL URLWithString:@"http://google.com/"]];
         
         [parliamentaryPhotoView removeFromSuperview];
-        viewToScreenshotFrame.size.width -= 70;
+        
+        viewToScreenshotFrame = self.view.bounds;
+        viewToScreenshotFrame.size.height -= 60;
+        viewToScreenshotFrame.origin.y += 62;
+        
         self.hostingView.frame = viewToScreenshotFrame;
         
         [self presentViewController:composeController animated:YES completion:nil];
