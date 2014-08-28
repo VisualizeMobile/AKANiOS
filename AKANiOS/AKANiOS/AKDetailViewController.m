@@ -34,7 +34,6 @@
 @property (nonatomic) NSInteger olderYear;
 @property (nonatomic) NSInteger actualYear;
 @property MBProgressHUD *hud;
-
 @end
 
 @implementation AKDetailViewController
@@ -71,12 +70,33 @@
     } else {
         self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
         
-        if(self.allQuotas == nil || self.allQuotas.count == 0)
-            [self downloadQuotasForParliamentary];
-        else
+        if(self.allQuotas == nil || self.allQuotas.count == 0) {
+            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.hud.color = [AKUtil color1clear];
+            self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+            self.hud.detailsLabelColor = [AKUtil color4];
+            self.hud.detailsLabelText = @"Carregando cotas do parlamentar";
+            [NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(checkIfQuotasWereDownloadedAndUpdate:) userInfo:nil repeats:YES];
+        }
+        else {
             [self filterQuotas];
+        }
+        
     }
 }
+
+-(void) checkIfQuotasWereDownloadedAndUpdate:(NSTimer *)timer {
+    self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
+    
+    if(self.allQuotas.count > 0) {
+        [self filterQuotas];
+        [self.quotaCollectionView reloadData];
+        [timer invalidate];
+        [self.hud hide:YES afterDelay:0.3];
+        self.hud = nil;
+    }
+}
+
 
 -(void) configureViewVisualComponentes {
     //registering cell nib that is required for collectionView te dequeue it.
