@@ -607,7 +607,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 // NSLog(@"valor maximo %@", maxValue);
                 NSString *averageString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_medio"] doubleValue]];
                 average = [NSDecimalNumber decimalNumberWithString: averageString];
-                // NSLog(@"valor medio %@", average);
                 numQuota = jsonDict[@"numsubcota"];
                 stdDeviation = [jsonDict[@"desvio_padrao"] doubleValue];
                 

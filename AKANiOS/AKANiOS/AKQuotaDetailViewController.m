@@ -44,7 +44,8 @@
     self.statisticDao = [AKStatisticDao getInstance];
     self.quotaDao = [AKQuotaDao getInstance];
     self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota andYear:self.quota.year];
-    self.middleQuotasArray = [self.statisticDao getStatisticByYear:self.quota.year];
+    self.middleQuotasArray = [self.statisticDao getStatisticByYear:self.quota.year andNumQuota: self.quota.numQuota];
+    
     [self setDetailItem];
 }
 
@@ -93,7 +94,6 @@
     }
     self.detailItem.quotas = self.quotasArray;
     self.detailItem.middleQuotas = self.middleQuotasArray;
-    NSLog(@"%@",self.middleQuotasArray);
     self.currentTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
     [self.detailItem renderInView:self.hostingView withTheme:self.currentTheme animated:YES];
 }

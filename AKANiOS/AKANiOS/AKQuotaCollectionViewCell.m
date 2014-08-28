@@ -45,7 +45,7 @@
 #pragma mark - custom methods
 
 -(void)imageForQuotaValue{
-    self.maxValue = self.average + 1.5*self.stdDeviation;
+    self.maxValue = self.average + 1.4*self.stdDeviation;
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
     self.imageView.backgroundColor = [self colorForQuotaValue];
     NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
@@ -93,9 +93,9 @@
 }
 
 -(double) exponentialProbabilityForLimit:(double)upperLimit{
-    double lambda = 1/self.maxValue;
+    double lambda = 1/self.average;
     double result = 1 - exp(-lambda*[self.quota.value doubleValue]);
-    NSLog(@"%f",result);
+    //NSLog(@"%f",result);
     return result;
 }
 
