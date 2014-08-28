@@ -82,6 +82,7 @@
     AKCurvedScatterPlot *newDetailItem = [[AKCurvedScatterPlot alloc] init];
     self.detailItem = newDetailItem;
     self.detailItem.year = [self.quota.year stringValue];
+    self.detailItem.title = self.quota.nameQuota;
     NSString *name = self.parliamentary.nickName;
     NSString *kName;
     

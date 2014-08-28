@@ -8,6 +8,10 @@
 
 #import "AKQuotaCollectionViewCell.h"
 #import "AKUtil.h"
+
+//confiabiliti limit for the probabilistic estimation
+double const confiability = 1.4;
+
 @interface AKQuotaCollectionViewCell()
 
 @property float maxValue;
@@ -45,23 +49,32 @@
 #pragma mark - custom methods
 
 -(void)imageForQuotaValue{
-    self.maxValue = self.average + 1.4*self.stdDeviation;
+    self.maxValue = self.average + confiability*self.stdDeviation;
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
-    self.imageView.backgroundColor = [self colorForQuotaValue];
+    
+    self.valueLabel.textColor = [AKUtil color4];
+    self.levelImageView.tintColor = [AKUtil color4];
+    self.imageView.backgroundColor = [AKUtil color4];
+
+    
     NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
     numberFormatter.minimumFractionDigits = 2;
     
     self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
-    self.valueLabel.textColor = [self colorForQuotaValue];
     self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    self.levelImageView.tintColor = [self colorForQuotaValue];
     [self setLevelHeight];
+    NSMutableArray *colors = [self colorForQuotaValue];
+    for (int i = 0; i<[colors count]; i++) {
+        UIColor *color = (UIColor *)colors[i];
+        [self performSelector:@selector(animateColor:) withObject:color afterDelay:0.4*i];
+    }
+    
 }
 
 -(void)setLevelHeight{
-    float multiplier = [self exponentialProbabilityForLimit:self.maxValue]*100;
+    float multiplier = [self exponentialProbability]*100;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
     //NSLog(@"%f",height);
@@ -72,27 +85,37 @@
     completion:nil];
 }
 
--(UIColor *)colorForQuotaValue{
-    double probability = [self exponentialProbabilityForLimit:self.maxValue];
+-(NSMutableArray *)colorForQuotaValue{
+    NSMutableArray *colors = [[NSMutableArray alloc] init];
+    double probability = [self exponentialProbability];
     //NSLog(@"%.2lf",probability);
-    if (self.quota.value <= 0) {
-        return [AKUtil color4];
+    if (self.quota.value > 0) {
+        [colors addObject: [AKUtil color3]];
     }
-    else if(probability < 0.25){
-        return [AKUtil color3];
+    if(probability  >= 0.25){
+        [colors addObject: [AKUtil color1]];
     }
-    else if(probability < 0.5){
-        return [AKUtil color1];
+    if(probability >= 0.5){
+        [colors addObject: [AKUtil color2]];
     }
-    else if(probability< 0.75){
-        return [AKUtil color2];
+    if(probability >= 0.75){
+        [colors addObject: [AKUtil color5]];
     }
-    else{
-        return [AKUtil color5];
-    }
+    return colors;
 }
 
--(double) exponentialProbabilityForLimit:(double)upperLimit{
+-(void)animateColor:(UIColor *) color{
+    [UIView animateWithDuration:0.4
+                     animations:^(void){
+                         self.valueLabel.textColor = color;
+                         self.levelImageView.tintColor = color;
+                         self.imageView.backgroundColor = color;
+                     }
+                     completion:nil];
+    
+}
+
+-(double) exponentialProbability{
     double lambda = 1/self.average;
     double result = 1 - exp(-lambda*[self.quota.value doubleValue]);
     //NSLog(@"%f",result);

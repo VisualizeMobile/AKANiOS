@@ -11,7 +11,7 @@
 #import "AKQuota.h"
 #import "AKStatistic.h"
 
-NSString *const middle  = @"Gasto médio mensal";
+NSString *const middle  = @"Gasto médio dos parlamentares";
 
 @interface AKCurvedScatterPlot ()
 
@@ -24,7 +24,7 @@ NSString *const middle  = @"Gasto médio mensal";
 {
     if ( (self = [super init]) ) {
     }
-    
+
     return self;
 }
 
@@ -88,8 +88,10 @@ NSString *const middle  = @"Gasto médio mensal";
         
         [graph applyTheme:self.currentTheme];
         
+        graph.title = [NSString stringWithFormat: @"Gastos com %@", self.title];
+        
         graph.plotAreaFrame.paddingLeft   += 75.0;
-        graph.plotAreaFrame.paddingTop    += 20.0;
+        graph.plotAreaFrame.paddingTop    += 30.0;
         graph.plotAreaFrame.paddingRight  += 25.0;
         graph.plotAreaFrame.paddingBottom += 100.0;
         graph.plotAreaFrame.masksToBorder  = NO;
@@ -182,19 +184,19 @@ NSString *const middle  = @"Gasto médio mensal";
         CPTMutablePlotRange *yRange = [plotSpace.yRange mutableCopy];
         
         // Expand the ranges to put some space around the plot
-        [xRange expandRangeByFactor:CPTDecimalFromDouble(0.5)];
-        [yRange expandRangeByFactor:CPTDecimalFromDouble(0.8)];
+        [xRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
+        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
         plotSpace.xRange = xRange;
         plotSpace.yRange = yRange;
         
-        [xRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
+        [xRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
         xRange.location = plotSpace.xRange.location;
-        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.05)];
+        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
         x.visibleAxisRange = xRange;
         y.visibleAxisRange = yRange;
         
-        [xRange expandRangeByFactor:CPTDecimalFromDouble(2.1)];
-        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.3)];
+        [xRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
+        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
         plotSpace.globalXRange = xRange;
         plotSpace.globalYRange = yRange;
         
