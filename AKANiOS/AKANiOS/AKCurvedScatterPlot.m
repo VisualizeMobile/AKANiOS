@@ -91,7 +91,7 @@ NSString *const middle  = @"Gasto médio dos parlamentares";
         graph.title = [NSString stringWithFormat: @"Gastos com %@", self.title];
         
         graph.plotAreaFrame.paddingLeft   += 75.0;
-        graph.plotAreaFrame.paddingTop    += 30.0;
+        graph.plotAreaFrame.paddingTop    += 35.0;
         graph.plotAreaFrame.paddingRight  += 25.0;
         graph.plotAreaFrame.paddingBottom += 100.0;
         graph.plotAreaFrame.masksToBorder  = NO;
@@ -223,7 +223,7 @@ NSString *const middle  = @"Gasto médio dos parlamentares";
         graph.legend.cornerRadius    = 5.0;
         graph.legend.swatchSize      = CGSizeMake(25.0, 25.0);
         graph.legendAnchor           = CPTRectAnchorBottom;
-        graph.legendDisplacement     = CGPointMake(0.0, 12.0);
+        graph.legendDisplacement     = CGPointMake(0.0, 6.0);
         
         
     }else{
