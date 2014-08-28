@@ -33,6 +33,8 @@
 @property (nonatomic) BOOL toBeUnfollowed;
 @property (nonatomic) NSInteger olderYear;
 @property (nonatomic) NSInteger actualYear;
+@property(nonatomic) NSInteger selectedYear;
+@property(nonatomic) NSInteger selectedMonth;
 @property MBProgressHUD *hud;
 @end
 
@@ -54,7 +56,16 @@
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.statisticDao = [AKStatisticDao getInstance];
     
+    NSDate *currentDate = [NSDate date];
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
+    
+    self.selectedMonth = components.month;
+    self.actualYear = self.selectedYear = components.year;
+    self.olderYear = [[self.quotaDao getOldestYear] integerValue];
+
     [self configureViewVisualComponentes];
+    
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
@@ -101,7 +112,20 @@
 -(void) configureViewVisualComponentes {
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
-        forCellWithReuseIdentifier:@"AKCell"];
+               forCellWithReuseIdentifier:@"AKCell"];
+    
+    
+    self.datePickerView = [[UIPickerView  alloc] init];
+    self.datePickerView.delegate = self;
+    self.datePickerView.dataSource =self;
+    [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
+    [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
+    
+    self.datePickerView.backgroundColor = [AKUtil color4];
+    self.datePickerField.inputView = self.datePickerView;
+    [self.datePickerView reloadAllComponents];
+    
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:self.selectedMonth-1], [@(self.selectedYear) stringValue] ];
     
     //loading data from parliamentary inside view components
     UIImage *backButtonImage = [UIImage imageNamed:@"backImage"];
@@ -118,25 +142,6 @@
     else{
         [self setButtonUnfollowedState];
     }
-    
-    NSDate *currentDate = [NSDate date];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
-    
-    self.actualYear = components.year;
-    self.olderYear = [[self.quotaDao getOldestYear] integerValue];
-    
-    self.datePickerView = [[UIPickerView  alloc] init];
-    self.datePickerView.delegate = self;
-    self.datePickerView.dataSource =self;
-    [self.datePickerView selectRow:components.month-1 inComponent:0 animated:NO];
-    [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
-    
-    self.datePickerView.backgroundColor = [AKUtil color4];
-    self.datePickerField.inputView = self.datePickerView;
-    [self.datePickerView reloadAllComponents];
-
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:components.month-1], [@(self.actualYear) stringValue] ];
     
     
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -191,6 +196,9 @@
     NSInteger monthRow =  [pickerView selectedRowInComponent:0];
 
     NSInteger yearRow =  [pickerView selectedRowInComponent:1];
+    
+    self.selectedYear = self.olderYear+yearRow;
+    self.selectedMonth = monthRow+1;
     
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow];
 }
