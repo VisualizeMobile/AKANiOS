@@ -416,7 +416,7 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 }
 - (IBAction)filterQuota:(id)sender {
     self.filterCategory = AKConfigFilterCategoryQuota;
-    self.filterViewOptionsArray = @[@"+ 0",  @"+ 10.000", @"+ 30.000", @"+ 50.000", @"+ 80.000"];
+    self.filterViewOptionsArray = @[@"+ 0",  @"+ 10.000", @"+ 30.000", @"+ 50.000", @"+ 100.000", @"+ 150.000", @"+ 200.000", @"+ 300.000"];
     
     [self addFilterView:self.quotaFilterButton];
 }

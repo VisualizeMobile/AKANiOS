@@ -379,15 +379,12 @@
     }
 }
 
--(NSNumber *)getOlderYear{
+-(NSNumber *)getOldestYear {
     NSArray *quotas = [self getQuotas];
     
-    NSArray *sortDescriptors = @[
-                                 [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:YES]
-                                 ];
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"year" ascending:YES]];
     
     quotas = [quotas sortedArrayUsingDescriptors:sortDescriptors];
-    //NSLog(@"%@", quotas);
     
     AKQuota *quota = [quotas objectAtIndex:0];
     

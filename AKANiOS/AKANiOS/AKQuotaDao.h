@@ -28,6 +28,6 @@
 -(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas;
--(NSNumber *)getOlderYear;
+-(NSNumber *)getOldestYear;
 
 @end

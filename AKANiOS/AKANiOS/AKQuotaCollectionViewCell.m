@@ -48,7 +48,12 @@
     self.maxValue = self.average + 1.5*self.stdDeviation;
     self.imageView.image = [UIImage imageNamed:[self.quota imageName]];
     self.imageView.backgroundColor = [self colorForQuotaValue];
-    self.valueLabel.text = [NSString stringWithFormat:@"R$ %@",[self.quota value]];
+    NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
+    numberFormatter.minimumFractionDigits = 2;
+    
+    self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
     self.valueLabel.textColor = [self colorForQuotaValue];
     self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.levelImageView.tintColor = [self colorForQuotaValue];

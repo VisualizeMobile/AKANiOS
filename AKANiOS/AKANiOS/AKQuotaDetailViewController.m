@@ -86,10 +86,10 @@
     
     if ([name length] >=23) {
         kName = [name substringToIndex:20];
-        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@...", kName];
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos de %@...", kName];
     }
     else{
-        self.detailItem.kData = [NSString stringWithFormat:@"Gastos do %@", name];
+        self.detailItem.kData = [NSString stringWithFormat:@"Gastos de %@", name];
     }
     self.detailItem.quotas = self.quotasArray;
     self.detailItem.middleQuotas = self.middleQuotasArray;

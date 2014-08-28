@@ -28,15 +28,12 @@
 @property (nonatomic) NSArray *quotas;
 @property (nonatomic) NSArray *allQuotas;
 @property (nonatomic) UIPickerView *datePickerView;
-@property (nonatomic) NSString *monthLabel;
-@property (nonatomic) NSString *yearLabel;
 @property (nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic) AKWebServiceConsumer *webService;
-@property (nonatomic) NSInteger monthNumber;
-@property (nonatomic) NSInteger yearNumber;
 @property (nonatomic) BOOL toBeUnfollowed;
-@property (nonatomic) NSMutableArray *yearsArray;
 @property (nonatomic) NSInteger olderYear;
+@property (nonatomic) NSInteger actualYear;
+@property MBProgressHUD *hud;
 
 @end
 
@@ -60,13 +57,11 @@
     
     [self configureViewVisualComponentes];
     
-    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
      UIKeyboardWillShowNotification object:nil];
     [nc addObserver:self selector:@selector(keyboardWillHide:) name:
      UIKeyboardWillHideNotification object:nil];
-    
     
     self.webService = [[AKWebServiceConsumer alloc] init];
     
@@ -108,21 +103,20 @@
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
     
-    self.monthNumber = [components month];
-    self.monthLabel = [self monthForPickerRow:self.monthNumber-1];
-    self.yearNumber = [components year];
-    self.yearLabel = [self yearForPickerRow:self.yearNumber-2013];
+    self.actualYear = components.year;
+    self.olderYear = [[self.quotaDao getOldestYear] integerValue];
     
     self.datePickerView = [[UIPickerView  alloc] init];
     self.datePickerView.delegate = self;
     self.datePickerView.dataSource =self;
-    [self.datePickerView selectRow:self.monthNumber-1 inComponent:0 animated:NO];
-    [self.datePickerView selectRow:self.yearNumber-2013 inComponent:1 animated:NO];
+    [self.datePickerView selectRow:components.month-1 inComponent:0 animated:NO];
+    [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
     
     self.datePickerView.backgroundColor = [AKUtil color4];
     self.datePickerField.inputView = self.datePickerView;
-    //set textField with the current month and year relative to quotas
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel ];
+    [self.datePickerView reloadAllComponents];
+
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:components.month-1], [@(self.actualYear) stringValue] ];
     
     
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -145,7 +139,6 @@
     self.photoView.layer.masksToBounds = YES;
     self.photoView.layer.borderWidth = 0;
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
-    
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation  duration:(NSTimeInterval)duration
@@ -169,20 +162,17 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if (component == 0) {
         return  [self monthForPickerRow:row];
-    }else{
-        return [self yearForPickerRow:row];
+    } else {
+        return [@(self.olderYear + row) stringValue];
     }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSInteger monthRow =  [pickerView selectedRowInComponent:0];
-    self.monthLabel = [self monthForPickerRow:monthRow];
-    self.monthNumber = monthRow+1;
 
     NSInteger yearRow =  [pickerView selectedRowInComponent:1];
-    self.yearLabel = [self yearForPickerRow:yearRow];
-    //TODO: dao number of years
-    self.yearNumber = yearRow+self.olderYear;
+    
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow];
 }
 
 #pragma mark - PickerView Data Source
@@ -194,12 +184,9 @@
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     if (component == 0) {
         return 12;
+    } else {
+        return (self.actualYear - self.olderYear) + 1;
     }
-    if(component == 1){
-        
-        return [self.yearsArray count];
-    }
-    return 1;
 }
 
 #pragma mark - CollectionView Data Source
@@ -260,7 +247,6 @@
 #pragma mark - Custom Methods
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", self.monthLabel, self.yearLabel];
     [self filterQuotas];
     [self.datePickerField resignFirstResponder];
 }
@@ -292,6 +278,16 @@
         self.view = [[[NSBundle mainBundle] loadNibNamed:@"AKLandscapeDetailViewController"
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
+        
+        if(self.hud != nil && self.hud.alpha != 0) {
+            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.hud.color = [AKUtil color1clear];
+            self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+            self.hud.detailsLabelColor = [AKUtil color4];
+            self.hud.detailsLabelText = @"Carregando cotas do parlamentar";
+        }
+
+        
         [self configureViewVisualComponentes];
     }
     else
@@ -299,6 +295,15 @@
         self.view = [[[NSBundle mainBundle] loadNibNamed: @"AKPortraitDetailViewController"
                                                    owner: self
                                                  options: nil] objectAtIndex:0];
+        
+        if(self.hud != nil && self.hud.alpha != 0) {
+            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.hud.color = [AKUtil color1clear];
+            self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+            self.hud.detailsLabelColor = [AKUtil color4];
+            self.hud.detailsLabelText = @"Carregando cotas do parlamentar";
+        }
+        
         [self configureViewVisualComponentes];
     }
 }
@@ -344,10 +349,6 @@
     }
 }
 
-- (NSString *)yearForPickerRow:(NSInteger)row {
-    return[ NSString stringWithFormat:@"%d", self.olderYear + row ];
-}
-
 -(void) keyboardWillShow:(NSNotification *) note {
     [self.view addGestureRecognizer:self.tapRecognizer];
 }
@@ -358,13 +359,12 @@
 }
 
 -(void) downloadQuotasForParliamentary {
-    __block MBProgressHUD *hud = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
-        hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.color = [AKUtil color1clear];
-        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
-        hud.detailsLabelColor = [AKUtil color4];
-        hud.detailsLabelText = @"Carregando cotas do parlamentar";
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.color = [AKUtil color1clear];
+        self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+        self.hud.detailsLabelColor = [AKUtil color4];
+        self.hud.detailsLabelText = @"Carregando cotas do parlamentar";
     });
     
     
@@ -405,14 +405,14 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
-                    [self setYearsArray];
-                    [self.datePickerView reloadAllComponents];
-                    [hud hide:YES afterDelay:0.5f];
+                    [self.hud hide:YES afterDelay:0.5f];
+                    self.hud = nil;
                 });
                 
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
+                    [self.hud hide:YES];
+                    self.hud = nil;
                 });
                 
                 [self showError:isConnectionError];
@@ -441,17 +441,7 @@
 }
 
 -(void)filterQuotas{
-    if (!self.monthNumber) {
-        NSDate *currentDate = [NSDate date];
-        NSCalendar* calendar = [NSCalendar currentCalendar];
-        NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:currentDate];
-        
-        self.monthNumber = [components month];
-        self.monthLabel = [self monthForPickerRow:self.monthNumber-1];
-        self.yearNumber = [components year];
-        self.yearLabel = [self yearForPickerRow:self.yearNumber-2013];
-    }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month == %d && SELF.year == %d", self.monthNumber, self.yearNumber];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.month == %ld && SELF.year == %d", [self.datePickerView selectedRowInComponent:0]+1, [self.datePickerView selectedRowInComponent:1]+self.olderYear];
     self.quotas = [self.allQuotas filteredArrayUsingPredicate:predicate];
     [self.quotaCollectionView reloadData];
     if([self.quotas count] == 0){
@@ -459,15 +449,6 @@
     }
     else{
         self.quotaCollectionView.hidden = NO;
-    }
-}
-
--(void)setYearsArray{
-    
-    self.yearsArray = [[NSMutableArray alloc] init];
-    self.olderYear = [[self.quotaDao getOlderYear] integerValue];
-    for (int i=self.olderYear; i<=self.yearNumber; i++) {
-        [self.yearsArray addObject:@(i)];
     }
 }
 

@@ -17,7 +17,8 @@ typedef NS_ENUM(char, AKSettingsSortOption) {
 typedef NS_ENUM(char, AKSettingsFilterQuotaOption) {
     AKSettingsFilterQuotaOptionNone, AKSettingsFilterQuotaOption10,
     AKSettingsFilterQuotaOption30, AKSettingsFilterQuotaOption50,
-    AKSettingsFilterQuotaOption80
+    AKSettingsFilterQuotaOption100, AKSettingsFilterQuotaOption150,
+    AKSettingsFilterQuotaOption200, AKSettingsFilterQuotaOption300
 };
 
 @interface AKSettingsManager : NSObject

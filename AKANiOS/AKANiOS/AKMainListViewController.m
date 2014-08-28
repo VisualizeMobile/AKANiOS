@@ -232,8 +232,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
-    NSString *formattedNumberString;
     
     AKMainTableViewCell *cell = (AKMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
@@ -287,9 +285,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         [cell.followedButton setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
     }
     
+    NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
-    formattedNumberString=[numberFormatter stringFromNumber:parliamentary.valueRanking];
+    numberFormatter.minimumFractionDigits = 2;
+    NSString *formattedNumberString = [numberFormatter stringFromNumber:parliamentary.valueRanking];
+    
     cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
     
     [cell.followedButton addTarget:self action:@selector(followParliementary:) forControlEvents:UIControlEventTouchUpInside];
@@ -703,12 +704,22 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             case AKSettingsFilterQuotaOption50:
                 quotaFilterValue = 50000;
                 break;
-            case AKSettingsFilterQuotaOption80:
-                quotaFilterValue = 80000;
+            case AKSettingsFilterQuotaOption100:
+                quotaFilterValue = 100000;
+                break;
+            case AKSettingsFilterQuotaOption150:
+                quotaFilterValue = 150000;
+                break;
+            case AKSettingsFilterQuotaOption200:
+                quotaFilterValue = 200000;
+                break;
+            case AKSettingsFilterQuotaOption300:
+                quotaFilterValue = 300000;
                 break;
             default:
                 break;
         }
+        
         NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.valueRanking >= %lu", quotaFilterValue];
         self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
     }
