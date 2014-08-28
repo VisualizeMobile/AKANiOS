@@ -64,6 +64,7 @@
     float multiplier = [self exponentialProbabilityForLimit:self.maxValue]*100;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
+    //NSLog(@"%f",height);
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
      ^(void){
          self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
@@ -73,8 +74,8 @@
 
 -(UIColor *)colorForQuotaValue{
     double probability = [self exponentialProbabilityForLimit:self.maxValue];
-    NSLog(@"%.2lf",probability);
-    if (self.quota.value == 0) {
+    //NSLog(@"%.2lf",probability);
+    if (self.quota.value <= 0) {
         return [AKUtil color4];
     }
     else if(probability < 0.25){
@@ -92,8 +93,8 @@
 }
 
 -(double) exponentialProbabilityForLimit:(double)upperLimit{
-    double lambda = 1/self.average;
-    double result =1 - lambda*exp(-lambda*[self.quota.value doubleValue])*upperLimit;
+    double lambda = 1/self.maxValue;
+    double result = 1 - exp(-lambda*[self.quota.value doubleValue]);
     NSLog(@"%f",result);
     return result;
 }
