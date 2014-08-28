@@ -405,6 +405,14 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
+                    
+                    self.olderYear = [[self.quotaDao getOldestYear] integerValue];
+                    [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
+                    self.datePickerField.inputView = self.datePickerView;
+                    [self.datePickerView reloadAllComponents];
+                    
+                    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:[self.datePickerView selectedRowInComponent:0]], [@(self.actualYear) stringValue] ];
+                    
                     [self.hud hide:YES afterDelay:0.5f];
                     self.hud = nil;
                 });

@@ -386,9 +386,13 @@
     
     quotas = [quotas sortedArrayUsingDescriptors:sortDescriptors];
     
-    AKQuota *quota = [quotas objectAtIndex:0];
+    if(quotas.count>0) {
+        AKQuota *quota = [quotas objectAtIndex:0];
     
-    return quota.year;
+        return quota.year;
+    }
+    
+    return 0;
 }
 
 -(BOOL)insertQuotasFromArray:(NSArray *)quotas{
