@@ -65,12 +65,6 @@ double const confiability = 1.4;
     self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
     self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setLevelHeight];
-    NSMutableArray *colors = [self colorForQuotaValue];
-    for (int i = 0; i<[colors count]; i++) {
-        UIColor *color = (UIColor *)colors[i];
-        [self performSelector:@selector(animateColor:) withObject:color afterDelay:0.4*i];
-    }
-    
 }
 
 -(void)setLevelHeight{
@@ -78,11 +72,20 @@ double const confiability = 1.4;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
     self.levelImageView.frame = CGRectMake(0,103, 130, 0);
     //NSLog(@"%f",height);
+    [self generateColorsAnimation];
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
-     ^(void){
-         self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
-     }
-    completion:nil];
+        ^(void){
+            self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
+        }
+        completion:nil];
+}
+
+-(void)generateColorsAnimation{
+    NSMutableArray *colors = [self colorForQuotaValue];
+    for (int i = 0; i<[colors count]; i++) {
+        UIColor *color = (UIColor *)colors[i];
+        [self performSelector:@selector(animateColor:) withObject:color afterDelay:0.5*i];
+    }
 }
 
 -(NSMutableArray *)colorForQuotaValue{
@@ -107,8 +110,8 @@ double const confiability = 1.4;
 -(void)animateColor:(UIColor *) color{
     [UIView animateWithDuration:0.4
                      animations:^(void){
-                         self.valueLabel.textColor = color;
                          self.levelImageView.tintColor = color;
+                         self.valueLabel.textColor = color;
                          self.imageView.backgroundColor = color;
                      }
                      completion:nil];
