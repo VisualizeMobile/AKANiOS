@@ -9,7 +9,7 @@
 #import "AKWebServiceConsumer.h"
 #import "Reachability.h"
 
-NSString const* urlBase = @"http://107.170.177.5:8000/akan";
+NSString const* urlBase = @"http://107.170.177.5/akan";
 
 @implementation AKWebServiceConsumer
 
