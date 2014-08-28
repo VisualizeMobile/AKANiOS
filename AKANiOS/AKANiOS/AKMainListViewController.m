@@ -414,6 +414,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
         if (self.viewFollowedEnabled) {
             [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
+
             [parliamentary setFollowed:@0];
             
             [self applyAllDefinedFiltersAndSort];
@@ -434,13 +435,16 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         }else{
             if ([parliamentary.followed isEqual:@1]) {
                 [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
+                
                 [parliamentary setFollowed:@0];
+
                 [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
                 
                 [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
             }
             else{
                 [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
+
                 [parliamentary setFollowed:@1];
                 [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
                 

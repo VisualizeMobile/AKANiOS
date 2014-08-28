@@ -11,6 +11,8 @@
 #import "AKQuotaDao.h"
 #import "AKUtil.h"
 #import "CorePlotHeaders/CorePlot-CocoaTouch.h"
+#import <Social/Social.h>
+#import "UIView+ImageFromView.h"
 
 @interface AKQuotaDetailViewController ()
 
@@ -47,6 +49,8 @@
     self.middleQuotasArray = [self.statisticDao getStatisticByYear:self.quota.year andNumQuota: self.quota.numQuota];
     
     [self setDetailItem];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareFacebook:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +75,63 @@
 
 
 #pragma mark - Custom methods
+
+-(void) shareFacebook: (id) sender {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *composeController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc] init];
+        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
+        numberFormatter.minimumFractionDigits = 2;
+        NSString *formattedNumberString = [numberFormatter stringFromNumber:self.parliamentary.valueRanking];
+
+        CGRect viewToScreenshotFrame = self.hostingView.frame;
+        viewToScreenshotFrame.size.width += 70;
+        self.hostingView.frame = viewToScreenshotFrame;
+        
+        UIImageView *parliamentaryPhotoView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.parliamentary.photoParliamentary]];
+
+        CGRect photoViewFrame = parliamentaryPhotoView.frame;
+        photoViewFrame.size.width = 80;
+        photoViewFrame.size.height = 80;
+        photoViewFrame.origin.x = self.hostingView.frame.size.width - photoViewFrame.size.width;
+        photoViewFrame.origin.y = 20;
+        parliamentaryPhotoView.frame = photoViewFrame;
+        
+        parliamentaryPhotoView.layer.cornerRadius = parliamentaryPhotoView.frame.size.height /2;
+        parliamentaryPhotoView.layer.masksToBounds = YES;
+        parliamentaryPhotoView.layer.borderWidth = 1.5;
+        parliamentaryPhotoView.layer.borderColor = [UIColor blackColor].CGColor;
+        
+        [self.hostingView addSubview:parliamentaryPhotoView];
+        
+        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@. Apenas este ano já foram gastos um total R$ %@ por ele. Fonte = http://www2.camara.leg.br/transparencia/dados-abertos.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
+        
+        [composeController setInitialText:text];
+        [composeController addImage:[UIView imageWithView:self.hostingView]];
+        [composeController addURL: [NSURL URLWithString:@"http://google.com/"]];
+        
+        [parliamentaryPhotoView removeFromSuperview];
+        viewToScreenshotFrame.size.width -= 70;
+        self.hostingView.frame = viewToScreenshotFrame;
+        
+        [self presentViewController:composeController animated:YES completion:nil];
+        
+        
+        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+            if (result == SLComposeViewControllerResultCancelled) {
+                NSLog(@"delete");
+            } else {
+                NSLog(@"post");
+            }
+        };
+        composeController.completionHandler =myBlock;
+    } else {
+        UIAlertView *alertNotPossible = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível compartilhar no Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertNotPossible show];
+    }
+}
 
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];

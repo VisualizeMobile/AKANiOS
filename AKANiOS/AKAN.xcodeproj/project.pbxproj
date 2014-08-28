@@ -16,6 +16,8 @@
 		2F8EDB0C19A7BB87006D159F /* AKQuotaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8EDB0A19A7BB87006D159F /* AKQuotaDetailViewController.m */; };
 		2F8EDB0D19A7BB87006D159F /* AKQuotaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8EDB0B19A7BB87006D159F /* AKQuotaDetailViewController.xib */; };
 		2F8EDBB719A7E004006D159F /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8EDBB619A7E004006D159F /* libCorePlot-CocoaTouch.a */; };
+		2F9054A919AFC47C0055CFCC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9054A819AFC47C0055CFCC /* Social.framework */; };
+		2F9054AC19AFC7250055CFCC /* UIView+ImageFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */; };
 		2FB6FA2D19AB9B8900D3736E /* AKWebServiceConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */; };
 		2FB6FA4319AD019800D3736E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4219AD019800D3736E /* MBProgressHUD.m */; };
 		2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4819AD22D800D3736E /* AKParliamentary.m */; };
@@ -166,6 +168,9 @@
 		2F8EDBB419A7E004006D159F /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		2F8EDBB519A7E004006D159F /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		2F8EDBB619A7E004006D159F /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		2F9054A819AFC47C0055CFCC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageFromView.h"; sourceTree = "<group>"; };
+		2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageFromView.m"; sourceTree = "<group>"; };
 		2FB6FA2B19AB9B8900D3736E /* AKWebServiceConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKWebServiceConsumer.h; sourceTree = "<group>"; };
 		2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKWebServiceConsumer.m; sourceTree = "<group>"; };
 		2FB6FA4119AD019800D3736E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -244,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F9054A919AFC47C0055CFCC /* Social.framework in Frameworks */,
 				2F0F879219AD848C00F1B81A /* SystemConfiguration.framework in Frameworks */,
 				8EAFA83D1986C44F00E58AD9 /* CoreGraphics.framework in Frameworks */,
 				8EAFA8411986C44F00E58AD9 /* CoreData.framework in Frameworks */,
@@ -428,6 +434,8 @@
 				F207385519A2D2BE0038C53F /* AKLoad.m */,
 				2FB6FA4F19AD40DB00D3736E /* UIFont+PumaGafferOverride.h */,
 				2FB6FA5019AD40DB00D3736E /* UIFont+PumaGafferOverride.m */,
+				2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */,
+				2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -523,6 +531,7 @@
 		8EAFA8391986C44F00E58AD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2F9054A819AFC47C0055CFCC /* Social.framework */,
 				2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */,
 				2F8EDAFF19A7B7D4006D159F /* QuartzCore.framework */,
 				2F8EDAFD19A7B7BE006D159F /* Accelerate.framework */,
@@ -696,7 +705,7 @@
 				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
-						DevelopmentTeam = 7A9D2MJVKJ;
+						DevelopmentTeam = 8Y387U3F6Y;
 					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
@@ -763,6 +772,7 @@
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
 				2F0F879019AD841C00F1B81A /* Reachability.m in Sources */,
+				2F9054AC19AFC7250055CFCC /* UIView+ImageFromView.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
 				2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */,
 				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
