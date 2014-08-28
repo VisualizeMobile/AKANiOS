@@ -27,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //[self setDetailItem];
+
     }
     return self;
 }
@@ -43,7 +43,7 @@
     
     self.statisticDao = [AKStatisticDao getInstance];
     self.quotaDao = [AKQuotaDao getInstance];
-    self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota];
+    self.quotasArray = [self.quotaDao getQuotasByIdParliamentary:self.parliamentary.idParliamentary withNumQuota:self.quota.numQuota andYear:self.quota.year];
     self.middleQuotasArray = [self.statisticDao getStatisticByYear:self.quota.year];
     [self setDetailItem];
 }

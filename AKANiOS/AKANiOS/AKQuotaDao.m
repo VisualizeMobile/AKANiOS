@@ -181,13 +181,13 @@
 }
 
 
--(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*) numQuota
+-(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*) numQuota andYear:(NSNumber *)year
 {
     NSArray *result;
     NSError *Error=nil;
     
     NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (numQuota==%@)",idParliamentary, numQuota]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (numQuota==%@) AND (year == %@)",idParliamentary, numQuota, year]];
     [fetchRequest setEntity:self.entity];
     
     result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
@@ -387,7 +387,7 @@
                                  ];
     
     quotas = [quotas sortedArrayUsingDescriptors:sortDescriptors];
-    NSLog(@"%@", quotas);
+    //NSLog(@"%@", quotas);
     
     AKQuota *quota = [quotas objectAtIndex:0];
     

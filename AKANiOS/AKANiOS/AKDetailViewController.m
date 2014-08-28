@@ -11,17 +11,20 @@
 #import "AKQuotaDao.h"
 #import "AKParliamentaryDao.h"
 #import "AKQuota.h"
+#import "AKStatistic.h"
 #import "AKUtil.h"
 #import "AKQuotaDetailViewController.h"
 #import "AKWebServiceConsumer.h"
 #import "MBProgressHUD.h"
 #import "AKAppDelegate.h"
+#import "AKStatisticDao.h"
 
 @interface AKDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *quotaCollectionView;
 @property (nonatomic) AKQuotaDao *quotaDao;
 @property (nonatomic) AKParliamentaryDao *parliamentaryDao;
+@property (nonatomic) AKStatisticDao *statisticDao;
 @property (nonatomic) NSArray *quotas;
 @property (nonatomic) NSArray *allQuotas;
 @property (nonatomic) UIPickerView *datePickerView;
@@ -53,6 +56,7 @@
     
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
+    self.statisticDao = [AKStatisticDao getInstance];
     
     [self configureViewVisualComponentes];
     
@@ -77,8 +81,6 @@
         else
             [self filterQuotas];
     }
-
-    [self setYearsArray];
 }
 
 -(void) configureViewVisualComponentes {
@@ -94,8 +96,7 @@
     self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
     self.rankPositionLabel.text=[NSString stringWithFormat:@"%@º",self.parliamentary.posRanking];
     self.parliamentaryLabel.text=self.parliamentary.fullName;
-    self.partyLabel.text=self.parliamentary.party;
-    self.ufLabel.text=self.parliamentary.uf;
+    self.ufLabel.text=[NSString stringWithFormat:@"%@ - %@", self.parliamentary.party, self.parliamentary.uf];
     if ([self.parliamentary.followed isEqual:@1]) {
         [self setButtonFollowedState];
     }
@@ -218,15 +219,15 @@
     cell.quota = quota;
     
     //get from dao
-    cell.average = 60000;
-    cell.stdDeviation = 40000;
+    AKStatistic *statistic = (AKStatistic *)[[self.statisticDao getStatisticByYear:@0 andNumQuota:quota.numQuota] objectAtIndex:0];
+    cell.average = [statistic.average doubleValue];
+    cell.stdDeviation = [statistic.stdDeviation doubleValue];
     [cell imageForQuotaValue];
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     AKQuota *quota = self.quotas[indexPath.row];
-    
     AKQuotaDetailViewController *quotaDetailController = [[AKQuotaDetailViewController alloc] init];
     quotaDetailController.quota = quota;
     quotaDetailController.parliamentary = self.parliamentary;
@@ -404,6 +405,8 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
+                    [self setYearsArray];
+                    [self.datePickerView reloadAllComponents];
                     [hud hide:YES afterDelay:0.5f];
                 });
                 

@@ -17,7 +17,6 @@
 @property (nonatomic) AKParliamentary *parliamentary;
 @property (weak, nonatomic) IBOutlet UILabel *rankPositionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *parliamentaryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *partyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ufLabel;
 @property (weak, nonatomic) IBOutlet UITextField *datePickerField;
 

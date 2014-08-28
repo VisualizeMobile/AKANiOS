@@ -149,6 +149,19 @@
     return result;
 }
 
+-(NSArray *) getStatisticByYear:(NSNumber *)year andNumQuota:(NSNumber *)numQuota
+{
+    NSArray *result;
+    NSError *Error=nil;
+    
+    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(year == %@) AND (numQuota == %@)",year,numQuota]];
+    [fetchRequest setEntity:self.entity];
+    
+    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    return result;
+}
+
 
 
 
