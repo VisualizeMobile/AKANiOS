@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-@interface UIFont (PumaGafferOverride)
+@interface UIFont (SystemFontOverride)
 
 @end

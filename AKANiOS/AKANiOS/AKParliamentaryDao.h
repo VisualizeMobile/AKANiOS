@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AKParliamentary.h"
 
 @interface AKParliamentaryDao : NSObject <NSFetchedResultsControllerDelegate>
 
 @property(nonatomic,strong) NSFetchedResultsController *parlamentaryFRC;
-
 @property(nonatomic,strong) NSManagedObjectContext *managedObjectContext;//Acessa as tabelas
 @property(nonatomic,strong) NSEntityDescription *entity ; //Representa a tabelas
 @property(nonatomic,strong) NSSortDescriptor *nickName; //Faz ordenacao (Order by)
@@ -21,6 +21,8 @@
 + (instancetype)getInstance;
 
 -(NSArray *)getAllParliamentary;
+
+-(AKParliamentary*) getParliamentaryWithId:(NSNumber*) idParliamentary;
 
 -(BOOL) insertParliamentaryWithNickName:(NSString *) NickName andIdParliamentary:(NSNumber *) idParlamentary;
 

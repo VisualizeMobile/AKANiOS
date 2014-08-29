@@ -10,6 +10,15 @@
 #import "AKMainListViewController.h"
 #import "AKUtil.h"
 #import "AKSettingsManager.h"
+#import "AKParliamentaryDao.h"
+#import "AKDetailViewController.h"
+
+@interface AKAppDelegate()
+
+@property AKMainListViewController *root;
+@property UINavigationController *nav;
+
+@end
 
 @implementation AKAppDelegate
 
@@ -23,31 +32,46 @@
     
     [self copyAppConfigurationFromBundleToDocuments];
     
-    AKMainListViewController *root =  [[AKMainListViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:root];
+    self.root =  [[AKMainListViewController alloc] init];
     
-    nav.navigationBar.barTintColor = [AKUtil color1];
-    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
-    nav.navigationBar.tintColor = [AKUtil color4];
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif) {
+        NSNumber *idParliamentary = [localNotif.userInfo objectForKey:@"idParliamentary"];
+        self.root.idParliamentaryFromNotification = idParliamentary;
+    }
     
-    self.window.rootViewController = nav;
+    self.nav = [[UINavigationController alloc] initWithRootViewController:self.root];
+    
+    self.nav.navigationBar.barTintColor = [AKUtil color1];
+    self.nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
+    self.nav.navigationBar.tintColor = [AKUtil color4];
+    
+    self.window.rootViewController = self.nav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
-- (void)copyAppConfigurationFromBundleToDocuments {
-    BOOL alreadyExists;
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    alreadyExists = [fileManager fileExistsAtPath:[AKSettingsManager settingsFilePath]];
+    NSNumber *idParliamentary = [notification.userInfo objectForKey:@"idParliamentary"];
     
-    if (alreadyExists)
-        return;
-    
-    NSString *filePathMainBundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"akan_settings.plist"];
-    
-    [fileManager copyItemAtPath:filePathMainBundle toPath:[AKSettingsManager settingsFilePath] error:nil];
+    if (idParliamentary)
+    {
+        UIApplicationState state = [application applicationState];
+        if (state == UIApplicationStateInactive) {
+                
+            AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
+            
+            AKParliamentaryDao *dao = [AKParliamentaryDao getInstance];
+            
+            detailController.parliamentary = [dao getParliamentaryWithId:idParliamentary];
+            
+            [self.nav pushViewController:detailController animated:YES];
+        }
+                
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -77,6 +101,21 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+- (void)copyAppConfigurationFromBundleToDocuments {
+    BOOL alreadyExists;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    alreadyExists = [fileManager fileExistsAtPath:[AKSettingsManager settingsFilePath]];
+    
+    if (alreadyExists)
+        return;
+    
+    NSString *filePathMainBundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"akan_settings.plist"];
+    
+    [fileManager copyItemAtPath:filePathMainBundle toPath:[AKSettingsManager settingsFilePath] error:nil];
+}
+
 
 - (void)saveContext
 {

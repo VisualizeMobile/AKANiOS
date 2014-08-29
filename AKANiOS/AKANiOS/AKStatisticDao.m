@@ -55,11 +55,11 @@
     NSError *error = nil;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"numQuota == %@", numQuota]];
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(numQuota == %@) AND (year == 0)", numQuota]];
     [fetchRequest setEntity:self.entity];
     
     result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
-    
+    NSLog(@"%@",result);
     if([result count] == 0){
         AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
         [statistic setNumQuota:numQuota];
@@ -107,12 +107,13 @@
     return NO;
 }
 
--(BOOL)deleteAll{
+-(BOOL)deleteAllStatistic {
     NSError *Error=nil;
     NSArray *result;
     NSFetchRequest *request=[[NSFetchRequest alloc]init];
     
     [request setEntity:self.entity];
+    [request setIncludesPropertyValues:NO]; // only fetch the managedObjectID
     
     @try {
         result=[self.managedObjectContext executeFetchRequest:request error:&Error];
@@ -161,26 +162,6 @@
     result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     return result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

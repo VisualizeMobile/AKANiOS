@@ -33,6 +33,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>pumagaffer.ttf</string>
+		<string>Levi-Strauss.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

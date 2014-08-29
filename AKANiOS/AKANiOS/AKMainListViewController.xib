@@ -34,14 +34,16 @@
                         <constraint firstAttribute="height" constant="70" id="QhH-OA-gtX"/>
                     </constraints>
                 </view>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sem informações." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phz-MI-T3x">
-                    <rect key="frame" x="77" y="217" width="167" height="24"/>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="phz-MI-T3x">
+                    <rect key="frame" x="51" y="209" width="218" height="86"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="ded-LE-dkh"/>
-                        <constraint firstAttribute="width" constant="167" id="ud8-UL-lhe"/>
+                        <constraint firstAttribute="height" constant="86" id="ded-LE-dkh"/>
+                        <constraint firstAttribute="width" constant="218" id="ud8-UL-lhe"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <string key="text">Sem informações,
+tente outros filtros.</string>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="23"/>
                     <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="0.62" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -53,7 +55,7 @@
                 <constraint firstItem="BnB-nP-YYP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Rwn-At-8L9"/>
                 <constraint firstItem="BnB-nP-YYP" firstAttribute="top" secondItem="5SQ-zU-XfM" secondAttribute="bottom" id="SfX-EU-n9x"/>
                 <constraint firstItem="5SQ-zU-XfM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TYY-hy-yuU"/>
-                <constraint firstAttribute="centerY" secondItem="phz-MI-T3x" secondAttribute="centerY" constant="23" id="hVd-DO-Lr0"/>
+                <constraint firstAttribute="centerY" secondItem="phz-MI-T3x" secondAttribute="centerY" id="hVd-DO-Lr0"/>
                 <constraint firstAttribute="centerX" secondItem="phz-MI-T3x" secondAttribute="centerX" id="iUV-ax-VrP"/>
                 <constraint firstItem="5SQ-zU-XfM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sLq-sU-Ml6"/>
                 <constraint firstAttribute="trailing" secondItem="BnB-nP-YYP" secondAttribute="trailing" id="y2j-oG-Ed5"/>

@@ -74,7 +74,7 @@
      UIKeyboardWillHideNotification object:nil];
     
     self.webService = [[AKWebServiceConsumer alloc] init];
-    
+
     if([self.parliamentary.followed isEqual:@0]) {
         [self downloadQuotasForParliamentary];
         
@@ -97,6 +97,8 @@
 }
 
 -(void) checkIfQuotasWereDownloadedAndUpdate:(NSTimer *)timer {
+    static int numberOfChecks = 0;
+    
     self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
     if(self.allQuotas.count > 0) {
@@ -105,6 +107,13 @@
         [timer invalidate];
         [self.hud hide:YES afterDelay:0.3];
         self.hud = nil;
+    } else if(numberOfChecks >= 4) {
+        [timer invalidate];
+        [self.hud hide:YES];
+        self.hud = nil;
+        [self downloadQuotasForParliamentary];
+    } else {
+        numberOfChecks++;
     }
 }
 
@@ -120,10 +129,13 @@
     self.datePickerView.dataSource =self;
     [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
     [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
+    [self.datePickerView reloadAllComponents];
     
     self.datePickerView.backgroundColor = [AKUtil color4];
     self.datePickerField.inputView = self.datePickerView;
-    [self.datePickerView reloadAllComponents];
+    self.datePickerField.layer.borderWidth = 1;
+    self.datePickerField.layer.cornerRadius = 5;
+    self.datePickerField.font = [UIFont fontWithName:@"Chalkboard SE" size:16];
     
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:self.selectedMonth-1], [@(self.selectedYear) stringValue] ];
     
@@ -132,7 +144,10 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary nickName];
-    self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
+    if(self.parliamentary.photoParliamentary)
+        self.photoView.image = [UIImage imageWithData:self.parliamentary.photoParliamentary];
+    else
+        self.photoView.image = [UIImage imageNamed:@"placeholder_foto"];
     self.rankPositionLabel.text=[NSString stringWithFormat:@"%@º",self.parliamentary.posRanking];
     self.parliamentaryLabel.text=self.parliamentary.fullName;
     self.ufLabel.text=[NSString stringWithFormat:@"%@ - %@", self.parliamentary.party, self.parliamentary.uf];
@@ -164,6 +179,13 @@
     self.photoView.layer.masksToBounds = YES;
     self.photoView.layer.borderWidth = 0;
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
+    
+    if([self.quotas count] == 0){
+        self.quotaCollectionView.hidden = YES;
+    }
+    else{
+        self.quotaCollectionView.hidden = NO;
+    }
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation  duration:(NSTimeInterval)duration
@@ -234,10 +256,16 @@
     cell.quota = quota;
     
     //get from dao
-    AKStatistic *statistic = (AKStatistic *)[[self.statisticDao getStatisticByYear:@0 andNumQuota:quota.numQuota] objectAtIndex:0];
-    cell.average = [statistic.average doubleValue];
-    cell.stdDeviation = [statistic.stdDeviation doubleValue];
-    [cell imageForQuotaValue];
+    @try {
+        AKStatistic *statistic = (AKStatistic *)[[self.statisticDao getStatisticByYear:@0 andNumQuota:quota.numQuota] objectAtIndex:0];
+        cell.average = [statistic.average doubleValue];
+        cell.stdDeviation = [statistic.stdDeviation doubleValue];
+        [cell imageForQuotaValue];
+    } @catch(NSException *e) {
+        ALog(@"EXCECAO = %@", [e description]);
+        cell.imageView = nil;
+    }
+    
     return cell;
 }
 
@@ -262,6 +290,17 @@
         [self setButtonUnfollowedState];
 
     } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [AKUtil color1clear];
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+        hud.detailsLabelColor = [AKUtil color4];
+        hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", self.parliamentary.nickName];
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        hud.mode = MBProgressHUDModeCustomView;
+        [hud show:YES];
+        [hud hide:YES afterDelay:1.75];
+
+        
         [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@1];
         [self.parliamentary setFollowed:@1];
         
@@ -462,7 +501,7 @@
         UIAlertView *alert = nil;
         
         if(isConnectionError)
-            alert = [[UIAlertView alloc] initWithTitle:@"Erro!" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         else
             alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Ocorreu algum erro com o nosso servidor, por conta disso o AKAN não conseguiu carregar novos dados. Abra o app mais tarde para tentar novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         

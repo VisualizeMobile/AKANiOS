@@ -25,7 +25,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Não existem cotas referentes ao mês e ano selecionados, selecione outro período para ver os gastos! " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Cba-t9-y6t">
                     <rect key="frame" x="20" y="232" width="280" height="88"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                     <color key="textColor" red="0.95294117649999999" green="0.81960784310000001" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -55,16 +55,16 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000º" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6k-Mi-Nm1">
-                            <rect key="frame" x="37" y="96" width="36" height="21"/>
+                            <rect key="frame" x="36" y="90" width="39" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lugar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="44" translatesAutoresizingMaskIntoConstraints="NO" id="TnU-ps-ayQ">
-                            <rect key="frame" x="33" y="114" width="44" height="21"/>
+                            <rect key="frame" x="33" y="112" width="44" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -78,24 +78,24 @@
                                 <action selector="followParliamentary:" destination="-1" eventType="touchUpInside" id="NOz-Zk-LSJ"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seguido" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="MO8-8m-D1o">
-                            <rect key="frame" x="242" y="127" width="50" height="16"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seguido" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="MO8-8m-D1o">
+                            <rect key="frame" x="244" y="127" width="45" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="13"/>
                             <color key="textColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do Parlamentar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEQ-Ht-Rnh">
-                            <rect key="frame" x="20" y="174" width="280" height="17"/>
+                            <rect key="frame" x="20" y="174" width="280" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-M6-Vx9">
-                            <rect key="frame" x="151" y="193" width="18" height="17"/>
+                            <rect key="frame" x="152" y="193" width="17" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -103,7 +103,7 @@
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="MO8-8m-D1o" firstAttribute="centerX" secondItem="b0x-YG-p6n" secondAttribute="centerX" constant="0.5" id="47P-zd-fka"/>
-                        <constraint firstItem="hkX-M6-Vx9" firstAttribute="top" secondItem="QEQ-Ht-Rnh" secondAttribute="bottom" constant="2" id="4bR-9t-29t"/>
+                        <constraint firstItem="hkX-M6-Vx9" firstAttribute="top" secondItem="QEQ-Ht-Rnh" secondAttribute="bottom" constant="-1" id="4bR-9t-29t"/>
                         <constraint firstItem="6NA-Od-0fv" firstAttribute="centerY" secondItem="3uo-DV-lvf" secondAttribute="centerY" id="4ho-ZC-Fdl"/>
                         <constraint firstAttribute="width" constant="320" id="F8u-oY-weI"/>
                         <constraint firstAttribute="centerX" secondItem="QEQ-Ht-Rnh" secondAttribute="centerX" id="GQ4-0w-e4m"/>
@@ -150,7 +150,7 @@
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Referente a" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWF-Gt-A0P">
                             <rect key="frame" x="20" y="16" width="88" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
