@@ -164,6 +164,13 @@
     self.photoView.layer.masksToBounds = YES;
     self.photoView.layer.borderWidth = 0;
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
+    
+    if([self.quotas count] == 0){
+        self.quotaCollectionView.hidden = YES;
+    }
+    else{
+        self.quotaCollectionView.hidden = NO;
+    }
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation  duration:(NSTimeInterval)duration

@@ -619,7 +619,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             [self showError:isConnectionError];
         }
     }];
-    
 }
 
 

@@ -115,7 +115,6 @@ double const confiability = 1.4;
                          self.imageView.backgroundColor = color;
                      }
                      completion:nil];
-    
 }
 
 -(double) exponentialProbability{
