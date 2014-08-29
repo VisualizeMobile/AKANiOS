@@ -129,10 +129,13 @@
     self.datePickerView.dataSource =self;
     [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
     [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
+    [self.datePickerView reloadAllComponents];
     
     self.datePickerView.backgroundColor = [AKUtil color4];
     self.datePickerField.inputView = self.datePickerView;
-    [self.datePickerView reloadAllComponents];
+    self.datePickerField.layer.borderWidth = 1;
+    self.datePickerField.layer.cornerRadius = 5;
+    self.datePickerField.font = [UIFont fontWithName:@"Chalkboard SE" size:16];
     
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:self.selectedMonth-1], [@(self.selectedYear) stringValue] ];
     
@@ -141,7 +144,10 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary nickName];
-    self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
+    if(self.parliamentary.photoParliamentary)
+        self.photoView.image = [UIImage imageWithData:self.parliamentary.photoParliamentary];
+    else
+        self.photoView.image = [UIImage imageNamed:@"placeholder_foto"];
     self.rankPositionLabel.text=[NSString stringWithFormat:@"%@º",self.parliamentary.posRanking];
     self.parliamentaryLabel.text=self.parliamentary.fullName;
     self.ufLabel.text=[NSString stringWithFormat:@"%@ - %@", self.parliamentary.party, self.parliamentary.uf];
@@ -284,6 +290,17 @@
         [self setButtonUnfollowedState];
 
     } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.color = [AKUtil color1clear];
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+        hud.detailsLabelColor = [AKUtil color4];
+        hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", self.parliamentary.nickName];
+        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+        hud.mode = MBProgressHUDModeCustomView;
+        [hud show:YES];
+        [hud hide:YES afterDelay:1.75];
+
+        
         [self.parliamentaryDao updateFollowedByIdParliamentary:self.parliamentary.idParliamentary andFollowedValue:@1];
         [self.parliamentary setFollowed:@1];
         
@@ -484,7 +501,7 @@
         UIAlertView *alert = nil;
         
         if(isConnectionError)
-            alert = [[UIAlertView alloc] initWithTitle:@"Erro!" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         else
             alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Ocorreu algum erro com o nosso servidor, por conta disso o AKAN não conseguiu carregar novos dados. Abra o app mais tarde para tentar novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         

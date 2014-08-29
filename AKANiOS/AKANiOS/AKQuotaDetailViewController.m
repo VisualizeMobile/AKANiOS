@@ -132,7 +132,7 @@
 //        };
 //        composeController.completionHandler =myBlock;
     } else {
-        UIAlertView *alertNotPossible = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível compartilhar esta infomação no Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertNotPossible = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível compartilhar esta infomação no Facebook. Para ser possível compartilhar configure a sua conta em: Ajustes > Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertNotPossible show];
     }
 }

@@ -27,7 +27,7 @@
                             </constraints>
                             <string key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.</string>
                             <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="deviceRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJM-j7-EHg">
@@ -38,7 +38,7 @@
                             </constraints>
                             <string key="text">A Cota é composta pelas despesas que o parlamentar necessita para o exercício de sua função. São gastos com passagens aéreas, telefonia, serviçõs postais, manutenção de estritório, alimentação, hospedagem, fretamento de veículos, combustíveis, serviços de segurança, contratações e divulgação de atividade parlamentar.</string>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
@@ -60,7 +60,7 @@
                             </constraints>
                             <string key="text">Valores gastos com compras de passagens aéreas. O valor máximo autorizado para esta Cota varia de acordo com o estado do parlamentar</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
@@ -70,7 +70,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="r1M-KR-DNY"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -81,7 +81,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="2ko-Sk-Tzi"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="26"/>
                             <color key="textColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -93,7 +93,7 @@
                             </constraints>
                             <string key="text">No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlamentar. Toque em um parlamentar e veja quanto ele gasta e com o quê ele gasta. </string>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telefonia" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-HR-Mxd">
@@ -113,7 +113,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="G2M-Is-Kw8"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -126,7 +126,7 @@
                             </constraints>
                             <string key="text">Valores gastos com linhas instaladas em imóveis funcionais, celulares funcionais, ligações interurbanas e internacioais, e com ligações a cobrar</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serviços Postais" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPV-T2-PUj">
@@ -136,7 +136,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="NBW-xP-hVP"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -157,7 +157,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="q87-mp-G0L"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -170,7 +170,7 @@
                             </constraints>
                             <string key="text">Valores gastos com locação de imóveis, material de expediente, assinatura de TV a cabo ou similar, acesso à internet dentre outros.</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alimentacao" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-Or-8KY">
@@ -190,7 +190,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="lOb-0R-sDM"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -202,7 +202,7 @@
                                 <constraint firstAttribute="height" constant="104" id="tzF-8M-1hr"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hospedagem" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-Y7-kVO">
@@ -222,7 +222,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="I1d-ei-eha"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -234,7 +234,7 @@
                                 <constraint firstAttribute="height" constant="104" id="2Va-uu-D6S"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aeronaves" translatesAutoresizingMaskIntoConstraints="NO" id="Ck8-Fi-HWG">
@@ -254,7 +254,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Dml-bw-wOb"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -266,7 +266,7 @@
                                 <constraint firstAttribute="height" constant="104" id="VHu-iL-RoI"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combustivel" translatesAutoresizingMaskIntoConstraints="NO" id="hOO-7k-3fE">
@@ -286,7 +286,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="aD7-nF-7FK"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -298,7 +298,7 @@
                                 <constraint firstAttribute="height" constant="104" id="Tul-Wi-cEc"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seguranca" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-cO-Nan">
@@ -318,7 +318,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="LxP-mz-Nvs"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -330,7 +330,7 @@
                                 <constraint firstAttribute="height" constant="104" id="b7N-1v-K2e"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="consultoria" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-bF-Jcj">
@@ -350,7 +350,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="LkR-Jr-nRt"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -362,7 +362,7 @@
                                 <constraint firstAttribute="height" constant="104" id="73q-tz-e4I"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="divulgacao" translatesAutoresizingMaskIntoConstraints="NO" id="P17-4f-mPc">
@@ -382,7 +382,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="loZ-xr-o3A"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
@@ -394,7 +394,7 @@
                                 <constraint firstAttribute="height" constant="104" id="idc-oq-dnU"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-1M-liu">
@@ -423,7 +423,7 @@
                                 <constraint firstAttribute="height" constant="104" id="UzE-jG-kP2"/>
                             </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
@@ -572,7 +572,7 @@
         <image name="divulgacao" width="300" height="230"/>
         <image name="escritorio" width="300" height="230"/>
         <image name="hospedagem" width="300" height="230"/>
-        <image name="logo" width="41" height="53"/>
+        <image name="logo" width="80" height="80"/>
         <image name="passagem" width="300" height="230"/>
         <image name="postais" width="300" height="230"/>
         <image name="seguranca" width="300" height="230"/>

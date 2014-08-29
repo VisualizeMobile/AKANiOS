@@ -22,41 +22,41 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do Parlamentar" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="181" translatesAutoresizingMaskIntoConstraints="NO" id="apP-CV-Tes">
-                        <rect key="frame" x="86" y="11" width="181" height="20"/>
+                        <rect key="frame" x="86" y="11" width="181" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yux-gl-xk6">
-                        <rect key="frame" x="86" y="44" width="16" height="21"/>
+                        <rect key="frame" x="86" y="47" width="14" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="WW3-cm-uM5"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                         <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSB-iQ-P5a">
-                        <rect key="frame" x="122" y="44" width="23" height="21"/>
+                        <rect key="frame" x="120" y="47" width="23" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="23" id="1lm-N8-9jH"/>
                             <constraint firstAttribute="height" constant="21" id="dXy-DR-2kl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                         <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqK-L7-7Nz">
-                        <rect key="frame" x="108" y="44" width="7" height="21"/>
+                        <rect key="frame" x="106" y="47" width="7" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="7" id="YlV-E6-qZ4"/>
                             <constraint firstAttribute="height" constant="21" id="tva-G0-fgY"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                         <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -80,16 +80,16 @@
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="378º" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QL-gq-oDh">
-                        <rect key="frame" x="18" y="73" width="36" height="21"/>
+                        <rect key="frame" x="17" y="71" width="38" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ 100.000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8I-Ji-TA3">
-                        <rect key="frame" x="86" y="73" width="79" height="21"/>
+                        <rect key="frame" x="86" y="71" width="80" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -104,16 +104,16 @@
                     <constraint firstItem="aSB-iQ-P5a" firstAttribute="leading" secondItem="zqK-L7-7Nz" secondAttribute="trailing" constant="7" id="VDT-AA-pVF"/>
                     <constraint firstItem="WLJ-s4-Pv8" firstAttribute="centerX" secondItem="GlU-XV-b58" secondAttribute="centerX" id="ahI-oC-bTO"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="leading" secondItem="WLJ-s4-Pv8" secondAttribute="trailing" constant="20" id="fKq-wo-SUB"/>
-                    <constraint firstItem="Yux-gl-xk6" firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" id="fak-TK-jp7"/>
+                    <constraint firstItem="Yux-gl-xk6" firstAttribute="bottom" secondItem="WLJ-s4-Pv8" secondAttribute="bottom" constant="3" id="fak-TK-jp7"/>
                     <constraint firstItem="0QL-gq-oDh" firstAttribute="centerX" secondItem="WLJ-s4-Pv8" secondAttribute="centerX" id="jQH-Pg-v4D"/>
-                    <constraint firstAttribute="bottom" secondItem="G8I-Ji-TA3" secondAttribute="bottom" constant="5" id="kSR-et-wht"/>
+                    <constraint firstAttribute="bottom" secondItem="G8I-Ji-TA3" secondAttribute="bottom" constant="3" id="kSR-et-wht"/>
                     <constraint firstItem="0QL-gq-oDh" firstAttribute="centerY" secondItem="G8I-Ji-TA3" secondAttribute="centerY" id="moD-Fu-NBr"/>
                     <constraint firstItem="hNL-v9-cSu" firstAttribute="leading" secondItem="apP-CV-Tes" secondAttribute="trailing" constant="3" id="of6-Bw-LrL"/>
                     <constraint firstItem="WLJ-s4-Pv8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="qv5-Y1-tCa"/>
                     <constraint firstItem="Yux-gl-xk6" firstAttribute="baseline" secondItem="zqK-L7-7Nz" secondAttribute="baseline" id="uLo-hW-gBZ"/>
                     <constraint firstItem="WLJ-s4-Pv8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="vI3-sI-NQC"/>
                     <constraint firstAttribute="centerY" secondItem="hNL-v9-cSu" secondAttribute="centerY" id="vOM-rm-Nn2"/>
-                    <constraint firstAttribute="bottom" secondItem="0QL-gq-oDh" secondAttribute="bottom" constant="5" id="zNE-6e-TUQ"/>
+                    <constraint firstAttribute="bottom" secondItem="0QL-gq-oDh" secondAttribute="bottom" constant="3" id="zNE-6e-TUQ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

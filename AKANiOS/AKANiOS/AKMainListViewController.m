@@ -56,6 +56,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // Configure initial data
     self.title = @"Parlamentares";
+    
     self.viewByRankEnabled = NO;
     self.viewFollowedEnabled = NO;
     self.searchEnabled = NO;
@@ -341,6 +342,17 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                                       objectAtIndex:[self.searchController.searchBar
                                                      selectedScopeButtonIndex]]];
     
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.001);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        for (UIView* v in self.searchController.searchResultsTableView.subviews) {
+            if ([v isKindOfClass: [UILabel class]] &&
+                [[(UILabel*)v text] isEqualToString:@"No Results"]) {
+                ((UILabel*)v).text = @"Sem resultados.";
+                break;
+            }
+        }
+    });
+
     return YES;
 }
 
@@ -375,6 +387,25 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         self.lastTableViewForRemoveGapWasOfSearchDisplay = NO;
         [self.tableView insertSubview:topTableViewBG belowSubview:self.tableView.tableHeaderView];
     }
+}
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    static short cancelButtonDiff = 15;
+    
+    UIButton *cancelButton;
+    UIView *topView = self.searchController.searchBar.subviews[0];
+    for (UIView *subView in topView.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+            cancelButton = (UIButton*)subView;
+            [cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+            subView.frame = CGRectMake(subView.frame.origin.x - cancelButtonDiff, subView.frame.origin.y, subView.frame.size.width + cancelButtonDiff, subView.frame.size.height);
+        } else if([subView isKindOfClass:NSClassFromString(@"UITextField")]) {
+            subView.frame = CGRectMake(subView.frame.origin.x, subView.frame.origin.y, subView.frame.size.width - cancelButtonDiff, subView.frame.size.height);
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark - Actions
@@ -461,7 +492,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
                 hud.mode = MBProgressHUDModeCustomView;
                 [hud show:YES];
-                [hud hide:YES afterDelay:2];
+                [hud hide:YES afterDelay:1.75];
 
                 [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
 
@@ -814,7 +845,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         UIAlertView *alert = nil;
         
         if(isConnectionError)
-            alert = [[UIAlertView alloc] initWithTitle:@"Erro!" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível carregar os dados, verifique sua conexão com a internet." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         else
             alert = [[UIAlertView alloc] initWithTitle:@":(" message:@"Ocorreu algum erro com o nosso servidor, por conta disso o AKAN não conseguiu carregar novos dados. Abra o app mais tarde para tentar novamente." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         

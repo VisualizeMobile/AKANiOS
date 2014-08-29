@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F0F879019AD841C00F1B81A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0F878F19AD841B00F1B81A /* Reachability.m */; };
 		2F0F879219AD848C00F1B81A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */; };
+		2F580CEC19B047EE00605544 /* Levi-Strauss.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */; };
 		2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */; };
 		2F7343C719A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
@@ -23,7 +24,7 @@
 		2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4819AD22D800D3736E /* AKParliamentary.m */; };
 		2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4B19AD2A3000D3736E /* AKQuota.m */; };
 		2FB6FA4E19AD405700D3736E /* pumagaffer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */; };
-		2FB6FA5119AD40DB00D3736E /* UIFont+PumaGafferOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA5019AD40DB00D3736E /* UIFont+PumaGafferOverride.m */; };
+		2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */; };
 		2FC2C822199C2311008FEF40 /* AKSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC2C821199C2311008FEF40 /* AKSettingsManager.m */; };
 		2FC5105919A4E35B0036269F /* AKFilterOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5105819A4E35B0036269F /* AKFilterOptionsView.m */; };
 		2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FC5105B19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m */; };
@@ -80,6 +81,7 @@
 		2F0F878E19AD841B00F1B81A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2F0F878F19AD841B00F1B81A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Levi-Strauss.ttf"; sourceTree = "<group>"; };
 		2F7343C119A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionCollectionViewCell.h; sourceTree = "<group>"; };
 		2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionCollectionViewCell.m; sourceTree = "<group>"; };
 		2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKFilterOptionCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -180,8 +182,8 @@
 		2FB6FA4A19AD2A3000D3736E /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
 		2FB6FA4B19AD2A3000D3736E /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
 		2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pumagaffer.ttf; sourceTree = "<group>"; };
-		2FB6FA4F19AD40DB00D3736E /* UIFont+PumaGafferOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+PumaGafferOverride.h"; sourceTree = "<group>"; };
-		2FB6FA5019AD40DB00D3736E /* UIFont+PumaGafferOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+PumaGafferOverride.m"; sourceTree = "<group>"; };
+		2FB6FA4F19AD40DB00D3736E /* UIFont+SystemFontOverride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+SystemFontOverride.h"; sourceTree = "<group>"; };
+		2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SystemFontOverride.m"; sourceTree = "<group>"; };
 		2FC2C820199C2311008FEF40 /* AKSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettingsManager.h; sourceTree = "<group>"; };
 		2FC2C821199C2311008FEF40 /* AKSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettingsManager.m; sourceTree = "<group>"; };
 		2FC5105719A4E35B0036269F /* AKFilterOptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionsView.h; sourceTree = "<group>"; };
@@ -432,8 +434,8 @@
 				2FCEDE501994016F003522E8 /* AKUtil.m */,
 				F207385419A2D2BE0038C53F /* AKLoad.h */,
 				F207385519A2D2BE0038C53F /* AKLoad.m */,
-				2FB6FA4F19AD40DB00D3736E /* UIFont+PumaGafferOverride.h */,
-				2FB6FA5019AD40DB00D3736E /* UIFont+PumaGafferOverride.m */,
+				2FB6FA4F19AD40DB00D3736E /* UIFont+SystemFontOverride.h */,
+				2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */,
 				2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */,
 				2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */,
 			);
@@ -640,6 +642,7 @@
 		E9851BAA198F437700A2280B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */,
 				2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */,
 			);
 			name = fonts;
@@ -743,6 +746,7 @@
 				8E14E1E1199BEFBC00D77CF6 /* AKConfigViewController.xib in Resources */,
 				8E00F2F9199551850030A52F /* AKQuotaCollectionViewCell.xib in Resources */,
 				2F8EDB0D19A7BB87006D159F /* AKQuotaDetailViewController.xib in Resources */,
+				2F580CEC19B047EE00605544 /* Levi-Strauss.ttf in Resources */,
 				E99D1E8D1990120600564688 /* AKPortraitDetailViewController.xib in Resources */,
 				E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */,
 				2FB6FA4E19AD405700D3736E /* pumagaffer.ttf in Resources */,
@@ -783,7 +787,7 @@
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
-				2FB6FA5119AD40DB00D3736E /* UIFont+PumaGafferOverride.m in Sources */,
+				2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */,
