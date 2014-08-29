@@ -52,6 +52,7 @@
     return singleton;
 }
 
+
 -(BOOL)insertParliamentaryWithNickName:(NSString *)NickName andIdParliamentary:(NSNumber *)idParliamentary
 {
     NSError *Error=nil;
@@ -141,6 +142,20 @@
 
     
 }
+
+-(AKParliamentary*) getParliamentaryWithId:(NSNumber*) idParliamentary;
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+    [fetchRequest setEntity:self.entity];
+    
+    NSError *Error=nil;
+    NSArray *result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+
+    return [result firstObject];
+}
+
 
 -(NSArray *)getAllParliamentary
 {
@@ -250,7 +265,7 @@
 
 -(void) deleteAllPariamentary {
     NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
-    [fetch setEntity:[NSEntityDescription entityForName:@"Parliamentary" inManagedObjectContext:self.managedObjectContext]];
+    [fetch setEntity:self.entity];
     [fetch setIncludesPropertyValues:NO]; // only fetch the managedObjectID
     
     NSError * error = nil;

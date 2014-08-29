@@ -129,7 +129,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="elipsediagonal" width="240" height="240"/>
+        <image name="elipsediagonal" width="134" height="128"/>
         <image name="seguidooff" width="40" height="40"/>
     </resources>
 </document>

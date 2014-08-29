@@ -74,7 +74,7 @@
      UIKeyboardWillHideNotification object:nil];
     
     self.webService = [[AKWebServiceConsumer alloc] init];
-    
+
     if([self.parliamentary.followed isEqual:@0]) {
         [self downloadQuotasForParliamentary];
         
@@ -97,6 +97,8 @@
 }
 
 -(void) checkIfQuotasWereDownloadedAndUpdate:(NSTimer *)timer {
+    static int numberOfChecks = 0;
+    
     self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
     
     if(self.allQuotas.count > 0) {
@@ -105,6 +107,13 @@
         [timer invalidate];
         [self.hud hide:YES afterDelay:0.3];
         self.hud = nil;
+    } else if(numberOfChecks >= 4) {
+        [timer invalidate];
+        [self.hud hide:YES];
+        self.hud = nil;
+        [self downloadQuotasForParliamentary];
+    } else {
+        numberOfChecks++;
     }
 }
 
@@ -207,7 +216,7 @@
     self.selectedYear = self.olderYear+yearRow;
     self.selectedMonth = monthRow+1;
     
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
 }
 
 #pragma mark - PickerView Data Source
@@ -241,10 +250,16 @@
     cell.quota = quota;
     
     //get from dao
-    AKStatistic *statistic = (AKStatistic *)[[self.statisticDao getStatisticByYear:@0 andNumQuota:quota.numQuota] objectAtIndex:0];
-    cell.average = [statistic.average doubleValue];
-    cell.stdDeviation = [statistic.stdDeviation doubleValue];
-    [cell imageForQuotaValue];
+    @try {
+        AKStatistic *statistic = (AKStatistic *)[[self.statisticDao getStatisticByYear:@0 andNumQuota:quota.numQuota] objectAtIndex:0];
+        cell.average = [statistic.average doubleValue];
+        cell.stdDeviation = [statistic.stdDeviation doubleValue];
+        [cell imageForQuotaValue];
+    } @catch(NSException *e) {
+        ALog(@"EXCECAO = %@", [e description]);
+        cell.imageView = nil;
+    }
+    
     return cell;
 }
 

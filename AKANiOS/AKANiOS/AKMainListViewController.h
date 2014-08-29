@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *toolBarContainer;
 @property (weak, nonatomic) IBOutlet UILabel *noResultsLabel;
+@property(nonatomic) NSNumber *idParliamentaryFromNotification;
 
 @end
