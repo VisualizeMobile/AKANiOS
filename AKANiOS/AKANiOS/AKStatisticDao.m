@@ -107,12 +107,13 @@
     return NO;
 }
 
--(BOOL)deleteAll{
+-(BOOL)deleteAllStatistic {
     NSError *Error=nil;
     NSArray *result;
     NSFetchRequest *request=[[NSFetchRequest alloc]init];
     
     [request setEntity:self.entity];
+    [request setIncludesPropertyValues:NO]; // only fetch the managedObjectID
     
     @try {
         result=[self.managedObjectContext executeFetchRequest:request error:&Error];
@@ -161,26 +162,6 @@
     result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     return result;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

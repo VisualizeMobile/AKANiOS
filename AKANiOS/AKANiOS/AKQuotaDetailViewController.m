@@ -107,7 +107,7 @@
         
         [self.hostingView addSubview:parliamentaryPhotoView];
         
-        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@. Apenas este ano já foram gastos um total de R$ %@ por ele. Fonte = http://www2.camara.leg.br/transparencia/dados-abertos.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
+        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@.  Este ano já foram gastos um total de R$ %@ por ele. Fonte das infomações = Câmara dos Deputados do Brasil.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
         
         [composeController setInitialText:text];
         [composeController addImage:[UIView imageWithView:self.hostingView]];
@@ -123,17 +123,16 @@
         
         [self presentViewController:composeController animated:YES completion:nil];
         
-        
-        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
-            if (result == SLComposeViewControllerResultCancelled) {
-                NSLog(@"delete");
-            } else {
-                NSLog(@"post");
-            }
-        };
-        composeController.completionHandler =myBlock;
+//        SLComposeViewControllerCompletionHandler myBlock = ^(SLComposeViewControllerResult result){
+//            if (result == SLComposeViewControllerResultCancelled) {
+//                NSLog(@"delete");
+//            } else {
+//                NSLog(@"post");
+//            }
+//        };
+//        composeController.completionHandler =myBlock;
     } else {
-        UIAlertView *alertNotPossible = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível compartilhar no Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertNotPossible = [[UIAlertView alloc] initWithTitle:@":(" message:@"Não foi possível compartilhar esta infomação no Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertNotPossible show];
     }
 }

@@ -18,6 +18,8 @@
 + (instancetype)getInstance;
 -(NSArray *)getQuotas;
 
+-(void) deleteAllQuota;
+
 -(BOOL)insertQuotaWithId: (NSNumber *)idQuota andValue:(NSDecimalNumber *) value;
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary;
 

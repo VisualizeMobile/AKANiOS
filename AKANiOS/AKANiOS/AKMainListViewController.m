@@ -37,7 +37,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
 
-
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
@@ -54,6 +53,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Configure initial data
     self.title = @"Parlamentares";
     self.viewByRankEnabled = NO;
@@ -120,16 +120,26 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
     
-//    [self.settingsManager setDataUpdateVersion:0];
-    
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
             if(([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion])
                || [self.parliamentaryDao getAllParliamentary].count == 0) {
+                
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
                 });
+            } else {
+                // [self notifyParliamentaryUpdate:[self.parliamentaryDao getAllParliamentary][0]];
+                
+                if(self.idParliamentaryFromNotification != nil) {
+                    AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
+                    
+                    detailController.parliamentary = [self.parliamentaryDao getParliamentaryWithId:self.idParliamentaryFromNotification];
+                    
+                    self.idParliamentaryFromNotification = nil;
+                    [self.navigationController pushViewController:detailController animated:YES];
+                }
             }
         } else {
             [self showError:isConnectionError];
@@ -432,7 +442,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             else {NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
                 [self.tableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
             }
-        }else{
+        } else {
             if ([parliamentary.followed isEqual:@1]) {
                 [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
                 
@@ -443,6 +453,16 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
             }
             else{
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.color = [AKUtil color1clear];
+                hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+                hud.detailsLabelColor = [AKUtil color4];
+                hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", parliamentary.nickName];
+                hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+                hud.mode = MBProgressHUDModeCustomView;
+                [hud show:YES];
+                [hud hide:YES afterDelay:2];
+
                 [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
 
                 [parliamentary setFollowed:@1];
@@ -506,6 +526,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     hud.detailsLabelColor = [AKUtil color4];
     hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
     
+    
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
@@ -513,6 +534,9 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             if(success) {
 
                 [self.parliamentaryDao deleteAllPariamentary];
+                [self.quotaDao deleteAllQuota];
+                [self.statisticDao deleteAllStatistic];
+                
                 NSNumber * idParliamentary;
                 NSString * nickName;
                 NSString * party;
@@ -531,24 +555,35 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     party = jsonDict[@"fields"][@"partidoparlamentar"];
                     nickName = jsonDict[@"fields"][@"nomeparlamentar"];
                     
+                    dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.parliamentaryDao insertParliamentaryWithNickName:nickName andIdParliamentary:idParliamentary andParty:party andPosRanking:posRanking andUf:uf andValueRanking:[NSDecimalNumber decimalNumberWithDecimal:[valueRanking decimalValue]] andFollowed:@0];
+                    });
                 }
                 
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
-                
                 [self applyAllDefinedFiltersAndSort];
                 
+                
                 NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+                
+                
                 for(NSNumber *idParliamentary in followedParliamentaryIds) {
-                    [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:[NSNumber numberWithInteger:1]];
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:@1];
+                    });
+                
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
                 
+                
                 [self updateStatistics];
                 
+                
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(1 * NSEC_PER_SEC));
+                
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.5 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
                     [hud hide:YES afterDelay:0.5f];
@@ -575,6 +610,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSNumber * year;
             NSNumber * month;
             
+            
             for(NSDictionary *jsonDict in jsonArray) {
                 
                 NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
@@ -587,11 +623,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 month = jsonDict[@"mes"];
                 year = jsonDict[@"ano"];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
-                    
                 });
             }
+                
             
         } else {
             [self showError:isConnectionError];
@@ -604,6 +640,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSDecimalNumber * average;
             double stdDeviation;
             
+            
             for(NSDictionary *jsonDict in jsonArray) {
                 
                 NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
@@ -614,7 +651,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 numQuota = jsonDict[@"numsubcota"];
                 stdDeviation = [jsonDict[@"desvio_padrao"] doubleValue];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.statisticDao insertStatisticWithNumQuota:numQuota andMaxValue:maxValue andAverage:average andStdDeviation:stdDeviation ];
                 });
             }
@@ -640,7 +677,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSNumber * year;
             NSNumber * month;
             
-            
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             
@@ -653,10 +689,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 month = jsonDict[@"fields"][@"mes"];
                 year = jsonDict[@"fields"][@"ano"];
                 updateVersion = jsonDict[@"fields"][@"versaoupdate"];
-                
-                [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
+                });
             }
-           
+                
         } else {
             [self showError:isConnectionError];
         }
@@ -827,6 +865,28 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 - (void)filterArrayByText:(NSString *)searchText {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.nickName contains[c] %@", searchText];
     self.parliamentaryNicknameFilteredArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(void) notifyParliamentaryUpdate:(AKParliamentary*) parliamentary {
+    //Add next local notification
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    
+    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    
+    localNotif.applicationIconBadgeNumber = 1;    //Fixed badge number (must be known at creation time - can't gbe set to increment etc)
+    
+    localNotif.alertBody = [NSString stringWithFormat:@"O parlamentar %@ realizou novos gastos.", parliamentary.nickName];
+
+    //Set the action button label (appears with the 'Close' button)
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    
+    //Option add dictionary containing something you want when user selects action button and app is opened
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:parliamentary.idParliamentary
+                                                         forKey:@"idParliamentary"];
+    localNotif.userInfo = infoDict;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
 @end

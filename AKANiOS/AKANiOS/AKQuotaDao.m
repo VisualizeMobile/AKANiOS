@@ -269,6 +269,24 @@
     return NO;
 }
 
+-(void) deleteAllQuota {
+    NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
+    [fetch setEntity:self.entity];
+    [fetch setIncludesPropertyValues:NO]; // only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * quotaArray = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+    
+    //error handling goes here
+    for (NSManagedObject *quota in quotaArray) {
+        [self.managedObjectContext deleteObject:quota];
+    }
+    
+    NSError *saveError = nil;
+    [self.managedObjectContext save:&saveError];
+}
+
+
 -(NSString *)subtypeNameOfSubtype:(int)subtype{
     switch (subtype) {
         case 1:
