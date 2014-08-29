@@ -34,10 +34,14 @@
     
     self.root =  [[AKMainListViewController alloc] init];
     
-    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if (localNotif) {
-        NSNumber *idParliamentary = [localNotif.userInfo objectForKey:@"idParliamentary"];
-        self.root.idParliamentaryFromNotification = idParliamentary;
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification) {
+        NSNumber *idParliamentary = [notification.userInfo objectForKey:@"idParliamentary"];
+        
+        if(idParliamentary)
+            self.root.idParliamentaryFromNotification = idParliamentary;
+        
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
     }
     
     self.nav = [[UINavigationController alloc] initWithRootViewController:self.root];
@@ -54,14 +58,12 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    
     NSNumber *idParliamentary = [notification.userInfo objectForKey:@"idParliamentary"];
     
     if (idParliamentary)
     {
         UIApplicationState state = [application applicationState];
         if (state == UIApplicationStateInactive) {
-                
             AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
             
             AKParliamentaryDao *dao = [AKParliamentaryDao getInstance];
@@ -69,6 +71,8 @@
             detailController.parliamentary = [dao getParliamentaryWithId:idParliamentary];
             
             [self.nav pushViewController:detailController animated:YES];
+            
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
         }
                 
     }
@@ -93,6 +97,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    application.applicationIconBadgeNumber = 0;
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

@@ -19,6 +19,7 @@
 #import "AKQuotaDao.h"
 #import "MBProgressHUD.h"
 #import "AKStatisticDao.h"
+#import "AKQuota.h"
 
 const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
@@ -36,6 +37,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKStatisticDao *statisticDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
+@property (nonatomic) NSMutableArray *parliamentaryToBeNotifiedArray;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -66,6 +68,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryNicknameFilteredArray = [NSArray array];
     self.statisticDao = [AKStatisticDao getInstance];
+    self.parliamentaryToBeNotifiedArray = [NSMutableArray array];
     
     self.settingsManager = [AKSettingsManager sharedManager];
     
@@ -118,9 +121,17 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
     
+    if(self.idParliamentaryFromNotification != nil) {
+        AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
+        detailController.parliamentary = [self.parliamentaryDao getParliamentaryWithId:self.idParliamentaryFromNotification];
+        self.idParliamentaryFromNotification = nil;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
+    
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
     
+//    [self.settingsManager setDataUpdateVersion:0];
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
@@ -130,17 +141,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
                 });
-            } else {
-                // [self notifyParliamentaryUpdate:[self.parliamentaryDao getAllParliamentary][0]];
-                
-                if(self.idParliamentaryFromNotification != nil) {
-                    AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
-                    
-                    detailController.parliamentary = [self.parliamentaryDao getParliamentaryWithId:self.idParliamentaryFromNotification];
-                    
-                    self.idParliamentaryFromNotification = nil;
-                    [self.navigationController pushViewController:detailController animated:YES];
-                }
             }
         } else {
             [self showError:isConnectionError];
@@ -542,21 +542,26 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 #pragma mark - Custom methods
 
 -(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
-    // Save followed ids
-    NSMutableArray *followedParliamentaryIds = [NSMutableArray array];
-    for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary])
-        [followedParliamentaryIds addObject:p.idParliamentary];
+    // Save followed ids and your quota updates version
+    NSMutableDictionary *followedParliamentaryIdsAndUpdatesVersion = [NSMutableDictionary dictionary];
+    for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary]) {
+        NSMutableDictionary *quotasUpdateVersion = [NSMutableDictionary dictionary];
+
+        for(AKQuota *q in [self.quotaDao getQuotaByIdParliamentary:p.idParliamentary])
+            quotasUpdateVersion[q.idQuota] = q.idUpdate;
+            
+        followedParliamentaryIdsAndUpdatesVersion[p.idParliamentary] = quotasUpdateVersion;
+    }
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    [followedParliamentaryIds writeToFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath] atomically:YES];
     
+    [NSKeyedArchiver archiveRootObject:followedParliamentaryIdsAndUpdatesVersion toFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [AKUtil color1clear];
     hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
     hud.detailsLabelColor = [AKUtil color4];
     hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
-    
     
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -595,12 +600,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
                 [self applyAllDefinedFiltersAndSort];
                 
+                NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
                 
-                NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
-                
-                
-                for(NSNumber *idParliamentary in followedParliamentaryIds) {
-                    
+                // Update quotas
+                for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:@1];
                     });
@@ -608,9 +611,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
                 
-                
                 [self updateStatistics];
-                
                 
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
                 
@@ -710,6 +711,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             
+            // Check for quota updateVersion
+            NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+            NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+            
             for(NSDictionary *jsonDict in jsonArray) {
                 idQuota = jsonDict[@"pk"];
                 value = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
@@ -720,11 +725,51 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 year = jsonDict[@"fields"][@"ano"];
                 updateVersion = jsonDict[@"fields"][@"versaoupdate"];
 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
                 });
-            }
                 
+                NSNumber *oldUpdateVersion = recoveredfollowedParliamentaryIdsAndUpdatesVersion[idParliamentary][idQuota];
+                if(oldUpdateVersion != nil && [updateVersion integerValue] > [oldUpdateVersion integerValue]) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        AKParliamentary *parliamentaryToBeNotified = [self.parliamentaryDao getParliamentaryWithId:idParliamentary];
+                        if([self.parliamentaryToBeNotifiedArray containsObject:parliamentaryToBeNotified] == NO)
+                            [self.parliamentaryToBeNotifiedArray addObject:parliamentaryToBeNotified];
+                    });
+                }
+            }
+            
+            NSLog(@"self.parliamentaryToBeNotifiedArray.count = %ld", self.parliamentaryToBeNotifiedArray.count);
+            if(self.parliamentaryToBeNotifiedArray.count > 0 ) {
+                static dispatch_once_t onceToken = 0;
+                dispatch_once(&onceToken, ^{
+                    NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
+                    for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray) {
+                        NSString *nm = p.nickName;
+                        [detailText appendString:[NSString stringWithFormat:@"%@\n", nm]];
+                    }
+                    
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                        hud.color = [AKUtil color1clear];
+                        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
+                        hud.detailsLabelColor = [AKUtil color4];
+                        hud.detailsLabelText = detailText;
+                        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
+                        hud.mode = MBProgressHUDModeCustomView;
+
+                        [hud show:YES];
+                        [hud hide:YES afterDelay:4];
+                    });
+                });
+            }
+            
+            for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray)
+                [self notifyParliamentaryUpdate:p];
+            
+            self.parliamentaryToBeNotifiedArray = [NSMutableArray array];
+            
         } else {
             [self showError:isConnectionError];
         }
@@ -904,9 +949,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
     
-    localNotif.applicationIconBadgeNumber = 1;    //Fixed badge number (must be known at creation time - can't gbe set to increment etc)
-    
-    localNotif.alertBody = [NSString stringWithFormat:@"O parlamentar %@ realizou novos gastos.", parliamentary.nickName];
+    localNotif.alertBody = [NSString stringWithFormat:@"O parlamentar %@ realizou novos gastos. Confira!", parliamentary.nickName];
 
     //Set the action button label (appears with the 'Close' button)
     localNotif.soundName = UILocalNotificationDefaultSoundName;

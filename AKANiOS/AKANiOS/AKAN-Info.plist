@@ -32,6 +32,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>elect___.ttf</string>
 		<string>pumagaffer.ttf</string>
 		<string>Levi-Strauss.ttf</string>
 	</array>
