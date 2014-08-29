@@ -216,7 +216,7 @@
     self.selectedYear = self.olderYear+yearRow;
     self.selectedMonth = monthRow+1;
     
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
 }
 
 #pragma mark - PickerView Data Source

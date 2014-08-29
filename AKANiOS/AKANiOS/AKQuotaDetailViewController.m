@@ -50,7 +50,12 @@
     
     [self setDetailItem];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareFacebook:)];
+    UIButton* rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"compartilhar"] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(shareFacebook:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    
 }
 
 - (void)didReceiveMemoryWarning
