@@ -38,11 +38,13 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
 @property (nonatomic) NSMutableArray *parliamentaryToBeNotifiedArray;
+@property (nonatomic) MBProgressHUD *hud;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
 @property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
+
 
 
 @end
@@ -131,7 +133,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
     
-//    [self.settingsManager setDataUpdateVersion:0];
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
@@ -484,16 +485,18 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
             }
             else{
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.color = [AKUtil color1clear];
-                hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
-                hud.detailsLabelColor = [AKUtil color4];
-                hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", parliamentary.nickName];
-                hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-                hud.mode = MBProgressHUDModeCustomView;
-                [hud show:YES];
-                [hud hide:YES afterDelay:1.75];
-
+                self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                self.hud.color = [AKUtil color1clear];
+                self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+                self.hud.detailsLabelColor = [AKUtil color4];
+                self.hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", parliamentary.nickName];
+                self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+                self.hud.mode = MBProgressHUDModeCustomView;
+                
+                [self.hud show:YES];
+                [self.hud hide:YES afterDelay:1.75];
+                self.hud = nil;
+                
                 [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
 
                 [parliamentary setFollowed:@1];
@@ -543,6 +546,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
 -(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
     // Save followed ids and your quota updates version
+    ALog(@"");
     NSMutableDictionary *followedParliamentaryIdsAndUpdatesVersion = [NSMutableDictionary dictionary];
     for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary]) {
         NSMutableDictionary *quotasUpdateVersion = [NSMutableDictionary dictionary];
@@ -557,18 +561,19 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     [NSKeyedArchiver archiveRootObject:followedParliamentaryIdsAndUpdatesVersion toFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [AKUtil color1clear];
-    hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
-    hud.detailsLabelColor = [AKUtil color4];
-    hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.color = [AKUtil color1clear];
+    self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+    self.hud.detailsLabelColor = [AKUtil color4];
+    self.hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
     
+    ALog(@"");
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
             
             if(success) {
-
+                ALog(@"");
                 [self.parliamentaryDao deleteAllPariamentary];
                 [self.quotaDao deleteAllQuota];
                 [self.statisticDao deleteAllStatistic];
@@ -596,12 +601,14 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     });
                 }
                 
+                ALog(@"");
+                
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
                 [self applyAllDefinedFiltersAndSort];
                 
                 NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
-                
+                ALog(@"");
                 // Update quotas
                 for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -610,20 +617,22 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
-                
+                ALog(@"");
                 [self updateStatistics];
-                
+                ALog(@"");
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
-                
+                ALog(@"");
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.5 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
-                    [hud hide:YES afterDelay:0.5f];
+                    [self.hud hide:YES afterDelay:0.5f];
+                    self.hud = nil;
                 });
                 
             } else {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
+                    [self.hud hide:YES];
+                    self.hud = nil;
                 });
                 
                 [self showError:isConnectionError];
@@ -699,6 +708,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         
         if(success) {
+            static int numberOfFollowedParliamentariesQuotasUpdated = 0;
             NSNumber * idParliamentary;
             NSNumber * idQuota;
             NSNumber * numQuota;
@@ -733,42 +743,37 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 if(oldUpdateVersion != nil && [updateVersion integerValue] > [oldUpdateVersion integerValue]) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         AKParliamentary *parliamentaryToBeNotified = [self.parliamentaryDao getParliamentaryWithId:idParliamentary];
-                        if([self.parliamentaryToBeNotifiedArray containsObject:parliamentaryToBeNotified] == NO)
+                        if([self.parliamentaryToBeNotifiedArray containsObject:parliamentaryToBeNotified] == NO) {
                             [self.parliamentaryToBeNotifiedArray addObject:parliamentaryToBeNotified];
+                            [self notifyParliamentaryUpdate:parliamentaryToBeNotified];
+                            
+                        }
                     });
                 }
             }
             
-            NSLog(@"self.parliamentaryToBeNotifiedArray.count = %ld", self.parliamentaryToBeNotifiedArray.count);
-            if(self.parliamentaryToBeNotifiedArray.count > 0 ) {
-                static dispatch_once_t onceToken = 0;
-                dispatch_once(&onceToken, ^{
-                    NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
-                    for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray) {
-                        NSString *nm = p.nickName;
-                        [detailText appendString:[NSString stringWithFormat:@"%@\n", nm]];
-                    }
-                    
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                        hud.color = [AKUtil color1clear];
-                        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
-                        hud.detailsLabelColor = [AKUtil color4];
-                        hud.detailsLabelText = detailText;
-                        hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
-                        hud.mode = MBProgressHUDModeCustomView;
+            numberOfFollowedParliamentariesQuotasUpdated++;
 
-                        [hud show:YES];
-                        [hud hide:YES afterDelay:4];
-                    });
+            if(numberOfFollowedParliamentariesQuotasUpdated == [self.parliamentaryDao getAllFollowedPartliamentary].count && self.parliamentaryToBeNotifiedArray.count > 0) {
+                NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
+                for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray)
+                    [detailText appendString:[NSString stringWithFormat:@"%@\n",p.nickName]];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    self.hud.color = [AKUtil color1clear];
+                    self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
+                    self.hud.detailsLabelColor = [AKUtil color4];
+                    self.hud.detailsLabelText = detailText;
+                    self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
+                    self.hud.mode = MBProgressHUDModeCustomView;
+                    
+                    [self.hud show:YES];
+                    [self.hud hide:YES afterDelay:4];
+                    
+                    self.hud = nil;
                 });
             }
-            
-            for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray)
-                [self notifyParliamentaryUpdate:p];
-            
-            self.parliamentaryToBeNotifiedArray = [NSMutableArray array];
             
         } else {
             [self showError:isConnectionError];
