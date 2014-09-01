@@ -502,6 +502,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="WnZ-Fr-7pl">
                             <rect key="frame" x="0.0" y="2569" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="111" id="1uS-Is-0mc"/>
                                 <constraint firstAttribute="height" constant="104" id="WvN-Il-5Cf"/>
@@ -532,6 +533,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-7C-4TI">
                             <rect key="frame" x="0.0" y="2681" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="2Ac-nR-ikK"/>
                                 <constraint firstAttribute="width" constant="111" id="tWS-sF-yM8"/>
@@ -562,6 +564,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nCO-P2-35t">
                             <rect key="frame" x="0.0" y="2793" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="111" id="BOe-TX-qs6"/>
                                 <constraint firstAttribute="height" constant="104" id="dVs-c8-z7P"/>
@@ -581,6 +584,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RD5-zl-ukx">
                             <rect key="frame" x="0.0" y="2951" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="6gt-5e-Qx6"/>
                                 <constraint firstAttribute="width" constant="111" id="7mL-K9-3uB"/>
