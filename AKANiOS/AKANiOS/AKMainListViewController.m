@@ -19,6 +19,7 @@
 #import "AKQuotaDao.h"
 #import "MBProgressHUD.h"
 #import "AKStatisticDao.h"
+#import "AKQuota.h"
 
 const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
@@ -36,11 +37,14 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) AKStatisticDao *statisticDao;
 @property (nonatomic) AKSettingsManager *settingsManager;
 @property (nonatomic) AKWebServiceConsumer *webService;
+@property (nonatomic) NSMutableArray *parliamentaryToBeNotifiedArray;
+@property (nonatomic) MBProgressHUD *hud;
 
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
 @property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
+
 
 
 @end
@@ -66,6 +70,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     self.parliamentaryNicknameFilteredArray = [NSArray array];
     self.statisticDao = [AKStatisticDao getInstance];
+    self.parliamentaryToBeNotifiedArray = [NSMutableArray array];
     
     self.settingsManager = [AKSettingsManager sharedManager];
     
@@ -118,6 +123,13 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
     
+    if(self.idParliamentaryFromNotification != nil) {
+        AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
+        detailController.parliamentary = [self.parliamentaryDao getParliamentaryWithId:self.idParliamentaryFromNotification];
+        self.idParliamentaryFromNotification = nil;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
+    
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
     
@@ -130,17 +142,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
                 });
-            } else {
-                // [self notifyParliamentaryUpdate:[self.parliamentaryDao getAllParliamentary][0]];
-                
-                if(self.idParliamentaryFromNotification != nil) {
-                    AKDetailViewController *detailController = [[AKDetailViewController alloc] init];
-                    
-                    detailController.parliamentary = [self.parliamentaryDao getParliamentaryWithId:self.idParliamentaryFromNotification];
-                    
-                    self.idParliamentaryFromNotification = nil;
-                    [self.navigationController pushViewController:detailController animated:YES];
-                }
             }
         } else {
             [self showError:isConnectionError];
@@ -484,16 +485,18 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
             }
             else{
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.color = [AKUtil color1clear];
-                hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
-                hud.detailsLabelColor = [AKUtil color4];
-                hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", parliamentary.nickName];
-                hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-                hud.mode = MBProgressHUDModeCustomView;
-                [hud show:YES];
-                [hud hide:YES afterDelay:1.75];
-
+                self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                self.hud.color = [AKUtil color1clear];
+                self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:14];
+                self.hud.detailsLabelColor = [AKUtil color4];
+                self.hud.detailsLabelText = [NSString stringWithFormat:@"Parlamentar %@ seguido", parliamentary.nickName];
+                self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+                self.hud.mode = MBProgressHUDModeCustomView;
+                
+                [self.hud show:YES];
+                [self.hud hide:YES afterDelay:1.75];
+                self.hud = nil;
+                
                 [sender setImage:[UIImage imageNamed:@"seguido"] forState:UIControlStateNormal];
 
                 [parliamentary setFollowed:@1];
@@ -542,28 +545,35 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 #pragma mark - Custom methods
 
 -(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
-    // Save followed ids
-    NSMutableArray *followedParliamentaryIds = [NSMutableArray array];
-    for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary])
-        [followedParliamentaryIds addObject:p.idParliamentary];
+    // Save followed ids and your quota updates version
+    ALog(@"");
+    NSMutableDictionary *followedParliamentaryIdsAndUpdatesVersion = [NSMutableDictionary dictionary];
+    for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary]) {
+        NSMutableDictionary *quotasUpdateVersion = [NSMutableDictionary dictionary];
+
+        for(AKQuota *q in [self.quotaDao getQuotaByIdParliamentary:p.idParliamentary])
+            quotasUpdateVersion[q.idQuota] = q.idUpdate;
+            
+        followedParliamentaryIdsAndUpdatesVersion[p.idParliamentary] = quotasUpdateVersion;
+    }
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    [followedParliamentaryIds writeToFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath] atomically:YES];
     
+    [NSKeyedArchiver archiveRootObject:followedParliamentaryIdsAndUpdatesVersion toFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.color = [AKUtil color1clear];
-    hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
-    hud.detailsLabelColor = [AKUtil color4];
-    hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.color = [AKUtil color1clear];
+    self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:15];
+    self.hud.detailsLabelColor = [AKUtil color4];
+    self.hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
     
-    
+    ALog(@"");
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
             
             if(success) {
-
+                ALog(@"");
                 [self.parliamentaryDao deleteAllPariamentary];
                 [self.quotaDao deleteAllQuota];
                 [self.statisticDao deleteAllStatistic];
@@ -591,38 +601,38 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     });
                 }
                 
+                ALog(@"");
+                
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
                 [self applyAllDefinedFiltersAndSort];
                 
-                
-                NSArray *followedParliamentaryIds = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
-                
-                
-                for(NSNumber *idParliamentary in followedParliamentaryIds) {
-                    
+                NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+                ALog(@"");
+                // Update quotas
+                for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:@1];
                     });
                 
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
-                
-                
+                ALog(@"");
                 [self updateStatistics];
-                
-                
+                ALog(@"");
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
-                
+                ALog(@"");
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.5 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
-                    [hud hide:YES afterDelay:0.5f];
+                    [self.hud hide:YES afterDelay:0.5f];
+                    self.hud = nil;
                 });
                 
             } else {
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
+                    [self.hud hide:YES];
+                    self.hud = nil;
                 });
                 
                 [self showError:isConnectionError];
@@ -698,6 +708,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         
         if(success) {
+            static int numberOfFollowedParliamentariesQuotasUpdated = 0;
             NSNumber * idParliamentary;
             NSNumber * idQuota;
             NSNumber * numQuota;
@@ -710,6 +721,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             
+            // Check for quota updateVersion
+            NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+            NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+            
             for(NSDictionary *jsonDict in jsonArray) {
                 idQuota = jsonDict[@"pk"];
                 value = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
@@ -720,11 +735,46 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 year = jsonDict[@"fields"][@"ano"];
                 updateVersion = jsonDict[@"fields"][@"versaoupdate"];
 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.quotaDao insertQuotaWithId:idQuota andNumQuota:numQuota andNameQuota:nameQuota andMonth:month andYear:year andIdUpdate:updateVersion andValue:value andIdParliamentary:idParliamentary];
                 });
-            }
                 
+                NSNumber *oldUpdateVersion = recoveredfollowedParliamentaryIdsAndUpdatesVersion[idParliamentary][idQuota];
+                if(oldUpdateVersion != nil && [updateVersion integerValue] > [oldUpdateVersion integerValue]) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        AKParliamentary *parliamentaryToBeNotified = [self.parliamentaryDao getParliamentaryWithId:idParliamentary];
+                        if([self.parliamentaryToBeNotifiedArray containsObject:parliamentaryToBeNotified] == NO) {
+                            [self.parliamentaryToBeNotifiedArray addObject:parliamentaryToBeNotified];
+                            [self notifyParliamentaryUpdate:parliamentaryToBeNotified];
+                            
+                        }
+                    });
+                }
+            }
+            
+            numberOfFollowedParliamentariesQuotasUpdated++;
+
+            if(numberOfFollowedParliamentariesQuotasUpdated == [self.parliamentaryDao getAllFollowedPartliamentary].count && self.parliamentaryToBeNotifiedArray.count > 0) {
+                NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
+                for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray)
+                    [detailText appendString:[NSString stringWithFormat:@"%@\n",p.nickName]];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    self.hud.color = [AKUtil color1clear];
+                    self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
+                    self.hud.detailsLabelColor = [AKUtil color4];
+                    self.hud.detailsLabelText = detailText;
+                    self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
+                    self.hud.mode = MBProgressHUDModeCustomView;
+                    
+                    [self.hud show:YES];
+                    [self.hud hide:YES afterDelay:4];
+                    
+                    self.hud = nil;
+                });
+            }
+            
         } else {
             [self showError:isConnectionError];
         }
@@ -904,9 +954,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
     
-    localNotif.applicationIconBadgeNumber = 1;    //Fixed badge number (must be known at creation time - can't gbe set to increment etc)
-    
-    localNotif.alertBody = [NSString stringWithFormat:@"O parlamentar %@ realizou novos gastos.", parliamentary.nickName];
+    localNotif.alertBody = [NSString stringWithFormat:@"O parlamentar %@ realizou novos gastos. Confira!", parliamentary.nickName];
 
     //Set the action button label (appears with the 'Close' button)
     localNotif.soundName = UILocalNotificationDefaultSoundName;

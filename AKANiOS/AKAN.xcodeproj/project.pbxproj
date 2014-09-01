@@ -19,6 +19,7 @@
 		2F8EDBB719A7E004006D159F /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8EDBB619A7E004006D159F /* libCorePlot-CocoaTouch.a */; };
 		2F9054A919AFC47C0055CFCC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9054A819AFC47C0055CFCC /* Social.framework */; };
 		2F9054AC19AFC7250055CFCC /* UIView+ImageFromView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */; };
+		2F99E77819B0BD0F00CCBA77 /* elect___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F99E77719B0BD0F00CCBA77 /* elect___.ttf */; };
 		2FB6FA2D19AB9B8900D3736E /* AKWebServiceConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */; };
 		2FB6FA4319AD019800D3736E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4219AD019800D3736E /* MBProgressHUD.m */; };
 		2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4819AD22D800D3736E /* AKParliamentary.m */; };
@@ -64,7 +65,6 @@
 		E9851B9E198F2EF600A2280B /* AKMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9851B9C198F2EF600A2280B /* AKMainTableViewCell.xib */; };
 		E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99D1E8A1990120600564688 /* AKDetailViewController.m */; };
 		E99D1E8D1990120600564688 /* AKPortraitDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99D1E8B1990120600564688 /* AKPortraitDetailViewController.xib */; };
-		F207385619A2D2BE0038C53F /* AKLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = F207385519A2D2BE0038C53F /* AKLoad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +173,7 @@
 		2F9054A819AFC47C0055CFCC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ImageFromView.h"; sourceTree = "<group>"; };
 		2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ImageFromView.m"; sourceTree = "<group>"; };
+		2F99E77719B0BD0F00CCBA77 /* elect___.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "elect___.ttf"; sourceTree = "<group>"; };
 		2FB6FA2B19AB9B8900D3736E /* AKWebServiceConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKWebServiceConsumer.h; sourceTree = "<group>"; };
 		2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKWebServiceConsumer.m; sourceTree = "<group>"; };
 		2FB6FA4119AD019800D3736E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -242,8 +243,6 @@
 		E99D1E891990120600564688 /* AKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDetailViewController.h; sourceTree = "<group>"; };
 		E99D1E8A1990120600564688 /* AKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDetailViewController.m; sourceTree = "<group>"; };
 		E99D1E8B1990120600564688 /* AKPortraitDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKPortraitDetailViewController.xib; sourceTree = "<group>"; };
-		F207385419A2D2BE0038C53F /* AKLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLoad.h; sourceTree = "<group>"; };
-		F207385519A2D2BE0038C53F /* AKLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLoad.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,8 +431,6 @@
 			children = (
 				2FCEDE4F1994016F003522E8 /* AKUtil.h */,
 				2FCEDE501994016F003522E8 /* AKUtil.m */,
-				F207385419A2D2BE0038C53F /* AKLoad.h */,
-				F207385519A2D2BE0038C53F /* AKLoad.m */,
 				2FB6FA4F19AD40DB00D3736E /* UIFont+SystemFontOverride.h */,
 				2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */,
 				2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */,
@@ -642,6 +639,7 @@
 		E9851BAA198F437700A2280B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2F99E77719B0BD0F00CCBA77 /* elect___.ttf */,
 				2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */,
 				2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */,
 			);
@@ -740,6 +738,7 @@
 			files = (
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
 				8E00170D19A51E7A00CB0351 /* AKLandscapeDetailViewController.xib in Resources */,
+				2F99E77819B0BD0F00CCBA77 /* elect___.ttf in Resources */,
 				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
 				2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
@@ -783,7 +782,6 @@
 				8E4A197619AE5CF500CCDF82 /* AKStatistic.m in Sources */,
 				2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */,
 				2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */,
-				F207385619A2D2BE0038C53F /* AKLoad.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
