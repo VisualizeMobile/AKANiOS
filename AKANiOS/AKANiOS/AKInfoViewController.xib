@@ -15,777 +15,417 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
+                    <rect key="frame" x="0.0" y="-10" width="320" height="3046"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naD-Lx-Dsq">
-                            <rect key="frame" x="20" y="119" width="292" height="155"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="155" id="Zla-5S-xal"/>
-                            </constraints>
-                            <string key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.</string>
-                            <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="deviceRGB"/>
-                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJM-j7-EHg">
-                            <rect key="frame" x="20" y="261" width="301" height="224"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="224" id="EGH-Ql-Xwf"/>
-                            </constraints>
-                            <string key="text">A Cota é composta pelas despesas que o parlamentar necessita para o exercício de sua função. São gastos com passagens aéreas, telefonia, serviçõs postais, manutenção de estritório, alimentação, hospedagem, fretamento de veículos, combustíveis, serviços de segurança, contratações e divulgação de atividade parlamentar.</string>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
-                            <rect key="frame" x="6" y="668" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
+                            <rect key="frame" x="6" y="814" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="G0R-Ei-nvc"/>
-                                <constraint firstAttribute="height" constant="104" id="Qfy-A6-Ypr"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn1-be-8HX">
-                            <rect key="frame" x="119" y="668" width="201" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn1-be-8HX">
+                            <rect key="frame" x="119" y="814" width="201" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="ZW6-b1-gmz"/>
-                            </constraints>
                             <string key="text">Valores gastos com compras de passagens aéreas. O valor máximo autorizado para esta Cota varia de acordo com o estado do parlamentar</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
-                            <rect key="frame" x="-3" y="639" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
+                            <rect key="frame" x="-3" y="785" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="r1M-KR-DNY"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO2-HN-AeS">
-                            <rect key="frame" x="2" y="599" width="315" height="32"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO2-HN-AeS">
+                            <rect key="frame" x="2" y="745" width="315" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="32" id="2ko-Sk-Tzi"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="26"/>
                             <color key="textColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jT-Lx-Gpk">
-                            <rect key="frame" x="20" y="478" width="300" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="128" id="qVh-57-YDA"/>
-                            </constraints>
-                            <string key="text">No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlamentar. Toque em um parlamentar e veja quanto ele gasta e com o quê ele gasta. </string>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telefonia" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-HR-Mxd">
-                            <rect key="frame" x="7" y="809" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="telefonia" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-HR-Mxd">
+                            <rect key="frame" x="7" y="955" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="QFb-En-Lrq"/>
-                                <constraint firstAttribute="height" constant="104" id="t6g-df-eSh"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefonia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-Zk-8Jy">
-                            <rect key="frame" x="0.0" y="780" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Telefonia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-Zk-8Jy">
+                            <rect key="frame" x="0.0" y="926" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="G2M-Is-Kw8"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avg-yn-fyt">
-                            <rect key="frame" x="122" y="809" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avg-yn-fyt">
+                            <rect key="frame" x="122" y="955" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="dEY-El-Hqp"/>
-                            </constraints>
                             <string key="text">Valores gastos com linhas instaladas em imóveis funcionais, celulares funcionais, ligações interurbanas e internacioais, e com ligações a cobrar</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serviços Postais" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPV-T2-PUj">
-                            <rect key="frame" x="1" y="921" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Serviços Postais" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPV-T2-PUj">
+                            <rect key="frame" x="1" y="1067" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="NBW-xP-hVP"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="escritorio" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-Tn-Gi5">
-                            <rect key="frame" x="7" y="1091" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="escritorio" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-Tn-Gi5">
+                            <rect key="frame" x="7" y="1237" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="BJe-Cj-gTK"/>
-                                <constraint firstAttribute="height" constant="104" id="MwW-Ky-p2f"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escritório" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MP-di-de2">
-                            <rect key="frame" x="0.0" y="1062" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escritório" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MP-di-de2">
+                            <rect key="frame" x="0.0" y="1208" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="q87-mp-G0L"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27o-Rw-oLQ">
-                            <rect key="frame" x="122" y="1091" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27o-Rw-oLQ">
+                            <rect key="frame" x="122" y="1237" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="fxs-Dp-A9H"/>
-                            </constraints>
                             <string key="text">Valores gastos com locação de imóveis, material de expediente, assinatura de TV a cabo ou similar, acesso à internet dentre outros.</string>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alimentacao" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-Or-8KY">
-                            <rect key="frame" x="8" y="1232" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="alimentacao" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-Or-8KY">
+                            <rect key="frame" x="8" y="1378" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="Mbe-Rb-hd4"/>
-                                <constraint firstAttribute="height" constant="104" id="gQg-UB-uEI"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alimentação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSQ-qH-i3Q">
-                            <rect key="frame" x="1" y="1203" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alimentação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSQ-qH-i3Q">
+                            <rect key="frame" x="1" y="1349" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="lOb-0R-sDM"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos fornecimento de alimentação do parlamentar" translatesAutoresizingMaskIntoConstraints="NO" id="TXN-v4-TXH">
-                            <rect key="frame" x="123" y="1232" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos fornecimento de alimentação do parlamentar" translatesAutoresizingMaskIntoConstraints="NO" id="TXN-v4-TXH">
+                            <rect key="frame" x="123" y="1378" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="tzF-8M-1hr"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hospedagem" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-Y7-kVO">
-                            <rect key="frame" x="8" y="1373" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hospedagem" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-Y7-kVO">
+                            <rect key="frame" x="8" y="1519" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="1V8-eA-kNj"/>
-                                <constraint firstAttribute="width" constant="111" id="DiI-Th-V1D"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hospedagem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov1-Do-xSe">
-                            <rect key="frame" x="1" y="1344" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hospedagem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov1-Do-xSe">
+                            <rect key="frame" x="1" y="1490" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="I1d-ei-eha"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com diárias em hotéis, exceto a parlamentares do Distrito Federal." translatesAutoresizingMaskIntoConstraints="NO" id="kOq-VD-YiE">
-                            <rect key="frame" x="123" y="1373" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com diárias em hotéis, exceto a parlamentares do Distrito Federal." translatesAutoresizingMaskIntoConstraints="NO" id="kOq-VD-YiE">
+                            <rect key="frame" x="123" y="1519" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="2Va-uu-D6S"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aeronaves" translatesAutoresizingMaskIntoConstraints="NO" id="Ck8-Fi-HWG">
-                            <rect key="frame" x="8" y="1514" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aeronaves" translatesAutoresizingMaskIntoConstraints="NO" id="Ck8-Fi-HWG">
+                            <rect key="frame" x="8" y="1660" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="D8F-jm-8vl"/>
-                                <constraint firstAttribute="height" constant="104" id="Ohi-lP-YDk"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locação ou fretamento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-7z-w3R">
-                            <rect key="frame" x="1" y="1485" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Locação ou fretamento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-7z-w3R">
+                            <rect key="frame" x="1" y="1631" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="Dml-bw-wOb"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos locação ou fretamento de aeronaves, embarcações e veículos automotores." translatesAutoresizingMaskIntoConstraints="NO" id="H3k-uD-H0L">
-                            <rect key="frame" x="124" y="1514" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos locação ou fretamento de aeronaves, embarcações e veículos automotores." translatesAutoresizingMaskIntoConstraints="NO" id="H3k-uD-H0L">
+                            <rect key="frame" x="124" y="1660" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="VHu-iL-RoI"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combustivel" translatesAutoresizingMaskIntoConstraints="NO" id="hOO-7k-3fE">
-                            <rect key="frame" x="8" y="1655" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="combustivel" translatesAutoresizingMaskIntoConstraints="NO" id="hOO-7k-3fE">
+                            <rect key="frame" x="8" y="1801" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="6r5-Sp-pMe"/>
-                                <constraint firstAttribute="height" constant="104" id="Nu8-el-i1j"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Combustíveis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lS-g2-ULQ">
-                            <rect key="frame" x="1" y="1626" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Combustíveis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lS-g2-ULQ">
+                            <rect key="frame" x="1" y="1772" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="aD7-nF-7FK"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com combustíveis e lubrificantes, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-MS-gPR">
-                            <rect key="frame" x="123" y="1655" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com combustíveis e lubrificantes, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="zQh-MS-gPR">
+                            <rect key="frame" x="123" y="1801" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="Tul-Wi-cEc"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seguranca" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-cO-Nan">
-                            <rect key="frame" x="8" y="1796" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seguranca" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-cO-Nan">
+                            <rect key="frame" x="8" y="1942" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="9sS-G8-G8X"/>
-                                <constraint firstAttribute="width" constant="111" id="I6d-ev-3Ha"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segurança" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-Vu-CcJ">
-                            <rect key="frame" x="1" y="1767" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Segurança" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-Vu-CcJ">
+                            <rect key="frame" x="1" y="1913" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="LxP-mz-Nvs"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços prestados por empresas de segurança, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="1rK-gh-xGZ">
-                            <rect key="frame" x="124" y="1796" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços prestados por empresas de segurança, no limite de até R$ 4.500,00 por mês" translatesAutoresizingMaskIntoConstraints="NO" id="1rK-gh-xGZ">
+                            <rect key="frame" x="124" y="1942" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="b7N-1v-K2e"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="consultoria" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-bF-Jcj">
-                            <rect key="frame" x="8" y="1937" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="consultoria" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-bF-Jcj">
+                            <rect key="frame" x="8" y="2083" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="Tkl-LD-ktv"/>
-                                <constraint firstAttribute="height" constant="104" id="ULT-PW-q27"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contratações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-ru-zpH">
-                            <rect key="frame" x="1" y="1908" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contratações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-ru-zpH">
+                            <rect key="frame" x="1" y="2054" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="LkR-Jr-nRt"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas" translatesAutoresizingMaskIntoConstraints="NO" id="44N-Hz-Nxn">
-                            <rect key="frame" x="122" y="1937" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas" translatesAutoresizingMaskIntoConstraints="NO" id="44N-Hz-Nxn">
+                            <rect key="frame" x="122" y="2083" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="73q-tz-e4I"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="divulgacao" translatesAutoresizingMaskIntoConstraints="NO" id="P17-4f-mPc">
-                            <rect key="frame" x="8" y="2078" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="divulgacao" translatesAutoresizingMaskIntoConstraints="NO" id="P17-4f-mPc">
+                            <rect key="frame" x="8" y="2224" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="LBc-0P-2yT"/>
-                                <constraint firstAttribute="width" constant="111" id="XSR-vI-OX7"/>
-                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Divulgação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-n6-iyD">
-                            <rect key="frame" x="1" y="2049" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Divulgação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-n6-iyD">
+                            <rect key="frame" x="1" y="2195" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="loZ-xr-o3A"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com divulgação de atividade parlamentar, exceto nos 120 dias anteriores à data das eleições " translatesAutoresizingMaskIntoConstraints="NO" id="RH1-tS-XRg">
-                            <rect key="frame" x="122" y="2078" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com divulgação de atividade parlamentar, exceto nos 120 dias anteriores à data das eleições " translatesAutoresizingMaskIntoConstraints="NO" id="RH1-tS-XRg">
+                            <rect key="frame" x="122" y="2224" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="idc-oq-dnU"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-1M-liu">
-                            <rect key="frame" x="116" y="17" width="89" height="98"/>
+                            <rect key="frame" x="116" y="14" width="89" height="98"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="98" id="ONe-80-OQk"/>
-                                <constraint firstAttribute="width" constant="89" id="y6M-Jj-AR6"/>
+                                <constraint firstAttribute="width" constant="89" id="Wq6-uD-AAK"/>
+                                <constraint firstAttribute="height" constant="98" id="nIX-sz-7XE"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postais" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-ag-VtQ">
-                            <rect key="frame" x="8" y="950" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="postais" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-ag-VtQ">
+                            <rect key="frame" x="8" y="1096" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="RnE-ij-D2T"/>
-                                <constraint firstAttribute="height" constant="104" id="ZHB-qg-YP0"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços postais exceto compra de selos" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-yX-o8Y">
-                            <rect key="frame" x="123" y="950" width="198" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" text="Valores gastos com serviços postais exceto compra de selos" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-yX-o8Y">
+                            <rect key="frame" x="123" y="1096" width="198" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="UzE-jG-kP2"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automóveis e Embarcações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzc-lK-oPs">
-                            <rect key="frame" x="0.0" y="2190" width="320" height="25"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Automóveis e Embarcações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzc-lK-oPs">
+                            <rect key="frame" x="0.0" y="2336" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="Gh7-8L-Q2m"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="automovel" translatesAutoresizingMaskIntoConstraints="NO" id="0Ir-Il-Tg2">
-                            <rect key="frame" x="0.0" y="2223" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="automovel" translatesAutoresizingMaskIntoConstraints="NO" id="0Ir-Il-Tg2">
+                            <rect key="frame" x="0.0" y="2369" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="A1E-z1-Beb"/>
-                                <constraint firstAttribute="height" constant="104" id="YHI-81-Xip"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Valores gastos com alugel  e fretamento de automovéis e embacações" translatesAutoresizingMaskIntoConstraints="NO" id="eL6-9i-8TJ">
-                            <rect key="frame" x="111" y="2223" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Valores gastos com alugel  e fretamento de automovéis e embacações" translatesAutoresizingMaskIntoConstraints="NO" id="eL6-9i-8TJ">
+                            <rect key="frame" x="111" y="2369" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="QyH-ju-GY8"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assinatura de Revistas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BP-fz-7or">
-                            <rect key="frame" x="0.0" y="2335" width="320" height="25"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assinatura de Revistas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BP-fz-7or">
+                            <rect key="frame" x="0.0" y="2481" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="6bm-xF-bM9"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="assinaturas" translatesAutoresizingMaskIntoConstraints="NO" id="AW1-xq-WQ8">
-                            <rect key="frame" x="0.0" y="2368" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="assinaturas" translatesAutoresizingMaskIntoConstraints="NO" id="AW1-xq-WQ8">
+                            <rect key="frame" x="0.0" y="2514" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="3ND-E8-T5j"/>
-                                <constraint firstAttribute="width" constant="111" id="yWG-b4-47J"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Valores gastos com assinaturas de revistas " translatesAutoresizingMaskIntoConstraints="NO" id="dxK-bJ-lPI">
-                            <rect key="frame" x="111" y="2368" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Valores gastos com assinaturas de revistas " translatesAutoresizingMaskIntoConstraints="NO" id="dxK-bJ-lPI">
+                            <rect key="frame" x="111" y="2514" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="LUI-nw-yju"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desenvolvedores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG7-I2-vMw">
-                            <rect key="frame" x="0.0" y="2530" width="320" height="25"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Desenvolvedores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG7-I2-vMw">
+                            <rect key="frame" x="0.0" y="2676" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="IGy-EP-H5Z"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="WnZ-Fr-7pl">
-                            <rect key="frame" x="0.0" y="2569" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="WnZ-Fr-7pl">
+                            <rect key="frame" x="0.0" y="2715" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="1uS-Is-0mc"/>
-                                <constraint firstAttribute="height" constant="104" id="WvN-Il-5Cf"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Arthur Jahn                                      stutrzbecher@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-Iq-BMJ">
-                            <rect key="frame" x="111" y="2569" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Arthur Jahn                                      stutrzbecher@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="HGP-Iq-BMJ">
+                            <rect key="frame" x="111" y="2715" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="rP6-7M-3S7"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
-                            <rect key="frame" x="0.0" y="2911" width="320" height="25"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Designer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
+                            <rect key="frame" x="0.0" y="3057" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="DjW-88-d0Y"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-7C-4TI">
-                            <rect key="frame" x="0.0" y="2681" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-7C-4TI">
+                            <rect key="frame" x="0.0" y="2827" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="2Ac-nR-ikK"/>
-                                <constraint firstAttribute="width" constant="111" id="tWS-sF-yM8"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Matheus Fonseca                           1matheusfonceca@gmail.com      " translatesAutoresizingMaskIntoConstraints="NO" id="Ti3-gc-wg6">
-                            <rect key="frame" x="111" y="2681" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Matheus Fonseca                           1matheusfonceca@gmail.com      " translatesAutoresizingMaskIntoConstraints="NO" id="Ti3-gc-wg6">
+                            <rect key="frame" x="111" y="2827" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="48Q-E8-nIj"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94v-4I-LM0">
-                            <rect key="frame" x="0.0" y="2480" width="320" height="37"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94v-4I-LM0">
+                            <rect key="frame" x="0.0" y="2626" width="320" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="37" id="O9B-Ge-pbZ"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="26"/>
                             <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nCO-P2-35t">
-                            <rect key="frame" x="0.0" y="2793" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="nCO-P2-35t">
+                            <rect key="frame" x="0.0" y="2939" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="111" id="BOe-TX-qs6"/>
-                                <constraint firstAttribute="height" constant="104" id="dVs-c8-z7P"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Ramon Cruz                                      kverrna@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="8pp-eC-OEK">
-                            <rect key="frame" x="111" y="2793" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Ramon Cruz                                      kverrna@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="8pp-eC-OEK">
+                            <rect key="frame" x="111" y="2939" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="Ffd-q7-O5k"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RD5-zl-ukx">
-                            <rect key="frame" x="0.0" y="2951" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="RD5-zl-ukx">
+                            <rect key="frame" x="0.0" y="3097" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="6gt-5e-Qx6"/>
-                                <constraint firstAttribute="width" constant="111" id="7mL-K9-3uB"/>
-                            </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Pedro Costa                                   pirlimpas@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="4Ez-SD-4kN">
-                            <rect key="frame" x="111" y="2951" width="209" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Pedro Costa                                   pirlimpas@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="4Ez-SD-4kN">
+                            <rect key="frame" x="111" y="3097" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="104" id="RqS-bb-mO3"/>
-                            </constraints>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="500" fixedFrame="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CWG-e7-ged">
+                            <rect key="frame" x="20" y="125" width="280" height="602"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mutableString key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.
+
+A Cota é composta pelas despesas que o parlamentar necessita para o exercício de sua função. São gastos com passagens aéreas, telefonia, serviçõs postais, manutenção de estritório, alimentação, hospedagem, fretamento de veículos, combustíveis, serviços de segurança, contratações e divulgação de atividade parlamentar.
+
+No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlamentar. Toque em um parlamentar e veja quanto ele gasta e com o quê ele gasta. </mutableString>
+                            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="8pp-eC-OEK" firstAttribute="top" secondItem="Ti3-gc-wg6" secondAttribute="bottom" constant="8" id="000-bY-pen"/>
-                        <constraint firstItem="TXN-v4-TXH" firstAttribute="top" secondItem="ZSQ-qH-i3Q" secondAttribute="bottom" constant="8" id="09Q-RI-mHY"/>
-                        <constraint firstItem="AW1-xq-WQ8" firstAttribute="top" secondItem="8BP-fz-7or" secondAttribute="bottom" constant="8" id="0GG-wT-vwE"/>
-                        <constraint firstItem="0MP-di-de2" firstAttribute="top" secondItem="M8h-ag-VtQ" secondAttribute="bottom" constant="8" id="0U7-Ju-rFP"/>
-                        <constraint firstItem="7iX-Zk-8Jy" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="13h-H6-TnV"/>
-                        <constraint firstItem="1rK-gh-xGZ" firstAttribute="top" secondItem="geD-Vu-CcJ" secondAttribute="bottom" constant="8" id="1nh-p4-Akj"/>
-                        <constraint firstItem="hOO-7k-3fE" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="2FQ-0j-VNr"/>
-                        <constraint firstItem="0MP-di-de2" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="2Jw-i9-tIh"/>
-                        <constraint firstItem="nz0-HR-Mxd" firstAttribute="top" secondItem="7iX-Zk-8Jy" secondAttribute="bottom" constant="8" id="2eY-YE-GzL"/>
-                        <constraint firstItem="L0w-Tn-Gi5" firstAttribute="top" secondItem="0MP-di-de2" secondAttribute="bottom" constant="8" id="3Ul-07-mJ3"/>
-                        <constraint firstItem="ZSQ-qH-i3Q" firstAttribute="top" secondItem="27o-Rw-oLQ" secondAttribute="bottom" constant="8" id="3dJ-ek-YSN"/>
-                        <constraint firstItem="27o-Rw-oLQ" firstAttribute="top" secondItem="0MP-di-de2" secondAttribute="bottom" constant="8" id="3uP-SA-wfK"/>
-                        <constraint firstAttribute="trailing" secondItem="OPV-T2-PUj" secondAttribute="trailing" constant="-1" id="4VN-FY-vtd"/>
-                        <constraint firstItem="eKh-ru-zpH" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="5Nf-Ye-Yxr"/>
-                        <constraint firstAttribute="width" secondItem="8BP-fz-7or" secondAttribute="width" id="653-bD-tkf"/>
-                        <constraint firstAttribute="trailing" secondItem="dxK-bJ-lPI" secondAttribute="trailing" id="6AF-ey-wAY"/>
-                        <constraint firstAttribute="trailing" secondItem="RH1-tS-XRg" secondAttribute="trailing" id="6KL-S2-Sl7"/>
-                        <constraint firstItem="naD-Lx-Dsq" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="20" id="6do-wa-H0l"/>
-                        <constraint firstItem="RD5-zl-ukx" firstAttribute="top" secondItem="bO3-6T-6Mm" secondAttribute="bottom" constant="15" id="7r3-C6-Z9N"/>
-                        <constraint firstItem="dAt-PP-xgp" firstAttribute="top" secondItem="zO2-HN-AeS" secondAttribute="bottom" constant="8" id="7s2-lp-vdA"/>
-                        <constraint firstAttribute="trailing" secondItem="dcO-yX-o8Y" secondAttribute="trailing" constant="-1" id="85v-Mi-Asq"/>
-                        <constraint firstItem="dcO-yX-o8Y" firstAttribute="leading" secondItem="M8h-ag-VtQ" secondAttribute="trailing" constant="4" id="8Vr-hb-ZwO"/>
-                        <constraint firstItem="Ck8-Fi-HWG" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="8f6-ly-5ul"/>
-                        <constraint firstAttribute="trailing" secondItem="H3k-uD-H0L" secondAttribute="trailing" constant="-2" id="9us-vN-lG8"/>
-                        <constraint firstAttribute="trailing" secondItem="3jT-Lx-Gpk" secondAttribute="trailing" id="ATJ-Ci-gJc"/>
-                        <constraint firstAttribute="centerX" secondItem="pR2-1M-liu" secondAttribute="centerX" constant="-0.5" id="Aku-Wy-Uxo"/>
-                        <constraint firstItem="P17-4f-mPc" firstAttribute="top" secondItem="huQ-n6-iyD" secondAttribute="bottom" constant="8" id="Aqn-kz-fdH"/>
-                        <constraint firstAttribute="trailing" secondItem="avg-yn-fyt" secondAttribute="trailing" id="BD3-QR-I8f"/>
-                        <constraint firstAttribute="trailing" secondItem="7d6-7z-w3R" secondAttribute="trailing" constant="-1" id="Bba-Rl-QTx"/>
-                        <constraint firstAttribute="width" constant="320" id="BiQ-SB-jkw"/>
-                        <constraint firstItem="ZSQ-qH-i3Q" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="Bj5-1E-oaX"/>
-                        <constraint firstItem="eL6-9i-8TJ" firstAttribute="top" secondItem="Hzc-lK-oPs" secondAttribute="bottom" constant="8" id="CD2-k2-nZw"/>
-                        <constraint firstItem="bO3-6T-6Mm" firstAttribute="top" secondItem="nCO-P2-35t" secondAttribute="bottom" constant="14" id="CMy-EE-3le"/>
-                        <constraint firstAttribute="trailing" secondItem="bO3-6T-6Mm" secondAttribute="trailing" id="DQQ-Fo-rUq"/>
-                        <constraint firstItem="3jT-Lx-Gpk" firstAttribute="top" secondItem="bJM-j7-EHg" secondAttribute="bottom" constant="-7" id="DYp-GI-Ydp"/>
-                        <constraint firstItem="eL6-9i-8TJ" firstAttribute="leading" secondItem="0Ir-Il-Tg2" secondAttribute="trailing" id="Da4-37-PTi"/>
-                        <constraint firstItem="Bn1-be-8HX" firstAttribute="top" secondItem="dAt-PP-xgp" secondAttribute="bottom" constant="8" id="Dbk-iA-t49"/>
-                        <constraint firstItem="44N-Hz-Nxn" firstAttribute="leading" secondItem="I7h-bF-Jcj" secondAttribute="trailing" constant="3" id="EIn-V4-HjH"/>
-                        <constraint firstItem="TDS-7C-4TI" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="Etm-b8-Wbl"/>
-                        <constraint firstItem="AW1-xq-WQ8" firstAttribute="top" secondItem="8BP-fz-7or" secondAttribute="bottom" constant="8" id="FAl-kO-6d5"/>
-                        <constraint firstItem="bJM-j7-EHg" firstAttribute="top" secondItem="naD-Lx-Dsq" secondAttribute="bottom" constant="-13" id="FWH-u4-hPM"/>
-                        <constraint firstItem="WnZ-Fr-7pl" firstAttribute="top" secondItem="dG7-I2-vMw" secondAttribute="bottom" constant="14" id="Fr1-ac-SJj"/>
-                        <constraint firstItem="8pp-eC-OEK" firstAttribute="leading" secondItem="nCO-P2-35t" secondAttribute="trailing" id="Fzi-CT-Rhq"/>
-                        <constraint firstItem="Ti3-gc-wg6" firstAttribute="leading" secondItem="TDS-7C-4TI" secondAttribute="trailing" id="HR1-Li-TR4"/>
-                        <constraint firstItem="dxK-bJ-lPI" firstAttribute="leading" secondItem="AW1-xq-WQ8" secondAttribute="trailing" id="Hji-2Z-UNb"/>
-                        <constraint firstItem="7d6-7z-w3R" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="ISs-gd-nuz"/>
-                        <constraint firstItem="dAt-PP-xgp" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="-3" id="IY4-tg-jdk"/>
-                        <constraint firstAttribute="trailing" secondItem="kOq-VD-YiE" secondAttribute="trailing" constant="-1" id="Iae-qm-wou"/>
-                        <constraint firstItem="27o-Rw-oLQ" firstAttribute="leading" secondItem="L0w-Tn-Gi5" secondAttribute="trailing" constant="4" id="IdC-PQ-CNf"/>
-                        <constraint firstItem="4lS-g2-ULQ" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="JwK-S8-gT2"/>
-                        <constraint firstAttribute="trailing" secondItem="0MP-di-de2" secondAttribute="trailing" id="KXd-nY-hCQ"/>
-                        <constraint firstItem="RD5-zl-ukx" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="L0G-Z0-qyI"/>
-                        <constraint firstAttribute="height" constant="568" id="LIJ-jP-gD5"/>
-                        <constraint firstItem="eKh-ru-zpH" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="Lgq-GE-Htx"/>
-                        <constraint firstItem="Bn1-be-8HX" firstAttribute="leading" secondItem="aCO-P8-CGo" secondAttribute="trailing" constant="2" id="MNT-Vc-QeO"/>
-                        <constraint firstAttribute="trailing" secondItem="ZSQ-qH-i3Q" secondAttribute="trailing" constant="-1" id="MXy-jM-chk"/>
-                        <constraint firstItem="avg-yn-fyt" firstAttribute="top" secondItem="7iX-Zk-8Jy" secondAttribute="bottom" constant="8" id="Mi6-9V-4QQ"/>
-                        <constraint firstItem="huQ-n6-iyD" firstAttribute="top" secondItem="I7h-bF-Jcj" secondAttribute="bottom" constant="8" id="NJR-0x-4dX"/>
-                        <constraint firstItem="huQ-n6-iyD" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="NjP-ot-10H"/>
-                        <constraint firstItem="4lS-g2-ULQ" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="OM1-Gm-8us"/>
-                        <constraint firstItem="hOO-7k-3fE" firstAttribute="top" secondItem="4lS-g2-ULQ" secondAttribute="bottom" constant="8" id="PW5-9a-OgY"/>
-                        <constraint firstItem="TXN-v4-TXH" firstAttribute="leading" secondItem="i5C-Or-8KY" secondAttribute="trailing" constant="4" id="PdY-ot-I28"/>
-                        <constraint firstItem="WnZ-Fr-7pl" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="Pj5-gY-llI"/>
-                        <constraint firstItem="dnb-cO-Nan" firstAttribute="top" secondItem="geD-Vu-CcJ" secondAttribute="bottom" constant="8" id="PmZ-KZ-y6u"/>
-                        <constraint firstItem="P17-4f-mPc" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="Qac-Bk-iqN"/>
-                        <constraint firstItem="L0w-Tn-Gi5" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="7" id="Qje-HW-0J6"/>
-                        <constraint firstItem="7iX-Zk-8Jy" firstAttribute="top" secondItem="Bn1-be-8HX" secondAttribute="bottom" constant="8" id="Qm6-5u-ghm"/>
-                        <constraint firstAttribute="trailing" secondItem="zQh-MS-gPR" secondAttribute="trailing" constant="-1" id="R9c-7K-W8G"/>
-                        <constraint firstItem="OPV-T2-PUj" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="REB-ke-WAK"/>
-                        <constraint firstItem="kOq-VD-YiE" firstAttribute="top" secondItem="ov1-Do-xSe" secondAttribute="bottom" constant="8" id="RI2-HU-fQZ"/>
-                        <constraint firstItem="i5C-Or-8KY" firstAttribute="top" secondItem="ZSQ-qH-i3Q" secondAttribute="bottom" constant="8" id="SMu-7C-mlu"/>
-                        <constraint firstAttribute="trailing" secondItem="HGP-Iq-BMJ" secondAttribute="trailing" id="TA1-T4-N59"/>
-                        <constraint firstAttribute="width" secondItem="ZSQ-qH-i3Q" secondAttribute="width" id="TFh-jO-f2z"/>
-                        <constraint firstItem="aCO-P8-CGo" firstAttribute="top" secondItem="dAt-PP-xgp" secondAttribute="bottom" constant="8" id="TNE-gv-mVU"/>
-                        <constraint firstAttribute="trailing" secondItem="8BP-fz-7or" secondAttribute="trailing" id="UUn-lM-65h"/>
-                        <constraint firstItem="geD-Vu-CcJ" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="UiB-x0-6Ns"/>
-                        <constraint firstItem="ov1-Do-xSe" firstAttribute="top" secondItem="i5C-Or-8KY" secondAttribute="bottom" constant="8" id="V5g-Sm-C0j"/>
-                        <constraint firstAttribute="trailing" secondItem="TXN-v4-TXH" secondAttribute="trailing" constant="-1" id="V8f-rs-Pex"/>
-                        <constraint firstItem="0MP-di-de2" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="VGY-da-xE2"/>
-                        <constraint firstItem="3jT-Lx-Gpk" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="20" id="VHv-sm-7kY"/>
-                        <constraint firstItem="AW1-xq-WQ8" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="VZi-DP-uIJ"/>
-                        <constraint firstAttribute="trailing" secondItem="8pp-eC-OEK" secondAttribute="trailing" id="Vpo-Qb-Dqh"/>
-                        <constraint firstItem="dG7-I2-vMw" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="W44-gW-2IN"/>
-                        <constraint firstAttribute="trailing" secondItem="27o-Rw-oLQ" secondAttribute="trailing" id="WVV-q1-8cM"/>
-                        <constraint firstItem="H3k-uD-H0L" firstAttribute="top" secondItem="7d6-7z-w3R" secondAttribute="bottom" constant="8" id="WYm-JR-QMV"/>
-                        <constraint firstItem="aCO-P8-CGo" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="6" id="WzJ-YH-dBM"/>
-                        <constraint firstItem="RH1-tS-XRg" firstAttribute="leading" secondItem="P17-4f-mPc" secondAttribute="trailing" constant="3" id="X6g-QO-zkj"/>
-                        <constraint firstItem="4Ez-SD-4kN" firstAttribute="top" secondItem="bO3-6T-6Mm" secondAttribute="bottom" constant="15" id="XdS-fP-Ns1"/>
-                        <constraint firstAttribute="width" secondItem="94v-4I-LM0" secondAttribute="width" id="YEZ-I3-v2O"/>
-                        <constraint firstAttribute="trailing" secondItem="dAt-PP-xgp" secondAttribute="trailing" constant="3" id="YUF-rS-wGb"/>
-                        <constraint firstItem="zQh-MS-gPR" firstAttribute="top" secondItem="4lS-g2-ULQ" secondAttribute="bottom" constant="8" id="YYg-CB-GeC"/>
-                        <constraint firstItem="eKh-ru-zpH" firstAttribute="top" secondItem="dnb-cO-Nan" secondAttribute="bottom" constant="8" id="Yma-1I-xOd"/>
-                        <constraint firstItem="44N-Hz-Nxn" firstAttribute="top" secondItem="eKh-ru-zpH" secondAttribute="bottom" constant="8" id="YnF-l4-34S"/>
-                        <constraint firstAttribute="trailing" secondItem="Ti3-gc-wg6" secondAttribute="trailing" id="Ynl-Rm-ifr"/>
-                        <constraint firstItem="dcO-yX-o8Y" firstAttribute="top" secondItem="OPV-T2-PUj" secondAttribute="bottom" constant="8" id="Yq1-9L-e6p"/>
-                        <constraint firstAttribute="width" secondItem="bO3-6T-6Mm" secondAttribute="width" id="Zbh-UG-E8z"/>
-                        <constraint firstAttribute="trailing" secondItem="eL6-9i-8TJ" secondAttribute="trailing" id="a0a-d6-xZN"/>
-                        <constraint firstItem="7d6-7z-w3R" firstAttribute="top" secondItem="7dz-Y7-kVO" secondAttribute="bottom" constant="8" id="a1M-HN-Vpa"/>
-                        <constraint firstItem="8BP-fz-7or" firstAttribute="top" secondItem="eL6-9i-8TJ" secondAttribute="bottom" constant="8" id="a6K-eD-T7t"/>
-                        <constraint firstItem="8BP-fz-7or" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="a85-yg-hk1"/>
-                        <constraint firstItem="7dz-Y7-kVO" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="aIh-hP-TCc"/>
-                        <constraint firstItem="Bn1-be-8HX" firstAttribute="leading" secondItem="aCO-P8-CGo" secondAttribute="trailing" constant="2" id="axd-Zu-k1N"/>
-                        <constraint firstAttribute="width" secondItem="dG7-I2-vMw" secondAttribute="width" id="b2q-cA-Ocv"/>
-                        <constraint firstItem="dcO-yX-o8Y" firstAttribute="leading" secondItem="M8h-ag-VtQ" secondAttribute="trailing" constant="4" id="bU2-Ej-pJZ"/>
-                        <constraint firstItem="zO2-HN-AeS" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="2" id="bd7-xT-ejg"/>
-                        <constraint firstItem="3jT-Lx-Gpk" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" constant="-20" id="bjt-2v-1f1"/>
-                        <constraint firstItem="nCO-P2-35t" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="bnH-SL-DTM"/>
-                        <constraint firstItem="7dz-Y7-kVO" firstAttribute="top" secondItem="ov1-Do-xSe" secondAttribute="bottom" constant="8" id="c7l-3g-xOJ"/>
-                        <constraint firstItem="dxK-bJ-lPI" firstAttribute="top" secondItem="8BP-fz-7or" secondAttribute="bottom" constant="8" id="c9X-17-JEp"/>
-                        <constraint firstItem="4Ez-SD-4kN" firstAttribute="leading" secondItem="RD5-zl-ukx" secondAttribute="trailing" id="cC5-XH-1tX"/>
-                        <constraint firstItem="7iX-Zk-8Jy" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="cDT-mA-nIz"/>
-                        <constraint firstAttribute="width" secondItem="naD-Lx-Dsq" secondAttribute="width" constant="28" id="ceR-ky-CKE"/>
-                        <constraint firstItem="OPV-T2-PUj" firstAttribute="top" secondItem="avg-yn-fyt" secondAttribute="bottom" constant="8" id="dbC-he-AJH"/>
-                        <constraint firstAttribute="trailing" secondItem="dG7-I2-vMw" secondAttribute="trailing" id="du1-I9-H0A"/>
-                        <constraint firstItem="Ti3-gc-wg6" firstAttribute="top" secondItem="HGP-Iq-BMJ" secondAttribute="bottom" constant="8" id="eZr-3v-2mM"/>
-                        <constraint firstItem="HGP-Iq-BMJ" firstAttribute="top" secondItem="dG7-I2-vMw" secondAttribute="bottom" constant="14" id="fMA-YG-c6g"/>
-                        <constraint firstItem="Hzc-lK-oPs" firstAttribute="top" secondItem="RH1-tS-XRg" secondAttribute="bottom" constant="8" id="fYB-Y0-eWy"/>
-                        <constraint firstItem="7d6-7z-w3R" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="ftR-8V-0bn"/>
-                        <constraint firstItem="94v-4I-LM0" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="fuH-eb-bxA"/>
-                        <constraint firstAttribute="trailing" secondItem="ov1-Do-xSe" secondAttribute="trailing" constant="-1" id="gDG-S9-bij"/>
-                        <constraint firstItem="OPV-T2-PUj" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="gV5-K3-5hg"/>
-                        <constraint firstItem="naD-Lx-Dsq" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="119" id="gXy-7t-bid"/>
-                        <constraint firstItem="huQ-n6-iyD" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="ggo-te-o4c"/>
-                        <constraint firstAttribute="width" secondItem="ov1-Do-xSe" secondAttribute="width" id="hPL-hR-ck7"/>
-                        <constraint firstItem="zO2-HN-AeS" firstAttribute="top" secondItem="3jT-Lx-Gpk" secondAttribute="bottom" constant="-7" id="hjV-5d-aix"/>
-                        <constraint firstItem="0Ir-Il-Tg2" firstAttribute="top" secondItem="Hzc-lK-oPs" secondAttribute="bottom" constant="8" id="iXM-az-JOa"/>
-                        <constraint firstItem="RH1-tS-XRg" firstAttribute="top" secondItem="huQ-n6-iyD" secondAttribute="bottom" constant="8" id="iz2-3v-CxO"/>
-                        <constraint firstItem="I7h-bF-Jcj" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="jfb-LM-xze"/>
-                        <constraint firstItem="ov1-Do-xSe" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="1" id="k2E-YN-pQI"/>
-                        <constraint firstItem="geD-Vu-CcJ" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="kaw-bi-FO6"/>
-                        <constraint firstItem="M8h-ag-VtQ" firstAttribute="top" secondItem="OPV-T2-PUj" secondAttribute="bottom" constant="8" id="kvJ-Fq-nIb"/>
-                        <constraint firstItem="zQh-MS-gPR" firstAttribute="leading" secondItem="hOO-7k-3fE" secondAttribute="trailing" constant="4" id="m1Q-gW-4QJ"/>
-                        <constraint firstItem="Hzc-lK-oPs" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="mTF-Sf-GfP"/>
-                        <constraint firstAttribute="width" secondItem="zO2-HN-AeS" secondAttribute="width" constant="5" id="nI0-LH-9av"/>
-                        <constraint firstItem="bO3-6T-6Mm" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="net-HD-BF6"/>
-                        <constraint firstItem="Ck8-Fi-HWG" firstAttribute="top" secondItem="7d6-7z-w3R" secondAttribute="bottom" constant="8" id="nzV-05-gXj"/>
-                        <constraint firstAttribute="trailing" secondItem="7iX-Zk-8Jy" secondAttribute="trailing" id="o48-f6-yQg"/>
-                        <constraint firstItem="kOq-VD-YiE" firstAttribute="leading" secondItem="7dz-Y7-kVO" secondAttribute="trailing" constant="4" id="o5G-lL-SDG"/>
-                        <constraint firstAttribute="trailing" secondItem="geD-Vu-CcJ" secondAttribute="trailing" constant="-1" id="o60-7X-x0p"/>
-                        <constraint firstItem="M8h-ag-VtQ" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="oE3-nH-Dbh"/>
-                        <constraint firstItem="nz0-HR-Mxd" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="7" id="oL2-LW-N2C"/>
-                        <constraint firstItem="I7h-bF-Jcj" firstAttribute="top" secondItem="eKh-ru-zpH" secondAttribute="bottom" constant="8" id="oSQ-fa-qda"/>
-                        <constraint firstItem="0Ir-Il-Tg2" firstAttribute="top" secondItem="Hzc-lK-oPs" secondAttribute="bottom" constant="8" id="ouL-78-rM6"/>
-                        <constraint firstItem="geD-Vu-CcJ" firstAttribute="top" secondItem="hOO-7k-3fE" secondAttribute="bottom" constant="8" id="ovF-5c-k07"/>
-                        <constraint firstAttribute="trailing" secondItem="4lS-g2-ULQ" secondAttribute="trailing" constant="-1" id="pNS-94-Lh8"/>
-                        <constraint firstAttribute="trailing" secondItem="94v-4I-LM0" secondAttribute="trailing" id="pgu-EI-FeM"/>
-                        <constraint firstItem="bJM-j7-EHg" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="20" id="pq9-r9-MWZ"/>
-                        <constraint firstItem="1rK-gh-xGZ" firstAttribute="leading" secondItem="dnb-cO-Nan" secondAttribute="trailing" constant="5" id="ptx-LH-aDR"/>
-                        <constraint firstAttribute="trailing" secondItem="44N-Hz-Nxn" secondAttribute="trailing" id="qA3-lE-aXC"/>
-                        <constraint firstItem="dnb-cO-Nan" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="qd1-VR-W46"/>
-                        <constraint firstItem="HGP-Iq-BMJ" firstAttribute="leading" secondItem="WnZ-Fr-7pl" secondAttribute="trailing" id="rHg-Nm-yIT"/>
-                        <constraint firstAttribute="trailing" secondItem="4Ez-SD-4kN" secondAttribute="trailing" id="svF-xf-OGJ"/>
-                        <constraint firstAttribute="trailing" secondItem="eKh-ru-zpH" secondAttribute="trailing" constant="-1" id="szc-oo-H7h"/>
-                        <constraint firstAttribute="trailing" secondItem="huQ-n6-iyD" secondAttribute="trailing" constant="-1" id="t6p-ET-K81"/>
-                        <constraint firstItem="0Ir-Il-Tg2" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="t9h-2U-IYm"/>
-                        <constraint firstItem="4lS-g2-ULQ" firstAttribute="top" secondItem="Ck8-Fi-HWG" secondAttribute="bottom" constant="8" id="tad-uF-TkU"/>
-                        <constraint firstItem="TDS-7C-4TI" firstAttribute="top" secondItem="WnZ-Fr-7pl" secondAttribute="bottom" constant="8" id="tbg-og-huK"/>
-                        <constraint firstItem="avg-yn-fyt" firstAttribute="leading" secondItem="nz0-HR-Mxd" secondAttribute="trailing" constant="4" id="tq4-jD-uq2"/>
-                        <constraint firstItem="eL6-9i-8TJ" firstAttribute="leading" secondItem="0Ir-Il-Tg2" secondAttribute="trailing" id="ttn-Ks-cJo"/>
-                        <constraint firstItem="dAt-PP-xgp" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" id="uNZ-Ct-vnA"/>
-                        <constraint firstItem="Hzc-lK-oPs" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="uxi-HR-ifz"/>
-                        <constraint firstAttribute="trailing" secondItem="Bn1-be-8HX" secondAttribute="trailing" id="v7Y-ze-I2e"/>
-                        <constraint firstItem="H3k-uD-H0L" firstAttribute="leading" secondItem="Ck8-Fi-HWG" secondAttribute="trailing" constant="5" id="vJg-Le-QXI"/>
-                        <constraint firstAttribute="trailing" secondItem="bJM-j7-EHg" secondAttribute="trailing" constant="-1" id="vkh-IA-CTc"/>
-                        <constraint firstItem="94v-4I-LM0" firstAttribute="top" secondItem="dxK-bJ-lPI" secondAttribute="bottom" constant="8" id="vxK-lJ-OUK"/>
-                        <constraint firstItem="nCO-P2-35t" firstAttribute="top" secondItem="TDS-7C-4TI" secondAttribute="bottom" constant="8" id="w6S-ak-Dyo"/>
-                        <constraint firstItem="dG7-I2-vMw" firstAttribute="top" secondItem="94v-4I-LM0" secondAttribute="bottom" constant="13" id="xSO-I6-t9g"/>
-                        <constraint firstAttribute="trailing" secondItem="zO2-HN-AeS" secondAttribute="trailing" constant="3" id="y3Y-XN-XZV"/>
-                        <constraint firstAttribute="trailing" secondItem="naD-Lx-Dsq" secondAttribute="trailing" constant="8" id="yEz-pe-bkU"/>
-                        <constraint firstItem="avg-yn-fyt" firstAttribute="leading" secondItem="nz0-HR-Mxd" secondAttribute="trailing" constant="4" id="ylk-x5-y7z"/>
-                        <constraint firstItem="i5C-Or-8KY" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="8" id="z0h-du-4Zw"/>
-                        <constraint firstAttribute="trailing" secondItem="1rK-gh-xGZ" secondAttribute="trailing" constant="-2" id="zoo-44-J2G"/>
-                        <constraint firstItem="pR2-1M-liu" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="17" id="zwG-sQ-XeM"/>
+                        <constraint firstAttribute="height" constant="568" id="KCV-pS-50o"/>
+                        <constraint firstItem="pR2-1M-liu" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="14" id="clN-DO-i3J"/>
+                        <constraint firstAttribute="centerX" secondItem="pR2-1M-liu" secondAttribute="centerX" id="gNl-jv-jpL"/>
+                        <constraint firstAttribute="width" constant="320" id="mZF-O9-tpF"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Qwt-yw-gxv" secondAttribute="trailing" id="BBl-Er-j0l"/>
-                <constraint firstItem="Qwt-yw-gxv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bGe-QT-ziq"/>
-                <constraint firstAttribute="bottom" secondItem="Qwt-yw-gxv" secondAttribute="bottom" id="iOg-7x-2BS"/>
-                <constraint firstItem="Qwt-yw-gxv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yLi-ip-C6W"/>
+                <constraint firstAttribute="bottom" secondItem="Qwt-yw-gxv" secondAttribute="bottom" id="U07-1r-0Q6"/>
+                <constraint firstItem="Qwt-yw-gxv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WOg-aq-D1B"/>
+                <constraint firstItem="Qwt-yw-gxv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="afZ-JM-7l3"/>
+                <constraint firstAttribute="trailing" secondItem="Qwt-yw-gxv" secondAttribute="trailing" id="fhO-2B-GAB"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
