@@ -380,6 +380,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     [self.tableView reloadData];
     self.searchEnabled = NO;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
+    self.toolBar.searchLabel.textColor = [AKUtil color1];
     
     self.autolayoutCameFromSearchDismiss = YES;
     
@@ -429,6 +430,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) searchByName:(id) sender {
     self.searchEnabled = !self.searchEnabled;
     [self.toolBar.searchButton setSelected:self.searchEnabled];
+    if (self.searchEnabled)
+        self.toolBar.searchLabel.textColor = [AKUtil color5];
+    else
+        self.toolBar.searchLabel.textColor = [AKUtil color1];
     
     if([self isSearchBarHidden] == NO) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -451,7 +456,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         } else {
             [self.searchController.searchBar becomeFirstResponder];
         }
-        
     });
 }
 
@@ -526,13 +530,20 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void) viewByRank:(id) sender {
     self.viewByRankEnabled = !self.viewByRankEnabled;
     [self.toolBar.rankButton setSelected:self.viewByRankEnabled];
-    
+    if (self.viewByRankEnabled)
+        self.toolBar.rankLabel.textColor = [AKUtil color5];
+    else
+        self.toolBar.rankLabel.textColor = [AKUtil color1];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 -(void) viewFollowed:(id) sender {
      self.viewFollowedEnabled = !self.viewFollowedEnabled;
     [self.toolBar.followedButton setSelected:self.viewFollowedEnabled];
+    if (self.viewFollowedEnabled)
+        self.toolBar.followedLabel.textColor = [AKUtil color5];
+    else
+        self.toolBar.followedLabel.textColor = [AKUtil color1];
     
     [self applyAllDefinedFiltersAndSort];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

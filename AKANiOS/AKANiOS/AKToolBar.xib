@@ -11,60 +11,93 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxL-ey-36s">
-                    <rect key="frame" x="20" y="5" width="60" height="60"/>
+                    <rect key="frame" x="20" y="7" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="7pj-Ww-j6U"/>
-                        <constraint firstAttribute="height" constant="60" id="RqN-3O-Sz0"/>
+                        <constraint firstAttribute="width" constant="44" id="7pj-Ww-j6U"/>
+                        <constraint firstAttribute="height" constant="44" id="RqN-3O-Sz0"/>
                     </constraints>
                     <state key="normal" image="seguidosdesativado">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iv3-TN-Gua">
-                    <rect key="frame" x="240" y="5" width="60" height="60"/>
+                    <rect key="frame" x="256" y="7" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="39w-kK-taz"/>
-                        <constraint firstAttribute="width" constant="60" id="Pse-9e-Rbd"/>
+                        <constraint firstAttribute="height" constant="44" id="39w-kK-taz"/>
+                        <constraint firstAttribute="width" constant="44" id="Pse-9e-Rbd"/>
                     </constraints>
                     <state key="normal" image="buscadesativada">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BKb-Iq-vDA">
-                    <rect key="frame" x="130" y="5" width="60" height="60"/>
+                    <rect key="frame" x="135" y="7" width="44" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="eav-Dp-N6i"/>
-                        <constraint firstAttribute="width" constant="60" id="sjc-iE-CCG"/>
+                        <constraint firstAttribute="height" constant="44" id="eav-Dp-N6i"/>
+                        <constraint firstAttribute="width" constant="44" id="sjc-iE-CCG"/>
                     </constraints>
                     <state key="normal" image="rankingdesativado">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seguidos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYR-WE-AZB">
+                    <rect key="frame" x="15" y="49" width="61" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrj-hV-yaj">
+                    <rect key="frame" x="130" y="49" width="53" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busca" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EZ-Zr-RPQ">
+                    <rect key="frame" x="258" y="49" width="41" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="5" id="4m7-Na-3h0"/>
+                <constraint firstItem="BYR-WE-AZB" firstAttribute="top" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="-2" id="38y-Jn-gUv"/>
+                <constraint firstAttribute="bottom" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="19" id="4m7-Na-3h0"/>
+                <constraint firstItem="iv3-TN-Gua" firstAttribute="centerX" secondItem="0EZ-Zr-RPQ" secondAttribute="centerX" constant="-0.5" id="83F-Dk-HwU"/>
                 <constraint firstAttribute="trailing" secondItem="iv3-TN-Gua" secondAttribute="trailing" constant="20" id="Aea-oc-DAW"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="BKb-Iq-vDA" secondAttribute="width" id="E15-Aj-rpN"/>
-                <constraint firstAttribute="bottom" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="5" id="Q7c-xS-izf"/>
-                <constraint firstAttribute="bottom" secondItem="iv3-TN-Gua" secondAttribute="bottom" constant="5" id="WeI-4R-jm0"/>
+                <constraint firstAttribute="bottom" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="19" id="Q7c-xS-izf"/>
+                <constraint firstAttribute="bottom" secondItem="iv3-TN-Gua" secondAttribute="bottom" constant="19" id="WeI-4R-jm0"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="height" secondItem="QxL-ey-36s" secondAttribute="height" id="YGJ-On-CsP"/>
-                <constraint firstItem="QxL-ey-36s" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="5" id="ZhF-98-Oud"/>
+                <constraint firstItem="QxL-ey-36s" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="ZhF-98-Oud"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="QxL-ey-36s" secondAttribute="width" id="bEC-OR-Bre"/>
-                <constraint firstItem="BKb-Iq-vDA" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="5" id="cgf-cc-3Uw"/>
+                <constraint firstItem="BKb-Iq-vDA" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="cgf-cc-3Uw"/>
+                <constraint firstItem="0EZ-Zr-RPQ" firstAttribute="top" secondItem="iv3-TN-Gua" secondAttribute="bottom" constant="-2" id="fDG-kb-1Hf"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="height" secondItem="BKb-Iq-vDA" secondAttribute="height" id="hnv-ef-hVf"/>
-                <constraint firstItem="iv3-TN-Gua" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="5" id="paG-ZX-Khd"/>
+                <constraint firstItem="iv3-TN-Gua" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="paG-ZX-Khd"/>
+                <constraint firstItem="QxL-ey-36s" firstAttribute="centerX" secondItem="BYR-WE-AZB" secondAttribute="centerX" constant="-3.5" id="qcp-00-zqy"/>
+                <constraint firstItem="Yrj-hV-yaj" firstAttribute="top" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="-2" id="rQx-KQ-xXV"/>
+                <constraint firstItem="BKb-Iq-vDA" firstAttribute="centerX" secondItem="Yrj-hV-yaj" secondAttribute="centerX" constant="0.5" id="shH-Ny-l7N"/>
                 <constraint firstItem="QxL-ey-36s" firstAttribute="leading" secondItem="w0A-Ha-2V9" secondAttribute="leading" constant="20" id="v51-ew-q4I"/>
-                <constraint firstAttribute="centerX" secondItem="BKb-Iq-vDA" secondAttribute="centerX" id="wfH-No-EPD"/>
+                <constraint firstAttribute="centerX" secondItem="BKb-Iq-vDA" secondAttribute="centerX" constant="3" id="wfH-No-EPD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="followedButton" destination="QxL-ey-36s" id="dKK-Id-Nln"/>
+                <outlet property="followedLabel" destination="BYR-WE-AZB" id="5aR-Hv-EZM"/>
                 <outlet property="rankButton" destination="BKb-Iq-vDA" id="FzN-eZ-uG3"/>
+                <outlet property="rankLabel" destination="Yrj-hV-yaj" id="mop-Ms-Kf1"/>
                 <outlet property="searchButton" destination="iv3-TN-Gua" id="UoT-gT-81X"/>
+                <outlet property="searchLabel" destination="0EZ-Zr-RPQ" id="KJz-Qu-t8T"/>
             </connections>
         </view>
     </objects>

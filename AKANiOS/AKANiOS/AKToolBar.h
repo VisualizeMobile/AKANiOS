@@ -11,7 +11,10 @@
 @interface AKToolBar : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *followedButton;
+@property (weak, nonatomic) IBOutlet UILabel *followedLabel;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UILabel *rankLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rankButton;
+@property (weak, nonatomic) IBOutlet UILabel *searchLabel;
 
 @end
