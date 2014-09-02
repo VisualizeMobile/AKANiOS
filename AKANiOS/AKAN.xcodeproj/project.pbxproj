@@ -706,7 +706,7 @@
 				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
-						DevelopmentTeam = 8Y387U3F6Y;
+						DevelopmentTeam = Q343B6F743;
 					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
