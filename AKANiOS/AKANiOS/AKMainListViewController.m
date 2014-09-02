@@ -20,6 +20,7 @@
 #import "MBProgressHUD.h"
 #import "AKStatisticDao.h"
 #import "AKQuota.h"
+#import "Reachability.h"
 
 const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
@@ -132,7 +133,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
-    
+
     [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
@@ -242,7 +243,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     
     AKMainTableViewCell *cell = (AKMainTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -265,16 +265,28 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         parliamentary = self.parliamentaryArray[indexPath.row];
     }
     
-    if(parliamentary.photoParliamentary == nil) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *parliamentaryPhotoFilePath = [NSString stringWithFormat:@"%@/%@.jpg", [AKSettingsManager photoCacheDirPath], parliamentary.idParliamentary];
+    BOOL photoExistsInCache = [fileManager fileExistsAtPath:parliamentaryPhotoFilePath];
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    
+    // Have photo in DB
+    if (parliamentary.photoParliamentary != nil) {
+        cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
+    // Has WiFi OR dont have photo in cache
+    } else if(reachability.currentReachabilityStatus == ReachableViaWiFi || photoExistsInCache == NO) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", parliamentary.idParliamentary]]];
-            
-            if (imgData) {
-                UIImage *image = [UIImage imageWithData:imgData];
+            NSData *photoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", parliamentary.idParliamentary]]];
+
+            if (photoData) {
+                UIImage *image = [UIImage imageWithData:photoData];
                 
                 if (image) {
+                    [photoData writeToFile:parliamentaryPhotoFilePath atomically:YES];
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.parliamentaryDao updateParliamentary:parliamentary.idParliamentary withPhoto:imgData];
+                        [self.parliamentaryDao updateParliamentary:parliamentary.idParliamentary withPhoto:photoData];
                         AKMainTableViewCell *updateCell = (AKMainTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
                         if (updateCell)
                             updateCell.parliamentaryPhoto.image = image;
@@ -282,8 +294,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 }
             }
         });
-    } else {
-        cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
+    // Have photo in cache
+    } else if(photoExistsInCache) {
+        NSData *photoData = [NSData dataWithContentsOfFile:parliamentaryPhotoFilePath];
+        [self.parliamentaryDao updateParliamentary:parliamentary.idParliamentary withPhoto:photoData];
+        cell.parliamentaryPhoto.image = [UIImage imageWithData:photoData];
     }
     
     cell.parliamentaryName.text = parliamentary.nickName;
@@ -546,7 +561,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
 -(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
     // Save followed ids and your quota updates version
-    ALog(@"");
+    
     NSMutableDictionary *followedParliamentaryIdsAndUpdatesVersion = [NSMutableDictionary dictionary];
     for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary]) {
         NSMutableDictionary *quotasUpdateVersion = [NSMutableDictionary dictionary];
@@ -557,9 +572,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         followedParliamentaryIdsAndUpdatesVersion[p.idParliamentary] = quotasUpdateVersion;
     }
     
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    
-    [NSKeyedArchiver archiveRootObject:followedParliamentaryIdsAndUpdatesVersion toFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+    [NSKeyedArchiver archiveRootObject:followedParliamentaryIdsAndUpdatesVersion toFile:[self getTemporaryFilePath]];
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.hud.color = [AKUtil color1clear];
@@ -567,13 +580,13 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.hud.detailsLabelColor = [AKUtil color4];
     self.hud.detailsLabelText = @"Atualizando os dados dos parlamentares";
     
-    ALog(@"");
+    
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.webService downloadDataWithPath:@"/parlamentar" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
             
             if(success) {
-                ALog(@"");
+                
                 [self.parliamentaryDao deleteAllPariamentary];
                 [self.quotaDao deleteAllQuota];
                 [self.statisticDao deleteAllStatistic];
@@ -601,14 +614,13 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     });
                 }
                 
-                ALog(@"");
                 
                 self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
                 self.parliamentaryNicknameFilteredArray = [NSArray array];
                 [self applyAllDefinedFiltersAndSort];
                 
-                NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
-                ALog(@"");
+                NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getTemporaryFilePath]];
+                
                 // Update quotas
                 for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -617,11 +629,11 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 
                     [self updateQuotasForParliamentary:idParliamentary];
                 }
-                ALog(@"");
+                
                 [self updateStatistics];
-                ALog(@"");
+                
                 [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
-                ALog(@"");
+                
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int)(0.5 * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self.tableView reloadData];
@@ -722,8 +734,8 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
             
             // Check for quota updateVersion
-            NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-            NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[NSString stringWithFormat:@"%@/akan_followed_temp.plist", documentsPath]];
+            
+            NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getTemporaryFilePath]];
             
             for(NSDictionary *jsonDict in jsonArray) {
                 idQuota = jsonDict[@"pk"];
@@ -965,6 +977,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     localNotif.userInfo = infoDict;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+}
+
+-(NSString *) getTemporaryFilePath {
+    NSString *tempPath = NSTemporaryDirectory();
+
+    return [NSString stringWithFormat:@"%@/akan_followed_temp.plist", tempPath];
 }
 
 @end

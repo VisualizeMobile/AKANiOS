@@ -185,13 +185,13 @@ NSString *const middle  = @"Gasto médio dos parlamentares";
         
         // Expand the ranges to put some space around the plot
         [xRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
-        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
+        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
         plotSpace.xRange = xRange;
         plotSpace.yRange = yRange;
         
         [xRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
         xRange.location = plotSpace.xRange.location;
-        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.1)];
+        [yRange expandRangeByFactor:CPTDecimalFromDouble(1.0)];
         x.visibleAxisRange = xRange;
         y.visibleAxisRange = yRange;
         

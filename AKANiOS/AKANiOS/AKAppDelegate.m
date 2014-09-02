@@ -31,6 +31,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self copyAppConfigurationFromBundleToDocuments];
+    [self createParliamentaryPhotoDirectory];
     
     self.root =  [[AKMainListViewController alloc] init];
     
@@ -121,6 +122,17 @@
     [fileManager copyItemAtPath:filePathMainBundle toPath:[AKSettingsManager settingsFilePath] error:nil];
 }
 
+- (void)createParliamentaryPhotoDirectory {
+    BOOL alreadyExists;
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    alreadyExists = [fileManager fileExistsAtPath:[AKSettingsManager photoCacheDirPath]];
+    
+    if (alreadyExists)
+        return;
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:[AKSettingsManager photoCacheDirPath] withIntermediateDirectories:NO attributes:nil error:nil];
+}
 
 - (void)saveContext
 {
@@ -209,7 +221,7 @@
     return _persistentStoreCoordinator;
 }
 
-#pragma mark - Application's Documents directory
+#pragma mark - Application's directories
 
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory

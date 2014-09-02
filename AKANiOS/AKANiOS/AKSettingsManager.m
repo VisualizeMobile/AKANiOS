@@ -80,8 +80,13 @@
 }
 
 +(NSString*) settingsFilePath {
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    return [NSString stringWithFormat:@"%@/akan_settings.plist", documentsPath];
+    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    return [NSString stringWithFormat:@"%@/akan_settings.plist", libraryPath];
+}
+
++(NSString*) photoCacheDirPath {
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    return [NSString stringWithFormat:@"%@/ParliamentaryPhotos", cachePath];
 }
 
 -(NSInteger) getDataUpdateVersion {

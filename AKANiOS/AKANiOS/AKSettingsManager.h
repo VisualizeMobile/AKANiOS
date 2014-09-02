@@ -25,7 +25,8 @@ typedef NS_ENUM(char, AKSettingsFilterQuotaOption) {
 
 +(AKSettingsManager*)sharedManager;
 +(NSString*) settingsFilePath;
-
++(NSString*) photoCacheDirPath;
+    
 -(NSInteger) getDataUpdateVersion;
 -(AKSettingsSortOption) getSortOption;
 -(AKSettingsFilterQuotaOption) getQuotaFilter;
