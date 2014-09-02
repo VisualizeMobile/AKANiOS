@@ -51,7 +51,6 @@
 
 - (void)viewDidLoad
 {
-    
     self.quotaDao = [AKQuotaDao getInstance];
     self.parliamentaryDao = [AKParliamentaryDao getInstance];
     self.statisticDao = [AKStatisticDao getInstance];
@@ -117,12 +116,19 @@
     }
 }
 
-
 -(void) configureViewVisualComponentes {
     //registering cell nib that is required for collectionView te dequeue it.
     [self.quotaCollectionView registerNib:[UINib nibWithNibName:@"AKQuotaCollectionViewCell" bundle:[NSBundle mainBundle]]
                forCellWithReuseIdentifier:@"AKCell"];
     
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeQuotas:)];
+    [leftSwipe setDirection: UISwipeGestureRecognizerDirectionLeft ];
+    
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changeQuotas:)];
+    [rightSwipe setDirection: UISwipeGestureRecognizerDirectionRight ];
+    
+    [self.quotaCollectionView addGestureRecognizer: rightSwipe];
+    [self.quotaCollectionView addGestureRecognizer: leftSwipe];
     
     self.datePickerView = [[UIPickerView  alloc] init];
     self.datePickerView.delegate = self;
@@ -181,10 +187,10 @@
     self.photoView.layer.borderColor = [AKUtil color1].CGColor;
     
     if([self.quotas count] == 0){
-        self.quotaCollectionView.hidden = YES;
+        self.quotaCollectionView.alpha = 0.1;
     }
     else{
-        self.quotaCollectionView.hidden = NO;
+        self.quotaCollectionView.alpha = 1;
     }
 }
 
@@ -312,6 +318,37 @@
 }
 
 #pragma mark - Custom Methods
+
+-(void)changeQuotas:(UISwipeGestureRecognizer *)recognizer{
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        self.selectedMonth = (self.selectedMonth-1 > 0)? self.selectedMonth-1 : self.selectedMonth;
+    }
+    else{
+        self.selectedMonth = (self.selectedMonth+1 <= 12)? self.selectedMonth+1 : self.selectedMonth;
+    }
+    [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d",[self monthForPickerRow:self.selectedMonth-1],self.selectedYear ];
+    [self animateDatePickerField];
+    [self filterQuotas];
+}
+
+-(void)animateDatePickerField{
+    CGRect beginRect = self.datePickerField.frame;
+    [UIView animateWithDuration:0.5 animations:^{
+        float x = self.datePickerField.frame.origin.x - 50;
+        float y = self.datePickerField.frame.origin.y - 60;
+        float height = self.datePickerField.frame.size.height;
+        float width = self.datePickerField.frame.size.width;
+        
+        self.datePickerField.frame = CGRectMake(x, y, width, height);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.5 animations:^{
+                self.datePickerField.frame = beginRect;
+            }];
+        }
+    }];
+}
 
 -(void)didTapAnywhere: (UITapGestureRecognizer*) recognizer {
     [self filterQuotas];
@@ -520,10 +557,10 @@
     self.quotas = [self.allQuotas filteredArrayUsingPredicate:predicate];
     [self.quotaCollectionView reloadData];
     if([self.quotas count] == 0){
-        self.quotaCollectionView.hidden = YES;
+        self.quotaCollectionView.alpha = 0.1;
     }
     else{
-        self.quotaCollectionView.hidden = NO;
+        self.quotaCollectionView.alpha = 1;
     }
 }
 
