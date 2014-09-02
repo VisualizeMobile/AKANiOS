@@ -44,7 +44,7 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.scrollViewInfo.contentSize = CGSizeMake(320,2200);
+    self.scrollViewInfo.contentSize = CGSizeMake(320,3100);
     
     for(UIView *view in self.scrollViewInfo.subviews) {
         if([view isKindOfClass:[UITextView class]]) {
