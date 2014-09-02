@@ -907,7 +907,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     if (self.viewFollowedEnabled) {
         NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.followed == 1"];
-        self.parliamentaryArray = [self.parliamentaryArray filteredArrayUsingPredicate:resultPredicate];
+        self.parliamentaryArray = [[self.parliamentaryDao getAllParliamentary] filteredArrayUsingPredicate:resultPredicate];
     } else {
         self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
     }
