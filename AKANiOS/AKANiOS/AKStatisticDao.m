@@ -59,7 +59,7 @@
     [fetchRequest setEntity:self.entity];
     
     result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
-    NSLog(@"%@",result);
+
     if([result count] == 0){
         AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
         [statistic setNumQuota:numQuota];

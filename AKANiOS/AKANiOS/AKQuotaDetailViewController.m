@@ -112,7 +112,7 @@
         
         [self.hostingView addSubview:parliamentaryPhotoView];
         
-        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@/%@.  Este ano já foram gastos um total de R$ %@ por ele. Fonte das infomações = Câmara dos Deputados do Brasil.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
+        NSString *text = [NSString stringWithFormat:@"Estes são os gastos com %@ do deputado %@ do %@-%@.  Este ano já foram gastos um total de R$ %@ por ele. Fonte das infomações = Câmara dos Deputados do Brasil.\nBaixe já o aplicativo AKAN para saber os gastos dos nossos deputados federais!", self.quota.nameQuota, self.parliamentary.nickName, self.parliamentary.party, self.parliamentary.uf, formattedNumberString];
         
         [composeController setInitialText:text];
         [composeController addImage:[UIView imageWithView:self.hostingView]];
