@@ -141,7 +141,7 @@
     self.datePickerField.inputView = self.datePickerView;
     self.datePickerField.layer.borderWidth = 1;
     self.datePickerField.layer.cornerRadius = 5;
-    self.datePickerField.font = [UIFont fontWithName:@"Chalkboard SE" size:16];
+    self.datePickerField.font = [UIFont fontWithName:@"PTMono-Regular" size:14];
     
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:self.selectedMonth-1], [@(self.selectedYear) stringValue] ];
     
@@ -228,7 +228,7 @@
     self.selectedYear = self.olderYear+yearRow;
     self.selectedMonth = monthRow+1;
     
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
 }
 
 #pragma mark - PickerView Data Source

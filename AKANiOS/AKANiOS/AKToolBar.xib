@@ -43,26 +43,38 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seguidos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYR-WE-AZB">
-                    <rect key="frame" x="15" y="49" width="61" height="18"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seguidos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYR-WE-AZB">
+                    <rect key="frame" x="12" y="49" width="61" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="Mo1-nf-YVY"/>
+                        <constraint firstAttribute="width" constant="61" id="hon-Qk-6v5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                     <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrj-hV-yaj">
-                    <rect key="frame" x="130" y="49" width="53" height="18"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ranking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrj-hV-yaj">
+                    <rect key="frame" x="131" y="49" width="53" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="53" id="gag-Zt-ySc"/>
+                        <constraint firstAttribute="height" constant="18" id="t0N-E8-wz1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                     <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busca" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EZ-Zr-RPQ">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="busca" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EZ-Zr-RPQ">
                     <rect key="frame" x="258" y="49" width="41" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="1Xu-bR-HVn"/>
+                        <constraint firstAttribute="width" constant="41" id="2St-Yp-ATT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
                     <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,23 +82,23 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="BYR-WE-AZB" firstAttribute="top" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="-2" id="38y-Jn-gUv"/>
                 <constraint firstAttribute="bottom" secondItem="QxL-ey-36s" secondAttribute="bottom" constant="19" id="4m7-Na-3h0"/>
-                <constraint firstItem="iv3-TN-Gua" firstAttribute="centerX" secondItem="0EZ-Zr-RPQ" secondAttribute="centerX" constant="-0.5" id="83F-Dk-HwU"/>
                 <constraint firstAttribute="trailing" secondItem="iv3-TN-Gua" secondAttribute="trailing" constant="20" id="Aea-oc-DAW"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="BKb-Iq-vDA" secondAttribute="width" id="E15-Aj-rpN"/>
+                <constraint firstItem="QxL-ey-36s" firstAttribute="leading" secondItem="BYR-WE-AZB" secondAttribute="leading" constant="8" id="MDY-hL-KZ1"/>
                 <constraint firstAttribute="bottom" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="19" id="Q7c-xS-izf"/>
+                <constraint firstAttribute="bottom" secondItem="BYR-WE-AZB" secondAttribute="bottom" constant="3" id="V79-QN-rgl"/>
                 <constraint firstAttribute="bottom" secondItem="iv3-TN-Gua" secondAttribute="bottom" constant="19" id="WeI-4R-jm0"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="height" secondItem="QxL-ey-36s" secondAttribute="height" id="YGJ-On-CsP"/>
+                <constraint firstItem="iv3-TN-Gua" firstAttribute="leading" secondItem="0EZ-Zr-RPQ" secondAttribute="leading" constant="-2" id="ZSG-fN-Rx2"/>
                 <constraint firstItem="QxL-ey-36s" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="ZhF-98-Oud"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="width" secondItem="QxL-ey-36s" secondAttribute="width" id="bEC-OR-Bre"/>
+                <constraint firstAttribute="bottom" secondItem="Yrj-hV-yaj" secondAttribute="bottom" constant="3" id="c0e-yp-BaB"/>
                 <constraint firstItem="BKb-Iq-vDA" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="cgf-cc-3Uw"/>
-                <constraint firstItem="0EZ-Zr-RPQ" firstAttribute="top" secondItem="iv3-TN-Gua" secondAttribute="bottom" constant="-2" id="fDG-kb-1Hf"/>
+                <constraint firstAttribute="bottom" secondItem="0EZ-Zr-RPQ" secondAttribute="bottom" constant="3" id="cjg-1H-lba"/>
+                <constraint firstItem="Yrj-hV-yaj" firstAttribute="leading" secondItem="BKb-Iq-vDA" secondAttribute="leading" constant="-4" id="fQd-jU-Zo6"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="height" secondItem="BKb-Iq-vDA" secondAttribute="height" id="hnv-ef-hVf"/>
                 <constraint firstItem="iv3-TN-Gua" firstAttribute="top" secondItem="w0A-Ha-2V9" secondAttribute="top" constant="7" id="paG-ZX-Khd"/>
-                <constraint firstItem="QxL-ey-36s" firstAttribute="centerX" secondItem="BYR-WE-AZB" secondAttribute="centerX" constant="-3.5" id="qcp-00-zqy"/>
-                <constraint firstItem="Yrj-hV-yaj" firstAttribute="top" secondItem="BKb-Iq-vDA" secondAttribute="bottom" constant="-2" id="rQx-KQ-xXV"/>
-                <constraint firstItem="BKb-Iq-vDA" firstAttribute="centerX" secondItem="Yrj-hV-yaj" secondAttribute="centerX" constant="0.5" id="shH-Ny-l7N"/>
                 <constraint firstItem="QxL-ey-36s" firstAttribute="leading" secondItem="w0A-Ha-2V9" secondAttribute="leading" constant="20" id="v51-ew-q4I"/>
                 <constraint firstAttribute="centerX" secondItem="BKb-Iq-vDA" secondAttribute="centerX" constant="3" id="wfH-No-EPD"/>
             </constraints>

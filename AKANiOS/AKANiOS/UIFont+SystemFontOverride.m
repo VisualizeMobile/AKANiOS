@@ -12,12 +12,12 @@
 
 +(UIFont *)regularFontWithSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"Chalkboard SE" size:size+4];
+    return [UIFont fontWithName:@"PTMono-Regular" size:size];
 }
 
 +(UIFont *)boldFontWithSize:(CGFloat)size
 {
-    return [UIFont fontWithName:@"Chalkboard SE" size:size+4];
+    return [UIFont fontWithName:@"PTMono-Bold" size:size];
 }
 
 // Method Swizzling
