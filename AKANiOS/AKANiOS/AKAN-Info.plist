@@ -35,7 +35,7 @@
 		<key>ChalkboardSE-Bold</key>
 		<string>PTMono-Bold</string>
 		<key>ChalkboardSE-Regular</key>
-		<string>PTMono-Regular</string>
+		<string>PTMono-Bold</string>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
