@@ -408,7 +408,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
-    static short cancelButtonDiff = 15;
     
     UIButton *cancelButton;
     UIView *topView = self.searchController.searchBar.subviews[0];
@@ -416,9 +415,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
             cancelButton = (UIButton*)subView;
             [cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
-            subView.frame = CGRectMake(subView.frame.origin.x - cancelButtonDiff, subView.frame.origin.y, subView.frame.size.width + cancelButtonDiff, subView.frame.size.height);
-        } else if([subView isKindOfClass:NSClassFromString(@"UITextField")]) {
-            subView.frame = CGRectMake(subView.frame.origin.x, subView.frame.origin.y, subView.frame.size.width - cancelButtonDiff, subView.frame.size.height);
         }
     }
     
