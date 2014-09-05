@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKInfoViewController">
             <connections>
+                <outlet property="infoLabel" destination="CWG-e7-ged" id="eK4-9H-KJp"/>
                 <outlet property="scrollViewInfo" destination="Qwt-yw-gxv" id="Y33-8G-0lj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,27 +17,37 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
-                    <rect key="frame" x="0.0" y="-2636" width="320" height="3221"/>
+                    <rect key="frame" x="0.0" y="-688" width="320" height="3221"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
-                            <rect key="frame" x="6" y="814" width="111" height="104"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
+                            <rect key="frame" x="0.0" y="814" width="111" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="111" id="DQu-kH-Hmn"/>
+                                <constraint firstAttribute="height" constant="104" id="SNp-PY-SJx"/>
+                            </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
-                            <rect key="frame" x="-3" y="785" width="320" height="21"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
+                            <rect key="frame" x="0.0" y="785" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="zU8-FU-pHF"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="17"/>
                             <color key="textColor" red="0.32549019607843138" green="0.396078431372549" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="highlightedColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO2-HN-AeS">
-                            <rect key="frame" x="2" y="745" width="315" height="32"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO2-HN-AeS">
+                            <rect key="frame" x="0.0" y="745" width="320" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="SQz-Kf-wzb"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="26"/>
                             <color key="textColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -259,7 +270,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="500" fixedFrame="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CWG-e7-ged">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="500" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CWG-e7-ged">
                             <rect key="frame" x="20" y="125" width="280" height="602"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.
@@ -271,10 +282,13 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="198" translatesAutoresizingMaskIntoConstraints="NO" id="r5o-rT-stu">
-                            <rect key="frame" x="122" y="814" width="198" height="104"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="r5o-rT-stu">
+                            <rect key="frame" x="111" y="814" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="104" id="Vsb-jr-sNp"/>
+                            </constraints>
                             <string key="text">Valores gastos com compras de passagens aéreas. O valor máximo autorizado para esta Cota varia de acordo com o estado do parlamentar</string>
                             <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="13"/>
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
@@ -413,10 +427,25 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                     </subviews>
                     <color key="backgroundColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="r5o-rT-stu" secondAttribute="trailing" id="3Bb-67-wiZ"/>
+                        <constraint firstItem="CWG-e7-ged" firstAttribute="top" secondItem="pR2-1M-liu" secondAttribute="bottom" constant="13" id="BWb-m3-bkn"/>
+                        <constraint firstItem="r5o-rT-stu" firstAttribute="top" secondItem="dAt-PP-xgp" secondAttribute="bottom" constant="8" id="BqM-8N-Lkb"/>
+                        <constraint firstAttribute="trailing" secondItem="CWG-e7-ged" secondAttribute="trailing" constant="20" id="DMb-I6-Gcb"/>
+                        <constraint firstItem="aCO-P8-CGo" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="I5J-Zc-hK8"/>
+                        <constraint firstAttribute="trailing" secondItem="dAt-PP-xgp" secondAttribute="trailing" id="IaF-S1-ATW"/>
+                        <constraint firstItem="dAt-PP-xgp" firstAttribute="top" secondItem="zO2-HN-AeS" secondAttribute="bottom" constant="8" id="JhL-yL-ebU"/>
                         <constraint firstAttribute="height" constant="568" id="KCV-pS-50o"/>
+                        <constraint firstItem="zO2-HN-AeS" firstAttribute="top" secondItem="CWG-e7-ged" secondAttribute="bottom" constant="18" id="KSv-ve-ae9"/>
+                        <constraint firstItem="CWG-e7-ged" firstAttribute="width" secondItem="Qwt-yw-gxv" secondAttribute="width" constant="-40" id="MlN-1M-K5g"/>
+                        <constraint firstItem="CWG-e7-ged" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" constant="20" id="VOT-d5-m2a"/>
+                        <constraint firstAttribute="trailing" secondItem="zO2-HN-AeS" secondAttribute="trailing" id="agw-D0-gct"/>
                         <constraint firstItem="pR2-1M-liu" firstAttribute="top" secondItem="Qwt-yw-gxv" secondAttribute="top" constant="14" id="clN-DO-i3J"/>
+                        <constraint firstItem="dAt-PP-xgp" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="eqz-KP-IUK"/>
                         <constraint firstAttribute="centerX" secondItem="pR2-1M-liu" secondAttribute="centerX" id="gNl-jv-jpL"/>
+                        <constraint firstItem="zO2-HN-AeS" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="gOU-Vw-78Y"/>
                         <constraint firstAttribute="width" constant="320" id="mZF-O9-tpF"/>
+                        <constraint firstItem="aCO-P8-CGo" firstAttribute="top" secondItem="dAt-PP-xgp" secondAttribute="bottom" constant="8" id="oxV-Ag-7I0"/>
+                        <constraint firstItem="r5o-rT-stu" firstAttribute="leading" secondItem="aCO-P8-CGo" secondAttribute="trailing" id="qhd-8L-y1J"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -430,14 +459,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
-        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" id="zQh-MS-gPR">
-            <rect key="frame" x="0.0" y="0.0" width="198" height="104"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-            <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="14"/>
-            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-        </textView>
     </objects>
     <resources>
         <image name="aeronaves" width="300" height="230"/>

@@ -10,6 +10,7 @@
 #import "AKUtil.h"
 
 @interface AKInfoViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *infoLabel;
 
 @end
 
@@ -35,29 +36,36 @@
     
     self.title = @"AKAN";
     self.scrollViewInfo.delegate=self;
-}
+   }
 
 -(void)viewWillAppear:(BOOL)animated {
     [self transformNavigationBarButtons];
 }
 
+
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.scrollViewInfo.contentSize = CGSizeMake(320,3200);
+    self.scrollViewInfo.contentSize= CGSizeMake(self.view.frame.size.width,3200);
     
-    for(UIView *view in self.scrollViewInfo.subviews) {
-        if([view isKindOfClass:[UITextView class]]) {
-            UITextView *textView = (UITextView*) view;
-            
-            [textView sizeToFit];
-            [textView.textContainer setSize:textView.frame.size];
-        }
-    }
+//    
+//    for(UIView *view in self.scrollViewInfo.subviews) {
+//        if([view isKindOfClass:[UITextView class]]) {
+//            UITextView *textView = (UITextView*) view;
+//            
+//            [textView sizeToFit];
+//            [textView.textContainer setSize:textView.frame.size];
+//        }
+//    }
 }
+
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self transformNavigationBarButtons];
+    
+   [self.infoLabel sizeToFit];
+    self.infoLabel.preferredMaxLayoutWidth=self.infoLabel.frame.size.width;
+    
 }
 
 #pragma mark - custom methods
