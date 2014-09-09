@@ -38,34 +38,30 @@
     
     self.title = @"AKAN";
     self.scrollViewInfo.delegate=self;
-   }
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     [self transformNavigationBarButtons];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [self.infoLabel sizeToFit];
+    self.infoLabel.preferredMaxLayoutWidth=self.infoLabel.frame.size.width;
+}
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     self.scrollViewInfo.contentSize= CGSizeMake(self.view.frame.size.width,(self.lastLabel.frame.origin.y+self.lastLabel.frame.size.height));
     
-//    
-//    for(UIView *view in self.scrollViewInfo.subviews) {
-//        if([view isKindOfClass:[UITextView class]]) {
-//            UITextView *textView = (UITextView*) view;
-//            
-//            [textView sizeToFit];
-//            [textView.textContainer setSize:textView.frame.size];
-//        }
-//    }
 }
 
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self transformNavigationBarButtons];
     
-   [self.infoLabel sizeToFit];
+    [self.infoLabel sizeToFit];
     self.infoLabel.preferredMaxLayoutWidth=self.infoLabel.frame.size.width;
 }
 

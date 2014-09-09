@@ -45,6 +45,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
 @property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
+@property (nonatomic) BOOL firstTimeThatViewAppeared;
 
 @end
 
@@ -130,19 +131,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     }
     
     // Web service
-    [self.settingsManager setDataUpdateVersion:0];
     self.webService = [[AKWebServiceConsumer alloc] init];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
--(void)viewWillLayoutSubviews {
-    self.needsToHideSearchBar = [self isSearchBarHidden];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -165,6 +154,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     //
     [self transformNavigationBarButtons];
+    self.firstTimeThatViewAppeared = YES;
     
     if (self.searchController.active)
     {
@@ -185,17 +175,23 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.toolBar.frame = toolbarFrame;
 }
 
+-(void)viewWillLayoutSubviews {
+    self.needsToHideSearchBar = [self isSearchBarHidden];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.lastOrientationWasLadscape = NO;
+}
+
 -(void)viewDidLayoutSubviews {
-    static BOOL firstTime = YES;
-    
-    if(firstTime == YES || self.needsToHideSearchBar) {
+    if(self.firstTimeThatViewAppeared == YES || self.needsToHideSearchBar) {
         if(self.lastOrientationWasLadscape) {
             [self.tableView setContentOffset: CGPointMake(0, -8)];
         } else {
             [self.tableView setContentOffset: CGPointMake(0, -20)];
         }
         
-        firstTime = NO;
+        self.firstTimeThatViewAppeared = NO;
     }
 }
 
@@ -469,8 +465,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
         if (self.viewFollowedEnabled) {
             [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
             
-            [self applyAllDefinedFiltersAndSort];
-            
             [sender setImage:[UIImage imageNamed:@"seguidooff"] forState:UIControlStateNormal];
             
             [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
@@ -615,7 +609,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             self.parliamentaryArray = [self.parliamentaryDao getAllParliamentary];
             
             self.parliamentaryNicknameFilteredArray = [NSArray array];
-            [self applyAllDefinedFiltersAndSort];
             
             NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getTemporaryFilePath]];
             
@@ -623,7 +616,6 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                 [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:@1];
                 
-            
                 [self updateQuotasForParliamentary:idParliamentary];
             }
             

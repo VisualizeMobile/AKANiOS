@@ -91,7 +91,6 @@
         else {
             [self filterQuotas];
         }
-        
     }
 }
 
@@ -509,7 +508,6 @@
                 self.olderYear = [[self.quotaDao getOldestYear] integerValue];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
-                    
                     
                     [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
                     self.datePickerField.inputView = self.datePickerView;

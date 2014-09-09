@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
-                    <rect key="frame" x="0.0" y="-2562" width="320" height="3221"/>
+                    <rect key="frame" x="0.0" y="-2562" width="320" height="3231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
@@ -312,7 +312,7 @@
                                 <constraint firstAttribute="height" constant="104" id="z6c-rR-YOv"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desenvolvedores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG7-I2-vMw">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desenvolvimento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG7-I2-vMw">
                             <rect key="frame" x="0.0" y="2676" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
@@ -332,7 +332,7 @@
                                 <constraint firstAttribute="width" constant="111" id="y6Z-A0-atd"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
                             <rect key="frame" x="0.0" y="3045" width="320" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
@@ -353,7 +353,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94v-4I-LM0">
-                            <rect key="frame" x="0.0" y="2626" width="320" height="37"/>
+                            <rect key="frame" x="0.0" y="2629" width="320" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -550,7 +550,7 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                             <color key="textColor" red="0.32549019610000002" green="0.39607843139999999" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matheus Fonseca                           1matheusfonceca@gmail.com      " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="YYy-Of-Agw">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matheus Fonseca                           1matheusfonseca@gmail.com      " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="YYy-Of-Agw">
                             <rect key="frame" x="111" y="2821" width="209" height="104"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -716,7 +716,7 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         <constraint firstItem="r5o-rT-stu" firstAttribute="leading" secondItem="aCO-P8-CGo" secondAttribute="trailing" id="qhd-8L-y1J"/>
                         <constraint firstAttribute="trailing" secondItem="dwK-tp-ROv" secondAttribute="trailing" id="r6W-cP-41Q"/>
                         <constraint firstAttribute="trailing" secondItem="vWT-4u-Vf1" secondAttribute="trailing" id="rIN-AO-GJt"/>
-                        <constraint firstItem="dG7-I2-vMw" firstAttribute="top" secondItem="94v-4I-LM0" secondAttribute="bottom" constant="13" id="rwt-zO-PhL"/>
+                        <constraint firstItem="dG7-I2-vMw" firstAttribute="top" secondItem="94v-4I-LM0" secondAttribute="bottom" constant="10" id="rwt-zO-PhL"/>
                         <constraint firstAttribute="trailing" secondItem="ulp-E8-RwX" secondAttribute="trailing" id="sH1-7h-4z9"/>
                         <constraint firstAttribute="trailing" secondItem="eKh-ru-zpH" secondAttribute="trailing" id="tM1-9o-LCu"/>
                         <constraint firstItem="ov1-Do-xSe" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="tUl-mS-gQT"/>
@@ -727,7 +727,7 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         <constraint firstItem="RD5-zl-ukx" firstAttribute="top" secondItem="bO3-6T-6Mm" secondAttribute="bottom" constant="8" id="wfv-Mm-K1X"/>
                         <constraint firstAttribute="trailing" secondItem="npe-VP-IN6" secondAttribute="trailing" id="x3N-Uz-0b7"/>
                         <constraint firstItem="dnb-cO-Nan" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="xCO-fW-s1p"/>
-                        <constraint firstItem="94v-4I-LM0" firstAttribute="top" secondItem="qpr-HB-2DW" secondAttribute="bottom" constant="8" id="y5t-D3-EjW"/>
+                        <constraint firstItem="94v-4I-LM0" firstAttribute="top" secondItem="qpr-HB-2DW" secondAttribute="bottom" constant="11" id="y5t-D3-EjW"/>
                         <constraint firstItem="hOO-7k-3fE" firstAttribute="top" secondItem="4lS-g2-ULQ" secondAttribute="bottom" constant="8" id="yp8-AW-IY2"/>
                         <constraint firstItem="eXS-fc-moK" firstAttribute="leading" secondItem="P17-4f-mPc" secondAttribute="trailing" id="z5h-0i-ScN"/>
                         <constraint firstItem="8BP-fz-7or" firstAttribute="leading" secondItem="Qwt-yw-gxv" secondAttribute="leading" id="z7W-aM-8fd"/>
