@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AKGenericDao.h"
 
-@interface AKStatisticDao : NSObject<NSFetchedResultsControllerDelegate>
+@interface AKStatisticDao : AKGenericDao<NSFetchedResultsControllerDelegate>
 
 @property(nonatomic,strong) NSFetchedResultsController *statisticFRC;
 
@@ -19,9 +20,9 @@
 
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average;
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average andStdDeviation:(double )stdDeviation;
+-(BOOL) deleteAllStatistic;
+
 -(NSArray *) getStatisticByYear:(NSNumber *)year;
 -(NSArray *) getStatisticByYear:(NSNumber *)year andNumQuota:(NSNumber *)numQuota;
-
--(BOOL) deleteAllStatistic;
 
 @end

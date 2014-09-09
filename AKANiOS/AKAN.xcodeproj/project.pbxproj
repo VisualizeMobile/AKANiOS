@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		2F0F879019AD841C00F1B81A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0F878F19AD841B00F1B81A /* Reachability.m */; };
 		2F0F879219AD848C00F1B81A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */; };
+		2F54D0E419BE00C900D1F64C /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E319BE00C900D1F64C /* AKParliamentary.m */; };
+		2F54D0E719BE1A1D00D1F64C /* AKGenericDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */; };
+		2F54D0EA19BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */; };
 		2F580CEC19B047EE00605544 /* Levi-Strauss.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */; };
 		2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */; };
 		2F7343C719A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */; };
 		2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */; };
+		2F8A67EB19B69140008EDABE /* PTM55FT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F8A67E719B69140008EDABE /* PTM55FT.ttf */; };
+		2F8A67EC19B69140008EDABE /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2F8A67E819B69140008EDABE /* SIL Open Font License.txt */; };
+		2F8A67F219B692AC008EDABE /* pt-mono-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F8A67F119B692AC008EDABE /* pt-mono-bold.ttf */; };
+		2F8A67F419B694C0008EDABE /* UIFont+IBCustomFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A67F319B694C0008EDABE /* UIFont+IBCustomFonts.m */; };
 		2F8EDB0019A7B7D4006D159F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F8EDAFF19A7B7D4006D159F /* QuartzCore.framework */; };
 		2F8EDB0C19A7BB87006D159F /* AKQuotaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8EDB0A19A7BB87006D159F /* AKQuotaDetailViewController.m */; };
 		2F8EDB0D19A7BB87006D159F /* AKQuotaDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F8EDB0B19A7BB87006D159F /* AKQuotaDetailViewController.xib */; };
@@ -22,7 +29,6 @@
 		2F99E77819B0BD0F00CCBA77 /* elect___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F99E77719B0BD0F00CCBA77 /* elect___.ttf */; };
 		2FB6FA2D19AB9B8900D3736E /* AKWebServiceConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */; };
 		2FB6FA4319AD019800D3736E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4219AD019800D3736E /* MBProgressHUD.m */; };
-		2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4819AD22D800D3736E /* AKParliamentary.m */; };
 		2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4B19AD2A3000D3736E /* AKQuota.m */; };
 		2FB6FA4E19AD405700D3736E /* pumagaffer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */; };
 		2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */; };
@@ -81,11 +87,21 @@
 		2F0F878E19AD841B00F1B81A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2F0F878F19AD841B00F1B81A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2F54D0E219BE00C900D1F64C /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
+		2F54D0E319BE00C900D1F64C /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
+		2F54D0E519BE1A1D00D1F64C /* AKGenericDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGenericDao.h; sourceTree = "<group>"; };
+		2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKGenericDao.m; sourceTree = "<group>"; };
+		2F54D0E819BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+PerformOnMOCThread.h"; sourceTree = "<group>"; };
+		2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+PerformOnMOCThread.m"; sourceTree = "<group>"; };
 		2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Levi-Strauss.ttf"; sourceTree = "<group>"; };
 		2F7343C119A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionCollectionViewCell.h; sourceTree = "<group>"; };
 		2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionCollectionViewCell.m; sourceTree = "<group>"; };
 		2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKFilterOptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		2F7FAFF319993D85006C7A15 /* AKMainListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AKMainListViewController.xib; sourceTree = "<group>"; };
+		2F8A67E719B69140008EDABE /* PTM55FT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTM55FT.ttf; sourceTree = "<group>"; };
+		2F8A67E819B69140008EDABE /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
+		2F8A67F119B692AC008EDABE /* pt-mono-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pt-mono-bold.ttf"; sourceTree = "<group>"; };
+		2F8A67F319B694C0008EDABE /* UIFont+IBCustomFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+IBCustomFonts.m"; sourceTree = "<group>"; };
 		2F8EDAFD19A7B7BE006D159F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2F8EDAFF19A7B7D4006D159F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2F8EDB0919A7BB87006D159F /* AKQuotaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuotaDetailViewController.h; sourceTree = "<group>"; };
@@ -178,8 +194,6 @@
 		2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKWebServiceConsumer.m; sourceTree = "<group>"; };
 		2FB6FA4119AD019800D3736E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2FB6FA4219AD019800D3736E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		2FB6FA4719AD22D800D3736E /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
-		2FB6FA4819AD22D800D3736E /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
 		2FB6FA4A19AD2A3000D3736E /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
 		2FB6FA4B19AD2A3000D3736E /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
 		2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pumagaffer.ttf; sourceTree = "<group>"; };
@@ -282,6 +296,16 @@
 				2F0F878F19AD841B00F1B81A /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		2F8A67E619B69140008EDABE /* pt-mono */ = {
+			isa = PBXGroup;
+			children = (
+				2F8A67F119B692AC008EDABE /* pt-mono-bold.ttf */,
+				2F8A67E719B69140008EDABE /* PTM55FT.ttf */,
+				2F8A67E819B69140008EDABE /* SIL Open Font License.txt */,
+			);
+			path = "pt-mono";
 			sourceTree = "<group>";
 		};
 		2F8EDAAB19A7B6A9006D159F /* CorePlotLibrary */ = {
@@ -429,6 +453,7 @@
 		2FCEDE4B1994012C003522E8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				2F8A67F319B694C0008EDABE /* UIFont+IBCustomFonts.m */,
 				2FCEDE4F1994016F003522E8 /* AKUtil.h */,
 				2FCEDE501994016F003522E8 /* AKUtil.m */,
 				2FB6FA4F19AD40DB00D3736E /* UIFont+SystemFontOverride.h */,
@@ -448,6 +473,8 @@
 				8E00F30719955CD20030A52F /* AKQuotaDao.m */,
 				8E4A197119AE5BEE00CCDF82 /* AKStatisticDao.h */,
 				8E4A197219AE5BEE00CCDF82 /* AKStatisticDao.m */,
+				2F54D0E519BE1A1D00D1F64C /* AKGenericDao.h */,
+				2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -625,12 +652,14 @@
 		E9851BA7198F3A4B00A2280B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				2FB6FA4719AD22D800D3736E /* AKParliamentary.h */,
-				2FB6FA4819AD22D800D3736E /* AKParliamentary.m */,
 				2FB6FA4A19AD2A3000D3736E /* AKQuota.h */,
 				2FB6FA4B19AD2A3000D3736E /* AKQuota.m */,
 				8E4A197419AE5CF500CCDF82 /* AKStatistic.h */,
 				8E4A197519AE5CF500CCDF82 /* AKStatistic.m */,
+				2F54D0E219BE00C900D1F64C /* AKParliamentary.h */,
+				2F54D0E319BE00C900D1F64C /* AKParliamentary.m */,
+				2F54D0E819BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.h */,
+				2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */,
 			);
 			name = model;
 			path = ..;
@@ -639,6 +668,7 @@
 		E9851BAA198F437700A2280B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2F8A67E619B69140008EDABE /* pt-mono */,
 				2F99E77719B0BD0F00CCBA77 /* elect___.ttf */,
 				2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */,
 				2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */,
@@ -706,7 +736,7 @@
 				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
-						DevelopmentTeam = 7A9D2MJVKJ;
+						DevelopmentTeam = 8Y387U3F6Y;
 					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
@@ -739,6 +769,9 @@
 				8EAFA8471986C44F00E58AD9 /* InfoPlist.strings in Resources */,
 				8E00170D19A51E7A00CB0351 /* AKLandscapeDetailViewController.xib in Resources */,
 				2F99E77819B0BD0F00CCBA77 /* elect___.ttf in Resources */,
+				2F8A67F219B692AC008EDABE /* pt-mono-bold.ttf in Resources */,
+				2F8A67EC19B69140008EDABE /* SIL Open Font License.txt in Resources */,
+				2F8A67EB19B69140008EDABE /* PTM55FT.ttf in Resources */,
 				2FCEDE4A1993F1B7003522E8 /* AKToolBar.xib in Resources */,
 				2F7FAFF419993D85006C7A15 /* AKMainListViewController.xib in Resources */,
 				8EAFA8521986C44F00E58AD9 /* Images.xcassets in Resources */,
@@ -774,6 +807,7 @@
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
+				2F54D0E719BE1A1D00D1F64C /* AKGenericDao.m in Sources */,
 				2F0F879019AD841C00F1B81A /* Reachability.m in Sources */,
 				2F9054AC19AFC7250055CFCC /* UIView+ImageFromView.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
@@ -781,12 +815,13 @@
 				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
 				8E4A197619AE5CF500CCDF82 /* AKStatistic.m in Sources */,
 				2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */,
-				2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */,
+				2F54D0EA19BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
+				2F8A67F419B694C0008EDABE /* UIFont+IBCustomFonts.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */,
 				8E00F304199559F00030A52F /* AKInfoViewController.m in Sources */,
@@ -798,6 +833,7 @@
 				2F8EDB0C19A7BB87006D159F /* AKQuotaDetailViewController.m in Sources */,
 				8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */,
 				2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */,
+				2F54D0E419BE00C900D1F64C /* AKParliamentary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

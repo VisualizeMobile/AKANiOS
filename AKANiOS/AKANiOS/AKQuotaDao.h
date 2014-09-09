@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AKGenericDao.h"
 
-@interface AKQuotaDao : NSObject <NSFetchedResultsControllerDelegate>
+@interface AKQuotaDao : AKGenericDao <NSFetchedResultsControllerDelegate>
 
 @property(nonatomic,strong) NSFetchedResultsController *quotaFRC;
 
@@ -16,20 +17,16 @@
 @property(nonatomic,strong) NSEntityDescription *entity ; //Representa a tabelas
 
 + (instancetype)getInstance;
--(NSArray *)getQuotas;
-
--(void) deleteAllQuota;
 
 -(BOOL)insertQuotaWithId: (NSNumber *)idQuota andValue:(NSDecimalNumber *) value;
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary;
-
 -(BOOL)updateQuotaById:(NSNumber *)idQuota updateValue:(NSDecimalNumber *)value updateIdUpdate:(NSNumber *)idUpdate;
+-(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
+-(BOOL) deleteAllQuotas;
 
+-(NSArray *)getQuotas;
 -(NSArray *) getQuotaByIdParliamentary:(NSNumber *)idParliamentary;
 -(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*)numQuota andYear:(NSNumber *)year;
--(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary;
-
--(BOOL)insertQuotasFromArray:(NSArray *)quotas;
 -(NSNumber *)getOldestYear;
 
 @end

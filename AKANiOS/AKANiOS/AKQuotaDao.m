@@ -52,77 +52,80 @@
 
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andValue:(NSDecimalNumber * )value
 {
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    [fetchRequest setEntity:self.entity];
-    
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
-    if ([result count]==0)
-    {
-        AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+    __block BOOL success;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        NSArray *result = nil;
         
-        [newQuota setIdQuota:idQuota];
-        [newQuota setValue:value];
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+        [fetchRequest setEntity:self.entity];
         
-        if ([self.managedObjectContext save:&Error])
-            return YES;
-        else
-            NSLog(@"Failed to save new Quota  Error= %@",Error);
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         
-    } else {
-         NSLog(@"Ja tem essa cota");
-    }
+        if ([result count]==0)
+        {
+            AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+            
+            [newQuota setIdQuota:idQuota];
+            [newQuota setValue:value];
+            
+            if ([self.managedObjectContext save:&error]) {
+                success = YES;
+            }
+            else {
+                NSLog(@"Failed to save new Quota  Error= %@",error);
+               success = NO;
+            }
+        }
+    }];
     
-    
-    return NO;
+    return success;
 }
 
 -(BOOL)insertQuotaWithId:(NSNumber *)idQuota andNumQuota:(NSNumber *)numQuota andNameQuota:(NSString *)nameQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andIdUpdate:(NSNumber *)idUpdate andValue:(NSDecimalNumber *)value andIdParliamentary:(NSNumber *)idParliamentary
 {
-    //numQuota = [self verifyNumQuota:numQuota];
-    nameQuota = [self subtypeNameOfSubtype:[numQuota intValue]];
-    
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
-    [fetchRequest setEntity:self.entity];
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
-    if ([result count]==0)
-    {
-        AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
-        NSString *nameImage;
+    __block BOOL success;
+    [self performOnMOCThread: ^(void) {
+        NSString *quotaName = [self subtypeNameOfSubtype:[numQuota intValue]];
         
-        [newQuota setIdQuota:idQuota];
-        [newQuota setNumQuota:numQuota];
-        [newQuota setNameQuota: nameQuota];
-        [newQuota setMonth:month];
-        [newQuota setYear:year];
-        [newQuota setIdUpdate:idUpdate];
-        [newQuota setValue:value];
-        [newQuota setIdParliamentary:idParliamentary];
-        [newQuota setImageColor:[self imageColorOfValue:value]];
+        NSArray *result;
+        NSError *error=nil;
         
-        nameImage=[self imageNameOfSubtype:[[newQuota numQuota] intValue]];
-        [newQuota setImageName:nameImage];
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"idQuota==%@",idQuota]];
+        [fetchRequest setEntity:self.entity];
         
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
         
-        if ([self.managedObjectContext save:&Error])
-            return YES;
-        else
-            NSLog(@"Failed to save new Quota  Error= %@",Error);
-        
-    }
+        if ([result count]==0)
+        {
+            AKQuota *newQuota=[NSEntityDescription insertNewObjectForEntityForName:@"Quota" inManagedObjectContext:self.managedObjectContext];
+            NSString *nameImage;
+            
+            [newQuota setIdQuota:idQuota];
+            [newQuota setNumQuota:numQuota];
+            [newQuota setNameQuota: quotaName];
+            [newQuota setMonth:month];
+            [newQuota setYear:year];
+            [newQuota setIdUpdate:idUpdate];
+            [newQuota setValue:value];
+            [newQuota setIdParliamentary:idParliamentary];
+            [newQuota setImageColor:[self imageColorOfValue:value]];
+            
+            nameImage=[self imageNameOfSubtype:[[newQuota numQuota] intValue]];
+            [newQuota setImageName:nameImage];
+            
+            if ([self.managedObjectContext save:&error]) {
+                success = YES;
+            } else {
+                NSLog(@"Failed to save new Quota  Error= %@",error);
+                success = NO;
+            }
+        }
+    }];
     
-    return NO;
+    return success;
 }
 
 -(NSNumber *)verifyNumQuota:(NSNumber *)numQuota{
@@ -183,109 +186,98 @@
 
 -(NSArray *) getQuotasByIdParliamentary:(NSNumber *)idParliamentary withNumQuota:(NSNumber*) numQuota andYear:(NSNumber *)year
 {
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (numQuota==%@) AND (year == %@)",idParliamentary, numQuota, year]];
-    [fetchRequest setEntity:self.entity];
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    __block NSArray *result = nil;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(idParliamentary==%@) AND (numQuota==%@) AND (year == %@)",idParliamentary, numQuota, year]];
+        [fetchRequest setEntity:self.entity];
+        
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
     
     return result;
 }
 
 -(NSArray *)getQuotas
 {
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setEntity:self.entity];
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
-    
+    __block NSArray *result = nil;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setEntity:self.entity];
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
+        
     return result;
 }
 
 
--(BOOL) deleteAllQuotas
-{
-    NSError *Error=nil;
-    NSArray *result;
-    NSFetchRequest *request=[[NSFetchRequest alloc]init];
-    
-    [request setEntity:self.entity];
-    
-    @try {
-        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+-(BOOL) deleteAllQuotas {
+    __block BOOL success = nil;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        NSFetchRequest *request=[[NSFetchRequest alloc]init];
+        NSArray *result = nil;
         
-        for(AKQuota *quota in result)
-        {
-            [self.managedObjectContext deleteObject:quota];
-        }
+        [request setEntity:self.entity];
         
-        if ([self.managedObjectContext save:&Error]) {
+        @try {
+            result=[self.managedObjectContext executeFetchRequest:request error:&error];
             
-            return YES;
+            for(AKQuota *quota in result)
+            {
+                [self.managedObjectContext deleteObject:quota];
+            }
+            
+            if ([self.managedObjectContext save:&error]) {
+                success = YES;
+            }
+            
         }
-        
-        
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Failed to delete Quota Error:%@",exception);
-    }
+        @catch (NSException *exception) {
+            NSLog(@"Failed to delete Quota Error:%@",exception);
+            success = NO;
+        }
+    }];
     
-    return NO;
+    return success;
 }
 -(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary
 {
-    NSError *Error=nil;
-    NSArray *result;
-    
-    NSFetchRequest *request=[[NSFetchRequest alloc]init];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
-    [request setEntity:self.entity];
-    
-    @try {
-        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+    __block BOOL success = nil;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        NSArray *result;
         
-        for(AKQuota *quota in result)
-        {
-            [self.managedObjectContext deleteObject:quota];
-        }
+        NSFetchRequest *request=[[NSFetchRequest alloc]init];
+        [request setPredicate:[NSPredicate predicateWithFormat:@"idParliamentary==%@",idParliamentary]];
+        [request setEntity:self.entity];
         
-        if ([self.managedObjectContext save:&Error]) {
+        @try {
+            result=[self.managedObjectContext executeFetchRequest:request error:&error];
             
-            return YES;
+            for(AKQuota *quota in result)
+            {
+                [self.managedObjectContext deleteObject:quota];
+            }
+            
+            if ([self.managedObjectContext save:&error]) {
+                
+                success = YES;
+            }
+            
         }
-        
-    }
-    @catch (NSException *exception) {
-        
-        NSLog(@"Failed to delete Quota Error:%@",exception);
-    }
-    
+        @catch (NSException *exception) {
+            NSLog(@"Failed to delete Quota Error:%@",exception);
+            success = NO;
+        }
+    }];
     
     return NO;
 }
-
--(void) deleteAllQuota {
-    NSFetchRequest * fetch = [[NSFetchRequest alloc] init];
-    [fetch setEntity:self.entity];
-    [fetch setIncludesPropertyValues:NO]; // only fetch the managedObjectID
-    
-    NSError * error = nil;
-    NSArray * quotaArray = [self.managedObjectContext executeFetchRequest:fetch error:&error];
-    
-    //error handling goes here
-    for (NSManagedObject *quota in quotaArray) {
-        [self.managedObjectContext deleteObject:quota];
-    }
-    
-    NSError *saveError = nil;
-    [self.managedObjectContext save:&saveError];
-}
-
 
 -(NSString *)subtypeNameOfSubtype:(int)subtype{
     switch (subtype) {
@@ -411,13 +403,6 @@
     }
     
     return 0;
-}
-
--(BOOL)insertQuotasFromArray:(NSArray *)quotas{
-    for (AKQuota *quota in quotas) {
-        [self insertQuotaWithId:quota.idQuota andNumQuota:quota.numQuota andNameQuota:quota.nameQuota andMonth:quota.month andYear:quota.year andIdUpdate:quota.idUpdate andValue:quota.value andIdParliamentary:quota.idParliamentary];
-    }
-    return YES;
 }
 
 @end

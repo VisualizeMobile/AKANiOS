@@ -91,7 +91,6 @@
         else {
             [self filterQuotas];
         }
-        
     }
 }
 
@@ -141,7 +140,7 @@
     self.datePickerField.inputView = self.datePickerView;
     self.datePickerField.layer.borderWidth = 1;
     self.datePickerField.layer.cornerRadius = 5;
-    self.datePickerField.font = [UIFont fontWithName:@"Chalkboard SE" size:16];
+    self.datePickerField.font = [UIFont fontWithName:@"PTMono-Regular" size:14];
     
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %@", [self monthForPickerRow:self.selectedMonth-1], [@(self.selectedYear) stringValue] ];
     
@@ -328,7 +327,7 @@
         self.selectedMonth = (self.selectedMonth+1 <= 12)? self.selectedMonth+1 : self.selectedMonth;
     }
     [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d",[self monthForPickerRow:self.selectedMonth-1],self.selectedYear ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld",[self monthForPickerRow:self.selectedMonth-1],(long)self.selectedYear ];
     [self animateDatePickerField];
     [self filterQuotas];
 }
@@ -503,7 +502,6 @@
                     idQuota = jsonDict[@"pk"];
                     value = [NSDecimalNumber decimalNumberWithString:jsonDict[@"fields"][@"valor"]];
                     idParliamentary = jsonDict[@"fields"][@"idparlamentar"];
-                    //NSLog(@"%@",value);
                     numQuota = jsonDict[@"fields"][@"numsubcota"];
                     nameQuota = jsonDict[@"fields"][@"descricao"];
                     month = jsonDict[@"fields"][@"mes"];
@@ -517,10 +515,10 @@
                 self.allQuotas = [self.quotaDao getQuotaByIdParliamentary:self.parliamentary.idParliamentary];
                 [self filterQuotas];
                 
+                self.olderYear = [[self.quotaDao getOldestYear] integerValue];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.quotaCollectionView reloadData];
                     
-                    self.olderYear = [[self.quotaDao getOldestYear] integerValue];
                     [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
                     self.datePickerField.inputView = self.datePickerView;
                     [self.datePickerView reloadAllComponents];

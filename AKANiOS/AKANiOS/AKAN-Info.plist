@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,8 +32,17 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>IBCustomFonts</key>
+	<dict>
+		<key>ChalkboardSE-Bold</key>
+		<string>PTMono-Bold</string>
+		<key>ChalkboardSE-Regular</key>
+		<string>PTMono-Bold</string>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>pt-mono-bold.ttf</string>
+		<string>PTM55FT.ttf</string>
 		<string>elect___.ttf</string>
 		<string>pumagaffer.ttf</string>
 		<string>Levi-Strauss.ttf</string>

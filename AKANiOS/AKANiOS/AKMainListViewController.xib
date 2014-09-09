@@ -34,16 +34,16 @@
                         <constraint firstAttribute="height" constant="70" id="QhH-OA-gtX"/>
                     </constraints>
                 </view>
-                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="phz-MI-T3x">
-                    <rect key="frame" x="51" y="209" width="218" height="86"/>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="phz-MI-T3x">
+                    <rect key="frame" x="20" y="185" width="280" height="135"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="86" id="ded-LE-dkh"/>
-                        <constraint firstAttribute="width" constant="218" id="ud8-UL-lhe"/>
+                        <constraint firstAttribute="height" constant="135" id="ded-LE-dkh"/>
+                        <constraint firstAttribute="width" constant="280" id="ud8-UL-lhe"/>
                     </constraints>
                     <string key="text">Sem informações,
 tente outros filtros.</string>
-                    <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="23"/>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="20"/>
                     <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="0.62" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
