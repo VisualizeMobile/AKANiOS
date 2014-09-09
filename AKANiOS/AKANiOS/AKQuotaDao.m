@@ -216,7 +216,7 @@
 
 
 -(BOOL) deleteAllQuotas {
-    __block BOOL success = nil;
+    __block BOOL success;
     [self performOnMOCThread: ^(void) {
         NSError *error=nil;
         NSFetchRequest *request=[[NSFetchRequest alloc]init];
@@ -247,7 +247,7 @@
 }
 -(BOOL) deleteQuotasByIdParliamentary:(NSNumber *)idParliamentary
 {
-    __block BOOL success = nil;
+    __block BOOL success;
     [self performOnMOCThread: ^(void) {
         NSError *error=nil;
         NSArray *result;

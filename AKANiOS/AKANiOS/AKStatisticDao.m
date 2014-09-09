@@ -51,7 +51,7 @@
 
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average andStdDeviation:(double)stdDeviation{
     
-    __block BOOL success = nil;
+    __block BOOL success;
     [self performOnMOCThread: ^(void) {
         NSArray *result;
         NSError *error = nil;
@@ -84,7 +84,7 @@
 
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average{
     
-    __block BOOL success = nil;
+    __block BOOL success;
     [self performOnMOCThread: ^(void) {
         NSArray *result;
         NSError *error = nil;
@@ -117,7 +117,7 @@
 }
 
 -(BOOL)deleteAllStatistic {
-    __block BOOL success = nil;
+    __block BOOL success;
     [self performOnMOCThread: ^(void) {
         NSError *error=nil;
         NSArray *result;
