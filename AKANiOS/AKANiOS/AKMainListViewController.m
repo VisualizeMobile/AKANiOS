@@ -21,8 +21,11 @@
 #import "AKStatisticDao.h"
 #import "AKQuota.h"
 #import "Reachability.h"
+#import "UIWindow+VisibleVIewController.h"
 
-const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
+NSInteger const AKTagForViewToRemoveSearchDisplayGap = 1234567;
+NSString * const AKStatisticsNotificationCheckIfUpdateFinished = @"AKStatisticsNotificationCheckIfUpdateFinished";
+NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished = @"AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished";
 
 @interface AKMainListViewController ()
 
@@ -41,11 +44,18 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 @property (nonatomic) NSMutableArray *parliamentaryToBeNotifiedArray;
 @property (nonatomic) MBProgressHUD *hud;
 
+@property (nonatomic) UIBackgroundTaskIdentifier backgroundTask;
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
 @property (nonatomic) BOOL needsToHideSearchBar;
 @property (nonatomic) BOOL lastTableViewForRemoveGapWasOfSearchDisplay;
 @property (nonatomic) BOOL firstTimeThatViewAppeared;
+@property (nonatomic) BOOL downloadQuotasFinished;
+@property (nonatomic) BOOL downloadStatisticsFinished;
+
+@property (nonatomic) UITapGestureRecognizer *tapToDismissHud;
+
+@property (nonatomic) NSInteger numberOfFollowedParliamentariesQuotasUpdated;
 
 @end
 
@@ -71,12 +81,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     self.parliamentaryNicknameFilteredArray = [NSArray array];
     self.statisticDao = [AKStatisticDao getInstance];
     self.parliamentaryToBeNotifiedArray = [NSMutableArray array];
-    
     self.settingsManager = [AKSettingsManager sharedManager];
-    
     self.lastOrientationWasLadscape = NO;
     self.autolayoutCameFromSearchDismiss = NO;
     self.needsToHideSearchBar = YES;
+    self.tapToDismissHud = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHud:)];
+    self.backgroundTask = UIBackgroundTaskInvalid;
     
     // Configure Toolbar
     self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
@@ -132,21 +142,43 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // Web service
     self.webService = [[AKWebServiceConsumer alloc] init];
+    
+    // Notification Center
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(statisticsNotificationCheckIfUpdateFinished:)
+                                                 name:AKStatisticsNotificationCheckIfUpdateFinished
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(quotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished:)
+                                                 name:AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished
+                                               object:nil];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
-        if(success) {
-            NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
-            if(([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion])
-               || [self.parliamentaryDao getAllParliamentary].count == 0) {
-                
-                [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
+    self.downloadQuotasFinished = NO;
+    self.downloadStatisticsFinished = NO;
+    
+    if(self.backgroundTask == UIBackgroundTaskInvalid) {
+        [self.webService downloadDataWithPath:@"/versao" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+            if(success) {
+                NSNumber *serverDataUpdateVersion = jsonArray[0][@"fields"][@"versaoupdate"];
+                if(([serverDataUpdateVersion integerValue] > [self.settingsManager getDataUpdateVersion])
+                   || [self.parliamentaryDao getAllParliamentary].count == 0) {
+                    
+                    self.backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+                        NSLog(@"Background expiration handler called. Not running updateLocalDatabase anymore.");
+                        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
+                        self.backgroundTask = UIBackgroundTaskInvalid;
+                    }];
+                    
+                    NSLog(@"Starting updateLocalDatabase");
+                    [self updateLocalDatabase: [serverDataUpdateVersion integerValue]];
+                }
+            } else {
+                [self showError:isConnectionError];
             }
-        } else {
-            [self showError:isConnectionError];
-        }
-    }];
+        }];
+    }
     
     //
     [self applyAllDefinedFiltersAndSort];
@@ -180,16 +212,20 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    self.lastOrientationWasLadscape = NO;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if(UIInterfaceOrientationIsLandscape(orientation))
+        self.lastOrientationWasLadscape = YES;
+    else
+        self.lastOrientationWasLadscape = NO;
 }
 
 -(void)viewDidLayoutSubviews {
     if(self.firstTimeThatViewAppeared == YES || self.needsToHideSearchBar) {
-        if(self.lastOrientationWasLadscape) {
+        if(self.lastOrientationWasLadscape)
             [self.tableView setContentOffset: CGPointMake(0, -8)];
-        } else {
-            [self.tableView setContentOffset: CGPointMake(0, -20)];
-        }
+        else
+            [self.tableView setContentOffset: CGPointMake(0, -18)];
         
         self.firstTimeThatViewAppeared = NO;
     }
@@ -198,13 +234,12 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-    CGRect toolbarFrame = self.toolBar.frame;
-    
     if(UIInterfaceOrientationIsLandscape(orientation))
         self.lastOrientationWasLadscape = YES;
     else
         self.lastOrientationWasLadscape = NO;
     
+    CGRect toolbarFrame = self.toolBar.frame;
     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && UIInterfaceOrientationIsPortrait(orientation)) {
         toolbarFrame.origin.x = self.view.center.y - toolbarFrame.size.width/2 ;
     } else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
@@ -379,16 +414,16 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     
     // TO REMOVE WHITE GAP AFTER SEARCH DISPLAY DISMISS
     if(self.lastTableViewForRemoveGapWasOfSearchDisplay)
-        [[self.searchController.searchResultsTableView viewWithTag:TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP] removeFromSuperview];
+        [[self.searchController.searchResultsTableView viewWithTag:AKTagForViewToRemoveSearchDisplayGap] removeFromSuperview];
     else
-      [[self.tableView viewWithTag:TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP] removeFromSuperview];
+      [[self.tableView viewWithTag:AKTagForViewToRemoveSearchDisplayGap] removeFromSuperview];
 }
 
 - (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
     // TO REMOVE WHITE GAP AFTER SEARCH DISPLAY DISMISS
     UIView *topTableViewBG = [[UIView alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 64)];
     topTableViewBG.backgroundColor = [AKUtil color1];
-    topTableViewBG.tag = TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP;
+    topTableViewBG.tag = AKTagForViewToRemoveSearchDisplayGap;
     
     if(controller.searchBar.text.length > 0) {
         self.lastTableViewForRemoveGapWasOfSearchDisplay = YES;
@@ -503,7 +538,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 
                 [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@1];
                 
-                [self updateQuotasForParliamentary:parliamentary.idParliamentary];
+                [self updateQuotasForParliamentary:parliamentary.idParliamentary serverDataUpdateVersion:-1];
             }
         }
     }
@@ -553,11 +588,90 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
+#pragma mark - Notification methods
+
+-(void) updateLocalDataVersion: (NSInteger) serverDataUpdateVersion {
+    [self.settingsManager setDataUpdateVersion: serverDataUpdateVersion];
+    
+    if (self.backgroundTask != UIBackgroundTaskInvalid)
+    {
+        NSLog(@"Finishing updateLocalDatabase");
+        [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
+        self.backgroundTask = UIBackgroundTaskInvalid;
+    }
+}
+
+-(void) statisticsNotificationCheckIfUpdateFinished:(NSNotification *) notification {
+    @synchronized(self) {
+        if(self.downloadQuotasFinished == YES) {
+            NSDictionary *info = notification.userInfo;
+            NSInteger serverUpdateVersion = ((NSNumber*) info[@"serverDataUpdateVersion"]).integerValue;
+            [self updateLocalDataVersion:serverUpdateVersion];
+        } else {
+            self.downloadStatisticsFinished = YES;
+        }
+    }
+}
+
+-(void) quotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished:(NSNotification *) notification {
+    if(self.parliamentaryToBeNotifiedArray.count > 0) {
+        NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
+        for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray) {
+            [self notifyParliamentaryUpdate:p];
+            [detailText appendString:[NSString stringWithFormat:@"%@\n",p.nickName]];
+        }
+        
+        [self.parliamentaryToBeNotifiedArray removeAllObjects];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+            UIViewController *visibleViewController = [window visibleViewController];
+            
+            UIColor *hudBgColor = nil;
+            UIColor *hudLabelColor = nil;
+            
+            if([visibleViewController isMemberOfClass:[AKInfoViewController class]] || [visibleViewController isMemberOfClass:[AKConfigViewController class]]) {
+                hudBgColor = [AKUtil color4clear];
+                hudLabelColor = [AKUtil color1];
+            } else {
+                hudBgColor = [AKUtil color1clear];
+                hudLabelColor = [AKUtil color4];
+            }
+            
+            self.hud = [MBProgressHUD showHUDAddedTo:visibleViewController.view animated:YES];
+            self.hud.color = hudBgColor;
+            self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
+            self.hud.detailsLabelColor = hudLabelColor;
+            self.hud.detailsLabelText = detailText;
+            self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
+            self.hud.mode = MBProgressHUDModeCustomView;
+            
+            [self.hud show:YES];
+            [visibleViewController.view addGestureRecognizer:self.tapToDismissHud];
+        });
+    }
+    
+    @synchronized(self) {
+        if(self.downloadStatisticsFinished == YES) {
+            NSDictionary *info = notification.userInfo;
+            NSInteger serverUpdateVersion = ((NSNumber*) info[@"serverDataUpdateVersion"]).integerValue;
+            [self updateLocalDataVersion:serverUpdateVersion];
+        } else {
+            self.downloadQuotasFinished = YES;
+        }
+    }
+}
+
+-(void) dismissHud:(UITapGestureRecognizer*) tap {
+    [self.hud hide:YES afterDelay:0.2];
+    self.hud = nil;
+    [tap.view removeGestureRecognizer:self.tapToDismissHud];
+}
+
 #pragma mark - Custom methods
 
 -(void) updateLocalDatabase:(NSInteger)serverDataUpdateVersion  {
     // Save followed ids and your quota updates version
-    
     NSMutableDictionary *followedParliamentaryIdsAndUpdatesVersion = [NSMutableDictionary dictionary];
     for(AKParliamentary *p in [self.parliamentaryDao getAllFollowedPartliamentary]) {
         NSMutableDictionary *quotasUpdateVersion = [NSMutableDictionary dictionary];
@@ -613,15 +727,16 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
             NSDictionary *recoveredfollowedParliamentaryIdsAndUpdatesVersion = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getTemporaryFilePath]];
             
             // Update quotas
+            self.numberOfFollowedParliamentariesQuotasUpdated = 0;
             for(NSNumber *idParliamentary in [recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys]) {
                 [self.parliamentaryDao updateFollowedByIdParliamentary:idParliamentary andFollowedValue:@1];
                 
-                [self updateQuotasForParliamentary:idParliamentary];
+                [self updateQuotasForParliamentary:idParliamentary serverDataUpdateVersion:serverDataUpdateVersion];
             }
             
-            [self updateStatistics];
+            [self updateStatistics:serverDataUpdateVersion];
+
             [self applyAllDefinedFiltersAndSort];
-            [self.settingsManager setDataUpdateVersion:serverDataUpdateVersion];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -640,37 +755,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
     }];
 }
 
--(void) updateStatistics{
-    [self.webService downloadDataWithPath:@"/cota/media-maximo-por-periodo" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
-        if(success) {
-            NSNumber * numQuota;
-            NSDecimalNumber * maxValue;
-            NSDecimalNumber * average;
-            NSNumber * year;
-            NSNumber * month;
-            
-            
-            for(NSDictionary *jsonDict in jsonArray) {
-                
-                NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
-                maxValue = [NSDecimalNumber decimalNumberWithString: maxString];
-               // NSLog(@"valor maximo %@", maxValue);
-                NSString *averageString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_medio"] doubleValue]];
-                average = [NSDecimalNumber decimalNumberWithString: averageString];
-               // NSLog(@"valor medio %@", average);
-                numQuota = jsonDict[@"numsubcota"];
-                month = jsonDict[@"mes"];
-                year = jsonDict[@"ano"];
-                
-
-                [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
-            }
-            
-            
-        } else {
-            [self showError:isConnectionError];
-        }
-    }];
+-(void) updateStatistics: (NSInteger)serverDataUpdateVersion {
     [self.webService downloadDataWithPath:@"/cota/media-maximo-desvio" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         if(success) {
             NSNumber * numQuota;
@@ -692,6 +777,38 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                 [self.statisticDao insertStatisticWithNumQuota:numQuota andMaxValue:maxValue andAverage:average andStdDeviation:stdDeviation ];
             }
             
+            
+        } else {
+            [self showError:isConnectionError];
+        }
+    }];
+    [self.webService downloadDataWithPath:@"/cota/media-maximo-por-periodo" andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
+        if(success) {
+            NSNumber * numQuota;
+            NSDecimalNumber * maxValue;
+            NSDecimalNumber * average;
+            NSNumber * year;
+            NSNumber * month;
+            
+            
+            for(NSDictionary *jsonDict in jsonArray) {
+                
+                NSString *maxString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_maximo"] doubleValue]];
+                maxValue = [NSDecimalNumber decimalNumberWithString: maxString];
+                // NSLog(@"valor maximo %@", maxValue);
+                NSString *averageString = [NSString stringWithFormat:@"%.2f",[jsonDict[@"valor_medio"] doubleValue]];
+                average = [NSDecimalNumber decimalNumberWithString: averageString];
+                // NSLog(@"valor medio %@", average);
+                numQuota = jsonDict[@"numsubcota"];
+                month = jsonDict[@"mes"];
+                year = jsonDict[@"ano"];
+                
+                
+                [self.statisticDao insertStatisticWithNumQuota:numQuota andMonth:month andYear:year andMaxValue:maxValue andAverage:average];
+            }
+            
+            NSDictionary *userInfo = @{@"serverDataUpdateVersion" : @(serverDataUpdateVersion)};
+            [[NSNotificationCenter defaultCenter] postNotificationName: AKStatisticsNotificationCheckIfUpdateFinished object:nil userInfo:userInfo];
         } else {
             [self showError:isConnectionError];
         }
@@ -699,11 +816,10 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 
--(void) updateQuotasForParliamentary:(NSNumber*) idParliamentary {
+-(void) updateQuotasForParliamentary:(NSNumber*) idParliamentary serverDataUpdateVersion: (NSInteger) serverDataUpdateVersion {
     [self.webService downloadDataWithPath:[NSString stringWithFormat:@"/cota/parlamentar/%@", idParliamentary] andFinishBlock:^(NSArray *jsonArray, BOOL success, BOOL isConnectionError) {
         
         if(success) {
-            static int numberOfFollowedParliamentariesQuotasUpdated = 0;
             NSNumber * idParliamentary;
             NSNumber * idQuota;
             NSNumber * numQuota;
@@ -738,36 +854,19 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
                     
                     if([self.parliamentaryToBeNotifiedArray containsObject:parliamentaryToBeNotified] == NO) {
                         [self.parliamentaryToBeNotifiedArray addObject:parliamentaryToBeNotified];
-                        [self notifyParliamentaryUpdate:parliamentaryToBeNotified];
-                        
                     }
                     
                 }
             }
             
-            numberOfFollowedParliamentariesQuotasUpdated++;
-
-            if(numberOfFollowedParliamentariesQuotasUpdated == [self.parliamentaryDao getAllFollowedPartliamentary].count && self.parliamentaryToBeNotifiedArray.count > 0) {
-                NSMutableString *detailText = [[NSMutableString alloc] initWithString:@"Novos gastos para o(s) parlamentar(es):\n"];
-                for(AKParliamentary *p in self.parliamentaryToBeNotifiedArray)
-                    [detailText appendString:[NSString stringWithFormat:@"%@\n",p.nickName]];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    self.hud.color = [AKUtil color1clear];
-                    self.hud.detailsLabelFont = [UIFont boldSystemFontOfSize:12];
-                    self.hud.detailsLabelColor = [AKUtil color4];
-                    self.hud.detailsLabelText = detailText;
-                    self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"seguidosdesativado"]];
-                    self.hud.mode = MBProgressHUDModeCustomView;
-                    
-                    [self.hud show:YES];
-                    [self.hud hide:YES afterDelay:4];
-                    
-                    self.hud = nil;
-                });
+            // -1 = Downloading quota for new followed parliamentary
+            if(serverDataUpdateVersion != -1) {
+                self.numberOfFollowedParliamentariesQuotasUpdated++;
+                if(self.numberOfFollowedParliamentariesQuotasUpdated == [self.parliamentaryDao getAllFollowedPartliamentary].count) {
+                    NSDictionary *userInfo = @{@"serverDataUpdateVersion" : @(serverDataUpdateVersion)};
+                    [[NSNotificationCenter defaultCenter] postNotificationName: AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished object:nil userInfo:userInfo];
+                }
             }
-            
         } else {
             [self showError:isConnectionError];
         }
@@ -775,7 +874,7 @@ const NSInteger TAG_FOR_VIEW_TO_REMOVE_SEARCH_DISPLAY_GAP = 1234567;
 }
 
 -(BOOL) isSearchBarHidden {
-    return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -8);
+    return (self.tableView.contentOffset.y == -18 || self.tableView.contentOffset.y == -8);
 }
 
 -(void)transformNavigationBarButtons{

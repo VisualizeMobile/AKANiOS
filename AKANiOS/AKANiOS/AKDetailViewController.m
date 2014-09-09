@@ -18,6 +18,8 @@
 #import "MBProgressHUD.h"
 #import "AKAppDelegate.h"
 #import "AKStatisticDao.h"
+#import "Reachability.h"
+#import "AKSettingsManager.h"
 
 @interface AKDetailViewController ()
 
@@ -149,10 +151,45 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.title = [self.parliamentary nickName];
-    if(self.parliamentary.photoParliamentary)
-        self.photoView.image = [UIImage imageWithData:self.parliamentary.photoParliamentary];
-    else
+
+    // Parliamentary photo
         self.photoView.image = [UIImage imageNamed:@"placeholder_foto"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *parliamentaryPhotoFilePath = [NSString stringWithFormat:@"%@/%@.jpg", [AKSettingsManager photoCacheDirPath], self.parliamentary.idParliamentary];
+        BOOL photoExistsInCache = [fileManager fileExistsAtPath:parliamentaryPhotoFilePath];
+        
+        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        // Have photo in DB
+        if (self.parliamentary.photoParliamentary != nil) {
+            self.photoView.image=[UIImage imageWithData:self.parliamentary.photoParliamentary];
+        // Has WiFi OR dont have photo in cache
+        } else if(reachability.currentReachabilityStatus == ReachableViaWiFi || photoExistsInCache == NO) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData *photoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", self.parliamentary.idParliamentary]]];
+                
+                if (photoData) {
+                    UIImage *image = [UIImage imageWithData:photoData];
+                    
+                    if (image) {
+                        [photoData writeToFile:parliamentaryPhotoFilePath atomically:YES];
+                        
+                        [self.parliamentaryDao updateParliamentary:self.parliamentary.idParliamentary withPhoto:photoData];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.photoView.image = image;
+                        });
+                    }
+                }
+            });
+        // Have photo in cache
+        } else if(photoExistsInCache) {
+            NSData *photoData = [NSData dataWithContentsOfFile:parliamentaryPhotoFilePath];
+            [self.parliamentaryDao updateParliamentary:self.parliamentary.idParliamentary withPhoto:photoData];
+            self.photoView.image = [UIImage imageWithData:photoData];
+        }
+    
+    
     self.rankPositionLabel.text=[NSString stringWithFormat:@"%@º",self.parliamentary.posRanking];
     self.parliamentaryLabel.text=self.parliamentary.fullName;
     self.ufLabel.text=[NSString stringWithFormat:@"%@ - %@", self.parliamentary.party, self.parliamentary.uf];
