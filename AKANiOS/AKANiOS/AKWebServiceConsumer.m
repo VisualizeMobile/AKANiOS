@@ -17,9 +17,19 @@ NSString const* urlBase = @"http://107.170.177.5/akan";
     
     NSString *dataUrl = [NSString stringWithFormat:@"%@%@", urlBase, dataPath];
     NSURL *url = [NSURL URLWithString:dataUrl];
-    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.timeoutIntervalForResource = 60.0f;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    
+    NSURLSessionDataTask *downloadTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error != nil) {
-            NSLog(@"%s Connection error: %@", __FUNCTION__, [error localizedDescription]);
+            NSLog(@"%s Connection error (%ld): %@", __FUNCTION__, error.code, [error localizedDescription]);
+            
+            if(error.code == -1001) {
+                finishedBlock(nil, NO, YES);
+                return;
+            }
             
             Reachability *reachability = [Reachability reachabilityForInternetConnection];
             if ( (reachability.currentReachabilityStatus == NotReachable) ||
@@ -29,7 +39,7 @@ NSString const* urlBase = @"http://107.170.177.5/akan";
                 
                 return;
             }
-
+            
             finishedBlock(nil, NO, NO);
             
             return;
@@ -51,26 +61,6 @@ NSString const* urlBase = @"http://107.170.177.5/akan";
     }];
 
     [downloadTask resume];
-}
-
-- (NSString *)stringFromStatus:(NetworkStatus) status {
-    
-    NSString *string;
-    switch(status) {
-        case NotReachable:
-            string = @"Not Reachable";
-            break;
-        case ReachableViaWiFi:
-            string = @"Reachable via WiFi";
-            break;
-        case ReachableViaWWAN:
-            string = @"Reachable via WWAN";
-            break;
-        default:
-            string = @"Unknown";
-            break;
-    }
-    return string;
 }
 
 @end

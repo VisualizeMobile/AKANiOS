@@ -50,120 +50,134 @@
 }
 
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average andStdDeviation:(double)stdDeviation{
-
-    NSArray *result;
-    NSError *error = nil;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(numQuota == %@) AND (year == 0)", numQuota]];
-    [fetchRequest setEntity:self.entity];
-    
-    result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
-
-    if([result count] == 0){
-        AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
-        [statistic setNumQuota:numQuota];
-        [statistic setYear:@0];
-        [statistic setMax_value:maxValue];
-        [statistic setAverage:average];
-        [statistic setStdDeviation: [NSNumber numberWithDouble: stdDeviation ]];
+    __block BOOL success = nil;
+    [self performOnMOCThread: ^(void) {
+        NSArray *result;
+        NSError *error = nil;
         
-        if ([self.managedObjectContext save:&error]) {
-            return  YES;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(numQuota == %@) AND (year == 0)", numQuota]];
+        [fetchRequest setEntity:self.entity];
+        
+        result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
+        
+        if([result count] == 0){
+            AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
+            [statistic setNumQuota:numQuota];
+            [statistic setYear:@0];
+            [statistic setMax_value:maxValue];
+            [statistic setAverage:average];
+            [statistic setStdDeviation: [NSNumber numberWithDouble: stdDeviation ]];
+            
+            if ([self.managedObjectContext save:&error]) {
+                success =  YES;
+            } else {
+                success = NO;
+                NSLog(@"Failed to save new Quota  Error= %@",error);
+            }
         }
-        else
-            NSLog(@"Failed to save new Quota  Error= %@",error);
-        
-    }
-    return NO;
+    }];
+    
+    return  success;
 }
 
 -(BOOL)insertStatisticWithNumQuota:(NSNumber *)numQuota andMonth:(NSNumber *)month andYear:(NSNumber *)year andMaxValue:(NSDecimalNumber *)maxValue andAverage:(NSDecimalNumber *)average{
     
-    NSArray *result;
-    NSError *error = nil;
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"numQuota == %@ and year == %@ and month == %@", numQuota,year,month]];
-    [fetchRequest setEntity:self.entity];
-    
-    result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
-    
-    if([result count] == 0){
-        AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
-        [statistic setNumQuota:numQuota];
-        [statistic setMax_value:maxValue];
-        [statistic setAverage:average];
-        [statistic setMonth:month];
-        [statistic setYear:year];
+    __block BOOL success = nil;
+    [self performOnMOCThread: ^(void) {
+        NSArray *result;
+        NSError *error = nil;
         
-        if ([self.managedObjectContext save:&error]) {
-            return  YES;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"numQuota == %@ and year == %@ and month == %@", numQuota,year,month]];
+        [fetchRequest setEntity:self.entity];
+        
+        result = [self.managedObjectContext executeFetchRequest:fetchRequest error: &error];
+        
+        if([result count] == 0){
+            AKStatistic *statistic = [NSEntityDescription insertNewObjectForEntityForName:@"Statistic" inManagedObjectContext:self.managedObjectContext];
+            [statistic setNumQuota:numQuota];
+            [statistic setMax_value:maxValue];
+            [statistic setAverage:average];
+            [statistic setMonth:month];
+            [statistic setYear:year];
+            
+            if ([self.managedObjectContext save:&error]) {
+                success =   YES;
+            }
+            else {
+                NSLog(@"Failed to save new Quota  Error= %@",error);
+                success = NO;
+            }
         }
-        else
-            NSLog(@"Failed to save new Quota  Error= %@",error);
-        
-    }
-    return NO;
+    }];
+    
+    return  success;
 }
 
 -(BOOL)deleteAllStatistic {
-    NSError *Error=nil;
-    NSArray *result;
-    NSFetchRequest *request=[[NSFetchRequest alloc]init];
-    
-    [request setEntity:self.entity];
-    [request setIncludesPropertyValues:NO]; // only fetch the managedObjectID
-    
-    @try {
-        result=[self.managedObjectContext executeFetchRequest:request error:&Error];
+    __block BOOL success = nil;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        NSArray *result;
+        NSFetchRequest *request=[[NSFetchRequest alloc]init];
         
-        for(AKStatistic *statistic in result)
-        {
-            [self.managedObjectContext deleteObject:statistic];
-        }
+        [request setEntity:self.entity];
+        [request setIncludesPropertyValues:NO]; // only fetch the managedObjectID
         
-        if ([self.managedObjectContext save:&Error]) {
+        @try {
+            result=[self.managedObjectContext executeFetchRequest:request error:&error];
             
-            return YES;
+            for(AKStatistic *statistic in result)
+            {
+                [self.managedObjectContext deleteObject:statistic];
+            }
+            
+            if ([self.managedObjectContext save:&error]) {
+                
+                success = YES;
+            }
         }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"Failed to delete Statistic Error:%@",exception);
-    }
+        @catch (NSException *exception) {
+            NSLog(@"Failed to delete Statistic Error:%@",exception);
+            success = NO;
+        }
+    }];
     
-    return NO;
-
+    return success;
 }
 
 -(NSArray *) getStatisticByYear:(NSNumber *)year
 {
-    NSArray *result;
-    NSError *Error=nil;
-    
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"year==%@",year]];
-    [fetchRequest setEntity:self.entity];
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    __block NSArray *result;
+    [self performOnMOCThread: ^(void) {
+        NSError *error=nil;
+        
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"year==%@",year]];
+        [fetchRequest setEntity:self.entity];
+        
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
     
     return result;
 }
 
 -(NSArray *) getStatisticByYear:(NSNumber *)year andNumQuota:(NSNumber *)numQuota
 {
-    NSArray *result;
-    NSError *Error=nil;
+    __block NSArray *result;
+    [self performOnMOCThread: ^(void) {
+        NSError *Error=nil;
+        
+        NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(year == %@) AND (numQuota == %@)",year,numQuota]];
+        [fetchRequest setEntity:self.entity];
+        
+        result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
+    }];
     
-    NSFetchRequest *fetchRequest =[[NSFetchRequest alloc]init];
-    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(year == %@) AND (numQuota == %@)",year,numQuota]];
-    [fetchRequest setEntity:self.entity];
-    
-    result=[self.managedObjectContext executeFetchRequest:fetchRequest error:&Error];
     return result;
 }
-
-
-
 
 @end

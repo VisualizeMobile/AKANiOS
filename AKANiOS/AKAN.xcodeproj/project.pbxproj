@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2F0F879019AD841C00F1B81A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0F878F19AD841B00F1B81A /* Reachability.m */; };
 		2F0F879219AD848C00F1B81A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */; };
+		2F54D0E419BE00C900D1F64C /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E319BE00C900D1F64C /* AKParliamentary.m */; };
+		2F54D0E719BE1A1D00D1F64C /* AKGenericDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */; };
+		2F54D0EA19BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */; };
 		2F580CEC19B047EE00605544 /* Levi-Strauss.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */; };
 		2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */; };
 		2F7343C719A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7343C619A5401900FBE2E0 /* AKFilterOptionCollectionViewCell.xib */; };
@@ -26,7 +29,6 @@
 		2F99E77819B0BD0F00CCBA77 /* elect___.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F99E77719B0BD0F00CCBA77 /* elect___.ttf */; };
 		2FB6FA2D19AB9B8900D3736E /* AKWebServiceConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */; };
 		2FB6FA4319AD019800D3736E /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4219AD019800D3736E /* MBProgressHUD.m */; };
-		2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4819AD22D800D3736E /* AKParliamentary.m */; };
 		2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4B19AD2A3000D3736E /* AKQuota.m */; };
 		2FB6FA4E19AD405700D3736E /* pumagaffer.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */; };
 		2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */; };
@@ -85,6 +87,12 @@
 		2F0F878E19AD841B00F1B81A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2F0F878F19AD841B00F1B81A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2F54D0E219BE00C900D1F64C /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
+		2F54D0E319BE00C900D1F64C /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
+		2F54D0E519BE1A1D00D1F64C /* AKGenericDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGenericDao.h; sourceTree = "<group>"; };
+		2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKGenericDao.m; sourceTree = "<group>"; };
+		2F54D0E819BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+PerformOnMOCThread.h"; sourceTree = "<group>"; };
+		2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+PerformOnMOCThread.m"; sourceTree = "<group>"; };
 		2F580CEB19B047EE00605544 /* Levi-Strauss.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Levi-Strauss.ttf"; sourceTree = "<group>"; };
 		2F7343C119A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKFilterOptionCollectionViewCell.h; sourceTree = "<group>"; };
 		2F7343C219A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKFilterOptionCollectionViewCell.m; sourceTree = "<group>"; };
@@ -186,8 +194,6 @@
 		2FB6FA2C19AB9B8900D3736E /* AKWebServiceConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKWebServiceConsumer.m; sourceTree = "<group>"; };
 		2FB6FA4119AD019800D3736E /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2FB6FA4219AD019800D3736E /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		2FB6FA4719AD22D800D3736E /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
-		2FB6FA4819AD22D800D3736E /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
 		2FB6FA4A19AD2A3000D3736E /* AKQuota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKQuota.h; sourceTree = "<group>"; };
 		2FB6FA4B19AD2A3000D3736E /* AKQuota.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKQuota.m; sourceTree = "<group>"; };
 		2FB6FA4D19AD405700D3736E /* pumagaffer.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pumagaffer.ttf; sourceTree = "<group>"; };
@@ -467,6 +473,8 @@
 				8E00F30719955CD20030A52F /* AKQuotaDao.m */,
 				8E4A197119AE5BEE00CCDF82 /* AKStatisticDao.h */,
 				8E4A197219AE5BEE00CCDF82 /* AKStatisticDao.m */,
+				2F54D0E519BE1A1D00D1F64C /* AKGenericDao.h */,
+				2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -644,12 +652,14 @@
 		E9851BA7198F3A4B00A2280B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				2FB6FA4719AD22D800D3736E /* AKParliamentary.h */,
-				2FB6FA4819AD22D800D3736E /* AKParliamentary.m */,
 				2FB6FA4A19AD2A3000D3736E /* AKQuota.h */,
 				2FB6FA4B19AD2A3000D3736E /* AKQuota.m */,
 				8E4A197419AE5CF500CCDF82 /* AKStatistic.h */,
 				8E4A197519AE5CF500CCDF82 /* AKStatistic.m */,
+				2F54D0E219BE00C900D1F64C /* AKParliamentary.h */,
+				2F54D0E319BE00C900D1F64C /* AKParliamentary.m */,
+				2F54D0E819BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.h */,
+				2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */,
 			);
 			name = model;
 			path = ..;
@@ -726,7 +736,7 @@
 				ORGANIZATIONNAME = VisualizeMobile;
 				TargetAttributes = {
 					8EAFA8361986C44F00E58AD9 = {
-						DevelopmentTeam = Q343B6F743;
+						DevelopmentTeam = 8Y387U3F6Y;
 					};
 					8EAFA8561986C44F00E58AD9 = {
 						TestTargetID = 8EAFA8361986C44F00E58AD9;
@@ -797,6 +807,7 @@
 				E99D1E8C1990120600564688 /* AKDetailViewController.m in Sources */,
 				2FCEDE461993F106003522E8 /* AKToolBar.m in Sources */,
 				8E00F2F319954B430030A52F /* AKParliamentaryDao.m in Sources */,
+				2F54D0E719BE1A1D00D1F64C /* AKGenericDao.m in Sources */,
 				2F0F879019AD841C00F1B81A /* Reachability.m in Sources */,
 				2F9054AC19AFC7250055CFCC /* UIView+ImageFromView.m in Sources */,
 				8E00F2F8199551850030A52F /* AKQuotaCollectionViewCell.m in Sources */,
@@ -804,9 +815,9 @@
 				2FC5105C19A4F83E0036269F /* AKFilterOptionsUpperTriangleView.m in Sources */,
 				8E4A197619AE5CF500CCDF82 /* AKStatistic.m in Sources */,
 				2FB6FA4C19AD2A3000D3736E /* AKQuota.m in Sources */,
-				2FB6FA4919AD22D800D3736E /* AKParliamentary.m in Sources */,
 				8EAFA84D1986C44F00E58AD9 /* AKAppDelegate.m in Sources */,
 				8EF43B8F19AD16CF00089B04 /* AKCurvedScatterPlot.m in Sources */,
+				2F54D0EA19BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m in Sources */,
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
@@ -822,6 +833,7 @@
 				2F8EDB0C19A7BB87006D159F /* AKQuotaDetailViewController.m in Sources */,
 				8E00F30819955CD20030A52F /* AKQuotaDao.m in Sources */,
 				2F7343C319A532AE00FBE2E0 /* AKFilterOptionCollectionViewCell.m in Sources */,
+				2F54D0E419BE00C900D1F64C /* AKParliamentary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
