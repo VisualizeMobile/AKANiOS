@@ -135,7 +135,7 @@
     self.datePickerView.delegate = self;
     self.datePickerView.dataSource =self;
     [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
-    [self.datePickerView selectRow:self.actualYear-self.olderYear inComponent:1 animated:NO];
+    [self.datePickerView selectRow:self.selectedYear-self.olderYear inComponent:1 animated:NO];
     [self.datePickerView reloadAllComponents];
     
     self.datePickerView.backgroundColor = [AKUtil color4];
