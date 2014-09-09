@@ -11,6 +11,8 @@
 
 @interface AKInfoViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *infoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lastLabel;
+
 
 @end
 
@@ -46,7 +48,7 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    self.scrollViewInfo.contentSize= CGSizeMake(self.view.frame.size.width,3200);
+    self.scrollViewInfo.contentSize= CGSizeMake(self.view.frame.size.width,(self.lastLabel.frame.origin.y+self.lastLabel.frame.size.height));
     
 //    
 //    for(UIView *view in self.scrollViewInfo.subviews) {
@@ -65,7 +67,6 @@
     
    [self.infoLabel sizeToFit];
     self.infoLabel.preferredMaxLayoutWidth=self.infoLabel.frame.size.width;
-    
 }
 
 #pragma mark - custom methods
