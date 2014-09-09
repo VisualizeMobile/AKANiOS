@@ -24,7 +24,7 @@ NSString const* urlBase = @"http://107.170.177.5/akan";
     
     NSURLSessionDataTask *downloadTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error != nil) {
-            NSLog(@"%s Connection error (%ld): %@", __FUNCTION__, error.code, [error localizedDescription]);
+            NSLog(@"%s Connection error (%ld): %@", __FUNCTION__, (long)error.code, [error localizedDescription]);
             
             if(error.code == -1001) {
                 finishedBlock(nil, NO, YES);

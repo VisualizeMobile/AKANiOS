@@ -37,6 +37,7 @@
 @property (nonatomic) NSInteger actualYear;
 @property(nonatomic) NSInteger selectedYear;
 @property(nonatomic) NSInteger selectedMonth;
+@property(nonatomic) CGRect beginRect;
 @property MBProgressHUD *hud;
 @end
 
@@ -66,8 +67,7 @@
     self.olderYear = [[self.quotaDao getOldestYear] integerValue];
 
     [self configureViewVisualComponentes];
-    
-    
+
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(keyboardWillShow:) name:
      UIKeyboardWillShowNotification object:nil];
@@ -200,6 +200,7 @@
         [self setButtonUnfollowedState];
     }
     
+    _beginRect = self.datePickerField.frame;
     
     self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                  action:@selector(didTapAnywhere:)];
@@ -264,7 +265,7 @@
     self.selectedYear = self.olderYear+yearRow;
     self.selectedMonth = monthRow+1;
     
-    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
+    self.datePickerField.text = [NSString stringWithFormat:@"%@ de %d", [self monthForPickerRow:monthRow], self.olderYear+yearRow ];
 }
 
 #pragma mark - PickerView Data Source
@@ -369,18 +370,27 @@
 }
 
 -(void)animateDatePickerField{
-    CGRect beginRect = self.datePickerField.frame;
+    
+    float dx, dy;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if(UIInterfaceOrientationIsLandscape(orientation)){
+        dx = 0;
+        dy = -30;
+    }else{
+        dx = -50;
+        dy = -60;
+    }
     [UIView animateWithDuration:0.5 animations:^{
-        float x = self.datePickerField.frame.origin.x - 50;
-        float y = self.datePickerField.frame.origin.y - 60;
-        float height = self.datePickerField.frame.size.height;
-        float width = self.datePickerField.frame.size.width;
+        float x = _beginRect.origin.x +dx;
+        float y = _beginRect.origin.y +dy;
+        float height = _beginRect.size.height;
+        float width = _beginRect.size.width;
         
         self.datePickerField.frame = CGRectMake(x, y, width, height);
     } completion:^(BOOL finished) {
         if (finished) {
             [UIView animateWithDuration:0.5 animations:^{
-                self.datePickerField.frame = beginRect;
+                self.datePickerField.frame = _beginRect;
             }];
         }
     }];
