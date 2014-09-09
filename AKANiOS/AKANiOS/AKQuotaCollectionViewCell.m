@@ -169,6 +169,11 @@ double const confiability = 1.4;
 
 - (void)setTextValue:(float)value
 {
-        self.valueLabel.text = [NSString stringWithFormat:@"%.2f", value];
+
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    NSString *stringValue = [formatter stringFromNumber:[NSNumber numberWithDouble:value]];
+    
+    self.valueLabel.text = stringValue;
 }
 @end
