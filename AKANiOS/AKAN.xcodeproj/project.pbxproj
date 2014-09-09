@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F0F879019AD841C00F1B81A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0F878F19AD841B00F1B81A /* Reachability.m */; };
 		2F0F879219AD848C00F1B81A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */; };
+		2F1DC4DF19BF42710064D32F /* UIWindow+VisibleVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DC4DE19BF42710064D32F /* UIWindow+VisibleVIewController.m */; };
 		2F54D0E419BE00C900D1F64C /* AKParliamentary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E319BE00C900D1F64C /* AKParliamentary.m */; };
 		2F54D0E719BE1A1D00D1F64C /* AKGenericDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E619BE1A1D00D1F64C /* AKGenericDao.m */; };
 		2F54D0EA19BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F54D0E919BE3CEA00D1F64C /* NSManagedObject+PerformOnMOCThread.m */; };
@@ -87,6 +88,8 @@
 		2F0F878E19AD841B00F1B81A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2F0F878F19AD841B00F1B81A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		2F0F879119AD848C00F1B81A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2F1DC4DD19BF42710064D32F /* UIWindow+VisibleVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+VisibleVIewController.h"; sourceTree = "<group>"; };
+		2F1DC4DE19BF42710064D32F /* UIWindow+VisibleVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+VisibleVIewController.m"; sourceTree = "<group>"; };
 		2F54D0E219BE00C900D1F64C /* AKParliamentary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKParliamentary.h; sourceTree = "<group>"; };
 		2F54D0E319BE00C900D1F64C /* AKParliamentary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKParliamentary.m; sourceTree = "<group>"; };
 		2F54D0E519BE1A1D00D1F64C /* AKGenericDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGenericDao.h; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 				2FB6FA5019AD40DB00D3736E /* UIFont+SystemFontOverride.m */,
 				2F9054AA19AFC7250055CFCC /* UIView+ImageFromView.h */,
 				2F9054AB19AFC7250055CFCC /* UIView+ImageFromView.m */,
+				2F1DC4DD19BF42710064D32F /* UIWindow+VisibleVIewController.h */,
+				2F1DC4DE19BF42710064D32F /* UIWindow+VisibleVIewController.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -821,6 +826,7 @@
 				2FCEDE411993EBA0003522E8 /* AKMainListViewController.m in Sources */,
 				2FB6FA5119AD40DB00D3736E /* UIFont+SystemFontOverride.m in Sources */,
 				2FCEDE511994016F003522E8 /* AKUtil.m in Sources */,
+				2F1DC4DF19BF42710064D32F /* UIWindow+VisibleVIewController.m in Sources */,
 				2F8A67F419B694C0008EDABE /* UIFont+IBCustomFonts.m in Sources */,
 				8EAFA8491986C44F00E58AD9 /* main.m in Sources */,
 				8E14E1E0199BEFBC00D77CF6 /* AKConfigViewController.m in Sources */,

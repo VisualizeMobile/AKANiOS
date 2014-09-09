@@ -28,12 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     [self copyAppConfigurationFromBundleToDocuments];
     [self createParliamentaryPhotoDirectory];
-    
-    self.root =  [[AKMainListViewController alloc] init];
     
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
@@ -45,24 +41,23 @@
         [[UIApplication sharedApplication] cancelLocalNotification:notification];
     }
     
-    self.nav = [[UINavigationController alloc] initWithRootViewController:self.root];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    self.root =  [[AKMainListViewController alloc] init];
+    
+    self.nav = [[UINavigationController alloc] initWithRootViewController:self.root];
     self.nav.navigationBar.barTintColor = [AKUtil color1];
     self.nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AKUtil color4]};
     self.nav.navigationBar.tintColor = [AKUtil color4];
     
     self.window.rootViewController = self.nav;
     self.window.backgroundColor = [UIColor whiteColor];
-   
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [self.window makeKeyAndVisible];
     
     return YES;
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {

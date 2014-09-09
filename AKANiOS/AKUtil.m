@@ -30,6 +30,10 @@
     return [UIColor colorWithRed:241/255.0f green:241/255.0f blue:242/255.0f alpha:1];
 }
 
++(UIColor*) color4clear {
+    return [UIColor colorWithRed:241/255.0f green:241/255.0f blue:242/255.0f alpha:0.9];
+}
+
 +(UIColor*) color5 {
     return [UIColor colorWithRed:241/255.0f green:96/255.0f blue:104/255.0f alpha:1];
 }
