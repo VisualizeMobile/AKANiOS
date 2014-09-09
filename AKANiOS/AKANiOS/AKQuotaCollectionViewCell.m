@@ -62,7 +62,7 @@ double const confiability = 1.4;
     numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"pt_BR"];
     numberFormatter.minimumFractionDigits = 2;
     
-    self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
+    //self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
     self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setLevelHeight];
 }
@@ -75,6 +75,7 @@ double const confiability = 1.4;
     [self generateColorsAnimation];
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
         ^(void){
+            [self countFrom:0.0 to:[self.quota.value floatValue] withDuration:50.0f];
             self.levelImageView.frame = CGRectMake(0,103*(1 - height/100), 130, height);
         }
         completion:nil];
@@ -124,4 +125,50 @@ double const confiability = 1.4;
     return result;
 }
 
+#pragma mark - counting label methods
+
+-(void)countFrom:(float)startValue to:(float)endValue withDuration:(NSTimeInterval)duration
+{
+    if(duration == 0.0){
+        // No animation
+        [self setTextValue:endValue];
+        return;
+    }
+    
+    self.startingValue = startValue;
+    self.destinationValue = endValue;
+    self.progress = 0;
+    self.totalTime = duration;
+    self.lastUpdate = [NSDate timeIntervalSinceReferenceDate];
+    
+    NSTimer* timer = [NSTimer timerWithTimeInterval:(1.0f/60.0f) target:self selector:@selector(updateValue:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:UITrackingRunLoopMode];
+}
+
+-(void)updateValue:(NSTimer*)timer
+{
+    // update progress
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    self.progress += now - self.lastUpdate;
+    self.lastUpdate = now;
+    
+    if(self.progress >= self.totalTime)
+    {
+        [timer invalidate];
+        self.progress = self.totalTime;
+    }
+    
+    float percent = self.progress / self.totalTime;
+    float updateVal = percent;
+    float value =  self.startingValue +  (updateVal * (self.destinationValue - self.startingValue));
+    
+    [self setTextValue:value];
+    
+}
+
+- (void)setTextValue:(float)value
+{
+        self.valueLabel.text = [NSString stringWithFormat:@"%.2f", value];
+}
 @end

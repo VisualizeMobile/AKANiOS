@@ -17,6 +17,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *levelImageView;
- 
+
+@property float startingValue;
+@property float destinationValue;
+@property float progress;
+@property NSTimeInterval totalTime;
+@property long lastUpdate;
+
+
 -(void)imageForQuotaValue;
 @end
