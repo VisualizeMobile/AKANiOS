@@ -185,7 +185,8 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     [self.tableView reloadData];
     
     //
-    [self transformNavigationBarButtons];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self transformNavigationBarButtonsToOrientation:orientation];
     self.firstTimeThatViewAppeared = YES;
     
     if (self.searchController.active)
@@ -193,8 +194,6 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
         [self filterArrayByText:self.searchController.searchBar.text];
         [self.searchController.searchResultsTableView reloadData];
     }
-    
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     CGRect toolbarFrame = self.toolBar.frame;    
     
@@ -232,6 +231,9 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    [self transformNavigationBarButtonsToOrientation:toInterfaceOrientation];
+    
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     if(UIInterfaceOrientationIsLandscape(orientation))
@@ -257,7 +259,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self transformNavigationBarButtons];
+    
 }
 
 #pragma mark - Table view data source
@@ -482,6 +484,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
         }
     });
 }
+
 
 -(void)followParliementary:(UIButton*) sender
 {
@@ -734,6 +737,12 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
                 [self updateQuotasForParliamentary:idParliamentary serverDataUpdateVersion:serverDataUpdateVersion];
             }
             
+            if([recoveredfollowedParliamentaryIdsAndUpdatesVersion allKeys].count == 0) {
+                NSDictionary *userInfo = @{@"serverDataUpdateVersion" : @(serverDataUpdateVersion)};
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName: AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdateFinished object:nil userInfo:userInfo];
+            }
+            
             [self updateStatistics:serverDataUpdateVersion];
 
             [self applyAllDefinedFiltersAndSort];
@@ -877,9 +886,8 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -18 || self.tableView.contentOffset.y == -8);
 }
 
--(void)transformNavigationBarButtons{
+-(void)transformNavigationBarButtonsToOrientation: (UIInterfaceOrientation) orientation {
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if(UIInterfaceOrientationIsLandscape(orientation)) {
         self.navigationItem.leftBarButtonItem.customView.transform
         = self.navigationItem.rightBarButtonItem.customView.transform

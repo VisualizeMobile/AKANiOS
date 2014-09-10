@@ -42,7 +42,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self transformNavigationBarButtons];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self transformNavigationBarButtonsToOrientation:orientation];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -57,10 +58,12 @@
     
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+    [self transformNavigationBarButtonsToOrientation:toInterfaceOrientation];
+}
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self transformNavigationBarButtons];
-    
     [self.infoLabel sizeToFit];
     self.infoLabel.preferredMaxLayoutWidth=self.infoLabel.frame.size.width;
 }
@@ -71,9 +74,8 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)transformNavigationBarButtons{
+-(void)transformNavigationBarButtonsToOrientation: (UIInterfaceOrientation) orientation{
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if(UIInterfaceOrientationIsLandscape(orientation)) {
         self.navigationItem.leftBarButtonItem.customView.transform
         = self.navigationItem.rightBarButtonItem.customView.transform
