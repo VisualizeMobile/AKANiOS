@@ -69,6 +69,16 @@
     return YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    [self transformNavigationBarButtonsToOrientation:orientation];
+}
+
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self transformNavigationBarButtonsToOrientation:toInterfaceOrientation];
+}
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     CGRect frame = self.view.bounds;
@@ -144,6 +154,19 @@
 
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)transformNavigationBarButtonsToOrientation: (UIInterfaceOrientation) orientation {
+    
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(0.75, 0.75);
+    } else {
+        self.navigationItem.leftBarButtonItem.customView.transform
+        = self.navigationItem.rightBarButtonItem.customView.transform
+        = CGAffineTransformMakeScale(1, 1);
+    }
 }
 
 

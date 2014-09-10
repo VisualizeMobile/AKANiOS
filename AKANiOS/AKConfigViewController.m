@@ -86,10 +86,11 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self transformNavigationBarButtons];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self transformNavigationBarButtonsToOrientation:orientation];
     
     UIInterfaceOrientation actualOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    [self arrangeSortButtons:actualOrientation];
+    [self arrangeSortButtonsToOrientation:actualOrientation];
     
     
     switch([self.settingsManager getSortOption]) {
@@ -115,8 +116,13 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
 
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self transformNavigationBarButtonsToOrientation:toInterfaceOrientation];
+    [self arrangeSortButtonsToOrientation:toInterfaceOrientation];
+}
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self transformNavigationBarButtons];
+    
     
     self.makeFilterViewHideShowAnimation = NO;
     UIInterfaceOrientation actualOrientation = [[UIApplication sharedApplication] statusBarOrientation];
@@ -142,11 +148,6 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     // Dispose of any resources that can be recreated.
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
-    [self arrangeSortButtons:toInterfaceOrientation];
-}
-
 #pragma mark - Gesture recognizer delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -163,9 +164,8 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)transformNavigationBarButtons {
+-(void)transformNavigationBarButtonsToOrientation: (UIInterfaceOrientation) orientation {
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if(UIInterfaceOrientationIsLandscape(orientation)) {
         self.navigationItem.leftBarButtonItem.customView.transform
         = self.navigationItem.rightBarButtonItem.customView.transform
@@ -177,8 +177,8 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     }
 }
 
-- (void)arrangeSortButtons:(UIInterfaceOrientation)toOrientation {
-    if(UIInterfaceOrientationIsLandscape(toOrientation)) {
+- (void)arrangeSortButtonsToOrientation:(UIInterfaceOrientation)orientation {
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
         int alphabeticGap = 0;
         int rankingGap = 0;
 
@@ -194,7 +194,7 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
         self.alphabeticSortLabelLeftMarginConstraint.constant = 24+alphabeticGap;
         self.rankingSortIconLeftMarginConstraint.constant = 24+rankingGap;
         self.rankingSortLabelLeftMarginConstraint.constant = 23+rankingGap;
-    } else if(UIInterfaceOrientationIsPortrait(toOrientation)) {
+    } else if(UIInterfaceOrientationIsPortrait(orientation)) {
         self.alphabeticSortIconLeftMarginConstraint.constant = 31;
         self.alphabeticSortLabelLeftMarginConstraint.constant = 24;
         self.rankingSortIconLeftMarginConstraint.constant = 24;
