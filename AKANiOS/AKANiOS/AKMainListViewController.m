@@ -351,7 +351,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     cell.quotaSum.text=[NSString stringWithFormat:@"R$ %@",formattedNumberString];
     
     [cell.followedButton addTarget:self action:@selector(followParliementary:) forControlEvents:UIControlEventTouchUpInside];
-
+    cell.followedButton.tag = indexPath.row;
     return cell;
 }
 
@@ -488,16 +488,14 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 
 -(void)followParliementary:(UIButton*) sender
 {
-    if([sender.superview.superview.superview isKindOfClass:[AKMainTableViewCell class]]) {
-        AKMainTableViewCell *cell = ((AKMainTableViewCell*)sender.superview.superview.superview);
-        AKParliamentary *parliamentary = nil;
+    NSUInteger row = sender.tag;
+    
+    AKParliamentary *parliamentary = nil;
         if (self.searchController.active)
         {
-            NSIndexPath *indexPath = [self.searchController.searchResultsTableView indexPathForCell:cell];
-            parliamentary = self.parliamentaryNicknameFilteredArray[indexPath.row];
+            parliamentary = self.parliamentaryNicknameFilteredArray[row];
         } else {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-            parliamentary = self.parliamentaryArray[indexPath.row];
+            parliamentary = self.parliamentaryArray[row];
         }
         
         if (self.viewFollowedEnabled) {
@@ -509,14 +507,15 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
             
             [self applyAllDefinedFiltersAndSort];
             
+//            NSIndexPath *cellIndex = [NSIndexPath indexPathForRow:row inSection:0];
+            
             if (self.searchController.active) {
                 [self filterArrayByText:self.searchController.searchBar.text];
-                
-                NSIndexPath *cellIndex = [self.searchController.searchResultsTableView indexPathForCell:cell];
-                [self.searchController.searchResultsTableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
+                [self.searchController.searchResultsTableView reloadData];
             } else {
-                NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
-                [self.tableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
+                
+                [self.tableView reloadSections: [NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+                
             }
         } else {
             if ([parliamentary.followed isEqual:@1]) {
@@ -545,7 +544,6 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
                 
                 [self updateQuotasForParliamentary:parliamentary.idParliamentary serverDataUpdateVersion:-1];
             }
-        }
     }
 }
 
