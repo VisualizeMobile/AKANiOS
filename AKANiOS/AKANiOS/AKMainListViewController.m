@@ -496,7 +496,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
             NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
             parliamentary = self.parliamentaryArray[indexPath.row];
         }
-
+        
         if (self.viewFollowedEnabled) {
             [self.parliamentaryDao updateFollowedByIdParliamentary:parliamentary.idParliamentary andFollowedValue:@0];
             
@@ -504,13 +504,15 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
             
             [self.quotaDao deleteQuotasByIdParliamentary:parliamentary.idParliamentary];
             
+            [self applyAllDefinedFiltersAndSort];
+            
             if (self.searchController.active) {
                 [self filterArrayByText:self.searchController.searchBar.text];
-                //NSLog(@"%@",self.searchController.searchBar.text);
+                
                 NSIndexPath *cellIndex = [self.searchController.searchResultsTableView indexPathForCell:cell];
                 [self.searchController.searchResultsTableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
-            }
-            else {NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
+            } else {
+                NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
                 [self.tableView deleteRowsAtIndexPaths:@[cellIndex] withRowAnimation:UITableViewRowAnimationFade];
             }
         } else {
@@ -874,7 +876,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 }
 
 -(BOOL) isSearchBarHidden {
-    return (self.tableView.contentOffset.y == -18 || self.tableView.contentOffset.y == -8);
+    return (self.tableView.contentOffset.y == -20 || self.tableView.contentOffset.y == -18 || self.tableView.contentOffset.y == -8);
 }
 
 -(void)transformNavigationBarButtons{

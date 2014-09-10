@@ -116,7 +116,7 @@
         
         [composeController setInitialText:text];
         [composeController addImage:[UIView imageWithView:self.hostingView]];
-        [composeController addURL: [NSURL URLWithString:@"http://google.com/"]];
+        [composeController addURL: [NSURL URLWithString:@"http://visualizemobile.github.io/akan"]];
         
         [parliamentaryPhotoView removeFromSuperview];
         
