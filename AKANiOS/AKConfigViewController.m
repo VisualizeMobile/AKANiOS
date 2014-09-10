@@ -215,7 +215,7 @@ typedef NS_ENUM(short, AKConfigFilterCategory) {
     if(self.filterView != nil)
         [self removeFilterView];
     
-    self.filterUpperTriangleView = [[AKFilterOptionsUpperTriangleView alloc] initWithFrame: CGRectMake(10, self.partyFilterLabel.frame.origin.y+self.partyFilterLabel.frame.size.height + 3, self.view.frame.size.width-20, 10) andFilterIconXAxysCenter:filterButton.center.x];
+    self.filterUpperTriangleView = [[AKFilterOptionsUpperTriangleView alloc] initWithFrame: CGRectMake(10, self.partyFilterLabel.frame.origin.y+self.partyFilterLabel.frame.size.height + 2, self.view.frame.size.width-20, 10) andFilterIconXAxysCenter:filterButton.center.x];
     
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
