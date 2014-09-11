@@ -358,12 +358,27 @@
 
 -(void)changeQuotas:(UISwipeGestureRecognizer *)recognizer{
     if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
-        self.selectedMonth = (self.selectedMonth-1 > 0)? self.selectedMonth-1 : self.selectedMonth;
+        if (self.selectedMonth == 1) {
+            if(self.selectedYear > self.olderYear){
+                self.selectedYear -= 1;
+                self.selectedMonth = 12;
+            }
+        }else{
+            self.selectedMonth = (self.selectedMonth-1 > 0)? self.selectedMonth-1 : self.selectedMonth;
+        }
     }
     else{
-        self.selectedMonth = (self.selectedMonth+1 <= 12)? self.selectedMonth+1 : self.selectedMonth;
+        if (self.selectedMonth == 12) {
+            if(self.selectedYear < self.actualYear){
+                self.selectedYear += 1;
+                self.selectedMonth = 1;
+            }
+        }else{
+            self.selectedMonth += 1;
+        }
     }
     [self.datePickerView selectRow:self.selectedMonth-1 inComponent:0 animated:NO];
+    [self.datePickerView selectRow:self.selectedYear-self.olderYear inComponent:1 animated:NO];
     self.datePickerField.text = [NSString stringWithFormat:@"%@ de %ld",[self monthForPickerRow:self.selectedMonth-1],(long)self.selectedYear ];
     [self animateDatePickerField];
     [self filterQuotas];
@@ -372,14 +387,8 @@
 -(void)animateDatePickerField{
     
     float dx, dy;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if(UIInterfaceOrientationIsLandscape(orientation)){
-        dx = 0;
-        dy = -30;
-    }else{
-        dx = -50;
-        dy = -60;
-    }
+    dx = 0;
+    dy = -30;
     [UIView animateWithDuration:0.5 animations:^{
         float x = _beginRect.origin.x +dx;
         float y = _beginRect.origin.y +dy;
