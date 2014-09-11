@@ -43,7 +43,6 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 @property (nonatomic) AKWebServiceConsumer *webService;
 @property (nonatomic) NSMutableArray *parliamentaryToBeNotifiedArray;
 @property (nonatomic) MBProgressHUD *hud;
-
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundTask;
 @property (nonatomic) BOOL lastOrientationWasLadscape;
 @property (nonatomic) BOOL autolayoutCameFromSearchDismiss;
@@ -52,10 +51,9 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
 @property (nonatomic) BOOL firstTimeThatViewAppeared;
 @property (nonatomic) BOOL downloadQuotasFinished;
 @property (nonatomic) BOOL downloadStatisticsFinished;
-
 @property (nonatomic) UITapGestureRecognizer *tapToDismissHud;
-
 @property (nonatomic) NSInteger numberOfFollowedParliamentariesQuotasUpdated;
+@property (nonatomic) NSOperationQueue *downloadPhotosTasksQueue;
 
 @end
 
@@ -87,6 +85,9 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     self.needsToHideSearchBar = YES;
     self.tapToDismissHud = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissHud:)];
     self.backgroundTask = UIBackgroundTaskInvalid;
+    self.downloadPhotosTasksQueue = [[NSOperationQueue alloc] init];
+    self.downloadPhotosTasksQueue.name = @"br.com.visualizemobile.akanios";
+    self.downloadPhotosTasksQueue.maxConcurrentOperationCount = 10;
     
     // Configure Toolbar
     self.toolBar = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([AKToolBar class]) owner:self options:nil] firstObject];
@@ -106,6 +107,8 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscadesativada"] forState:UIControlStateNormal];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscaativada"] forState:UIControlStateSelected];
     
+    self.viewByRankEnabled = YES;
+    [self.toolBar.rankButton setSelected:YES];
 
     // Configure navigation bar
     UIButton* configButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
@@ -305,9 +308,10 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
         cell.parliamentaryPhoto.image=[UIImage imageWithData:parliamentary.photoParliamentary];
     // Has WiFi OR dont have photo in cache
     } else if(reachability.currentReachabilityStatus == ReachableViaWiFi || photoExistsInCache == NO) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self.downloadPhotosTasksQueue addOperationWithBlock:^ {
             NSData *photoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.camara.gov.br/internet/deputado/bandep/%@.jpg", parliamentary.idParliamentary]]];
-
+            
             if (photoData) {
                 UIImage *image = [UIImage imageWithData:photoData];
                 
@@ -323,7 +327,8 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
                     });
                 }
             }
-        });
+        }];
+        
     // Have photo in cache
     } else if(photoExistsInCache) {
         NSData *photoData = [NSData dataWithContentsOfFile:parliamentaryPhotoFilePath];
