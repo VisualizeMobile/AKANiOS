@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AKInfoViewController">
@@ -19,11 +20,9 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qwt-yw-gxv">
                     <rect key="frame" x="0.0" y="-2562" width="320" height="3231"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passagem" translatesAutoresizingMaskIntoConstraints="NO" id="aCO-P8-CGo">
                             <rect key="frame" x="0.0" y="814" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -33,7 +32,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passagens Aéreas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAt-PP-xgp">
                             <rect key="frame" x="0.0" y="785" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="zU8-FU-pHF"/>
@@ -44,7 +42,6 @@
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cotas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO2-HN-AeS">
                             <rect key="frame" x="0.0" y="745" width="320" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="SQz-Kf-wzb"/>
@@ -55,7 +52,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="telefonia" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-HR-Mxd">
                             <rect key="frame" x="0.0" y="955" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -65,7 +61,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefonia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-Zk-8Jy">
                             <rect key="frame" x="0.0" y="926" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="lKT-kf-LUK"/>
@@ -76,7 +71,6 @@
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serviços Postais" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPV-T2-PUj">
                             <rect key="frame" x="0.0" y="1067" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="5kL-r8-tGK"/>
@@ -87,7 +81,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="escritorio" translatesAutoresizingMaskIntoConstraints="NO" id="L0w-Tn-Gi5">
                             <rect key="frame" x="0.0" y="1237" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -97,7 +90,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escritório" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MP-di-de2">
                             <rect key="frame" x="0.0" y="1208" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="HYd-cV-Lh6"/>
@@ -108,7 +100,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alimentacao" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-Or-8KY">
                             <rect key="frame" x="0.0" y="1378" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -118,7 +109,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alimentação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSQ-qH-i3Q">
                             <rect key="frame" x="0.0" y="1349" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="320" id="0wi-IM-NCG"/>
@@ -130,7 +120,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hospedagem" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-Y7-kVO">
                             <rect key="frame" x="0.0" y="1519" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -140,7 +129,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hospedagem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov1-Do-xSe">
                             <rect key="frame" x="0.0" y="1490" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ULb-bW-0O4"/>
@@ -151,7 +139,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aeronaves" translatesAutoresizingMaskIntoConstraints="NO" id="Ck8-Fi-HWG">
                             <rect key="frame" x="0.0" y="1660" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -161,7 +148,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locação ou fretamento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-7z-w3R">
                             <rect key="frame" x="0.0" y="1631" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="AYr-dd-mFG"/>
@@ -172,7 +158,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combustivel" translatesAutoresizingMaskIntoConstraints="NO" id="hOO-7k-3fE">
                             <rect key="frame" x="0.0" y="1801" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -182,7 +167,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Combustíveis" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lS-g2-ULQ">
                             <rect key="frame" x="0.0" y="1772" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="xjA-Nk-jlT"/>
@@ -193,7 +177,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seguranca" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-cO-Nan">
                             <rect key="frame" x="0.0" y="1942" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -203,7 +186,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Segurança" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geD-Vu-CcJ">
                             <rect key="frame" x="0.0" y="1913" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="iDD-se-WBj"/>
@@ -214,7 +196,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="consultoria" translatesAutoresizingMaskIntoConstraints="NO" id="I7h-bF-Jcj">
                             <rect key="frame" x="0.0" y="2083" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -224,7 +205,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contratações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-ru-zpH">
                             <rect key="frame" x="0.0" y="2054" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="pSd-os-sPK"/>
@@ -235,7 +215,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="divulgacao" translatesAutoresizingMaskIntoConstraints="NO" id="P17-4f-mPc">
                             <rect key="frame" x="0.0" y="2224" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94901960780000005" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -245,7 +224,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Divulgação" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-n6-iyD">
                             <rect key="frame" x="0.0" y="2195" width="320" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="viE-XI-vYX"/>
@@ -256,7 +234,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-1M-liu">
                             <rect key="frame" x="116" y="14" width="89" height="98"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="89" id="Wq6-uD-AAK"/>
                                 <constraint firstAttribute="height" constant="98" id="nIX-sz-7XE"/>
@@ -264,7 +241,6 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postais" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-ag-VtQ">
                             <rect key="frame" x="0.0" y="1096" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94901960784313721" alpha="1" colorSpace="deviceRGB"/>
                             <color key="tintColor" red="0.5568627451" green="0.81960784310000001" blue="0.78039215689999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
@@ -274,7 +250,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Automóveis e Embarcações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzc-lK-oPs">
                             <rect key="frame" x="0.0" y="2336" width="320" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="P4q-1u-SLy"/>
@@ -285,7 +260,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="automovel" translatesAutoresizingMaskIntoConstraints="NO" id="0Ir-Il-Tg2">
                             <rect key="frame" x="0.0" y="2369" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.37647058823529411" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="E0G-UY-Jzc"/>
@@ -294,7 +268,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assinatura de Revistas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BP-fz-7or">
                             <rect key="frame" x="0.0" y="2481" width="320" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="t6D-bs-YDc"/>
@@ -305,7 +278,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="assinaturas" translatesAutoresizingMaskIntoConstraints="NO" id="AW1-xq-WQ8">
                             <rect key="frame" x="0.0" y="2514" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="111" id="MBu-r2-Cnw"/>
@@ -314,7 +286,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desenvolvimento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dG7-I2-vMw">
                             <rect key="frame" x="0.0" y="2676" width="320" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.65098039215686276" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Ctz-GG-XNf"/>
@@ -325,16 +296,14 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desenvolvimento" translatesAutoresizingMaskIntoConstraints="NO" id="WnZ-Fr-7pl">
                             <rect key="frame" x="0.0" y="2709" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="Ldm-i6-c7y"/>
                                 <constraint firstAttribute="width" constant="111" id="y6Z-A0-atd"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arte" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-6T-6Mm">
                             <rect key="frame" x="0.0" y="3045" width="320" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95294117647058818" green="0.81960784313725488" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="uNU-OF-COk"/>
@@ -345,7 +314,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desenvolvimento" translatesAutoresizingMaskIntoConstraints="NO" id="TDS-7C-4TI">
                             <rect key="frame" x="0.0" y="2821" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="GIG-lV-5Wp"/>
@@ -354,7 +322,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Créditos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94v-4I-LM0">
                             <rect key="frame" x="0.0" y="2629" width="320" height="37"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.75294125079999996" green="0.73725491759999995" blue="0.74117648599999997" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="37" id="2Rh-TU-2re"/>
@@ -365,7 +332,6 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desenvolvimento" translatesAutoresizingMaskIntoConstraints="NO" id="nCO-P2-35t">
                             <rect key="frame" x="0.0" y="2933" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="111" id="OZX-Xq-cg2"/>
@@ -374,7 +340,6 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="design" translatesAutoresizingMaskIntoConstraints="NO" id="RD5-zl-ukx">
                             <rect key="frame" x="0.0" y="3078" width="111" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="111" id="Jkh-EA-IfS"/>
@@ -383,7 +348,6 @@
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="500" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CWG-e7-ged">
                             <rect key="frame" x="20" y="125" width="280" height="602"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <string key="text">A proposta do aplicativo AKAN é promover a consciência orçamentária através do fácil acesso a valores gastos com Cotas para Exercício da Atividade Parlamentar (CEAP) de cada Deputado Federal em mandato corrente.
 
 A Cota é composta pelas despesas que o parlamentar necessita para o exercício de sua função. São gastos com passagens aéreas, telefonia, serviçõs postais, manutenção de estritório, alimentação, hospedagem, fretamento de veículos, combustíveis, serviços de segurança, contratações e divulgação de atividade parlamentar.
@@ -395,7 +359,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="r5o-rT-stu">
                             <rect key="frame" x="111" y="814" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="Vsb-jr-sNp"/>
@@ -407,7 +370,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="Qcy-4Y-kAf">
                             <rect key="frame" x="111" y="955" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="8Md-0i-hEt"/>
@@ -419,7 +381,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com serviços postais exceto compra de selos" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="sCf-7R-gBq">
                             <rect key="frame" x="111" y="1096" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="rxY-JG-s2k"/>
@@ -430,7 +391,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="kwk-Ro-aXl">
                             <rect key="frame" x="111" y="1237" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="rQs-1J-8lX"/>
@@ -442,7 +402,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos fornecimento de alimentação do parlamentar" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="ivj-PE-1L4">
                             <rect key="frame" x="111" y="1378" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="pxl-IZ-RIL"/>
@@ -453,7 +412,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com diárias em hotéis, exceto a parlamentares do Distrito Federal" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="GlH-e5-zFv">
                             <rect key="frame" x="111" y="1519" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="ZIH-aM-g5Y"/>
@@ -464,7 +422,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos locação ou fretamento de aeronaves, embarcações e veículos automotores." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="npe-VP-IN6">
                             <rect key="frame" x="111" y="1660" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="nRk-uk-Hyf"/>
@@ -475,7 +432,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com combustíveis e lubrificantes, no limite de até  R$ 4.500,00 por mês" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="L2l-TU-c1o">
                             <rect key="frame" x="111" y="1801" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="f20-1v-ppS"/>
@@ -486,7 +442,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com serviços prestados por empresas de segurança, no limite de até R$ 4.500,00 por mês" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="dwK-tp-ROv">
                             <rect key="frame" x="111" y="1942" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="FKQ-aP-DFR"/>
@@ -497,7 +452,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com serviços de consultorias e trabalhos técnicos, permitidas pesquisas socioeconômicas" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="MD6-Dp-KWa">
                             <rect key="frame" x="111" y="2083" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="Khr-ZM-g1Y"/>
@@ -508,7 +462,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com divulgação de atividade parlamentar, exceto nos 120 dias anteriores à data das eleições " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="eXS-fc-moK">
                             <rect key="frame" x="111" y="2224" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="erx-jI-TQH"/>
@@ -519,7 +472,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com alugel  e fretamento de automovéis e embacações" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="ulp-E8-RwX">
                             <rect key="frame" x="111" y="2369" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="KX2-FW-gnR"/>
@@ -530,7 +482,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valores gastos com assinaturas de revistas " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-HB-2DW">
                             <rect key="frame" x="111" y="2514" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="249-Ko-CG5"/>
@@ -541,7 +492,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arthur Jahn                                      stutrzbecher@gmail.com" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="K5X-tU-16g">
                             <rect key="frame" x="111" y="2709" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="QpY-Gd-hAp"/>
@@ -552,7 +502,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matheus Fonseca                           1matheusfonseca@gmail.com      " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="YYy-Of-Agw">
                             <rect key="frame" x="111" y="2821" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="igU-uf-koy"/>
@@ -563,7 +512,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ramon Cruz                                      kverrna@gmail.com" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="bKv-tf-8ho">
                             <rect key="frame" x="111" y="2933" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="kJd-vT-sFm"/>
@@ -574,7 +522,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedro Costa                                   pirlimpas@gmail.com" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="209" translatesAutoresizingMaskIntoConstraints="NO" id="vWT-4u-Vf1">
                             <rect key="frame" x="111" y="3078" width="209" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="104" id="lJQ-0Z-LT4"/>
@@ -742,8 +689,6 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
                 <constraint firstItem="Qwt-yw-gxv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="afZ-JM-7l3"/>
                 <constraint firstAttribute="trailing" secondItem="Qwt-yw-gxv" secondAttribute="trailing" id="fhO-2B-GAB"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
@@ -764,4 +709,9 @@ No aplicativo AKAN,  a cor da Cota muda de acordo com o valor gasto pelo parlame
         <image name="seguranca" width="300" height="230"/>
         <image name="telefonia" width="300" height="230"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

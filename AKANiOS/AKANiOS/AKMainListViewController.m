@@ -107,8 +107,7 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscadesativada"] forState:UIControlStateNormal];
     [self.toolBar.searchButton setImage:[UIImage imageNamed:@"buscaativada"] forState:UIControlStateSelected];
     
-    self.viewByRankEnabled = YES;
-    [self.toolBar.rankButton setSelected:YES];
+    [self viewByRank:nil];
 
     // Configure navigation bar
     UIButton* configButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
@@ -320,10 +319,10 @@ NSString * const AKQuotasNotificationShowUserUpdatedParliamentaryAndCheckIfUpdat
                     
                     [self.parliamentaryDao updateParliamentary:parliamentary.idParliamentary withPhoto:photoData];
                     
-                    AKMainTableViewCell *updateCell = (AKMainTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (updateCell)
-                            updateCell.parliamentaryPhoto.image = image;
+                        if ([[self.tableView indexPathsForVisibleRows] containsObject:indexPath
+                             ])
+                            cell.parliamentaryPhoto.image = image;
                     });
                 }
             }
