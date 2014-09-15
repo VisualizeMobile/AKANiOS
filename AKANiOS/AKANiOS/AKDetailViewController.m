@@ -238,7 +238,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self loanNibforOrientation:self.interfaceOrientation];
+    
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self loanNibforOrientation:orientation];
 }
 
 - (void)didReceiveMemoryWarning
