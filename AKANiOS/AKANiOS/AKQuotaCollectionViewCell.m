@@ -41,6 +41,11 @@ double const confiability = 1.4;
 
 }
 
+-(void) prepareForReuse{
+    [self.layer removeAllAnimations];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [self setLevelHeight];

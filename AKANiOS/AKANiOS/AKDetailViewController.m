@@ -358,6 +358,7 @@
 #pragma mark - Custom Methods
 
 -(void)changeQuotas:(UISwipeGestureRecognizer *)recognizer{
+
     if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         if (self.selectedMonth == 1) {
             if(self.selectedYear > self.olderYear){
