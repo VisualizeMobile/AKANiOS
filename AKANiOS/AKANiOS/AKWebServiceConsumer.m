@@ -10,6 +10,7 @@
 #import "Reachability.h"
 
 NSString const* urlBase = @"http://107.170.177.5/akan";
+//NSString const* urlBase = @"http://localhost:8000";
 
 @implementation AKWebServiceConsumer
 

@@ -499,7 +499,7 @@
             return @"Setembro";
             break;
         case 9:
-            return @"Otubro";
+            return @"Outubro";
             break;
         case 10:
             return @"Novembro";

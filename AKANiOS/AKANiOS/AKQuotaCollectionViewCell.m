@@ -41,9 +41,11 @@ double const confiability = 1.4;
 
 }
 
--(void) prepareForReuse{
+-(void) prepareForReuse {
+    self.levelImageView.frame = CGRectZero;
     [self.layer removeAllAnimations];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
 }
 
 - (void)drawRect:(CGRect)rect
@@ -70,13 +72,14 @@ double const confiability = 1.4;
     //self.valueLabel.text = [NSString stringWithFormat:@"R$ %@", [numberFormatter stringFromNumber: [self.quota value]]];
     self.levelImageView.image = [self.levelImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self setLevelHeight];
+    [self setNeedsDisplay];
 }
 
 -(void)setLevelHeight{
     float multiplier = [self exponentialProbability]*100;
     CGFloat height = (multiplier <= 100)? multiplier : 100;
-    self.levelImageView.frame = CGRectMake(0,103, 130, 0);
-    //NSLog(@"%f",height);
+    self.levelImageView.frame = CGRectMake(0, 103, 130, 0);
+
     [self generateColorsAnimation];
     [UIView animateWithDuration:1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:
         ^(void){

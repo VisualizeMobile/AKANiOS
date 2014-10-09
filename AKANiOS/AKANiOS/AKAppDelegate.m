@@ -31,6 +31,29 @@
     [self copyAppConfigurationFromBundleToDocuments];
     [self createParliamentaryPhotoDirectory];
     
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        
+
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if([application currentUserNotificationSettings].types == 0 &&
+           [defaults objectForKey:@"already_alerted_about_notifications"] == nil &&
+           [defaults objectForKey:@"already_asked_for_notifications"] != nil
+           ) {
+            
+            [defaults setBool:YES forKey:@"already_alerted_about_notifications"];
+            [defaults synchronize];
+            
+            UIAlertView *ableNotificationsAlert = [[UIAlertView alloc] initWithTitle:@"Notificação de atualização" message:@"Caso deseje ser notificado quando um parlamentar realizar um novo gasto, habilite isso em Ajustes > AKAN > Notificações > Permitir Notificações." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [ableNotificationsAlert show];
+        }
+        
+        [defaults setBool:YES forKey:@"already_asked_for_notifications"];
+        [defaults synchronize];
+    }
+    
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (notification) {
         NSNumber *idParliamentary = [notification.userInfo objectForKey:@"idParliamentary"];
